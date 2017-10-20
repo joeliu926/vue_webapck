@@ -70,8 +70,8 @@ import {
     MessageBox,
     Message,
     Notification
-} from './jslibrary/elementUI/src/index'
-//} from 'element-ui'
+//} from './jslibrary/elementUI/src/index'
+} from 'element-ui'
 
 Vue.use(Pagination)
 Vue.use(Dialog)

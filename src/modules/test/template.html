@@ -1,7 +1,22 @@
 <div class="admindashboard" >
  <i class="el-icon-pa-bath"></i>
  <div>Test</div>
- <el-button type="primary" icon="search">搜索</el-button>
+ <div class="test-chart-container">
+  <highcharts-component :options="optionsLine"  :styles="styles"></highcharts-component>
+ </div>
+ <div class="test-chart-container">
+  <highcharts-component :options="optionsArea"  :styles="styles"></highcharts-component>
+ </div>
+ <div class="test-chart-container">
+  <highcharts-component :options="optionsColumn"  :styles="styles"></highcharts-component>
+ </div>
+ <div class="test-chart-container">
+  <highcharts-component :options="optionsPie"  :styles="styles"></highcharts-component>
+ </div>
+ <div class="test-chart-container test-chart-mix-container">
+  <highcharts-component :options="optionsMix"  :styles="styles"></highcharts-component>
+ </div>
+<!-- <el-button type="primary" icon="search">搜索</el-button>
  <img src="../../common/img/gaoji2.png">
- <div>aaadf</div>
+ <div>aaadf</div>-->
 </div>
