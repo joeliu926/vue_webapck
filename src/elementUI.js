@@ -2,9 +2,9 @@
  * Created by JoeLiu on 2017-9-26.
  */
 import Vue from 'vue';
-import './jslibrary/elementUI/lib/theme-default/index.css';
+//import './jslibrary/elementUI/lib/theme-default/index.css';
 
-//import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-default/index.css';
 import './common/style/font-extend.less'
 import './common/style/init-default.css'
 import {
@@ -70,8 +70,8 @@ import {
     MessageBox,
     Message,
     Notification
-} from './jslibrary/elementUI/src/index'
-//} from 'element-ui'
+//} from './jslibrary/elementUI/src/index'
+} from 'element-ui'
 
 Vue.use(Pagination)
 Vue.use(Dialog)

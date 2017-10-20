@@ -25,6 +25,8 @@ export default {
     methods: {
         intext(){
             this.$router.push('/test');
-        }
+        },
+        activeIndex(){},
+        handleSelect(){}
     }
 }
