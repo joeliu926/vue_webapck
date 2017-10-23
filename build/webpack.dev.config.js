@@ -28,11 +28,6 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new FriendlyErrorsPlugin(),
-        new webpack.ProvidePlugin({
-            $:"jquery",
-            jQuery:"jquery",
-            "window.jQuery":"jquery"
-        }),
         new HtmlWebpackPlugin({
             filename:'index.html',
             template: 'src/index.html',

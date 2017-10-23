@@ -26,6 +26,9 @@ export default {
         intext(){
             this.$router.push('/test');
         },
+        inhome(){
+            this.$router.push('/home');
+        },
         activeIndex(){},
         handleSelect(){}
     }

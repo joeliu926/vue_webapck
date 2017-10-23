@@ -41,11 +41,6 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
         }),
-        new webpack.ProvidePlugin({
-            $:"jquery",
-            jQuery:"jquery",
-            "window.jQuery":"jquery"
-        }),
         new HtmlWebpackPlugin({
             filename:'index.html',
             template: 'src/index.html',

@@ -25,6 +25,32 @@ export default {
 
     },
     methods: {
+        sendquery(){
 
+            console.log($('body').html());
+            
+           _.ajax({
+                url: '/userate',
+                method: 'POST',
+                data:{
+                    "dataCode": 0,
+                    "dataType":2
+                },
+                success: function (res) {
+
+                    console.log('get result',res);
+                    if (res.code == "0") {
+                        if(!res.data.status)
+                        {
+                            _this.codeWarnings =['编码重复！'];
+                        }
+                        else {
+                            _this.createModalBtns= _this.laststep;
+                            _this.isfirstsetp=false;
+                        }
+                    }
+                }
+            });
+        }
     }
 }

@@ -12,7 +12,7 @@ function resolve(relPath) {
 module.exports = {
     entry: {
         index: './src/bootstrap.js',
-        vendor: ['jquery']
+        vendor: ['jquery','apputils']
     },
     output: {
         filename: 'js/[name].js',
@@ -21,9 +21,10 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            '@': resolve('../src'),
-            '~': resolve('../src/assets'),
-            "jquery":resolve('../src/jslibrary/jquery/jquery.min.js')
+        /*    '@': resolve('../src'),
+            '~': resolve('../src/assets'),*/
+            "jquery":resolve('../src/jslibrary/jquery/jquery.min.js'),
+            'apputils': resolve('../src/common/utils/appUtil')
         }
     },
     module: {
@@ -61,5 +62,13 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $:"jquery",
+            jQuery:"jquery",
+            "_":"apputils",
+            "apputils":"apputils"
+        })
+    ]
 }
