@@ -12,7 +12,7 @@ function resolve(relPath) {
 module.exports = {
     entry: {
         index: './src/bootstrap.js',
-        vendor: ['jquery','apputils']
+        vendor: ['jquery','jsutils']
     },
     output: {
         filename: 'js/[name].js',
@@ -24,7 +24,7 @@ module.exports = {
         /*    '@': resolve('../src'),
             '~': resolve('../src/assets'),*/
             "jquery":resolve('../src/jslibrary/jquery/jquery.min.js'),
-            'apputils': resolve('../src/common/utils/appUtil')
+            'jsutils': resolve('../src/common/utils/jsutils.js')
         }
     },
     module: {
@@ -67,8 +67,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $:"jquery",
             jQuery:"jquery",
-            "_":"apputils",
-            "apputils":"apputils"
+            "_":"jsutils"
         })
     ]
 }

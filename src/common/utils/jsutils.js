@@ -1,7 +1,7 @@
 /**
  * Created by JoeLiu on 2017-9-27.
  */
-import CONSTANT from './constant.js'
+import CONSTANT from './constants.js'
 let cacheNavMenus=[];
 let userResources=[];
 
