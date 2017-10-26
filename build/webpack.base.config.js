@@ -11,7 +11,7 @@ function resolve(relPath) {
 
 module.exports = {
     entry: {
-        index: './src/bootstrap.js',
+        index: ['babel-polyfill','./src/bootstrap.js'],
         vendor: ['jquery','jsutils']
     },
     output: {
