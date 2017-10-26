@@ -40,9 +40,17 @@ var routerConfig = {
 var router = new VueRouter(routerConfig);
 
 router.beforeEach((to, from, next)=>{
+    let path=to.path;
 
+    if(path=='/login'){
+        next();
+        return;
+    }
 
     next();
+    //console.log('ppppppppppp',path)
+
+
 });
 
 export default router;

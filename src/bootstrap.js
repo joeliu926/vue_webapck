@@ -5,6 +5,7 @@ import Vue from 'vue';
 import App from './app.vue';
 import router from './router/router.js';
 import Element from './elementUI.js';
+import "babel-polyfill";
 new Vue({
     el: '#appid',
     router: router,

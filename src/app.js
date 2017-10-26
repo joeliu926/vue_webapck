@@ -7,14 +7,10 @@ export default {
 
     },
     data () {
-        let _this=this;
-        return {
-            showdata:null,
-
-        }
+        return  {}
     },
     created() {
-        this.showdata = 'hello boy';
+
     },
     mounted(){
 
@@ -23,13 +19,6 @@ export default {
 
     },
     methods: {
-        intext(){
-            this.$router.push('/test');
-        },
-        inhome(){
-            this.$router.push('/home');
-        },
-        activeIndex(){},
-        handleSelect(){}
+
     }
 }
