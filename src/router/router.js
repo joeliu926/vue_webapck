@@ -5,12 +5,19 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+const login = r => require.ensure([], () => r(require('../modules/login/index.vue')), 'login');
 const home = r => require.ensure([], () => r(require('../modules/home/index.vue')), 'home');
 const test = r => require.ensure([], () => r(require('../modules/test/index.vue')), 'test');
 
 var routerConfig = {
     linkActiveClass: 'active',
     routes: [
+        {
+            name:'/login',
+            path: '/login',
+            component:login
+        }
+        ,
         {
             name:'/home',
             path: '/home',
