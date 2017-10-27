@@ -8,7 +8,10 @@ export default {
 
     },
     data () {
-        return  {}
+     return{
+         sName:"",
+         sPassword:""
+     }
     },
     created() {
 
@@ -20,6 +23,8 @@ export default {
 
     },
     methods: {
-
+        login(){
+          console.log(this.sName+"------------"+this.sPassword);
+        }
     }
 }
