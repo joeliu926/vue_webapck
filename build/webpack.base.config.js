@@ -34,6 +34,7 @@ module.exports = {
                 use: "babel-loader",
                 include: [resolve('../src')]
             },
+
             {
                 test: /\.vue$/,
                 use: {

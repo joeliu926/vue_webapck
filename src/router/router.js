@@ -5,10 +5,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-const login = r => require.ensure([], () => r(require('../modules/login/index.vue')), 'login');
-const nav = r => require.ensure([], () => r(require('../modules/nav/index.vue')), 'nav');
-const home = r => require.ensure([], () => r(require('../modules/home/index.vue')), 'home');
-const test = r => require.ensure([], () => r(require('../modules/test/index.vue')), 'test');
+var login = r => require.ensure([], () => r(require('../modules/login/index.vue')), 'login');
+var nav = r => require.ensure([], () => r(require('../modules/nav/index.vue')), 'nav');
+var home = r => require.ensure([], () => r(require('../modules/home/index.vue')), 'home');
+var test = r => require.ensure([], () => r(require('../modules/test/index.vue')), 'test');
 
 var routerConfig = {
     linkActiveClass: 'active',
@@ -46,11 +46,8 @@ router.beforeEach((to, from, next)=>{
         next();
         return;
     }
-
     next();
     //console.log('ppppppppppp',path)
-
-
 });
 
 export default router;

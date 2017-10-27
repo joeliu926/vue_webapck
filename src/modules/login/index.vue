@@ -16,7 +16,7 @@
     }
     .login-input{margin: 10px 0;}
     .login-input input:focus{border: 1px solid #6F61D3 !important;}
-    .login-ltext{text-decoration: none;color: #6F61D3;}
+    .login-ltext{text-decoration: none;color: #a79def; font-size: 14px;}
     .login-icon{text-align: center;}
     .login-submit{
         width: 100%;
@@ -24,12 +24,17 @@
         border: none;
         color: white;
     }
+
+    .login-submit:hover{
+        background-color: #9186e0;
+        color: white;
+    }
     .login-left-content{
         flex: 1 1 150px;
         flex-direction: column;
     }
     .item-space{
-        flex: 3 1 300px;
+        flex: 3 1 200px;
     }
     .login-elrow {
         padding: 5px;
