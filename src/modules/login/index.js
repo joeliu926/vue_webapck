@@ -32,7 +32,7 @@ export default {
                      
                 },
                 success: function (res) {
-                    window.location.hash="/";
+                    window.location.href="/";
                 }
             });
         }

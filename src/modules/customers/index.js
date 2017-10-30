@@ -41,7 +41,18 @@ export default {
 
     },
     created() {
+        _.ajax({
+            url: '/user/userate',
+            method: 'POST',
+            data:{
+                "dataCode": 0,
+                "dataType":2
+            },
+            success: function (res) {
+                console.log('get result',res);
 
+            }
+        });
     },
     mounted(){
 
