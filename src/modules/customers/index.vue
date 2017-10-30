@@ -46,15 +46,23 @@
         .customer-pa-icon{
             font-size: 24px !important;
             color: #909090;
-            margin-right: 40px;
+            line-height: 30px;
             cursor: pointer;
+        }
+        .customer-title{
+            vertical-align: middle;
+            height: 40px;
+            width: 40px;
+        }
+        .customer-date{
+            float: right;
         }
     }
 
     .customer-block-uinfo{
         margin: 24px;
     }
-    .customer-user-name{padding-left: -24px;}
+    .customer-user-name{font-size: 11px;color:#444;}
     .customer-user-title{
         vertical-align: middle;
         height: 40px;
