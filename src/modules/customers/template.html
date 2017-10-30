@@ -44,7 +44,7 @@
                 <div ><i class="el-icon-pa-refresh customer-pa-icon" @click="fRefresh"></i></div>
             </el-col>
             <el-col :span="1">
-                <div><i class="el-icon-edit customer-pa-icon" @click="fEdit" ></i></div>
+                <div><i class="el-icon-setting customer-pa-icon" @click="fEdit" ></i></div>
             </el-col>
         </el-row>
         <el-row>
@@ -54,7 +54,6 @@
     <div class="customer-block-content">
         <el-table
                 :data="aCustomerlist"
-                border
                 style="width: 100%"
                 :default-sort = "{prop: 'date', order: 'descending'}"
         >
@@ -79,11 +78,19 @@
                     width="180">
             </el-table-column>
             <el-table-column
-                    prop="address"
-                    label="地址">
+                prop="address"
+                label="地址">
+        </el-table-column>
+
+            <el-table-column label="">
+                <template slot-scope="scope" class="aaaaaaaa" style="text-align: right;">
+                    <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
+                </template>
             </el-table-column>
         </el-table>
     </div>
+
+
     <div class="customer-block-content customer-pagination-align">
         <el-pagination
                 layout="prev, pager, next"

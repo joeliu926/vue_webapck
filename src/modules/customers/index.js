@@ -66,6 +66,9 @@ export default {
         fEdit(){
             console.log("edit data");
 
+        },
+        fMoreUserInfo(){
+            console.log("get more user info");
         }
 
     }
