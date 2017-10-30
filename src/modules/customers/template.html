@@ -1,0 +1,95 @@
+
+<div class="customer-content" >
+    <div class="customers-search-content customer-content-gradient">
+        <div class="customers-search">
+            <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+                <el-tab-pane label="名称" name="customerName">
+                    <el-input placeholder="搜索顾客名称"  icon="search" v-model="customerName"
+                              :on-icon-click="fSearchData" @keyup.enter.native="fSearchData">
+                        <!--  <i slot="prepend" class="el-icon-pa-search"></i>-->
+                    </el-input>
+                </el-tab-pane>
+                <el-tab-pane label="电话" name="telNum">
+                    <el-input placeholder="搜索顾客电话"  icon="search" v-model="telNum"
+                              :on-icon-click="fSearchData" @keyup.enter.native="fSearchData"></el-input>
+                </el-tab-pane>
+                <el-tab-pane label="微信" name="WeChat">
+                    <el-input placeholder="搜索顾客微信"  icon="search" v-model="WeChat"
+                              :on-icon-click="fSearchData" @keyup.enter.native="fSearchData"></el-input>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+    </div>
+<!--    <hr class="vhr">-->
+<div class="customer-block-content">
+    <div class="customer-block-uinfo">
+        <el-row :gutter="24">
+            <el-col :span="1">
+                <div class="">
+                    <img src="../../common/img/gaoji2.png" class="customer-user-title">
+                </div>
+            </el-col>
+            <el-col :span="17"><div class="customer-user-name"><p>{{name}}</p><label>{{total}} 条记录，按照登记会时间排序</label></div></el-col>
+            <el-col :span="4" style="">
+                <div>
+                <el-date-picker
+                    v-model="registerDate"
+                    type="date"
+                    placeholder="选择日期"
+                    :picker-options="pickerOptions">
+            </el-date-picker>
+                </div>
+            </el-col>
+            <el-col :span="1">
+                <div ><i class="el-icon-pa-refresh customer-pa-icon" @click="fRefresh"></i></div>
+            </el-col>
+            <el-col :span="1">
+                <div><i class="el-icon-edit customer-pa-icon" @click="fEdit" ></i></div>
+            </el-col>
+        </el-row>
+        <el-row>
+
+        </el-row>
+    </div>
+    <div class="customer-block-content">
+        <el-table
+                :data="aCustomerlist"
+                border
+                style="width: 100%"
+                :default-sort = "{prop: 'date', order: 'descending'}"
+        >
+            <el-table-column
+                    prop="id"
+                    label=""
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="customerName"
+                    label="名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="registerDate"
+                    label="登记时间"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="telNum"
+                    label="电话"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="address"
+                    label="地址">
+            </el-table-column>
+        </el-table>
+    </div>
+    <div class="customer-block-content customer-pagination-align">
+        <el-pagination
+                layout="prev, pager, next"
+                :total="100">
+        </el-pagination>
+    </div>
+</div>
+
+</div>

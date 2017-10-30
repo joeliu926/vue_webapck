@@ -4,7 +4,59 @@
 </script>
 
 <style lang="scss">
-    .login{
+    html,body{
+        background-color: #f7f7f7;
+    }
+    .nav-content{
+         line-height: 60px;
+         height: 60px;
+         color: white;
+         box-sizing: border-box;
+         padding: 0 30px;
+    }
+    .nav-content .el-col:first-child{
+        text-align: left;
 
+    }
+    .nav-content .el-col:last-child{
+        text-align: right;
+    }
+    .nav-content .el-col:nth-child(2){
+        text-align: center;
+    }
+    .nav-content .el-dropdown-link{
+        color: white;
+        font-size: 16px;
+    }
+    .nav-logo{
+
+    }
+    .nav-logo:before{
+        content: url("../../common/img/logo.png");
+        position: relative;
+        top: 5px;
+        right: 10px;
+        
+    }
+    .nav-user-img{
+        height: 40px;
+        width: 40px;
+    }
+    .nav-img-content{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        float: right;
+        border: 1px solid #eaeaea;
+        position: relative;
+        top:10px;
+    }
+    .nav-content-gradient{
+        background: -moz-linear-gradient(left, #4962D4 0%, #4F3CCA 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4962D4), color-stop(100%,#4F3CCA));
+        background: -webkit-linear-gradient(top, #4962D4 0%,#4F3CCA 100%);
+        background: -o-linear-gradient(left, #4962D4 0%,#4F3CCA 100%);
+        background: -ms-linear-gradient(left, #4962D4 0%,#4F3CCA 100%);
+        background: linear-gradient(to right,#4962D4 0%,#4F3CCA 100%);
     }
 </style>

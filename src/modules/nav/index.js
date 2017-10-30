@@ -8,7 +8,7 @@ export default {
 
     },
     data () {
-     
+     return {};
     },
     created() {
 
@@ -20,6 +20,14 @@ export default {
 
     },
     methods: {
-
+        incustomers(){
+            this.$router.push("/customers");
+        },
+        intest(){
+            this.$router.push("/test");
+        },
+        inhome(){
+            this.$router.push("/home");
+        }
     }
 }
