@@ -10,6 +10,7 @@ table {
 }
 fieldset,img {
     border:0;
+    vertical-align: top;
 }
 address,caption,cite,code,dfn,em,strong,th,var {
     font-style:normal;
