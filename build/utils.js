@@ -64,7 +64,7 @@ exports.config = function () {
         dev: {
             outputPath: path.resolve(__dirname, '../dev'),
             outputPublicPath: '',
-            port: 8022
+            port: 8028
         },
         prod: {
             outputPath: path.resolve(__dirname, '../dist'),

@@ -24,7 +24,17 @@ export default {
     },
     methods: {
         login(){
-          console.log(this.sName+"------------"+this.sPassword);
+
+            _.ajax({
+                url: '/user/login/entry',
+                method: 'POST',
+                data:{
+                     
+                },
+                success: function (res) {
+                    window.location.hash="/";
+                }
+            });
         }
 
     }

@@ -22,6 +22,14 @@ var routerConfig = {
     linkActiveClass: 'active',
     routes: [
         {
+            name:'/',
+            path: '/',
+            components:{
+                default:customers,
+                nav:nav
+            }
+        },
+        {
             name:'/login',
             path: '/login',
             component:login
