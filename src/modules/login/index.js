@@ -26,5 +26,6 @@ export default {
         login(){
           console.log(this.sName+"------------"+this.sPassword);
         }
+
     }
 }
