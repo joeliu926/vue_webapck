@@ -2,14 +2,14 @@
     <div  class="login-left-content login-flex">
         <div class="login-elrow">
             <div class="login-icon">
-                <img src="../../common/img/gaoji2.png" width="60" height="60">
+                <img src="../../common/img/login_logo.png" width="82" height="56">
             </div>
             <div class="grid-content">
                 <el-input v-model="sName" size="large" class="login-name login-input" placeholder="请输入手机号码或邮箱"></el-input>
                 <el-input v-model="sPassword"  size="large" type="password" class="login-pwd login-input" placeholder="请输入密码"></el-input>
             </div>
             <div class="grid-content">
-                <el-button  size="large" class="login-submit" @click="login">登录</el-button>
+                <el-button  size="large" class="login-submit" @click="fLogin">登录</el-button>
             </div>
             <div>
                 <label><a class="login-ltext" href="javascript:;">忘记密码?</a></label>

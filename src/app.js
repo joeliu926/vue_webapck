@@ -10,7 +10,6 @@ export default {
         let _this=this;
         return {
             showdata:null,
-
         }
     },
     created() {

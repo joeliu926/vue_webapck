@@ -23,8 +23,16 @@ export default {
 
     },
     methods: {
-        login(){
-
+        fLogin(){
+            console.log(this.sName+"------"+this.sPassword);
+            if(this.sName==""){
+                this.fMessageBox("请输入用户名。");
+                return false;
+            }
+            if(this.sPassword==""){
+                this.fMessageBox("请输入密码。");
+                return false;
+            }
             _.ajax({
                 url: '/user/login/entry',
                 method: 'POST',
@@ -34,6 +42,8 @@ export default {
                 success: function (res) {
                    if(res.code==0) {
                        window.location.href="/";
+                   }else {
+                       this.fMessageBox("用户名或密码错误。");
                    }
                 }
             },'withCredentials');
@@ -50,6 +60,11 @@ export default {
 
                 }
             });*/
+        },
+        fMessageBox(msg) {
+            this.$alert(msg, '提示', {
+                confirmButtonText: '确定',
+            });
         }
 
     }
