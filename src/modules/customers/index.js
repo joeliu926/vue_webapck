@@ -3,7 +3,7 @@ export default {
     data () {
         return {
             pageNo: 1,
-            pageSize: 1,
+            pageSize: 15,
             searchField: "name",
             fieldValue:"",
             startDate: "",
@@ -28,6 +28,18 @@ export default {
     destroyed() {
 
     },
+    filters:{
+      dateFilter:function (input) {
+          if(input!=""){
+              return  _.date2String(new Date(input),"yyyy-MM-dd hh:mm:ss");
+          }
+      },
+        phoneFilter:function (input) {
+            if(input!=""){
+                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
+            }
+        }
+    },
     methods: {
         fSearchData(e){
             this.searchData();
@@ -35,11 +47,12 @@ export default {
         handleClick(){
             this.fieldValue="";
         },
-        pickerOptions(){
-
+        pickerOptions(){},
+        fDateChange(date){
+            this.searchData();
         },
         fRefresh(){
-            console.log("refresh");
+            this.searchData();
         },
         fEdit(){
             console.log("edit data");
@@ -50,7 +63,6 @@ export default {
         },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
-            console.log(Date.parse(new Date()));
             this.searchData();
         },
         searchData(){
@@ -58,26 +70,27 @@ export default {
             var postData={
                 pageNo: _This.pageNo,
                 pageSize:  _This.pageSize,
-                startDate: _This.startDate,
-                endDate: _This.endDate,
-                searchField:_This.searchField,
-                fieldValue:_This.fieldValue
+           /*     startDate: _This.startDate,
+                endDate: _This.endDate,*/
+                fieldValue:_This.fieldValue,
+                searchField:_This.searchField
+
             };
+            postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
+            postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             if(_This.fieldValue==""){
                 postData.searchField="";
             }
-
             _.ajax({
                 url: '/customers/customerlist',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log(result);
                     if(result.code==0&&result.data){
                         _This.aCustomerlist = result.data.list;
                         _This.count = result.data.count;
                     }
-           
+
 
                 }
             }, 'withCredentials');

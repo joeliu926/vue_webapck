@@ -4,11 +4,9 @@
 /*import AdInput from 'adminUI/components/admin-input.vue';*/
 
 export default {
-    components: {
-
-    },
+    components: {},
     data () {
-     return {};
+        return {};
     },
     created() {
 
@@ -29,8 +27,26 @@ export default {
         inhome(){
             this.$router.push("/home");
         },
-        fChooseItem(){
-            console.log("click----");
+        fChooseItem(cmd){
+            console.log("click----" + cmd);
+        },
+        fLoginOut(cmd){
+            let _This=this;
+            console.log("----click----");
+            console.log(cmd);
+            console.log(_.ajax);
+            if (cmd == "loginout") {
+                _.ajax({
+                    url: '/user/loginout/entry',
+                    method: 'POST',
+                    data: {},
+                    success: function (result) {
+                        _This.$router.push("/login");
+                    }
+                }, 'withCredentials');
+            }
+
         }
+
     }
 }

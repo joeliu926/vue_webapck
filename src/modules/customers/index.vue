@@ -72,6 +72,7 @@
 
     .customer-pagination-align{
         text-align: right;
+        border: none;
     }
     .customer-content-gradient{
         background: -moz-linear-gradient(left,#534CE7 0%, #674CE7 100%);

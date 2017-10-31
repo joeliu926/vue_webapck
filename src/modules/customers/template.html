@@ -34,6 +34,7 @@
                         <el-date-picker
                                 v-model="startDate"
                                 type="date"
+                                @change="fDateChange"
                                 placeholder="开始日期"
                                 size="small"
                                 :picker-options="pickerOptions">
@@ -41,6 +42,7 @@
                         <el-date-picker
                                 v-model="endDate"
                                 type="date"
+                                @change="fDateChange"
                                 placeholder="结束日期"
                                 size="small"
                                 :picker-options="pickerOptions">
@@ -82,16 +84,22 @@
                     prop="createTime"
                     label="登记时间"
                     width="200">
+                <template slot-scope="scope" style="text-align: right;">
+                    <p>{{scope.row.createTime|dateFilter}}</p>
+                </template>
             </el-table-column>
             <el-table-column
                     prop="phoneNum"
                     label="电话"
                     width="200">
+                <template slot-scope="scope" style="text-align: right;">
+                    <p>{{scope.row.phoneNum|phoneFilter}}</p>
+                </template>
             </el-table-column>
-       <!--     <el-table-column
-                prop="address"
-                label="地址">
-        </el-table-column>-->
+            <el-table-column
+                prop="wechatNum"
+                label="微信">
+        </el-table-column>
 
             <el-table-column label="">
                 <template slot-scope="scope"  style="text-align: right;">
@@ -106,7 +114,7 @@
         <el-pagination
                 @current-change="handleCurrentChange"
                 layout="prev, pager, next"
-                :page-size="1"
+                :page-size="pageSize"
                 :total="count">
         </el-pagination>
     </div>
