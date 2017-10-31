@@ -45,6 +45,9 @@
             top: 5px;
             right: 10px;
         }
+        .nav-select-list{
+            cursor: pointer;
+        }
     }
 
 

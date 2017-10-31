@@ -6,9 +6,9 @@
             <el-col :span="16"><span class="nav-logo">医美营销</span></el-col>
         </el-col>
         <el-col :span="12">
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="click" @click="fChooseItem" @command="fChooseItem">
       <span class="el-dropdown-link">
-        客户中心<i class="el-icon-caret-bottom el-icon--right"></i>
+        客户中心<i class="el-icon-caret-bottom el-icon--right nav-select-list"></i>
       </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>客户中心</el-dropdown-item>
@@ -20,9 +20,14 @@
             </el-dropdown>
         </el-col>
         <el-col :span="6">
-            <div class="nav-img-content">
+            <el-dropdown trigger="click" class="nav-img-content">
+            <div class="">
                 <img src="../../common/img/gaoji2.png" class="nav-user-img">
             </div>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </el-col>
     </el-row>
 </div>

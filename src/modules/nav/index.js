@@ -28,6 +28,9 @@ export default {
         },
         inhome(){
             this.$router.push("/home");
+        },
+        fChooseItem(){
+            console.log("click----");
         }
     }
 }

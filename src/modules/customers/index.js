@@ -1,58 +1,26 @@
 export default {
-    components: {
-
-    },
+    components: {},
     data () {
         return {
-            name: "尼古拉-特斯拉",
+            pageNo: 1,
+            pageSize: 1,
+            searchField: "name",
+            fieldValue:"",
+            startDate: "",
+            endDate: "",
+            name: "",
+            phoneNum: "13455555555",
+            wechatNum: "wechat",
+            customerBlock: "顾客",
             title: "../../common/img/gaoji2.png",
-            activeName: "customerName",
             customerName: "this is a user",
-            telNum: "13455555555",
-            WeChat: "wechat",
-            registerDate: "2017-05-08",
-            total: 233,
-            aCustomerlist: [{
-                id:"0001",
-                customerName: '王小虎',
-                registerDate: '2016-05-06',
-                telNum:"18012634866",
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                id:"0002",
-                customerName: '王中虎',
-                registerDate: '2016-05-05',
-                telNum:"13012645866",
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                id:"0003",
-                customerName: '王大虎',
-                registerDate: '2016-05-04',
-                telNum:"1471262666",
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                id:"0004",
-                customerName: '王老虎',
-                registerDate: '2016-05-03',
-                telNum:"17812651765",
-                address: '上海市普陀区金沙江路 1516 弄'
-            }]
+            count: 0,
+            aCustomerlist: []
         }
 
     },
     created() {
-        _.ajax({
-            url: '/user/userate',
-            method: 'POST',
-            data:{
-                "dataCode": 0,
-                "dataType":2
-            },
-            success: function (res) {
-                console.log('get result',res);
-
-            }
-        },'withCredentials');
+        this.searchData();
     },
     mounted(){
 
@@ -62,11 +30,10 @@ export default {
     },
     methods: {
         fSearchData(e){
-            console.log(e);
-            //console.log(this.name+"------------"+this.sPassword);
+            this.searchData();
         },
         handleClick(){
-           console.log(this.activeName)
+            this.fieldValue="";
         },
         pickerOptions(){
 
@@ -80,6 +47,40 @@ export default {
         },
         fMoreUserInfo(){
             console.log("get more user info");
+        },
+        handleCurrentChange(pnum){
+            this.pageNo=pnum;
+            console.log(Date.parse(new Date()));
+            this.searchData();
+        },
+        searchData(){
+            var _This = this;
+            var postData={
+                pageNo: _This.pageNo,
+                pageSize:  _This.pageSize,
+                startDate: _This.startDate,
+                endDate: _This.endDate,
+                searchField:_This.searchField,
+                fieldValue:_This.fieldValue
+            };
+            if(_This.fieldValue==""){
+                postData.searchField="";
+            }
+
+            _.ajax({
+                url: '/customers/customerlist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log(result);
+                    if(result.code==0&&result.data){
+                        _This.aCustomerlist = result.data.list;
+                        _This.count = result.data.count;
+                    }
+           
+
+                }
+            }, 'withCredentials');
         }
 
     }

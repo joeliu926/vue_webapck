@@ -40,6 +40,7 @@
     .customer-block-content{
         margin:24px;
         border:1px solid #eeeeee;
+        background-color:#ffffff;
         table tr td:last-child{
             text-align: right;
         }

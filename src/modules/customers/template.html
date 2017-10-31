@@ -2,19 +2,19 @@
 <div class="customer-content" >
     <div class="customers-search-content customer-content-gradient">
         <div class="customers-search">
-            <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+            <el-tabs v-model="searchField" type="card" @tab-click="handleClick">
                 <el-tab-pane label="名称" name="name">
-                    <el-input placeholder="搜索顾客名称"  icon="search" v-model="name"
+                    <el-input placeholder="搜索顾客名称"  icon="search" v-model="fieldValue"
                               :on-icon-click="fSearchData" @keyup.enter.native="fSearchData">
                         <!--  <i slot="prepend" class="el-icon-pa-search"></i>-->
                     </el-input>
                 </el-tab-pane>
                 <el-tab-pane label="电话" name="phoneNum">
-                    <el-input placeholder="搜索顾客电话"  icon="search" v-model="phoneNum"
+                    <el-input placeholder="搜索顾客电话"  icon="search" v-model="fieldValue"
                               :on-icon-click="fSearchData" @keyup.enter.native="fSearchData"></el-input>
                 </el-tab-pane>
                 <el-tab-pane label="微信" name="wechatNum">
-                    <el-input placeholder="搜索顾客微信"  icon="search" v-model="wechatNum"
+                    <el-input placeholder="搜索顾客微信"  icon="search" v-model="fieldValue"
                               :on-icon-click="fSearchData" @keyup.enter.native="fSearchData"></el-input>
                 </el-tab-pane>
             </el-tabs>
@@ -26,7 +26,7 @@
         <el-row :gutter="24" type="flex" justify="space-between">
             <el-col :span="12" type="flex">
                     <el-col :span="1"><span><i class="el-icon-pa-users customer-pa-icon"></i></span></el-col>
-                    <el-col :span="23"><span class="customer-user-name"><p>{{name}}</p><label>{{total}} 条记录，按照登记会时间排序</label></span></el-col>
+                    <el-col :span="23"><span class="customer-user-name"><p>{{customerBlock}}</p><label>{{count}} 条记录，按照登记会时间排序</label></span></el-col>
             </el-col>
             <el-col :span="12"  type="flex" justify="space-between">
                 <el-col :span="20">
@@ -75,16 +75,16 @@
                     label="名称"
                     width="200">
                 <template slot-scope="scope" style="text-align: right;">
-                    <p><img class="customer-title" src="https://www.baidu.com/img/bd_logo1.png"> {{scope.row.customerName}}</p>
+                    <p><img class="customer-title" :src="scope.row.logo"> {{scope.row.name}}</p>
                 </template>
             </el-table-column>
             <el-table-column
-                    prop="registerDate"
+                    prop="createTime"
                     label="登记时间"
                     width="200">
             </el-table-column>
             <el-table-column
-                    prop="telNum"
+                    prop="phoneNum"
                     label="电话"
                     width="200">
             </el-table-column>
@@ -106,8 +106,8 @@
         <el-pagination
                 @current-change="handleCurrentChange"
                 layout="prev, pager, next"
-                :page-size="2"
-                :total="total">
+                :page-size="1"
+                :total="count">
         </el-pagination>
     </div>
 </div>
