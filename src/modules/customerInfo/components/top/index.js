@@ -6,7 +6,7 @@ export default {
         }
     },
     created() {
-        this.searchData();
+
     },
     mounted(){
 

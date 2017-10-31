@@ -12,6 +12,8 @@ var home = r => require.ensure([], () => r(require('../modules/home/index.vue'))
 var test = r => require.ensure([], () => r(require('../modules/test/index.vue')), 'test');
 var customers = r => require.ensure([], () => r(require('../modules/customers/index.vue')), 'customers');
 
+var customerinfo = r => require.ensure([], () => r(require('../modules/customerInfo/index.vue')), 'customerinfo');
+
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
 aComponent.forEach(function (item,index) {
@@ -33,8 +35,7 @@ var routerConfig = {
             name:'/login',
             path: '/login',
             component:login
-        }
-        ,
+        },
         {
             name:'/customers',
             path: '/customers',
@@ -42,8 +43,15 @@ var routerConfig = {
                 default:customers,
                 nav:nav
             }
-        }
-        ,
+        },
+        {
+            name:'/customerinfo',
+            path: '/customerinfo',
+            components:{
+                default:customerinfo,
+                nav:nav
+            }
+        },
         {
             name:'/home',
             path: '/home',
@@ -51,8 +59,8 @@ var routerConfig = {
                 default:home,
                 nav:nav
             }
-        }
-        ,{
+        },
+        {
             name:'/test',
             path: '/test',
             components:{
