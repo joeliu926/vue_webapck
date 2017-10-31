@@ -24,11 +24,20 @@
 <div class="customer-block-content">
     <div class="customer-block-uinfo">
         <el-row :gutter="24" type="flex" justify="space-between">
-            <el-col :span="12" type="flex">
-                    <el-col :span="1"><span><i class="el-icon-pa-users customer-pa-icon"></i></span></el-col>
-                    <el-col :span="23"><span class="customer-user-name"><p>{{customerBlock}}</p><label>{{count}} 条记录，按照登记会时间排序</label></span></el-col>
+            <el-col :span="10" type="flex" justify="end">
+                <el-col :span="2" class="customer-icon">
+                    <div>
+                        <img src="../../common/img/icon-customer.png" class="customer-icon" style="">
+                    </div>
+                </el-col>
+                <el-col :span="22" class="customer-icon">
+                      <span class="customer-user-name">
+                            <p class="customers-name">{{customerBlock}}</p>
+                            <label class="customer-record">{{count}} 条记录，按照登记会时间排序</label>
+                        </span>
+                </el-col>
             </el-col>
-            <el-col :span="12"  type="flex" justify="space-between">
+            <el-col :span="10"  type="flex" justify="space-between">
                 <el-col :span="20">
                     <div class="customer-date">
                         <el-date-picker
@@ -69,15 +78,15 @@
         >
             <el-table-column
                     prop="id"
-                    label=""
+                    label="编号"
                     width="180">
             </el-table-column>
             <el-table-column
                     prop="customerName"
                     label="名称"
-                    width="200" @click="">
-                <template slot-scope="scope" style="text-align: right;">
-                    <p><img class="customer-title" :src="scope.row.logo"> {{scope.row.name}}</p>
+                    width="200">
+                <template slot-scope="scope" style="">
+                    <p><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
                 </template>
             </el-table-column>
             <el-table-column
