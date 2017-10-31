@@ -52,7 +52,7 @@ export default {
                 console.log('get result',res);
 
             }
-        });
+        },'withCredentials');
     },
     mounted(){
 

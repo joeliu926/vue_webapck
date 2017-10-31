@@ -16,9 +16,15 @@ let _currentUserInfo=null;
  * @returns {*}
  */
 module.exports = {
-    ajax: function (arg) {
+    ajax: function (arg,type) {
         let opts = $.extend(true,{method:"POST"},arg);
         opts.dataType='json';
+        if(type=='withCredentials'){
+            opts.xhrFields= {
+                withCredentials: true
+            };
+        }
+
         if(opts.urlType=='full')
         {
             opts.url=opts.url;
@@ -30,7 +36,7 @@ module.exports = {
         opts.success=function(res){
             if(res&&res.code==8002){
                // window.location.href="/login.html";
-                window.location.hash="#login";
+                window.location.href="/#/login";
                 return ;
             }
             if(res&&res.code==8200){

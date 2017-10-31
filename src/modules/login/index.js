@@ -32,9 +32,24 @@ export default {
                      
                 },
                 success: function (res) {
-                    window.location.href="/";
+                   if(res.code==0) {
+                       window.location.href="/";
+                   }
                 }
-            });
+            },'withCredentials');
+
+           /* _.ajax({
+                url: '/user/userate',
+                method: 'POST',
+                data:{
+                    "dataCode": 0,
+                    "dataType":2
+                },
+                success: function (res) {
+                    window.location.href="/";
+
+                }
+            });*/
         }
 
     }
