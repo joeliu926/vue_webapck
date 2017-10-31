@@ -22,6 +22,7 @@
     }
     .grid-content {
         width: 280px;
+        margin-top: 5px;;
     }
     .login-input{
         margin: 10px 0;

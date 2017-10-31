@@ -10,7 +10,10 @@ export default {
     data () {
      return{
          sName:"",
-         sPassword:""
+         sPassword:"",
+         alertPhone:false,
+         alertPassword:false,
+         alertWaring:false,
      }
     },
     created() {
@@ -23,43 +26,43 @@ export default {
 
     },
     methods: {
+        clearwaring($event,value){
+            this.alertWaring = false;
+            this.alertPhone = false;
+            this.alertPassword = false;
+           
+        },
         fLogin(){
-            console.log(this.sName+"------"+this.sPassword);
+
+
             if(this.sName==""){
-                this.fMessageBox("请输入用户名。");
+                this.alertPhone = true;
+                this.alertWaring = false;
                 return false;
             }
             if(this.sPassword==""){
-                this.fMessageBox("请输入密码。");
+                this.alertPassword = true;
+                this.alertWaring = false;
                 return false;
             }
+            let _this  = this;
             _.ajax({
                 url: '/user/login/entry',
                 method: 'POST',
                 data:{
-                     
+                    name:this.sName,
+                    password:this.sPassword,
                 },
                 success: function (res) {
                    if(res.code==0) {
                        window.location.href="/";
                    }else {
-                       this.fMessageBox("用户名或密码错误。");
+                       _this.alertWaring = true;
+                       _this.alertPhone = false;
+                       _this.alertPassword = false;
                    }
                 }
             },'withCredentials');
-
-           /* _.ajax({
-                url: '/user/userate',
-                method: 'POST',
-                data:{
-                    "dataCode": 0,
-                    "dataType":2
-                },
-                success: function (res) {
-                    window.location.href="/";
-
-                }
-            });*/
         },
         fMessageBox(msg) {
             this.$alert(msg, '提示', {
