@@ -20,8 +20,8 @@ export default {
     methods: {
 
         goback(){
-
-            this.$router.push("/customers");
+            window.history.back();
+            //this.$router.push("/customers");
         },
         gohome(){
 
