@@ -18,6 +18,15 @@ export default {
 
     },
     methods: {
+
+        goback(){
+
+            this.$router.push("/customers");
+        },
+        gohome(){
+
+            this.$router.push("/customers");
+        },
         incustomers(){
             this.$router.push("/customers");
         },
