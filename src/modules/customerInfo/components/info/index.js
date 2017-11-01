@@ -7,11 +7,11 @@ export default {
     },
     created() {
         console.log("-------------------------------");
-        console.log(this.$parent.oCustomer);
+        //console.log(this.$parent);
     },
     mounted(){
         console.log("+++++++++++++++++++++++");
-        console.log(this.$parent.oCustomer);
+        //console.log(this.$parent.$parent.oCustomer);
     },
     destroyed() {
 
