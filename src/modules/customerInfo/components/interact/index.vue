@@ -4,6 +4,7 @@
 </script>
 <style lang="scss">
     .interact-content {
+         padding: 12px;
         .item-title {
             margin-bottom: 30px;
             img{
@@ -15,7 +16,21 @@
 
             .link-item {
                 text-align: center;
+                .icon-num{
+                    position: absolute;
+                    background-color: #FA3419;
+                    border-radius: 50%;
+                    color: #ffffff;
+                    margin-left: -10px;
+                    font-size: 7px;
+                    line-height: 18px;
+                    margin-top: -8px;
+                    width: 18px;
+                    height: 18px;
+
+                }
             }
+
             .link-contact:before {
 
 
@@ -73,6 +88,7 @@
         .item-border {
             border: 1px solid #eaeaea;
             padding: 24px;
+            border-radius: 5px;
         }
     }
 </style>
