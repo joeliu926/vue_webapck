@@ -17,7 +17,7 @@
             .link-item {
                 text-align: center;
                 cursor: pointer;
-                font-size: 14px;
+                font-size: 14px !important;
                 color: #5A5A5A;
                 .icon-num{
                     position: absolute;
