@@ -4,6 +4,9 @@
 </script>
 <style  lang="scss">
 .customer-info{
+    .customers-top{
+        margin-bottom: 62px;
+    }
     .customers-content{margin: 24px;
     .el-tabs__header{
         background-color:#fff;
