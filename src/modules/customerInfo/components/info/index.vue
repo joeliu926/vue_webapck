@@ -19,7 +19,7 @@
 
     .info-lab {
         color: #8391a5;
-        font-size: 14px; 
+        font-size: 14px;
     }
 
     .info-val {
