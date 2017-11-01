@@ -59,7 +59,8 @@
             width: 40px;
         }
         .customer-date {
-            float: right;
+            /*float: right;*/
+            text-align: right;
         }
         .el-table__body .el-table__row td{
             height: 60px;
@@ -79,10 +80,11 @@
             font-size: 14px;
         }
         .customer-icon{
-            vertical-align: middle;
-            padding-left: 2px !important;
+         /*   vertical-align: middle;
+            padding-left: 2px !important;*/
             cursor: pointer;
         }
+        .c-icon{text-align: center;}
 
     }
 
