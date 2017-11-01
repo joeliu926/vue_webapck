@@ -1,16 +1,30 @@
 <div class="customer-info" >
-    <div class="customers-top" style="width: 100%;">
+    <div class="customers-top">
         <top></top>
     </div>
     <div class="customers-content">
         <el-row :gutter="24" type="flex" justify="space-between">
 
             <el-col :span="18" type="flex" class="content-left">
-
+                <el-tabs   type="border-card">
+                    <el-tab-pane label="互动">
+                        <interact></interact>
+                    </el-tab-pane>
+                    <el-tab-pane label="客户资料">
+                        <info></info>
+                    </el-tab-pane>
+                    <el-tab-pane label="会员帐号">
+                        <member></member>
+                    </el-tab-pane>
+                </el-tabs>
             </el-col>
 
             <el-col :span="6" type="flex" class="content-right">
-
+                <el-tabs type="border-card">
+                    <el-tab-pane label="客源渠道">
+                        <right></right>
+                    </el-tab-pane>
+                </el-tabs>
             </el-col>
         </el-row>
     </div>
