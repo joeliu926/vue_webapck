@@ -51,6 +51,7 @@
             color: #909090;
             line-height: 30px;
             cursor: pointer;
+            text-align: right;
         }
         .customer-title {
             vertical-align: middle;
@@ -68,6 +69,7 @@
     .customer-block-uinfo {
         margin: 24px;
         height: 32px;
+        width: 100%;
         .customers-name {
             color: #333333;
             font-size: 16px;
@@ -79,6 +81,7 @@
         .customer-icon{
             vertical-align: middle;
             padding-left: 2px !important;
+            cursor: pointer;
         }
 
     }

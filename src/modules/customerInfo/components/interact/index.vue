@@ -16,6 +16,9 @@
 
             .link-item {
                 text-align: center;
+                cursor: pointer;
+                font-size: 14px;
+                color: #5A5A5A;
                 .icon-num{
                     position: absolute;
                     background-color: #FA3419;
@@ -58,7 +61,7 @@
                 .segment{height: 20px;}
                 .contact-item-name{
                     font-weight: bold;
-                    font-size: 16px;
+                    font-size: 14px;
                     color: #888888;
                 }
                 .contact-item-value{
