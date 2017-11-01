@@ -5,19 +5,20 @@
 <style  lang="scss">
 
 .customerinfo-top-content{
-background-color:#534CE7;
+    margin-bottom: 60px;
+    background-color:#534CE7;
     width: 100%;
-    clear: both;
     border: none;
     height: 134px;
     .customerinfo-outer{
-        margin: 20px auto;
+        margin: 0 auto;
         padding: 24px;
-background-color: transparent;
+        background-color: transparent;
         height: 156px;
         .customerinfo-inner{
             border-radius: 4px;
             background-color:#ffffff;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
         }
         .customertop-img{
             padding: 24px;
@@ -25,9 +26,10 @@ background-color: transparent;
         .customer-name{
             font-weight: bold;
         }
+        span{color:#8391a5; font-size: 14px;}
     }
     .border-padding{
-        padding-top: 24px;
+        padding-top: 20px;
     }
 }
 </style>
