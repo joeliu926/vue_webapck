@@ -6,19 +6,40 @@ import top from './components/top/index.vue';
 
 export default {
     components: {
-        info,
         interact,
         member,
         right,
-        top
+        top,
+        info
     },
     data () {
         return {
+            oCustomer:{
+                id:"1111",
+                name:"杨宏伟",
+                filenum:"77777",
+                gender:"nan",
+                birthday:"2017-01-01",
+                nation:"kkk",
+                maritalStatus:"jjj",
+                education:"jjj",
+                phoneNum:"jjj",
+                phoneAddress:"jjj",
+                email:"jjj",
+                postcode:"jjj",
+                wechatNum:"jjj",
+                qqNum:"jjj",
+                job:"jjj",
+                companyName:"jjj",
+                socialInsuranceNum:"jjj",
+                source:"jjj",
+                comment:"jjj",
 
+            }
         }
     },
     created() {
-        //this.searchData();
+        this.searchData();
     },
     mounted(){
 
@@ -27,7 +48,23 @@ export default {
 
     },
     methods: {
-
+        searchData(){
+            var _This = this;
+            var postData = {
+                id: "1"
+            };
+            _.ajax({
+                url: '/customers/detail',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 0 && result.data) {
+                        _This.oCustomer = result.data;
+                    }
+                }
+            }, 'withCredentials');
+        }
 
     }
 }

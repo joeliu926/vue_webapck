@@ -2,10 +2,11 @@ export default {
     components: {},
     data () {
         return {
-
+            //oCustomer: {}
         }
     },
     created() {
+       // this.searchData();
 
     },
     mounted(){
@@ -15,7 +16,6 @@ export default {
 
     },
     methods: {
-
 
     }
 }
