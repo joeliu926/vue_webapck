@@ -2,7 +2,7 @@ export default {
     components: {},
     data () {
         return {
-
+            textarea:''
         }
     },
     created() {
