@@ -46,7 +46,7 @@ var routerConfig = {
         },
         {
             name:'/customerinfo',
-            path: '/customerinfo',
+            path: '/customerinfo/:id',
             components:{
                 default:customerinfo,
                 nav:nav

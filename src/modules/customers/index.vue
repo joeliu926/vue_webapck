@@ -5,6 +5,9 @@
 <style lang="scss">
     .customer-content {
         padding: 0 0;
+        .cursorPointer{
+            cursor:pointer ;
+        }
     }
 
     .customers-search-content {

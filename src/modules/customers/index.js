@@ -94,6 +94,12 @@ export default {
 
                 }
             }, 'withCredentials');
+        },
+        fCustomerDetail(uid){
+            if(!uid){
+                return false;
+            }
+            this.$router.push({path:'/customerinfo/'+uid});
         }
 
     }

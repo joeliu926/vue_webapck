@@ -50,9 +50,13 @@ export default {
     },
     methods: {
         searchData(){
-            var _This = this;
-            var postData = {
-                id: "1"
+            let _This = this;
+            let uid= _This.$route.params.id;
+            if(!uid){
+                _This.$router.push('/customers');
+            }
+            let postData = {
+                id: uid
             };
             _.ajax({
                 url: '/customers/detail',
@@ -62,6 +66,8 @@ export default {
                    // console.log(result);
                     if (result.code == 0 && result.data) {
                         _This.oCustomer = result.data;
+                    }else {
+                        _This.$router.push('/customers');
                     }
                 }
             }, 'withCredentials');
