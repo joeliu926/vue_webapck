@@ -2,7 +2,7 @@
     <div>
         <el-input
                 placeholder=""
-                v-model="textarea">
+                v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.source">
         </el-input>
 
     </div>
@@ -13,7 +13,7 @@
                 type="textarea"
                 :rows="3"
                 placeholder=""
-                v-model="textarea">
+                v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.comment">
         </el-input>
         </div>
     </div>
