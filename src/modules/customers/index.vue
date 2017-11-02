@@ -7,6 +7,7 @@
         padding: 0 0;
         .cursorPointer{
             cursor:pointer ;
+            color: #9097CC;
         }
     }
 
