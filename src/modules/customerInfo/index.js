@@ -15,32 +15,66 @@ export default {
     data () {
         return {
             oCustomer:{
-                id:"1111",
-                name:"杨宏伟",
-                filenum:"77777",
-                gender:"nan",
-                birthday:"2017-01-01",
-                nation:"kkk",
-                maritalStatus:"jjj",
-                education:"jjj",
-                phoneNum:"jjj",
-                phoneAddress:"jjj",
-                email:"jjj",
-                postcode:"jjj",
-                wechatNum:"jjj",
-                qqNum:"jjj",
-                job:"jjj",
-                companyName:"jjj",
-                socialInsuranceNum:"jjj",
-                source:"jjj",
-                comment:"jjj",
+                id:"",
+                name:"",
+                filenum:"",
+                gender:"",
+                birthday:"",
+                nation:"",
+                maritalStatus:"",
+                education:"",
+                phoneNum:"",
+                phoneAddress:"",
+                email:"",
+                postcode:"",
+                wechatNum:"",
+                qqNum:"",
+                job:"",
+                companyName:"",
+                socialInsuranceNum:"",
+                source:"",
+                comment:"",
 
-            }
+            },
+            oConsults:[{
+
+                "tenantId": "",
+                "id": "",
+                "page": "",
+                "createDate": "",
+                "status": "",
+                "counselorName": "",
+                "consultWay": "",
+                "consultProject": "",
+                "updateTime": "",
+                "consultType": "",
+                "remark": "",
+                "createTime": "",
+                "customerId": ""
+
+            }, {
+                    "tenantId": "",
+                    "id": "",
+                    "page": "",
+                    "createDate": "",
+                    "status": "",
+                    "counselorName": "",
+                    "consultWay": "",
+                    "consultProject": "",
+                    "updateTime": "",
+                    "consultType": "",
+                    "remark": "",
+                    "createTime": "",
+                    "customerId": ""
+
+                }]
+
         }
     },
 
     created() {
-        this.searchData();
+        this.fSearchData();
+        this.fConsultRecord();
     },
     mounted(){
 
@@ -49,7 +83,7 @@ export default {
 
     },
     methods: {
-        searchData(){
+        fSearchData(){
             let _This = this;
             let uid= _This.$route.params.id;
             if(!uid){
@@ -67,7 +101,26 @@ export default {
                     if (result.code == 0 && result.data) {
                         _This.oCustomer = result.data;
                     }else {
-                        _This.$router.push('/customers');
+                       // _This.$router.push('/customers');
+                    }
+                }
+            }, 'withCredentials');
+        },
+        fConsultRecord(){
+            let _This = this;
+            let uid= _This.$route.params.id;
+            let postData = {
+                id: uid
+            };
+            _.ajax({
+                url: '/consults/getrecords',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if (result.code == 0 && result.data) {
+                        _This.oConsults = result.data;
+                    }else {
+                        //_This.$router.push('/customers');
                     }
                 }
             }, 'withCredentials');

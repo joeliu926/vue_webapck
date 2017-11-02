@@ -36,33 +36,36 @@
             }
         }
         .interact-contact {
-            /* margin: 24px 0;*/
-            .contact-item {
+            .interact-content{
                 box-sizing: border-box;
-                display: inline-block;
-                width: 49%;
-                margin: 10px 10px 10px 0;
-                border: 1px solid #eaeaea;
-               /* margin-bottom: 24px;*/
-                padding:0 20px 20px 20px;
-                p{margin: 10px;}
-                .segment{height: 20px;}
-                .contact-item-name{
-                    font-weight: bold;
-                    font-size: 14px;
-                    color: #888888;
-                }
-                .contact-item-value{
-                    font-size: 14px;
-                    color: #999999;
-                }
-                .contact-right-more{
-                    color: #ffffff;
-                    height: 0;
-                    .contact-more{
-                        float: right;
-                        font-size: 30px;
+                width: 100%;
+                padding: 0;
+                .contact-item {
+                    box-sizing: border-box;
+                    display: inline-block;
+                    width: 48%;
+                    margin: 0  1%  1%  1%;
+                   /*margin: 10px 10px 10px 0;*/
+                    border: 1px solid #eaeaea;
+                    p{margin: 10px;}
+                    .segment{height: 20px;}
+                    .contact-item-name{
+                        font-weight: bold;
+                        font-size: 14px;
+                        color: #888888;
+                    }
+                    .contact-item-value{
+                        font-size: 14px;
                         color: #999999;
+                    }
+                    .contact-right-more{
+                        color: #ffffff;
+                        height: 0;
+                        .contact-more{
+                            float: right;
+                            font-size: 30px;
+                            color: #999999;
+                        }
                     }
                 }
             }
@@ -86,6 +89,7 @@
             border: 1px solid #eaeaea;
             padding: 24px;
             border-radius: 5px;
+            margin: 24px 0;
         }
         .show-all{
             text-align: center;

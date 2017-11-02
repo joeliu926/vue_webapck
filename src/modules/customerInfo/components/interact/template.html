@@ -8,7 +8,7 @@
                 <div class="link-item">
                     <div>
                         <img src="../../../../common/img/contact.png">
-                        <span style="" class="icon-num">6</span>
+                        <span v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length" style="" class="icon-num">{{$parent.$parent.$parent.$parent.$parent.oConsults.length}}</span>
                     </div>
                   <p class="link-title">咨询沟通</p>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="link-item">
                     <div>
                         <img src="../../../../common/img/diagnosis.png">
-                        <span style="" class="icon-num">5</span>
+                        <span style="" class="icon-num" v-show="false">0</span>
                     </div>
                     <p class="link-title">诊疗记录</p>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="link-item">
                     <div>
                         <img src="../../../../common/img/develop.png">
-                        <span style="" class="icon-num">4</span>
+                        <span style="" class="icon-num" v-show="false">0</span>
                     </div>
                     <p class="link-title">开发记录</p>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="link-item">
                     <div>
                         <img src="../../../../common/img/return.png">
-                        <span style="" class="icon-num">14</span>
+                        <span style="" class="icon-num" v-show="false">0</span>
                     </div>
                     <p class="link-title">顾客回访</p>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="link-item">
                     <div>
                         <img src="../../../../common/img/file.png">
-                        <span style="" class="icon-num">8</span>
+                        <span style="" class="icon-num" v-show="false">0</span>
                     </div>
                     <p class="link-title">文件</p>
                 </div>
@@ -52,100 +52,26 @@
         </el-row>
     </div>
     <div class="interact-contact item-border">
-        <p class="item-title"><img src="../../../../common/img/icon-customer.png">咨询沟通（20）</p>
-        <div  class="contact-item">
-            <p class="contact-right-more">.<span class="contact-more">...</span></p>
-            <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-            <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
+        <div class="interact-content">
+            <p class="item-title"><img src="../../../../common/img/contact.png">咨询沟通（{{$parent.$parent.$parent.$parent.$parent.oConsults.length}}）</p>
 
-            <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-            <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-            <p class="segment"></p>
-            <p> <span  class="contact-item-name">咨询项目：</span></p>
-            <p class="contact-item-value">开眼皮/黑眼圈</p>
+            <div  class="contact-item" v-for="item,index in $parent.$parent.$parent.$parent.$parent.oConsults" v-if="index<4">
+                <p class="contact-right-more">.<span class="contact-more cursor">...</span></p>
+                <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">{{item.counselorName}}</span></p>
+                <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">{{item.consultWay}}</span></p>
+
+                <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">{{item.consultType}}</span></p>
+                <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">{{item.remark}}</span></p>
+                <p class="segment"></p>
+                <p> <span  class="contact-item-name">咨询项目：</span></p>
+                <p class="contact-item-value">{{item.consultProject}}</p>
+            </div>
+
+            <p v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length!=0" class="show-all">查看全部</p> <p class="show-all" v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length==0">无咨询消息</p>
         </div>
-        <div  class="contact-item">
-            <p class="contact-right-more">.<span class="contact-more">...</span></p>
-            <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-            <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-            <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-            <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-            <p class="segment"></p>
-            <p> <span  class="contact-item-name">咨询项目：</span></p>
-            <p class="contact-item-value">开眼皮/黑眼圈</p>
-        </div>
-        <div  class="contact-item">
-            <p class="contact-right-more">.<span class="contact-more">...</span></p>
-            <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-            <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-            <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-            <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-            <p class="segment"></p>
-            <p> <span  class="contact-item-name">咨询项目：</span></p>
-            <p class="contact-item-value">开眼皮/黑眼圈</p>
-        </div>
-    <!--    <el-row :gutter="24" type="flex" justify="space-around">
-            <el-col :span="12">
-                <div  class="contact-item">
-                    <p class="contact-right-more">.<span class="contact-more">...</span></p>
-                    <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-                    <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-                    <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-                    <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-                    <p class="segment"></p>
-                    <p> <span  class="contact-item-name">咨询项目：</span></p>
-                    <p class="contact-item-value">开眼皮/黑眼圈</p>
-                </div>
-            </el-col>
-            <el-col :span="12">
-                <div  class="contact-item">
-                    <p class="contact-right-more">.<span class="contact-more">...</span></p>
-                    <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-                    <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-                    <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-                    <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-                    <p class="segment"></p>
-                    <p> <span  class="contact-item-name">咨询项目：</span></p>
-                    <p class="contact-item-value">开眼皮/黑眼圈</p>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row :gutter="24" type="flex" justify="space-around">
-            <el-col :span="12">
-                <div  class="contact-item">
-                    <p class="contact-right-more">.<span class="contact-more">...</span></p>
-                    <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-                    <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-                    <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-                    <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-                    <p class="segment"></p>
-                    <p> <span  class="contact-item-name">咨询项目：</span></p>
-                    <p class="contact-item-value">开眼皮/黑眼圈</p>
-                </div>
-            </el-col>
-            <el-col :span="12">
-                <div  class="contact-item">
-                    <p class="contact-right-more">.<span class="contact-more">...</span></p>
-                    <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">杨宏伟</span></p>
-                    <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">电话</span></p>
-
-                    <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">询价</span></p>
-                    <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">这是一个自娱自乐</span></p>
-                    <p class="segment"></p>
-                    <p> <span  class="contact-item-name">咨询项目：</span></p>
-                    <p class="contact-item-value">开眼皮/黑眼圈</p>
-                </div>
-            </el-col>
-        </el-row>-->
-        <p class="show-all">查看全部</p>
     </div>
     <div class="interact-file item-border">
-        <p class="item-title"><img src="../../../../common/img/icon-customer.png"> 文件(20)</p>
+        <p class="item-title"><img src="../../../../common/img/file.png"> 文件(20)</p>
         <div class="file-item">
             <img src="../../../../common/img/icon-customer.png" height="140" width="140">
         </div>
