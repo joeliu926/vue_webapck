@@ -14,6 +14,7 @@
         }
         .interact-link {
             .link-item {
+                text-decoration: none;
                 text-align: center;
                 cursor: pointer;
                 font-size: 14px !important;
@@ -24,7 +25,7 @@
                     border-radius: 50%;
                     color: #ffffff;
                     margin-left: -10px;
-                    font-size: 7px;
+                    font-size: 12px;
                     line-height: 18px;
                     margin-top: -8px;
                     width: 18px;
@@ -43,9 +44,7 @@
                 .contact-item {
                     box-sizing: border-box;
                     display: inline-block;
-                    width: 48%;
-                    margin: 0  1%  1%  1%;
-                   /*margin: 10px 10px 10px 0;*/
+                    width: 49%;
                     border: 1px solid #eaeaea;
                     p{margin: 10px;}
                     .segment{height: 20px;}
@@ -67,6 +66,12 @@
                             color: #999999;
                         }
                     }
+                }
+                .contact-item:nth-child(2n){
+                    margin: 0  1%  1%  0;
+                }
+                .contact-item:nth-child(2n+1){
+                    margin: 0  0  1%  1%;
                 }
             }
         }
