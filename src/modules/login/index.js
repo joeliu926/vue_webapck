@@ -33,35 +33,30 @@ export default {
 
         },
         fLogin(){
-
-
-
-
-            if(this.sName==""){
-                this.alertPhone = true;
-                this.alertWaring = false;
+            let _this  = this;
+            let sUName=_this.sName.trim();
+            let sUPassword=_this.sPassword.trim();
+            if(sUName==""){
+                _this.alertPhone = true;
+                _this.alertWaring = false;
                 return false;
             }
-            if(this.sPassword==""){
-                this.alertPassword = true;
-                this.alertWaring = false;
+            if(sUPassword==""){
+                _this.alertPassword = true;
+                _this.alertWaring = false;
                 return false;
             }
-
-
             let clientKey = new rsaService({b: 512});
 
-            let _this  = this;
+
             _.ajax({
                 url: '/api/getPublicKey',
                 method: 'POST',
                 success: function (res) {
                     if (res && res.publickey) {
                         clientKey.importKey(res.publickey);
-
-
-                        let un = clientKey.encrypt(_this.sName, 'base64');
-                        let pd = clientKey.encrypt(_this.sPassword, 'base64');
+                        let un = clientKey.encrypt(sUName, 'base64');
+                        let pd = clientKey.encrypt(sUPassword, 'base64');
 
                         _.ajax({
                             url: '/user/login/entry',
