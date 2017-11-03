@@ -28,18 +28,18 @@ export default {
             }
         },
         dateFilter:function (input) {
-            if(input!=""){
+            if(input&&input!=""){
                 return  _.date2String(new Date(input),"yyyy-MM-dd");
             }
         },
         phoneFilter:function (input) {
-            if(input!=""){
+            if(input&&input!=""){
                 return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
             }
         },
         idCardFilter:function (input) {
-            if(input!=""){
-                return input.replace(/(\d{6})\d{8}(\d{4})/,"$1********$2");
+            if(input&&input!=""){
+                return input.replace(/(\d+)(\d{4})/,"$1****");
             }
         }
     },

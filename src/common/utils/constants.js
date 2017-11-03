@@ -3,7 +3,7 @@
  */
 module.exports ={
     pageSize: 15,
-    host:"http://101.132.161.222:8023",
+    host:"http://localhost:8023", //"http://101.132.161.222:8023",
     fileDownload:"",
     fileUpload:""
 };
