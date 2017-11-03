@@ -4,13 +4,12 @@
 </script>
 <style lang="scss">
     .customer-content {
-        padding: 0 0;
+        padding: 0;
         .cursorPointer{
             cursor:pointer ;
-            color: #9097CC;
+            color: #6f61d4 !important;
         }
     }
-
     .customers-search-content {
         width: 100%;
         height: 74px;
@@ -32,9 +31,9 @@
         .el-tabs__item {
             color: white;
             margin-right: 30px;
-            height: 26px;
+            height: 25px;
             padding: 0 20px;
-            line-height: 26px;
+            line-height: 23px;
         }
         .el-tabs__item.is-active {
             background-color: #ffffff;
@@ -42,16 +41,20 @@
             border-radius: 20px 20px 20px 20px !important;
         }
     }
-
     .customer-block-content {
         margin: 24px;
         border: 1px solid #eeeeee;
         background-color: #ffffff;
+        th div{
+             font-size: 14px;
+            color: #333333;
+         }
+
         table tr td:last-child {
             text-align: right;
         }
         .customer-pa-icon {
-            font-size: 24px !important;
+            font-size: 16px !important;
             color: #909090;
             line-height: 30px;
             cursor: pointer;
@@ -68,6 +71,7 @@
         }
         .el-table__body .el-table__row td{
             height: 60px;
+            p,div{font-size: 14px;color: #999999;}
         }
     }
 
@@ -84,8 +88,6 @@
             font-size: 14px;
         }
         .customer-icon{
-         /*   vertical-align: middle;
-            padding-left: 2px !important;*/
             cursor: pointer;
         }
         .c-icon{text-align: center;}

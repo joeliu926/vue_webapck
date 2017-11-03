@@ -12,7 +12,7 @@
     height: 134px;
     .customerinfo-outer{
         margin: 0 auto;
-        padding: 24px;
+        padding:24px;
         background-color: transparent;
         height: 156px;
         .customerinfo-inner{
