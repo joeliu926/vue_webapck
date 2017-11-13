@@ -22,7 +22,7 @@
                 .s-count{
                     color: #AAA0F1;
                     font-size: 24px;
-                    margin-left: 24px;
+                    margin-left: 14px;
                 }
             }
             .today-cmp{
@@ -32,7 +32,7 @@
                 .s-last{
                     color: #666666;
                     font-size: 24px;
-                    margin-left: 24px;
+                    margin-left: 14px;
                     .sup:before{
                         color: #13CE66;
                         font-size: 20px;
@@ -104,6 +104,10 @@
         }
         .day-radio{
 
+        }
+        .neartext{
+            color: #666666;
+            font-size: 14px;
         }
     }
 
