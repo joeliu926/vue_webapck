@@ -60,7 +60,7 @@
                 text-align: right;
                 .i-select{
                     width: 120px;
-                    margin-left: 40px;
+                    color:#6B7FFA ;
                     .el-input__inner{
                         border-color: #6B7FFA;
                         color:#6B7FFA ;
@@ -69,15 +69,41 @@
                         color:#6B7FFA ;
                     }
                 }
-            }
-            .col-chart{
-                width: 100%;
+                .i-sbtn{
+                    margin-left: 40px;
+                    width: 120px;
+                    border: 1px solid #6B7FFA !important;
+                    color:#6B7FFA;
+                    .btn-dp{
+                        color: #6B7FFA;
+                        position: relative;
+                        right: -20px;
+                        font-size: 12px;
+                    }
+
+                }
+
             }
         }
         .box-shadow{
             -moz-box-shadow: 2px 2px 10px #909090;
             -webkit-box-shadow: 2px 2px 10px #909090;
             box-shadow:2px 2px 10px #909090;
+        }
+    }
+    .el-popover{
+        .day-input{
+            width: 30px;
+        }
+        .el-radio-group .el-radio-button{
+            margin: 0 15px 0 0;
+        }
+        .el-radio-button__inner{
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .day-radio{
+
         }
     }
 

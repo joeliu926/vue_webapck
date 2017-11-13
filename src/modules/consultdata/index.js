@@ -5,21 +5,15 @@ export default {
     },
     data () {
         return {
-            pageNo: 1,
-            pageSize: 15,
-            searchField: "name",
-            fieldValue:"",
-            startDate: "",
-            endDate: "",
-            name: "",
-            phoneNum: "13455555555",
-            wechatNum: "wechat",
-            customerBlock: "顾客",
-            title: "../../common/img/gaoji2.png",
-            customerName: "this is a user",
+
+
+            defineday:0,
             count: 0,
             aCustomerlist: [],
+            tabType:"top",
+            activeSelect:"nearly",
             isUp:true,
+            isModel:false,
             optionsColumn:{
                 chart: {
                     type: 'column'
@@ -102,11 +96,8 @@ export default {
             }, {
                 value: '3',
                 label: '按月'
-            }, {
-                value: '4',
-                label: '按年'
             }],
-            statisticsDate: '1',
+            activeDate: '1',
             optionDate: [{
                 value: '1',
                 label: '最近7天'
@@ -148,8 +139,8 @@ export default {
         }
     },
     methods: {
-        fSearchData(e){
-
+        fSelectDate(e){
+console.log("fffffffffffffffffffff");
         },
         handleClick(){
 
