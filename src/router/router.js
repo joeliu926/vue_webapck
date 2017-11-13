@@ -11,7 +11,7 @@ var nav = r => require.ensure([], () => r(require('../modules/nav/index.vue')), 
 var home = r => require.ensure([], () => r(require('../modules/home/index.vue')), 'home');
 var test = r => require.ensure([], () => r(require('../modules/test/index.vue')), 'test');
 var customers = r => require.ensure([], () => r(require('../modules/customers/index.vue')), 'customers');
-
+var consultdata = r => require.ensure([], () => r(require('../modules/consultdata/index.vue')), 'consultdata');
 var customerinfo = r => require.ensure([], () => r(require('../modules/customerInfo/index.vue')), 'customerinfo');
 
 /*const  aComponent=["login","nav","customers","home","test"];
@@ -41,6 +41,14 @@ var routerConfig = {
             path: '/customers',
             components:{
                 default:customers,
+                nav:nav
+            }
+        },
+        {
+            name:'/consultdata',
+            path: '/consultdata',
+            components:{
+                default:consultdata,
                 nav:nav
             }
         },

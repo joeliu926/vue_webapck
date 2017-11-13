@@ -33,7 +33,7 @@
 
 <style lang="scss">
     .highcharts-container {
-        width: 800px;
+        width: 100% !important;
         height: 400px;
     }
 </style>

@@ -1,0 +1,37 @@
+
+<div class="consult-content" >
+     <div class="data-content box-shadow" style="vertical-align: middle;">
+         <el-row :gutter="24">
+             <el-col :span="12"><div class="today-count"><span>今日咨询总量</span><span class="s-count"> 286人</span> </div></el-col>
+             <el-col :span="12"><div class="today-cmp"><span>对比昨日</span> <span class="s-last"> <i class="el-icon-pa-long-arrow-down sdown" v-if="!isUp"></i> <i class="el-icon-pa-long-arrow-up sup" v-if="isUp"></i> 28人</span></div></el-col>
+         </el-row>
+         <el-row :gutter="20">
+             <el-col><div class="data-date"><span>11月2日</span></div></el-col>
+         </el-row>
+
+     </div>
+
+    <div class="chart-content box-shadow">
+        <div class="choose-ct">
+                <el-select v-model="statisticsType" placeholder="请选择" class="i-select">
+                    <el-option
+                            v-for="item in optionType"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-select v-model="statisticsDate" placeholder="请选择" class="i-select">
+                    <el-option
+                            v-for="item in optionDate"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+        </div>
+        <div class="col-chart">
+            <highcharts-component :options="optionsColumn"  :styles="styles"></highcharts-component>
+        </div>
+    </div>
+</div>
