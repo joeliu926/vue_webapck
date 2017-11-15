@@ -6,8 +6,9 @@ export default {
     data () {
         return {
 
-
-            defineday:0,
+            startDate:"",
+            endDate:"",
+            defineday:"",
             count: 0,
             aCustomerlist: [],
             tabType:"top",
@@ -47,6 +48,13 @@ export default {
                 yAxis: {
                     allowDecimals: false,
                     min: 0,
+                    stackLabels: {
+                        enabled: true,
+                        formatter:function(){
+                            return "<span style='color:purple;'>"+this.total+"人</span>";
+                        }
+                    },
+                    useHTML:true,
                     title: {
                         text: ''
                     }

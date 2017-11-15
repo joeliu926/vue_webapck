@@ -58,6 +58,16 @@
                 height: 60px;
                 vertical-align: middle;
                 text-align: right;
+          /*      .choose-date{
+                    border: 1px solid #6B7FFA;
+                    border-radius: 5px;
+                    .el-input__icon{
+                        color:#6B7FFA;
+                    }
+                    .el-input__inner{
+                        color:#6B7FFA;
+                    }
+                }*/
                 .i-select{
                     width: 120px;
                     color:#6B7FFA ;
