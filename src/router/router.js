@@ -27,7 +27,7 @@ var routerConfig = {
             name:'/',
             path: '/',
             components:{
-                default:customers,
+                default:consultdata,
                 nav:nav
             }
         },

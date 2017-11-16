@@ -5,9 +5,10 @@ export default {
     },
     data () {
         return {
-
-            startDate:"",
-            endDate:"",
+            todayNum:0,
+            compareNum:0,
+            startDate: _.date2String(new Date(),"yyyy-MM-dd"),
+            endDate:_.date2String(new Date(),"yyyy-MM-dd"),
             defineday:"",
             count: 0,
             aCustomerlist: [],
@@ -15,81 +16,7 @@ export default {
             activeSelect:"nearly",
             isUp:true,
             isModel:false,
-            optionsColumn:{
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                credits: {
-                    enabled: false
-                },
-                colors:[
-                    '#FF7092',//
-                    '#C8A2FB',//紫
-                    '#0000FF',//蓝
-                    '#FFFF00',//黄
-                    '#FF0000',//红
-                    '#FFFFFF',//紫
-                    '#7cb5ec',
-                    '#90ed7d',
-                    '#f7a35c',
-                    '#8085e9',
-                    '#f15c80',
-                    '#e4d354',
-                    '#2b908f',
-                    '#f45b5b',
-                    '#91e8e1'
-                ],
-                xAxis: {
-                    categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    min: 0,
-                    stackLabels: {
-                        enabled: true,
-                        formatter:function(){
-                            return "<span style='color:purple;'>"+this.total+"人</span>";
-                        }
-                    },
-                    useHTML:true,
-                    title: {
-                        text: ''
-                    }
-                },
-                tooltip: {
-                    shared: true,
-                    useHTML: true,
-                    headerFormat: '<small style="font-size:16px">{point.key}</small><br/>',
-                    backgroundColor:"rgba(0,0,0,0.4)",
-                    borderWidth:0,
-                    style:{
-                        color:"#ffffff",
-                    },
-                   /* formatter: function () {
-                        return '<b>' + this.x + '</b><br/>' +
-                            this.series.name + ': ' + this.y + '<br/>' +
-                            '总量: ' + this.point.stackTotal;
-                    }*/
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        pointWidth:60
-                    }
-                },
-                series: [{
-                    name: '未补充信息',
-                    data: [5, 3, 4, 7, 2],
-                    stack: 'male'
-                }, {
-                    name: '已补充信息',
-                    data: [3, 4, 4, 2, 5],
-                    stack: 'male'
-                }]
-            },
+            optionsColumn:{},
             styles: {
                 //width:"80%",
                 //height: 400
@@ -129,6 +56,7 @@ export default {
 
     },
     mounted(){
+        this.initData();
 
     },
     destroyed() {
@@ -147,8 +75,112 @@ export default {
         }
     },
     methods: {
+        changedate(){
+            this.initData();
+        },
+        initData(){
+            var settingColumn={
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                credits: {
+                    enabled: false
+                },
+                colors:[
+                    '#f198ad',//
+                    '#d3bef1',//紫
+                    '#0000FF',//蓝
+                    '#FFFF00',//黄
+                    '#FF0000',//红
+                    '#FFFFFF',//紫
+                    '#7cb5ec',
+                    '#90ed7d',
+                    '#f7a35c',
+                    '#8085e9',
+                    '#f15c80',
+                    '#e4d354',
+                    '#2b908f',
+                    '#f45b5b',
+                    '#91e8e1'
+                ],
+                xAxis: {
+                    categories: []
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    stackLabels: {
+                        enabled: true,
+                        formatter:function(){
+                            return "<span style='color:purple;'>"+this.total+"人</span>";
+                        }
+                    },
+                    useHTML:true,
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    shared: true,
+                    useHTML: true,
+                    headerFormat: '<small style="font-size:16px">{point.key}</small><br/>',
+                    backgroundColor:"rgba(0,0,0,0.4)",
+                    borderWidth:0,
+                    style:{
+                        color:"#ffffff",
+                    },
+                    /* formatter: function () {
+                     return '<b>' + this.x + '</b><br/>' +
+                     this.series.name + ': ' + this.y + '<br/>' +
+                     '总量: ' + this.point.stackTotal;
+                     }*/
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        pointWidth:60
+                    }
+                },
+                series: [{
+                    name: '未补充信息',
+                    data: [],
+                    stack: 'male'
+                }, {
+                    name: '已补充信息',
+                    data: [],
+                    stack: 'male'
+                }]
+            };
+            let _this =this;
+            _.ajax({
+                url: '/consults/getrecords',
+                method: 'POST',
+                data: {
+                    beginDate:_.date2String(new Date(_this.startDate),"yyyy-MM-dd"),
+                    endDate:_.date2String(new Date(_this.endDate),"yyyy-MM-dd")
+                },
+                success: function (result) {
+                    // console.log(result);
+                    if (result) {
+                        _this.todayNum = result.todayConsultNum;
+                        _this.compareNum = result.changeValue;
+                        result.detailList.forEach(item=>{
+                            settingColumn.xAxis.categories.push(item.userName);
+                            settingColumn.series[0].data.push(item.messNotFullCount);
+                            settingColumn.series[1].data.push(item.messFullCount);
+                        })
+                        _this.optionsColumn =  settingColumn;
+                    }else {
+                        //_This.$router.push('/customers');
+                    }
+                }
+            }, 'withCredentials');
+        },
         fSelectDate(e){
-console.log("fffffffffffffffffffff");
+
         },
         handleClick(){
 

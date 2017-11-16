@@ -19,13 +19,18 @@
             }
         },
         mounted() {
-            this.initChart();
+            this.initChart(this.options);
+        },
+        watch: {
+            options(val) {
+                this.initChart(val);
+            }
         },
         methods: {
-            initChart() {
+            initChart(params) {
                 this.$el.style.width = (this.styles.width || 800) + 'px';
                 this.$el.style.height = (this.styles.height || 400) + 'px';
-                this.chart = new Highcharts.Chart(this.$el, this.options);
+                this.chart = new Highcharts.Chart(this.$el, params);
             }
         }
     }

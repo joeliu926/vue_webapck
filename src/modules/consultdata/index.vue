@@ -14,14 +14,13 @@
             margin-bottom: 20px;
             padding: 14px;
             box-sizing: border-box;
-
             .today-count{
                 text-align: left;
                 color: #444444;
                 font-size: 16px;
                 .s-count{
-                    color: #AAA0F1;
-                    font-size: 24px;
+                    color: #705ef3;
+                    font-size: 18px;
                     margin-left: 14px;
                 }
             }
@@ -31,7 +30,7 @@
                 text-align: right;
                 .s-last{
                     color: #666666;
-                    font-size: 24px;
+                    font-size: 18px;
                     margin-left: 14px;
                     .sup:before{
                         color: #13CE66;
