@@ -42,10 +42,12 @@ export default {
     },
     methods: {
         fSearchData(e){
+
             this.searchData();
         },
         handleClick(){
             this.fieldValue="";
+            this.searchData();
         },
         pickerOptions(){},
         fDateChange(date){
@@ -76,6 +78,9 @@ export default {
                 searchField:_This.searchField
 
             };
+
+
+
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             if(_This.fieldValue==""){

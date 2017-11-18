@@ -48,9 +48,9 @@ export default {
             }, {
                 value: '5',
                 label: '最近一年'
-            }]
+            }],
+            thisDay:_.date2String(new Date(),"MM月dd日")
         }
-
     },
     created() {
 
@@ -163,15 +163,29 @@ export default {
                     endDate:_.date2String(new Date(_this.endDate),"yyyy-MM-dd")
                 },
                 success: function (result) {
-                    // console.log(result);
-                    if (result) {
-                        _this.todayNum = result.todayConsultNum;
-                        _this.compareNum = result.changeValue;
-                        result.detailList.forEach(item=>{
+                    if (result.code ==0&&result.data) {
+
+                        _this.todayNum = result.data.todayConsultNum;
+                        _this.compareNum = Math.abs(result.data.changeValue);
+                        _this.isUp =result.data.changeValue>0?true:false;
+
+                        result.data.detailList.sort(function(x, y){
+                            return x.messFullCount+x.messNotFullCount > y.messFullCount+y.messNotFullCount ? -1:1;
+                        });
+
+
+                        result.data.detailList.sort(function(x, y){
+                            return    x.messFullCount+x.messNotFullCount == y.messFullCount+y.messNotFullCount?
+                                x.messFullCount > y.messFullCount ? 1:-1:1;
+                        });
+
+                        result.data.detailList.reverse();
+                        result.data.detailList.forEach(item=>{
                             settingColumn.xAxis.categories.push(item.userName);
                             settingColumn.series[0].data.push(item.messNotFullCount);
                             settingColumn.series[1].data.push(item.messFullCount);
                         })
+
                         _this.optionsColumn =  settingColumn;
                     }else {
                         //_This.$router.push('/customers');

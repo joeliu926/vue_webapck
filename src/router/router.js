@@ -86,9 +86,21 @@ router.beforeEach((to, from, next)=>{
     if(path=='/login'){
         next();
         return;
+    }else{
+        let _this =this;
+        _.ajax({
+            url: '/user/checkloginstate',
+            method: 'POST',
+            success: function (res) {
+                if(res.code==0){
+                    next();
+                }
+                else{
+                    return next({path:'/login'});
+                }
+            }
+        },'withCredentials');
     }
-    next();
-    //console.log('ppppppppppp',path)
 });
 
 export default router;

@@ -59,45 +59,27 @@
             <div  class="contact-item" v-for="item,index in $parent.$parent.$parent.$parent.$parent.oConsults" v-if="index<4">
                 <p class="contact-right-more">.<span class="contact-more cursor">...</span></p>
                 <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">{{item.counselorName}}</span></p>
-                <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">{{item.consultWay}}</span></p>
+                <p><span  class="contact-item-name">咨询项目：</span><span class="contact-item-name">{{item.productName}}</span></p>
+                <p class="segment"></p>
+             <!--   <p> <span  class="contact-item-name">咨询项目：</span></p>
+                <p class="contact-item-value">{{item.productName}}</p>-->
+                <p><span  class="contact-item-name">跟进日期：</span><span class="contact-item-name">{{item.createTime}}</span></p>
+             <!--   <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">{{item.consultWay}}</span></p>
 
                 <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">{{item.consultType}}</span></p>
                 <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">{{item.remark}}</span></p>
-                <p class="segment"></p>
+                 <p class="segment"></p>
                 <p> <span  class="contact-item-name">咨询项目：</span></p>
-                <p class="contact-item-value">{{item.consultProject}}</p>
+                <p class="contact-item-value">{{item.consultProject}}</p>-->
             </div>
 
             <p v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length!=0" class="show-all">查看全部</p> <p class="show-all" v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length==0">无咨询消息</p>
         </div>
     </div>
     <div class="interact-file item-border">
-        <p id="file" class="item-title"><img src="../../../../common/img/file.png"> 文件(20)</p>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-5-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-7-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-14-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-7-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-14-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-7-lpp.jpg" height="140" width="140">
-        </div>    <div class="file-item">
-        <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-14-lpp.jpg" height="140" width="140">
-    </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-14-lpp.jpg" height="140" width="140">
-        </div>
-        <div class="file-item">
-            <img src="http://img.jj20.com/up/allimg/911/102616130219/161026130219-7-lpp.jpg" height="140" width="140">
+        <p id="file" class="item-title"><img src="../../../../common/img/file.png"> 文件({{$parent.$parent.$parent.$parent.$parent.fileList.length}})</p>
+        <div class="file-item" v-for="item,index in $parent.$parent.$parent.$parent.$parent.fileList">
+            <img :src="item"  height="140" width="140"/>
         </div>
         <p class="show-all">查看全部</p>
     </div>

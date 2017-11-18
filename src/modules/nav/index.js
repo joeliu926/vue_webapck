@@ -14,7 +14,7 @@ export default {
 
     },
     mounted(){
-
+        this.setDefaultRoute();
     },
     destroyed() {
 
@@ -71,24 +71,20 @@ export default {
                 }, 'withCredentials');
             }
 
+        },
+        setDefaultRoute(){
+            if(this.$route.path.indexOf('customer')>=0){
+                this.selectedVal = "客户中心";
+
+            }else{
+                this.selectedVal = "首页";
+            }
         }
     },
     watch: {
         $route(){
-            if(this.$route.path.indexOf('customer')>=0){
-                this.selectedVal = "客户中心";
-            }else{
-                this.selectedVal = "首页";
-            }
-           /* switch(this.$route.path){
-                case "/customers":
-                    this.selectedVal = "客户中心";
-                    break;
-                default:
-                    this.selectedVal = "首页";
-                    break;
-            }*/
-            console.log('323',this.$route.path);
+           this.setDefaultRoute();
+
         }
     }
 }

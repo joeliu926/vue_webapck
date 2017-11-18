@@ -3,10 +3,13 @@
      <div class="data-content box-shadow" style="vertical-align: middle;">
          <el-row :gutter="24">
              <el-col :span="12"><div class="today-count"><span>今日咨询总量</span><span class="s-count"> {{todayNum}}</span> 人</div></el-col>
-             <el-col :span="12"><div class="today-cmp"><span>对比昨日</span> <span class="s-last"> <i class="el-icon-pa-long-arrow-down sdown" v-if="!isUp"></i> <i class="el-icon-pa-long-arrow-up sup" v-if="isUp"></i> {{compareNum}}</span>人</div></el-col>
+             <el-col :span="12"><div class="today-cmp"><span>对比昨日</span>
+                 <span class="s-last"> <i class="el-icon-pa-long-arrow-down sdown" v-if="!isUp">
+
+                 </i> <i class="el-icon-pa-long-arrow-up sup" v-if="isUp"></i> {{compareNum}}</span>人</div></el-col>
          </el-row>
          <el-row :gutter="20">
-             <el-col><div class="data-date"><span>11月2日</span></div></el-col>
+             <el-col><div class="data-date"><span>{{thisDay}}</span></div></el-col>
          </el-row>
 
      </div>

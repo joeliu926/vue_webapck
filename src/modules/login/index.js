@@ -57,7 +57,6 @@ export default {
                         clientKey.importKey(res.publickey);
                         let un = clientKey.encrypt(sUName, 'base64');
                         let pd = clientKey.encrypt(sUPassword, 'base64');
-
                         _.ajax({
                             url: '/user/login/entry',
                             method: 'POST',

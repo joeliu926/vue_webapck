@@ -62,7 +62,7 @@
                         height: 0;
                         .contact-more{
                             float: right;
-                            font-size: 30px;
+
                             color: #999999;
                         }
                     }

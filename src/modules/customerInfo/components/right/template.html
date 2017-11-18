@@ -1,20 +1,23 @@
 <div class="customerinfo-right-content">
     <div>
-        <el-input
+       <!-- <el-input
                 placeholder=""
                 v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.source">
-        </el-input>
+        </el-input>-->
+        {{$parent.$parent.$parent.$parent.$parent.oCustomer.source}}
 
     </div>
     <div>
-        <div class="rigth-remark">备注</div>
-        <div>
-            <el-input
+        <div class="rigth-remark">备注:</div>
+        <div style="height: 100px;margin-top: 10px;">
+            {{$parent.$parent.$parent.$parent.$parent.oCustomer.comment}}
+
+           <!-- <el-input
                 type="textarea"
                 :rows="3"
                 placeholder=""
                 v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.comment">
-        </el-input>
+        </el-input>-->
         </div>
     </div>
 </div>
