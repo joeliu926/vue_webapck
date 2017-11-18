@@ -112,9 +112,9 @@
     }
 
     .customer-content-gradient {
-        background: -moz-linear-gradient(360deg, #7c8ffd, #363cfe);
-        background: -webkit-gradient(linear,0 50%,100% 50%,from(#7c8ffd),to(#363cfe));
-        background: -webkit-linear-gradient(360deg, #7c8ffd, #363cfe);
-        background: -o-linear-gradient(360deg, #7c8ffd, #363cfe);
+        background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -webkit-gradient(linear,0 50%,100% 50%,from(#7084f3),to(#7a71fe));
+        background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
     }
 </style>

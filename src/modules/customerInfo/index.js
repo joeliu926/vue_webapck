@@ -87,11 +87,12 @@ export default {
                         _This.oCustomer = result.data;
                         for (var item in _This.oCustomer)
                         {
-                            _This.oCustomer[item] =_This.oCustomer[item].length>0?_This.oCustomer[item]: "无";
+                           /* if(item=='birthday'){
+                                _This.oCustomer[item] =_This.oCustomer[item].length>0?_This.oCustomer[item]: "1900-01-01";
+                            }else{*/
+                                _This.oCustomer[item] =_This.oCustomer[item].length>0?_This.oCustomer[item]: "无";
+                            /*}*/
                         }
-
-                        console.log('_This.oCustomer',_This.oCustomer);
-
                     }else {
                        // _This.$router.push('/customers');
                     }

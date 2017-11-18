@@ -95,9 +95,10 @@
             }
         }
         .box-shadow{
-            -moz-box-shadow: 2px 2px 10px #909090;
-            -webkit-box-shadow: 2px 2px 10px #909090;
-            box-shadow:2px 2px 10px #909090;
+            -moz-box-shadow: 2px 2px 10px #e8e8e8;
+            -webkit-box-shadow: 2px 2px 10px #e8e8e8;
+            box-shadow:2px 2px 10px #e8e8e8;
+            border-radius: 4px;
         }
     }
     .el-popover{
