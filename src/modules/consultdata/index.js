@@ -169,17 +169,17 @@ export default {
                         _this.compareNum = Math.abs(result.data.changeValue);
                         _this.isUp =result.data.changeValue>0?true:false;
 
-                        result.data.detailList.sort(function(x, y){
+                        result.data.detailList = result.data.detailList.sort(function(x, y){
                             return x.messFullCount+x.messNotFullCount > y.messFullCount+y.messNotFullCount ? -1:1;
                         });
 
 
-                        result.data.detailList.sort(function(x, y){
+                       /*result.data.detailList = result.data.detailList.sort(function(x, y){
                             return    x.messFullCount+x.messNotFullCount == y.messFullCount+y.messNotFullCount?
                                 x.messFullCount > y.messFullCount ? 1:-1:1;
-                        });
+                        });*/
 
-                        result.data.detailList.reverse();
+                        //result.data.detailList.reverse();
                         result.data.detailList.forEach(item=>{
                             settingColumn.xAxis.categories.push(item.userName);
                             settingColumn.series[0].data.push(item.messNotFullCount);

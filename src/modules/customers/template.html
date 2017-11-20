@@ -38,7 +38,13 @@
                 </el-col>
             </el-col>
             <el-col :span="14"  type="flex" justify="space-between">
-                <el-col :span="20">
+              <!--  <el-col :span="1" style="float: right;">
+                    <div ><img src="../../common/img/refresh.png" class="customer-icon" @click="fRefresh"></div>
+                </el-col>-->
+       <!--         <el-col :span="1" style="padding-left:0px;float: right;">
+                    <div><img src="../../common/img/setting.png" class="customer-icon" @click="fEdit"></div>
+                </el-col>-->
+                <el-col :span="20" style="float: right;">
                     <div class="customer-date">
                         <el-date-picker
                                 v-model="startDate"
@@ -58,12 +64,7 @@
                         </el-date-picker>
                     </div>
                 </el-col>
-                <el-col :span="1" style="padding-left: 0px;">
-                    <div ><img src="../../common/img/refresh.png" class="customer-icon" @click="fRefresh"></div>
-                </el-col>
-                <el-col :span="1">
-                    <div><img src="../../common/img/setting.png" class="customer-icon" @click="fEdit"></div>
-                </el-col>
+
             </el-col>
         </el-row>
         <el-row>

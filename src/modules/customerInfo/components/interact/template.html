@@ -45,7 +45,7 @@
                 <div class="link-item" @click="goAnchor('#file')">
                     <div>
                         <img src="../../../../common/img/file.png">
-                        <span style="" class="icon-num" v-show="false">0</span>
+                        <span style="" class="icon-num">{{$parent.$parent.$parent.$parent.$parent.fileList.length}}</span>
                     </div>
                         <p class="link-title">文件</p>
                 </div>

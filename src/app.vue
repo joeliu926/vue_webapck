@@ -14,5 +14,5 @@
 
     }
 
-
+    html{ background:#f7f7f7 !important; }
 </style>

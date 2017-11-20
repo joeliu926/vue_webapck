@@ -79,7 +79,6 @@
     .customer-block-uinfo {
         margin: 24px;
         height: 32px;
-        width: 100%;
         .customers-name {
             color: #333333;
             font-size: 16px;

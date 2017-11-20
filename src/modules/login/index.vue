@@ -4,16 +4,16 @@
 </script>
 
 <style lang="scss">
-    html,body,#web-layout,.content,.login{ margin:0px; height:100%;}
+    .login{
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        position: absolute;
+        height: 100%;
+    }
     .login-flex{
-
-    /*    list-style-type: none;
-        -ms-flex-align: center;
-        display: -ms-flexbox;
-        -ms-flex-pack: center;*/
-        /*for ie9*/
         justify-content: center;
-        margin: 1px auto 0;
         display: table;
         display: flex;
         align-content: center;
