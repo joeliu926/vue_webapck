@@ -4,10 +4,32 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var fs = require('fs');
 var utils = require('./utils');
 function resolve(relPath) {
     return path.resolve(__dirname, relPath);
 }
+
+
+/////////////////////////modify CONSTANT file///////////////////////////
+var sBaseUrl=process.argv[2]||"http://localhost:8023";
+var constantFile="../src/common/utils/constants.js";
+var constantPath=path.join(__dirname,constantFile);
+var constantData = fs.readFileSync(constantPath,'utf-8');
+constantData = constantData + "";
+constantData = constantData.replace(/host:\s*\S+?,/,function (word){
+    return 'host:"'+sBaseUrl+'",';
+});
+fs.writeFileSync(constantPath, constantData, function(err){
+    if(err){
+        console.log("error! " + file);
+        console.log(err);
+    }else{
+        console.log("CONSTANT.js success! ");
+    }
+});
+//////////////////////////////////////////////////////////////
+
 
 module.exports = {
     entry: {

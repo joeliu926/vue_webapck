@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node build/dev.js",
-    "build": "node build/dist.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node build/dev.js http://localhost:8023",
+    "test": "node build/dist.js https://27478500.qcloud.la/node",
+    "build": "node build/dist.js https://27478500.qcloud.la/node",
+    "_test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "JoeLiu",
