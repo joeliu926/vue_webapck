@@ -76,11 +76,7 @@ export default {
                 endDate: _This.endDate,*/
                 fieldValue:_This.fieldValue,
                 searchField:_This.searchField
-
             };
-
-
-
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             if(_This.fieldValue==""){
@@ -95,8 +91,6 @@ export default {
                         _This.aCustomerlist = result.data.list;
                         _This.count = result.data.count;
                     }
-
-
                 }
             }, 'withCredentials');
         },

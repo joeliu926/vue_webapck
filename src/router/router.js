@@ -5,7 +5,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-
 var login = r => require.ensure([], () => r(require('../modules/login/index.vue')), 'login');
 var nav = r => require.ensure([], () => r(require('../modules/nav/index.vue')), 'nav');
 var home = r => require.ensure([], () => r(require('../modules/home/index.vue')), 'home');
@@ -13,6 +12,7 @@ var test = r => require.ensure([], () => r(require('../modules/test/index.vue'))
 var customers = r => require.ensure([], () => r(require('../modules/customers/index.vue')), 'customers');
 var consultdata = r => require.ensure([], () => r(require('../modules/consultdata/index.vue')), 'consultdata');
 var customerinfo = r => require.ensure([], () => r(require('../modules/customerInfo/index.vue')), 'customerinfo');
+var showcase = r => require.ensure([], () => r(require('../modules/showcase/index.vue')), 'showcase');
 
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
@@ -61,6 +61,13 @@ var routerConfig = {
             }
         },
         {
+            name:'/showcase',
+            path:'/showcase',
+            components:{
+                default:showcase
+            }
+        },
+        {
             name:'/home',
             path: '/home',
             components:{
@@ -83,7 +90,11 @@ var router = new VueRouter(routerConfig);
 router.beforeEach((to, from, next)=>{
     let path=to.path;
 
-    if(path=='/login'){
+    console.log('path',path);
+    if(path=='/showcase'){
+        next();
+        return;
+    }else if(path=='/login'){
         next();
         return;
     }else{
