@@ -13,6 +13,7 @@ var customers = r => require.ensure([], () => r(require('../modules/customers/in
 var consultdata = r => require.ensure([], () => r(require('../modules/consultdata/index.vue')), 'consultdata');
 var customerinfo = r => require.ensure([], () => r(require('../modules/customerInfo/index.vue')), 'customerinfo');
 var showcase = r => require.ensure([], () => r(require('../modules/showcase/index.vue')), 'showcase');
+var casecontrol = r => require.ensure([], () => r(require('../modules/casecontrol/index.vue')), 'casecontrol'); //
 
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
@@ -65,6 +66,13 @@ var routerConfig = {
             path:'/showcase',
             components:{
                 default:showcase
+            }
+        },
+        {
+            name:'/casecontrol',
+            path:'/casecontrol',
+            components:{
+                default:casecontrol
             }
         },
         {
