@@ -15,9 +15,8 @@
         display: inline-block;
     }
     .control-content {
-        background: url("../../common/img/control-bgd.png");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background: url("../../common/img/control-bgd.png") no-repeat;
+        background-size:100% 100%;
         left: 0;
         right: 0;
         top: 0;
@@ -124,16 +123,19 @@
             .img-item{
                     width: 180px;
                     margin: 0 auto;
-
+                width: 80%;
                     .img-l{
                         float: left;
+                        width: 50%;
                     }
                 }
             }
 
                     .img-item:hover{
-                        transform:scale(1.1);
+                        transform:scale(1.2);
                         z-index: 1000000;
+                        position: relative;
+                        top: -10px;
                     }
                 }
 
