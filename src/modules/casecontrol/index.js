@@ -4,7 +4,8 @@ export default {
     },
     data () {
      return{
-
+         pitem:"封面不",
+         imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
      }
     },
     created() {
