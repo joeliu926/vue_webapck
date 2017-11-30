@@ -6,6 +6,8 @@
                 <div class="lay-right"><label class="lay-btn end-btn">結束咨詢</label></div>
                 <div class="lay-items">
                     <label class="lay-item h-item" >项目一</label>
+
+                    <label class="lay-item h-item" >项目一</label>
                     <label class="lay-item h-item">项目二</label>
                     <label class="lay-item h-item">项目三脸部整形玻尿酸玻尿酸</label>
                     <label class="lay-item h-item" >项目一</label>
@@ -115,13 +117,15 @@
     <div style="clear: both;height: 0; display: none;"></div>
     <div class="select-content b-s">
             <div class="sel-items-ct b-s">
-                <div class="sel-img-ct b-s" v-for="item in imgdata">
+                <div class="sel-img-ct sl-img-ct b-s" v-for="item in imgdata">
                     <div class="sel-img-item b-s">
                         <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
                         <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
                         <div class="sel-ba-cm sel-before">before</div>
                         <div class="sel-ba-cm sel-after">after</div>
-
+                        <div class="add-case add-icon" style="">
+                        <!--  <img src="../../common/img/i-add.png" class="add-img" style="" >-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,12 +134,14 @@
 
     <div class="btadd-ct b-s">
         <div class="des-items-ct b-s">
-            <div class="sel-img-ct des-img-ct b-s" v-for="item in imgdata">
+            <div class="des-img-ct b-s" v-for="item in imgdata">
                 <div class="sel-img-item des-img-item ">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>
                     <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
+                    <div class="add-case des-icon" style="">
+                    </div>
                 </div>
             </div>
         </div>

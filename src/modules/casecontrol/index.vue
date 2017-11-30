@@ -230,10 +230,30 @@
         }
 
        /**********************選擇框 start**************************/
+        .add-case{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right:0;
+            cursor:pointer;
+        }
+
+        .des-img-icon{
+            margin-left:-15px;
+            margin-top:-15px;
+            height: 30px;
+            width: 30px;
+        }
         .sel-img-item{
             width: 254px;
             height: 164px;
             position: relative ;
+            .add-icon:hover{
+                background: url("../../common/img/i-add.png") no-repeat;
+                background-color:rgba(0,0,0,0.4);
+                background-position: center;
+            }
             .sel-img{
                 width: 127px;
                 height: 164px;
@@ -271,6 +291,9 @@
                     padding:12px 24px 12px 0;
 
                     overflow-y:scroll;
+                    .sl-img-ct:hover{
+                        transform: scale(1.1);
+                    }
                     .sel-img-ct{
                         width: 254px;
                         height: 164px;
@@ -303,6 +326,11 @@
 
                         width: 170px;
                         height: 110px;
+                        .des-icon:hover{
+                            background: url("../../common/img/i-des.png") no-repeat;
+                            background-color:rgba(0,0,0,0.4);
+                            background-position: center;
+                        }
                         .des-img{
                             width: 85px;
                             height: 110px;
