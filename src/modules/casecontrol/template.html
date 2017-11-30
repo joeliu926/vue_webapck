@@ -36,7 +36,7 @@
 
 
 
-    <div class="control-screan">
+    <div class="control-screan hide">
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -54,7 +54,7 @@
 
 
 
-    <div class="control-foot b-s">
+    <div class="control-foot b-s hide">
         <div class="layout-ct f-ct b-s">
             <div class="lay-row">
                 <div class="lay-left bt-left b-s">
@@ -63,7 +63,7 @@
                 <div class="lay-right"></div>
                 <div class="lay-items bt-items">  <label class="lay-item f-item" >李院长</label></div>
             </div>
-            <div style="clear: both;"></div>
+            <div style="clear: both;height: 0;"></div>
             <div class="lay-row">
                 <div class="lay-left bt-left b-s" >
                     <img class="bt-icon" src="../../common/img/i-radio.png">咨詢項目
@@ -110,7 +110,39 @@
     </div>
 
 
+
+    <!--**********************選擇框 start**************************-->
+    <div style="clear: both;height: 0; display: none;"></div>
+    <div class="select-content b-s">
+            <div class="sel-items-ct b-s">
+                <div class="sel-img-ct b-s" v-for="item in imgdata">
+                    <div class="sel-img-item b-s">
+                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
+                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                        <div class="sel-ba-cm sel-before">before</div>
+                        <div class="sel-ba-cm sel-after">after</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="btadd-ct b-s">
+        <div class="des-items-ct b-s">
+            <div class="sel-img-ct des-img-ct b-s" v-for="item in imgdata">
+                <div class="sel-img-item des-img-item ">
+                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
+                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                    <div class="sel-ba-cm des-ba-cm des-before">before</div>
+                    <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************選擇框 start**************************-->
 </div>
+
 
 
 

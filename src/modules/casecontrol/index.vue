@@ -4,7 +4,9 @@
 </script>
 
 <style lang="scss">
-
+.hide{
+    display: none;
+}
     .b-d{
         border: 1px solid red;
     }
@@ -38,6 +40,7 @@
         top: 0;
         bottom: 0;
         position: absolute;
+        overflow: hidden;
         .layout-ct{
              color: #ffffff;
             font-size: 16px;
@@ -93,8 +96,6 @@
                 }
             }
         }
-
-
         .control-screan{
             .s-position{
                 position: absolute;
@@ -134,11 +135,6 @@
             }
 
         }
-
-
-
-
-
         .control-foot{
             position: absolute;
             height: 296px;
@@ -223,7 +219,6 @@
                     }
                 }
             }
-
                     .img-item:hover{
                         transform:scale(1.2);
                         z-index: 1000000;
@@ -231,11 +226,101 @@
                         top: -10px;
                     }
                 }
-
             }
         }
 
+       /**********************選擇框 start**************************/
+        .sel-img-item{
+            width: 254px;
+            height: 164px;
+            position: relative ;
+            .sel-img{
+                width: 127px;
+                height: 164px;
+                float: left;
+            }
+            .sel-ba-cm{
+                position: absolute;
+                bottom: 0;
+                width: 65px;
+                text-align: center;
+                border-radius: 0 8px 8px 0;
+                background-color: rgba(0, 0,0,0.6);
+                color: #ffffff;
+                font-size: 14px;
+            }
+            .sel-before{
+                left: 0;
+            }
+            .sel-after{
+                left: 50%;
+            }
+        }
+            .select-content{
+                color: #ffffff;
+                padding: 0;
+                margin-top: -10px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                position: absolute;
+                bottom: 190px;
+                top:195px;
+                width: 102%;
+                .sel-items-ct{
+                    background-color: #17182B;
+                    padding:12px 24px 12px 0;
 
+                    overflow-y:scroll;
+                    .sel-img-ct{
+                        width: 254px;
+                        height: 164px;
+                        display: inline-block;
+                        margin: 12px 26px;
+
+                    }
+                }
+            }
+
+
+        .btadd-ct{
+            position: absolute;
+            padding:12px 24px;
+            bottom: 0;
+            width: 100%;
+            background:#2A2C5E;
+            white-space:nowrap;
+            .des-items-ct{
+                width: 100%;
+                overflow: hidden;
+                .des-img-ct:hover{
+                    transform: scale(1.2);
+                    overflow: auto;
+                }
+                .des-img-ct{
+                    display: inline-block;
+                    margin:10px 20px 10px 0;
+                    .des-img-item{
+
+                        width: 170px;
+                        height: 110px;
+                        .des-img{
+                            width: 85px;
+                            height: 110px;
+                        }
+                        .des-ba-cm{
+
+                        }
+                        .des-before{
+
+                        }
+                        .des-after{
+
+                        }
+                    }
+                }
+            }
+        }
+        /**********************選擇框 end**************************/
     }
 
 </style>
