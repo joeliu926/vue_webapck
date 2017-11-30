@@ -11,7 +11,7 @@
                     <label class="lay-item h-item" >项目一</label>
                     <label class="lay-item h-item">项目二</label>
                     <label class="lay-item h-item">项目三</label>
-                    <label class="lay-item h-item" >项目一脸部整形玻尿酸玻尿酸</label>
+                    <label class="lay-item h-item" :style="{background:[isCurrent?isCurrent:'']}" >项目一脸部整形玻尿酸玻尿酸</label>
                     <label class="lay-item h-item">项目二</label>
                     <label class="lay-item h-item">项目三</label>
                     <label class="lay-item h-item">项目二</label>
@@ -29,26 +29,45 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 
 
 
-    <div class="control-screan">
 
+
+    <div class="control-screan">
+        <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
+        <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
+        <div class="s-position s-content" style="">
+            <div class="s-img-ct b-s">
+                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
+                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
     <div class="control-foot b-s">
         <div class="layout-ct f-ct b-s">
             <div class="lay-row">
-                <div class="lay-left b-s" >医生</div>
+                <div class="lay-left bt-left b-s">
+                    <img class="bt-icon" src="../../common/img/i-radio.png" >医生
+                </div>
                 <div class="lay-right"></div>
-                <div class="lay-items">  <label class="lay-item f-item" >李院长</label></div>
+                <div class="lay-items bt-items">  <label class="lay-item f-item" >李院长</label></div>
             </div>
+            <div style="clear: both;"></div>
             <div class="lay-row">
-                <div class="lay-left b-s" >咨詢項目</div>
-                <div class="lay-right"><label class="lay-btn">连接设备</label></div>
-                <div class="lay-items">
+                <div class="lay-left bt-left b-s" >
+                    <img class="bt-icon" src="../../common/img/i-radio.png">咨詢項目
+                </div>
+                <div class="lay-right"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
+                <div class="lay-items bt-items">
                     <label class="lay-item f-item" >项目一</label>
                     <label class="lay-item f-item">项目二</label>
                     <label class="lay-item f-item">项目三脸部整形玻尿酸玻尿酸</label>
@@ -59,7 +78,6 @@
                     <label class="lay-item f-item">项目二</label>
                 </div>
             </div>
-
         </div>
  <div class="up-icon">
      <i class="el-icon-pa-angle-double-up"></i>

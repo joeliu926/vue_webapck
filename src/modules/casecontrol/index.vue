@@ -23,7 +23,6 @@
         bottom: 0;
         position: absolute;
         .layout-ct{
-
              color: #ffffff;
             font-size: 16px;
             .lay-row{
@@ -65,7 +64,10 @@
                 color: #9083ED;
             }
             .h-item:hover{
-                background: #9083ED
+                background: #9083ED;
+            }
+            .current-item{
+                background: #9083ED;
             }
             .lay-right{
                 margin: 30px 0;
@@ -75,9 +77,51 @@
                 }
             }
         }
+
+
         .control-screan{
+            .s-position{
+                position: absolute;
+                top:43%;
+            }
+            .s-icon{
+                cursor: pointer;
+            }
+            .s-icon:hover{
+                transform:scale(1.2);
+            }
+            .s-left-icon{
+              left: 120px;
+            }
+            .s-right-icon{
+                right: 120px;
+            }
+            .s-content{
+                width: 588px;
+                height:380px;
+                top:50%;
+                left: 50%;
+                margin-left:-294px;
+                margin-top:-225px;
+                border-radius: 4px;
+                overflow: hidden;
+                .s-img-ct{
+                    width:100%;
+                    height:100%;
+                    .img-s{
+                        width: 50%;
+                        height: 100%;
+                        float: left;
+                    }
+                }
+            }
 
         }
+
+
+
+
+
         .control-foot{
             position: absolute;
             height: 300px;
@@ -86,10 +130,31 @@
             color: #ffffff;
             .f-ct{
                 height: 100px;
+                .bt-items{
+                    margin: 0 150px 0 150px !important;
+                }
+                .bt-left{
+                    width: 150px;
+                    padding-left: 40px;
+                }
+                .bt-btn{
+                    border-radius: 18px !important;
+                    padding: 7px 18px !important;
+                    font-size: 14px !important;
+                    .bt-icon{
+                        height: 25px;
+                        width: 25px;
+                    }
+                }
+                .bt-icon{
+                    width: 26px;
+                    height:26px;
+                    vertical-align: middle;
+                }
             }
             .f-item{
-                background: rgba(255,255,255,0.3);
-                background-color: #29295C;
+                background: #595985;
+               font-size: 14px;
             }
             .up-icon{
                 text-align: center;

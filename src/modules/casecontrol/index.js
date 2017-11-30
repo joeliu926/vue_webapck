@@ -4,7 +4,7 @@ export default {
     },
     data () {
      return{
-         pitem:"封面不",
+         isCurrent:"#9083ED",
          imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
      }
     },
