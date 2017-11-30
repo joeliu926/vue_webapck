@@ -14,6 +14,22 @@
     .i-block{
         display: inline-block;
     }
+    .s-ba-cm{
+        position: absolute;
+        bottom: 0;
+        width: 65px;
+        text-align: center;
+        border-radius: 0 8px 8px 0;
+        background-color: rgba(0, 0,0,0.6);
+        color: #ffffff;
+        font-size: 14px;
+    }
+    .s-before{
+
+    }
+    .s-after{
+        left: 50%;
+    }
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
         background-size:100% 100%;
@@ -108,6 +124,7 @@
                 .s-img-ct{
                     width:100%;
                     height:100%;
+                    position: relative;
                     .img-s{
                         width: 50%;
                         height: 100%;
@@ -124,7 +141,7 @@
 
         .control-foot{
             position: absolute;
-            height: 300px;
+            height: 296px;
             bottom: 0;
             width: 100%;
             color: #ffffff;
@@ -181,6 +198,7 @@
                     white-space:nowrap;
                     overflow: hidden;
                     padding-top: 10px;
+                    height: 170px;
                     margin:0 100px 0 100px;
          .img-i-ct{
              display: inline-block;
@@ -188,10 +206,20 @@
             .img-item{
                     width: 180px;
                     margin: 0 auto;
-                width: 80%;
+                    position: relative;
+                    width: 80%;
+                   .b-ba-img-ct{
+                       position: absolute;
+                       top: -15px;
+                   }
+                    .s-ba-cm{
+                        font-size: 12px;
+                        width: 50px;
+                    }
                     .img-l{
                         float: left;
                         width: 50%;
+                        height: 140px;
                     }
                 }
             }
