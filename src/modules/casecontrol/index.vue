@@ -246,8 +246,8 @@
             width: 30px;
         }
         .sel-img-item{
-            width: 254px;
-            height: 164px;
+            width: 240px;
+            height: 154px;
             position: relative ;
             .add-icon:hover{
                 background: url("../../common/img/i-add.png") no-repeat;
@@ -255,8 +255,8 @@
                 background-position: center;
             }
             .sel-img{
-                width: 127px;
-                height: 164px;
+                width: 120px;
+                height: 154px;
                 float: left;
             }
             .sel-ba-cm{
@@ -283,7 +283,7 @@
                 overflow-y: auto;
                 overflow-x: hidden;
                 position: absolute;
-                bottom: 190px;
+                bottom: 192px;
                 top:195px;
                 width: 102%;
                 .sel-items-ct{
@@ -295,16 +295,31 @@
                         transform: scale(1.1);
                     }
                     .sel-img-ct{
-                        width: 254px;
-                        height: 164px;
+                        width: 218px;
+                        height: 143px;
                         display: inline-block;
-                        margin: 12px 26px;
+                        margin: 14px 26px;
 
                     }
                 }
             }
 
 
+        .add-up-icon{
+            position: absolute;
+            height: 35px;
+            background: #17182B;
+            width: 100%;
+            text-align: center;
+            bottom: 190px;
+            .el-icon-pa-angle-up:before{
+                font-size: 36px;
+                color: #ffffff;
+                position: relative;
+                bottom: 5px;
+                cursor: pointer;
+            }
+        }
         .btadd-ct{
             position: absolute;
             padding:12px 24px;
@@ -316,7 +331,7 @@
                 width: 100%;
                 overflow: hidden;
                 .des-img-ct:hover{
-                    transform: scale(1.2);
+                    transform: scale(1.1);
                     overflow: auto;
                 }
                 .des-img-ct{
@@ -324,16 +339,16 @@
                     margin:10px 20px 10px 0;
                     .des-img-item{
 
-                        width: 170px;
-                        height: 110px;
+                        width: 192px;
+                        height: 124px;
                         .des-icon:hover{
                             background: url("../../common/img/i-des.png") no-repeat;
                             background-color:rgba(0,0,0,0.4);
                             background-position: center;
                         }
                         .des-img{
-                            width: 85px;
-                            height: 110px;
+                            width: 96px;
+                            height: 124px;
                         }
                         .des-ba-cm{
 
