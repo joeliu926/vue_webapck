@@ -1,7 +1,43 @@
 <div class="showcase" >
     <div class="showcase-title"></div>
-    <div class="showcase-content">
-         ss
+    <div v-show="tvState=='playing'" class="showcase-content">
+         <div class="hold_place">
+             <div class="show-case-title">
+                 <span>{{currentTime}}</span>
+                 <span class="float-right">{{timeCount}}</span>
+             </div>
+             <div class="show-case">
+                 <div>
+                    <img style="border-top-left-radius:1em;border-bottom-left-radius:1em;" :src="picObje.beforeUrl">
+                     <span>before</span>
+                 </div><div>
+                    <img style="border-top-right-radius:1em;border-bottom-right-radius:1em;" :src="picObje.afterUrl">
+                    <span>after</span>
+                 </div>
+             </div>
+         </div>
+    </div>
+    <div class="showcase-wait">
+        <div v-show="tvState=='connected'" class="hold_OK">
+            <img src="./../../common/img/tv/con-ok.png">
+            <span>连接成功！</span>
+        </div>
+
+        <div v-show="tvState=='error'" class="hold_OK">
+            <img src="./../../common/img/tv/con-error.png">
+            <span>会话结束，请刷新页面重新连接！</span>
+        </div>
+        <div v-show="tvState=='noconnect'" class="hold_Code">
+            <div class="introd">连接码</div>
+            <div class="code">
+                <span v-for="item in conCodeDisplay">{{item}}</span>
+            </div>
+        </div>
+        <div  v-show="tvState=='waiting'"  class="hold_circle">
+        </div>
+        <div  v-show="tvState=='waiting'"  class="hold_play">
+            <img class="play" src="./../../common/img/tv/con-play.png">
+        </div>
     </div>
     <div class="showcase-foot"></div>
 </div>

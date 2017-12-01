@@ -40,6 +40,7 @@
     "less-loader": "^4.0.5",
     "node-rsa": "^0.4.2",
     "node-sass": "^4.5.3",
+    "nodejs-websocket": "^1.7.1",
     "opn": "^4.0.2",
     "postcss-load-config": "^1.2.0",
     "sass-loader": "^6.0.6",

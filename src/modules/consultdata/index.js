@@ -164,22 +164,47 @@ export default {
                 },
                 success: function (result) {
                     if (result.code ==0&&result.data) {
-
                         _this.todayNum = result.data.todayConsultNum;
                         _this.compareNum = Math.abs(result.data.changeValue);
                         _this.isUp =result.data.changeValue>0?true:false;
-
                         result.data.detailList = result.data.detailList.sort(function(x, y){
                             return x.messFullCount+x.messNotFullCount > y.messFullCount+y.messNotFullCount ? -1:1;
                         });
 
+                        let subArray = [];
+                        let sortIndex =-1;
+                        //二维排序
+                        for(let i=0;i<result.data.detailList.length;i++){
+                            let f_count = result.data.detailList[i].messFullCount;
+                            let f_notcount = result.data.detailList[i].messNotFullCount;
 
-                       /*result.data.detailList = result.data.detailList.sort(function(x, y){
-                            return    x.messFullCount+x.messNotFullCount == y.messFullCount+y.messNotFullCount?
-                                x.messFullCount > y.messFullCount ? 1:-1:1;
-                        });*/
+                            if(result.data.detailList.length<=i+1){
+                                    continue;
+                            }
 
-                        //result.data.detailList.reverse();
+                            let l_count = result.data.detailList[i+1].messFullCount;
+                            let l_notcount = result.data.detailList[i+1].messNotFullCount;
+
+                            if(f_count+f_notcount ==l_count+l_notcount){
+                                if(sortIndex==-1){
+                                    sortIndex=i;
+                                }
+                                subArray.push(result.data.detailList[i]);
+                            }
+                            else{
+                                subArray.push(result.data.detailList[i]);
+                                if(subArray.length>1){
+                                    subArray = subArray.sort(function(x, y){
+                                        return x.messFullCount > y.messFullCount ? -1:1;
+                                    });
+                                    //二维重排序后替换
+                                    result.data.detailList.splice(sortIndex,subArray.length,...subArray);
+                                }
+                                sortIndex=-1;
+                                subArray =[];
+                            }
+                        }
+
                         result.data.detailList.forEach(item=>{
                             settingColumn.xAxis.categories.push(item.userName);
                             settingColumn.series[0].data.push(item.messNotFullCount);
