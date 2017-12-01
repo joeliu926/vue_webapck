@@ -3,31 +3,31 @@
         <div class="layout-ct b-s">
             <div class="lay-row">
                 <div class="lay-left b-s" ><label class="scop-name">項目</label></div>
-                <div class="lay-right"><label class="lay-btn end-btn">結束咨詢</label></div>
+                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">結束咨詢</label></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" >项目一</label>
+                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
 
-                    <label class="lay-item h-item" >项目一</label>
-                    <label class="lay-item h-item">项目二</label>
-                    <label class="lay-item h-item">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" >项目一</label>
-                    <label class="lay-item h-item">项目二</label>
-                    <label class="lay-item h-item">项目三</label>
-                    <label class="lay-item h-item" :style="{background:[isCurrent?isCurrent:'']}" >项目一脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item">项目二</label>
-                    <label class="lay-item h-item">项目三</label>
-                    <label class="lay-item h-item">项目二</label>
-                    <label class="lay-item h-item">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" >项目一</label>
+                    <label class="lay-item h-item" data-itemCode="2" :style="{background:[isCurrentProject=='2'?'#9083ED':'']}"  @click="fChooseItems">项目一</label>
+                    <label class="lay-item h-item"data-itemCode="3" :style="{background:[isCurrentProject=='3'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
+                    <label class="lay-item h-item" data-itemCode="4" :style="{background:[isCurrentProject=='4'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
+                    <label class="lay-item h-item" data-itemCode="5" :style="{background:[isCurrentProject=='5'?'#9083ED':'']}" @click="fChooseItems">项目一</label>
+                    <label class="lay-item h-item" data-itemCode="6" :style="{background:[isCurrentProject=='6'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
+                    <label class="lay-item h-item" data-itemCode="7" :style="{background:[isCurrentProject=='7'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
+                    <label class="lay-item h-item" data-itemCode="8" :style="{background:[isCurrentProject=='8'?'#9083ED':'']}" @click="fChooseItems"> 项目一脸部整形玻尿酸玻尿酸</label>
+                    <label class="lay-item h-item" data-itemCode="9" :style="{background:[isCurrentProject=='9'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
+                    <label class="lay-item h-item" data-itemCode="10" :style="{background:[isCurrentProject=='10'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
+                    <label class="lay-item h-item" data-itemCode="11" :style="{background:[isCurrentProject=='11'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
+                    <label class="lay-item h-item" data-itemCode="12" :style="{background:[isCurrentProject=='12'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
+                    <label class="lay-item h-item" data-itemCode="13" :style="{background:[isCurrentProject=='13'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
                 </div>
             </div>
             <div class="lay-row">
                 <div class="lay-left b-s"><label class="scop-name">医生</label> </div>
                 <div class="lay-right"></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" >李院长</label>
-                    <label class="lay-item h-item" >王院长</label>
-                    <label class="lay-item h-item" >趙院长</label>
+                    <label class="lay-item h-item" data-docCode="14" :style="{background:[isDocProject=='14'?'#9083ED':'']}" @click="fChooseDoc" >李院长</label>
+                    <label class="lay-item h-item" data-docCode="15" :style="{background:[isDocProject=='15'?'#9083ED':'']}" @click="fChooseDoc" >王院长</label>
+                    <label class="lay-item h-item" data-docCode="16" :style="{background:[isDocProject=='16'?'#9083ED':'']}" @click="fChooseDoc" >趙院长</label>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
 
 
 
-    <div class="control-screan hide">
+    <div class="control-screan" :style="{display:[!isSelectItem?'':'none']}">
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -56,7 +56,7 @@
 
 
 
-    <div class="control-foot b-s hide">
+    <div class="control-foot b-s" :style="{display:[!isSelectItem?'':'none']}">
         <div class="layout-ct f-ct b-s">
             <div class="lay-row">
                 <div class="lay-left bt-left b-s">
@@ -115,7 +115,7 @@
 
     <!--**********************選擇框 start**************************-->
     <div style="clear: both;height: 0; display: none;"></div>
-    <div class="select-content b-s">
+    <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
             <div class="sel-items-ct b-s">
                 <div class="sel-img-ct sl-img-ct b-s" v-for="item in imgdata">
                     <div class="sel-img-item b-s">
@@ -131,8 +131,8 @@
             </div>
         </div>
 
-    <div class="add-up-icon"><label class="" ><i class="el-icon-pa-angle-up"></i></label></div>
-    <div class="btadd-ct b-s">
+    <div class="add-up-icon" :style="{display:[isSelectItem?'':'none']}"><label @click="fCloseSelect" class=""  ><i class="el-icon-pa-angle-up"></i></label></div>
+    <div class="btadd-ct b-s" :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item in imgdata">
                 <div class="sel-img-item des-img-item ">
@@ -146,7 +146,73 @@
             </div>
         </div>
     </div>
-    <!--**********************選擇框 start**************************-->
+    <!--**********************選擇框 end**************************-->
+
+
+    <!--*******************结束咨询 start**********************-->
+    <div class="end-dialog" :style="{display:[dialogVisible?'':'none']}">
+        <div class="dialog-ct b-s">
+            <div class="tab-head b-s">
+                 <div class="tab-item b-s" data-tabtype="success" @click="fChangeTab">已成功
+                     <div class="tab-angle" :style="{display:[activeStatus=='success'?'':'none']}"></div>
+                 </div>
+                <div class="tab-item b-s" data-tabtype="next" @click="fChangeTab">预约下次面诊
+                    <div class="tab-angle" :style="{display:[activeStatus=='next'?'':'none']}"></div></div>
+                <div class="tab-item b-s" data-tabtype="nopending" @click="fChangeTab">无需后续跟进
+                    <div class="tab-angle" :style="{display:[activeStatus=='nopending'?'':'none']}"></div></div>
+            </div>
+           <div class="tab-content">
+               <div class="tab-ct-item" :style="{display:[activeStatus=='success'?'':'none']}">
+                   <el-checkbox-group v-model="consultItems">
+                       <el-checkbox-button v-for="eitem in endProjects" :label="eitem" :key="eitem">{{eitem}}</el-checkbox-button>
+                   </el-checkbox-group>
+                   <div class="search-ct">
+
+                       <el-input
+                               placeholder="搜索其他项目"
+                               v-model="otheritems">
+                       </el-input>
+                       <i  class="el-input__icon el-icon-search"></i>
+
+                   </div>
+               </div>
+               <div class="tab-ct-item" :style="{display:[activeStatus=='next'?'':'none']}">
+                   <div class="set-date-ct">
+                       <label class="lb-date">设置面诊时间</label>
+                       <el-date-picker
+                               v-model="bookdate"
+                               type="date"
+                               placeholder="选择日期">
+                       </el-date-picker>
+                   </div>
+                   <div class="set-date-remark">
+                       <label class="lb-date">备注</label>
+                       <el-input
+                               placeholder=""
+                               v-model="otherresion">
+                       </el-input>
+                   </div>
+               </div>
+               <div class="tab-ct-item" :style="{display:[activeStatus=='nopending'?'':'none']}">
+                   <div class="search-ct">
+                       <el-input
+                               placeholder="原因"
+                               v-model="otherresion">
+                       </el-input>
+                   </div>
+               </div>
+           </div>
+            <div class="tab-foot">
+                <el-button type="success">确定</el-button>
+            </div>
+
+       </div>
+    </div>
+
+
+
+    <!--*******************结束咨询 end**********************-->
+
 </div>
 
 

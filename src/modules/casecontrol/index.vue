@@ -13,6 +13,9 @@
     .b-s{
         box-sizing: border-box;
     }
+    .cur{
+        cursor: pointer;
+    }
     .i-block{
         display: inline-block;
     }
@@ -55,7 +58,7 @@
                     .lay-item{
                         display: inline-block;
                         margin: 10px 20px;
-
+                        cursor: pointer;
                         padding: 2px 20px;
                         border-radius: 14px;
                     }
@@ -68,6 +71,7 @@
                         font-size: 16px;
                         border-radius: 5px;
                         padding: 8px 20px;
+                        cursor: pointer;
                     }
                 }
             }
@@ -364,6 +368,110 @@
             }
         }
         /**********************選擇框 end**************************/
+        /**********************结束咨询对话框 start**************************/
+        .end-dialog{
+            background: rgba(0,0,0,0.5);
+            position: fixed;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            .dialog-ct{
+                position: absolute;
+                width: 600px;
+                height: 350px;
+                background: #ffffff;
+                top:50%;
+                left: 50%;
+                margin-top:-200px;
+                margin-left: -300px;
+                .tab-head{
+                    width: 100%;
+                    height: 50px;
+                    box-sizing: border-box;
+                    background:#9083ED;
+                    .tab-item{
+                        cursor: pointer;
+                        position: relative;
+                        display: inline-block;
+                        width: 32%;
+                        font-size: 14px;
+                        height: 400px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        color: #ffffff;
+                        .tab-angle{
+                            width: 0;
+                            height: 0;
+                            border-left: 10px solid transparent;
+                            border-right: 10px solid transparent;
+                            border-bottom: 8px solid #ffffff;
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            margin-left: -10px;
+                        }
+                    }
+                }
+                .tab-content{
+                    padding: 24px 48px;
+                    .tab-ct-item{
+                        .is-checked{
+                            .el-checkbox-button__inner{
+                                background-color:#9083ED;
+                                box-shadow: -1px 0 0 0 #9083ED;
+                                border-color: #9083ED;
+                            }
+                        }
+                      .el-checkbox-button{
+                          margin: 10px;
+                          .el-checkbox-button__inner{
+                              padding: 5px 24px;
+                              border-radius: 12px;
+                          }
+                      }
+                        .search-ct{
+                            width: 250px;
+                            margin: 40px auto;
+                            position: relative;
+                            .el-input__inner{padding-left: 30px;}
+                            .el-icon-search{
+                                left: 0;
+                            }
+                        }
+                        .set-date-ct,.set-date-remark{
+                            padding: 3px 5px;
+                            width: 360px;
+                            margin: 40px auto;
+                            border:1px solid #bfcbd9;
+                            .lb-date{
+                                font-size: 16px;
+                                color: #999999;
+                            }
+                            .el-input__inner{border: none;}
+                            .el-input{
+                                width: 250px;
+                                display: inline-block;
+                            }
+                        }
+                        .set-date-remark{
+                            .el-input__inner{width: 320px;}
+                        }
+                    }
+                    .snext{
+
+                    }
+                }
+              .tab-foot{
+                  width: 100%;
+                  position: absolute;
+                  bottom: 24px;
+                  text-align: center;
+              }
+            }
+        }
+        /**********************结束咨询对话框 end**************************/
     }
 
 </style>
