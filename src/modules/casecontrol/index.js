@@ -14,6 +14,10 @@ export default {
          otherresion:"",
          bookdate:"",
          consultItems:[],
+         customerName:"",
+         customerinfoP:false,
+         gender:0,
+         birthday:"",
          imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1]
      }
     },
@@ -62,6 +66,16 @@ export default {
             let _This=this;
             let dataSet=e.target.dataset;
             _This.activeStatus=dataSet.tabtype;
+        },
+        fCloseEnddialog(){
+            let _This=this;
+            _This.dialogVisible = false;
+        },
+        fCloseCustomerInfo(){
+            this.customerinfoP=true;
+        },
+        fOpenCustomerInfo(){
+            this.customerinfoP=false;
         }
     }
 }

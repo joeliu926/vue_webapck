@@ -35,6 +35,7 @@
     .s-after{
         left: 50%;
     }
+
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
         background-size:100% 100%;
@@ -125,7 +126,7 @@
                 margin-left:-294px;
                 margin-top:-225px;
                 border-radius: 4px;
-                overflow: hidden;
+               /*overflow:hidden;*/
                 .s-img-ct{
                     width:100%;
                     height:100%;
@@ -385,11 +386,21 @@
                 left: 50%;
                 margin-top:-200px;
                 margin-left: -300px;
+                border-radius: 4px;
+                .end-close{
+                   width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    right: -30px;
+                    top:-22px;
+                    cursor: pointer;
+                }
                 .tab-head{
                     width: 100%;
                     height: 50px;
                     box-sizing: border-box;
                     background:#9083ED;
+                    border-radius: 4px 4px 0 0;
                     .tab-item{
                         cursor: pointer;
                         position: relative;
@@ -472,6 +483,94 @@
             }
         }
         /**********************结束咨询对话框 end**************************/
+
+        /**********************客户信息 start**************************/
+        .customer-open{
+            position: absolute;
+            background: #9083ED;
+            top: 220px;
+            width: 14px;
+            padding:8px 10px;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            margin:0 auto;
+            line-height:14px;
+            text-align: center;
+        }
+        .el-icon-pa-angle-double-right:before{
+            font-size: 20px;
+        }
+        .mask{
+            position: fixed;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+        .customer-ct{
+            width:320px;
+            position: absolute;
+            background: #ffffff;
+            top: 220px;
+            padding: 12px;
+            transition: left 1s;
+            z-index: 1001;
+            .customer-db-arr{
+                text-align: right;
+                .el-icon-pa-angle-double-left:before{
+                    font-size: 30px;
+                    color:#9083ED;
+                    cursor: pointer;
+                }
+            }
+            .c-ct{
+                margin: 0 12px;
+                .title{
+                    font-size: 14px;
+                    color: #666666;
+                }
+            }
+            .info-content{
+                padding: 14px;
+                border: 1px solid #eaeaea;
+                margin: 12px 0;
+                .el-date-editor{width: 166px;}
+                .info-item{
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    .info-trend{
+                        display: inline-block;
+                        font-size: 14px;
+                        color: #666666;
+                        width: 176px;
+                    }
+                    .lb-name{
+
+                        color: #666666;
+                        width: 65px;
+                        display: inline-block;
+                    }
+                    .cust-input{
+                        display: inline-block;
+                        width: 166px;
+                    }
+                    .el-input__inner{
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                    }
+                }
+
+            }
+        }
+
+        /**********************客户信息 end**************************/
+
+
+
     }
 
 </style>

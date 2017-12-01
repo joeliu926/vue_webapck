@@ -152,6 +152,7 @@
     <!--*******************结束咨询 start**********************-->
     <div class="end-dialog" :style="{display:[dialogVisible?'':'none']}">
         <div class="dialog-ct b-s">
+            <div class="end-close" @click="fCloseEnddialog"><img src="../../common/img/i-cl-close.png"> </div>
             <div class="tab-head b-s">
                  <div class="tab-item b-s" data-tabtype="success" @click="fChangeTab">已成功
                      <div class="tab-angle" :style="{display:[activeStatus=='success'?'':'none']}"></div>
@@ -209,9 +210,66 @@
        </div>
     </div>
 
-
-
     <!--*******************结束咨询 end**********************-->
+    <!--*******************客户信息 start**********************-->
+    <div @click="fOpenCustomerInfo" class="customer-open"><i class="el-icon-pa-angle-double-right"></i><br/> 客户资料</span></div>
+    <div :class="[!customerinfoP?'mask':'']"></div>
+    <div class="customer-ct b-s" :style="{left:[!customerinfoP?'0px':'-320px']}">
+      <div class="customer-db-arr" @click="fCloseCustomerInfo"> <i class="el-icon-pa-angle-double-left"></i></div>
+        <div class="c-ct">
+            <p class="title">客户信息</p>
+            <div class="info-content">
+                <div class="info-item">
+                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="customerName"></el-input>
+               </div>
+                <div class="info-item">
+                    <label class="lb-name">性别</label> <el-radio v-model="gender" label="1">男</el-radio>
+                    <el-radio v-model="gender" label="2">女</el-radio>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">来源</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">生日</label> <el-date-picker
+                        v-model="birthday"
+                        type="date"
+                        placeholder="客户生日"></el-date-picker>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">电话</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                </div>
+            </div>
+        </div>
+        <div  class="c-ct">
+            <p class="title">意向资料</p>
+            <div class="info-content">
+                <div class="info-item">
+                    <label class="lb-name">咨询项目</label><div class="info-trend"><label>硅胶隆鼻</label><label>硅胶隆鼻</label><label>硅胶隆鼻</label></div>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">术前咨询</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">喜欢案例</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">沟通记录</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                </div>
+                <div class="info-item">
+                    <label class="lb-name">备注</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--*******************客户信息 end**********************-->
 
 </div>
 
