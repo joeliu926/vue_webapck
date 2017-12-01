@@ -42,6 +42,9 @@
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
+            <div class="s-time-ct" style="">
+                <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
+            </div>
             <div class="s-img-ct b-s">
                 <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
                 <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
@@ -70,7 +73,7 @@
                 <div class="lay-left bt-left b-s" >
                     <img class="bt-icon" src="../../common/img/i-radio.png">咨詢項目
                 </div>
-                <div class="lay-right"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
+                <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
                     <label class="lay-item f-item" >项目一</label>
                     <label class="lay-item f-item">项目二</label>
@@ -111,6 +114,22 @@
         </div>
     </div>
 
+
+    <!--**********************连接设备弹出框 start**************************-->
+    <div :class="[isConScreanItem?'mask':'']"></div>
+      <div class="common-pos-middle pop-connect" :style="{display:[isConScreanItem?'':'none']}">
+        <div class="cn-middle" style="">
+            <div class="cn-close" @click="fCloseConBox"><img src="../../common/img/i-cl-close.png"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+
+        </div>
+      </div>
+    <!--**********************连接设备弹出框 start**************************-->
 
 
     <!--**********************選擇框 start**************************-->

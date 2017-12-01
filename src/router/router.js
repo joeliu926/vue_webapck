@@ -14,6 +14,7 @@ var consultdata = r => require.ensure([], () => r(require('../modules/consultdat
 var customerinfo = r => require.ensure([], () => r(require('../modules/customerInfo/index.vue')), 'customerinfo');
 var showcase = r => require.ensure([], () => r(require('../modules/showcase/index.vue')), 'showcase');
 var casecontrol = r => require.ensure([], () => r(require('../modules/casecontrol/index.vue')), 'casecontrol'); //
+var consultdashboard = r => require.ensure([], () => r(require('../modules/consultdashboard/index.vue')), 'consultdashboard');
 
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
@@ -73,6 +74,14 @@ var routerConfig = {
             path:'/casecontrol',
             components:{
                 default:casecontrol
+            }
+        },
+        {
+            name:'/consultdashboard',
+            path:'/consultdashboard',
+            components:{
+                default:consultdashboard,
+                nav:nav
             }
         },
         {
