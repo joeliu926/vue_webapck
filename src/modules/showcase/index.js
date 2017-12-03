@@ -4,7 +4,7 @@
 export default {
     data () {
         return{
-            tvState:'playing',//noconnect  waiting  playing connected error
+            tvState:'noconnect',//noconnect  waiting  playing connected error
             conCode:0,
             currentTime:_.date2String(new Date(),'hh:mm'),
             timeCount:'',
@@ -38,6 +38,7 @@ export default {
                 case 'connected':
                     _this.conCode = result.content.code;
                     _this.conCodeDisplay = result.content.code.toString().split('');
+                    _this.tvState ='noconnect';
                     break;
                 case 'bind_return':
                     if(result.content.code==0){
@@ -50,7 +51,7 @@ export default {
                 case 'sbind_return':
                     if(result.content.code==0){
                         _this.tvState ='waiting';
-                    }
+                   }f
                     break;
                 case 'image':
                     _this.changeimages(result.content);
