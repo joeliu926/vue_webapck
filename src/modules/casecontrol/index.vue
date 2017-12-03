@@ -13,6 +13,9 @@
     .b-s{
         box-sizing: border-box;
     }
+    .cur{
+        cursor: pointer;
+    }
     .i-block{
         display: inline-block;
     }
@@ -26,12 +29,12 @@
         color: #ffffff;
         font-size: 14px;
     }
-    .s-before{
-
-    }
     .s-after{
         left: 50%;
     }
+.common-pos-middle{
+    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;background-color: #111429;box-sizing: border-box;
+}
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
         background-size:100% 100%;
@@ -55,7 +58,7 @@
                     .lay-item{
                         display: inline-block;
                         margin: 10px 20px;
-
+                        cursor: pointer;
                         padding: 2px 20px;
                         border-radius: 14px;
                     }
@@ -68,6 +71,7 @@
                         font-size: 16px;
                         border-radius: 5px;
                         padding: 8px 20px;
+                        cursor: pointer;
                     }
                 }
             }
@@ -121,7 +125,16 @@
                 margin-left:-294px;
                 margin-top:-225px;
                 border-radius: 4px;
-                overflow: hidden;
+                .s-time-ct{
+                    height:25px;
+                    width: 100%;
+                    position: absolute;
+                    top:-25px;
+                    text-align: center;
+                    color: #ffffff;
+                    font-size: 14px;
+                }
+               /*overflow:hidden;*/
                 .s-img-ct{
                     width:100%;
                     height:100%;
@@ -135,6 +148,24 @@
             }
 
         }
+        /*********连接大屏 start***********/
+        .pop-connect{
+            z-index: 1001;
+            .cn-middle{
+                height:100px;position: relative;top:50%;margin-top:-50px;box-sizing: border-box;padding: 0 20px;
+                .cn-close{
+                    height: 30px;width: 30px;position: absolute;right: -7px;top:-25px;cursor: pointer;
+                }
+            .cn-item{
+                margin: 0 3px;height: 100px;width: 100px;background: #ffffff;display: inline-block;box-sizing: border-box;
+                .cn-input{
+                    height:100px;width: 100px;text-align: center;border: none;font-size: 30px;
+                }
+            }
+            }
+        }
+        /*********连接大屏 end***********/
+
         .control-foot{
             position: absolute;
             height: 296px;
@@ -364,6 +395,208 @@
             }
         }
         /**********************選擇框 end**************************/
+        /**********************结束咨询对话框 start**************************/
+        .end-dialog{
+            background: rgba(0,0,0,0.5);
+            position: fixed;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            .dialog-ct{
+                position: absolute;
+                width: 600px;
+                height: 350px;
+                background: #ffffff;
+                top:50%;
+                left: 50%;
+                margin-top:-200px;
+                margin-left: -300px;
+                border-radius: 4px;
+                .end-close{
+                   width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    right: -30px;
+                    top:-22px;
+                    cursor: pointer;
+                }
+                .tab-head{
+                    width: 100%;
+                    height: 50px;
+                    box-sizing: border-box;
+                    background:#9083ED;
+                    border-radius: 4px 4px 0 0;
+                    .tab-item{
+                        cursor: pointer;
+                        position: relative;
+                        display: inline-block;
+                        width: 32%;
+                        font-size: 14px;
+                        height: 400px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        color: #ffffff;
+                        .tab-angle{
+                            width: 0;
+                            height: 0;
+                            border-left: 10px solid transparent;
+                            border-right: 10px solid transparent;
+                            border-bottom: 8px solid #ffffff;
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            margin-left: -10px;
+                        }
+                    }
+                }
+                .tab-content{
+                    padding: 24px 48px;
+                    .tab-ct-item{
+                        .is-checked{
+                            .el-checkbox-button__inner{
+                                background-color:#9083ED;
+                                box-shadow: -1px 0 0 0 #9083ED;
+                                border-color: #9083ED;
+                            }
+                        }
+                      .el-checkbox-button{
+                          margin: 10px;
+                          .el-checkbox-button__inner{
+                              padding: 5px 24px;
+                              border-radius: 12px;
+                          }
+                      }
+                        .search-ct{
+                            width: 250px;
+                            margin: 40px auto;
+                            position: relative;
+                            .el-input__inner{padding-left: 30px;}
+                            .el-icon-search{
+                                left: 0;
+                            }
+                        }
+                        .set-date-ct,.set-date-remark{
+                            padding: 3px 5px;
+                            width: 360px;
+                            margin: 40px auto;
+                            border:1px solid #bfcbd9;
+                            .lb-date{
+                                font-size: 16px;
+                                color: #999999;
+                            }
+                            .el-input__inner{border: none;}
+                            .el-input{
+                                width: 250px;
+                                display: inline-block;
+                            }
+                        }
+                        .set-date-remark{
+                            .el-input__inner{width: 320px;}
+                        }
+                    }
+                    .snext{
+
+                    }
+                }
+              .tab-foot{
+                  width: 100%;
+                  position: absolute;
+                  bottom: 24px;
+                  text-align: center;
+              }
+            }
+        }
+        /**********************结束咨询对话框 end**************************/
+
+        /**********************客户信息 start**************************/
+        .customer-open{
+            position: absolute;
+            background: #9083ED;
+            top: 220px;
+            width: 14px;
+            padding:8px 10px;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            margin:0 auto;
+            line-height:14px;
+            text-align: center;
+        }
+        .el-icon-pa-angle-double-right:before{
+            font-size: 20px;
+        }
+        .mask{
+            position: fixed;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+        .customer-ct{
+            width:320px;
+            position: absolute;
+            background: #ffffff;
+            top: 220px;
+            padding: 12px;
+            transition: left 1s;
+            z-index: 1001;
+            .customer-db-arr{
+                text-align: right;
+                .el-icon-pa-angle-double-left:before{
+                    font-size: 30px;
+                    color:#9083ED;
+                    cursor: pointer;
+                }
+            }
+            .c-ct{
+                margin: 0 12px;
+                .title{
+                    font-size: 14px;
+                    color: #666666;
+                }
+            }
+            .info-content{
+                padding: 14px;
+                border: 1px solid #eaeaea;
+                margin: 12px 0;
+                .el-date-editor{width: 166px;}
+                .info-item{
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    .info-trend{
+                        display: inline-block;
+                        font-size: 14px;
+                        color: #666666;
+                        width: 176px;
+                    }
+                    .lb-name{
+
+                        color: #666666;
+                        width: 65px;
+                        display: inline-block;
+                    }
+                    .cust-input{
+                        display: inline-block;
+                        width: 166px;
+                    }
+                    .el-input__inner{
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                    }
+                }
+
+            }
+        }
+
+        /**********************客户信息 end**************************/
+
+
+
     }
 
 </style>

@@ -38,8 +38,6 @@ export default {
         },
         fChooseItem(cmd){
             //this.selectedVal = cmd;
-
-
             switch(cmd){
                 case "首页":
                     this.$router.push("/");
@@ -52,6 +50,9 @@ export default {
                     break;
                 case "咨询中心":
                     this.$router.push("/customers");
+                    break;
+                case "咨询台":
+                    this.$router.push("/consultdashboard");
                     break;
             }
         },
