@@ -2,17 +2,16 @@
  * Created by JoeLiu on 2017-9-15.
  */
 export default {
-    components: {
-
-    },
     data () {
         return{
-            tvState:'noconnect',//noconnect  waiting  playing connected error
+            tvState:'playing',//noconnect  waiting  playing connected error
             conCode:0,
             currentTime:_.date2String(new Date(),'hh:mm'),
             timeCount:'',
+            changing:true,
             conCodeDisplay:[0,0,0,0,0,0],
-            picObje:{code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+            picObjF1:{class:'show-case fade-in', visible:true,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'},
+            picObjF2:{class:'show-case fade-none',visible:false,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
         }
     },
     created() {
@@ -26,7 +25,7 @@ export default {
             _this.timeCount =  _.date2String(passTime,'hh:mm:ss');
         },1000);
 
-        var ws = new WebSocket("ws://172.16.6.54:8053/tv");
+        var ws = new WebSocket("ws://localhost:8053/tv");
 
         //Connection to server opened
         ws.onopen = function (e) {
@@ -54,9 +53,7 @@ export default {
                     }
                     break;
                 case 'image':
-                    console.log('result',result);
-                    _this.picObje.beforeUrl =result.content.beforeUrl;
-                    _this.picObje.afterUrl =result.content.afterUrl;
+                    _this.changeimages(result.content);
                     _this.tvState ='playing';
                     break;
                 case 'closed':
@@ -77,5 +74,28 @@ export default {
     destroyed() {
     },
     methods: {
+        changeimages(params){
+            this.changing =true;
+            let _this =this;
+            if(this.picObjF1.visible){
+                this.picObjF2.class ='show-case fade-in';
+                this.picObjF2.beforeUrl= params.beforeUrl;
+                this.picObjF2.afterUrl= params.afterUrl;
+                this.picObjF2.visible = true;
+                this.picObjF1.class ='show-case fade-out';
+                this.picObjF1.visible = false;
+            }
+            else{
+                this.picObjF1.class ='show-case fade-in';
+                this.picObjF1.visible = true;
+                this.picObjF1.beforeUrl= params.beforeUrl;
+                this.picObjF1.afterUrl= params.afterUrl;
+                this.picObjF2.class ='show-case fade-out';
+                this.picObjF2.visible = false;
+            }
+            setTimeout(function () {
+             _this.changing =false;
+             },1000);
+        }
     }
 }

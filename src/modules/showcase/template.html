@@ -2,19 +2,29 @@
     <div class="showcase-title"></div>
     <div v-show="tvState=='playing'" class="showcase-content">
          <div class="hold_place">
-             <div class="show-case-title">
-                 <span>{{currentTime}}</span>
-                 <span class="float-right">{{timeCount}}</span>
+             <div  class="show-case-title">
+                 <span v-show="!changing">{{currentTime}}</span>
+                 <span v-show="!changing" class="float-right">{{timeCount}}</span>
              </div>
-             <div class="show-case">
+             <div  :class="picObjF2.class">
                  <div>
-                    <img style="border-top-left-radius:1em;border-bottom-left-radius:1em;" :src="picObje.beforeUrl">
-                     <span>before</span>
+                     <img style="border-top-left-radius:1em;border-bottom-left-radius:1em;" :src="picObjF2.beforeUrl">
+                     <span  v-show="!changing" >before</span>
                  </div><div>
-                    <img style="border-top-right-radius:1em;border-bottom-right-radius:1em;" :src="picObje.afterUrl">
-                    <span>after</span>
+                 <img style="border-top-right-radius:1em;border-bottom-right-radius:1em;" :src="picObjF2.afterUrl">
+                 <span v-show="!changing" >after</span>
+             </div>
+             </div>
+             <div :class="picObjF1.class">
+                 <div>
+                    <img style="border-top-left-radius:1em;border-bottom-left-radius:1em;" :src="picObjF1.beforeUrl">
+                    <span  v-show="!changing" >before</span>
+                 </div><div>
+                    <img style="border-top-right-radius:1em;border-bottom-right-radius:1em;" :src="picObjF1.afterUrl">
+                    <span  v-show="!changing" >after</span>
                  </div>
              </div>
+
          </div>
     </div>
     <div class="showcase-wait">
@@ -31,6 +41,11 @@
             <div class="introd">连接码</div>
             <div class="code">
                 <span v-for="item in conCodeDisplay">{{item}}</span>
+            </div>
+            <div class="sky">
+                <div class="clouds_one"></div>
+                <div class="clouds_two"></div>
+                <div class="clouds_three"></div>
             </div>
         </div>
         <div  v-show="tvState=='waiting'"  class="hold_circle">

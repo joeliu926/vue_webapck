@@ -24,17 +24,14 @@
                 width: 50%;
                 .show-case-title{
                     color:#efe8e8;
+                    height:21px;
                     .float-right{
                         float: right;
-
                     }
                 }
                 .show-case{
                     width: 100%;
                     border-radius:10px;
-                    -webkit-box-shadow: 4px 4px 2px #3a4052;
-                    -moz-box-shadow: 4px 4px 2px #3a4052;
-                    box-shadow: 4px 4px 2px #3a4052;
                     div{
                         width: 50%;
                         border: 0;
@@ -50,8 +47,47 @@
                             border-bottom-right-radius:30px;
                         }
                     }
-
-
+                }
+                .fade-in{
+                    -webkit-animation:fadeInLeft 1s ease both;
+                    animation:fadeInLeft 1s ease both;
+                    float: right;
+                }
+                .fade-out{
+                    -webkit-animation:fadeOutRight 1s ease both;
+                    animation:fadeOutRight 1s ease both;
+                    float: left;
+                }
+                .fade-none{
+                    display: none;
+                }
+                @-webkit-keyframes fadeOutRight{
+                    from{
+                        opacity:1;
+                        -webkit-transform:translate3d(0,0,0);
+                        width:100%;
+                        height: 100%;
+                    }
+                    to{
+                        opacity:0;
+                        -webkit-transform:translate3d(-100%,0,0);
+                        width:0%;
+                        height: 0px;
+                    }
+                }
+                @-webkit-keyframes fadeInLeft{
+                    from{
+                        opacity:0;
+                        -webkit-transform:translate3d(100%,0,0);
+                        width:0%;
+                        height: 0px;
+                    }
+                    to{
+                        opacity:1;
+                        -webkit-transform:translate3d(0,0,0);
+                        width:100%;
+                        height: 100%;
+                    }
                 }
             }
         }
@@ -66,7 +102,6 @@
             .hold_OK {
                 width: 19%;
                 height: 19%;
-
                 img {
                     height: 30px;
                     width: 30px;
@@ -95,6 +130,136 @@
                         padding: 10px 20px;
                         margin: 5px;
                         border-radius: 5px;
+                    }
+                }
+                .sky {
+                    height: 320px;
+                    position: absolute;
+                    right:0px;
+                    left:0px;
+                    bottom:0px;
+                    overflow: hidden;
+                }
+                .sky .clouds_one {
+                    background: url("./../../common/img/tv/cloud_one.png");
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 300%;
+                    -webkit-animation: cloud_one 55s linear infinite;
+                    -moz-animation: cloud_one 55s linear infinite;
+                    -o-animation: cloud_one 55s linear infinite;
+                    animation: cloud_one 55s linear infinite;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    -ms-transform: translate3d(0, 0, 0);
+                    -o-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                .sky .clouds_two {
+                    background: url("./../../common/img/tv/cloud_two.png");
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 300%;
+                    -webkit-animation: cloud_two 85s linear infinite;
+                    -moz-animation: cloud_two 85s linear infinite;
+                    -o-animation: cloud_two 85s linear infinite;
+                    animation: cloud_two 85s linear infinite;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    -ms-transform: translate3d(0, 0, 0);
+                    -o-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                .sky .clouds_three {
+                    background: url("./../../common/img/tv/cloud_three.png");
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 300%;
+                    -webkit-animation: cloud_three 110s linear infinite;
+                    -moz-animation: cloud_three 110s linear infinite;
+                    -o-animation: cloud_three 110s linear infinite;
+                    animation: cloud_three 110s linear infinite;
+                    -webkit-transform: translate3d(0, 0, 0);
+                    -ms-transform: translate3d(0, 0, 0);
+                    -o-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                @-webkit-keyframes cloud_one {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @-moz-keyframes cloud_one {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @keyframes cloud_one {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+
+                @-webkit-keyframes cloud_two {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @-moz-keyframes cloud_two {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @keyframes cloud_two {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+
+                @-webkit-keyframes cloud_three {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @-moz-keyframes cloud_three {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
+                    }
+                }
+                @keyframes cloud_three {
+                    0% {
+                        left: 0
+                    }
+                    100% {
+                        left: -200%
                     }
                 }
             }
@@ -152,7 +317,6 @@
                     transform: rotate(359deg)
                 }
             }
-
             .hold_play {
                 width: 50%;
                 height: 50%;
@@ -165,7 +329,6 @@
                     border-radius: 10px;
                 }
             }
-
         }
         .showcase-foot{
         }
