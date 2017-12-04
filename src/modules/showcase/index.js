@@ -1,6 +1,7 @@
 /**
  * Created by JoeLiu on 2017-9-15.
  */
+var constant = require('../../common/utils/constants');
 export default {
     data () {
         return{
@@ -25,7 +26,7 @@ export default {
             _this.timeCount =  _.date2String(passTime,'hh:mm:ss');
         },1000);
 
-        var ws = new WebSocket("ws://localhost:8053/tv");
+        var ws = new WebSocket(constant.wsReqUrl);
 
         //Connection to server opened
         ws.onopen = function (e) {
