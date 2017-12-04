@@ -77,7 +77,10 @@ export default {
             if(this.$route.path.indexOf('customer')>=0){
                 this.selectedVal = "客户中心";
 
-            }else{
+            }else if(this.$route.path.indexOf('consultdashboard')>=0){
+                this.selectedVal = "咨询台";
+
+            }else {
                 this.selectedVal = "首页";
             }
         }
