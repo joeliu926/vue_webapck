@@ -1,4 +1,154 @@
 
 <div class="consult-dashboard-ct" >
-ddddddddddddddd
+    <div class="consult-content">
+      <el-row :gutter="24" type="flex" justify="space-between">
+
+            <el-col :span="18" type="flex" class="">
+                <el-tabs   type="border-card">
+                    <el-tab-pane label="待面诊">
+                        <div class="waiting-ct">
+                            <div class="waiting-handle">
+                                <el-row :gutter="24"  type="flex" justify="space-between" align="center" >
+                                    <el-col :span="24" type="flex" justify="space-between">
+                                        <el-col :span="12" class="customer-icon">
+                                            <div class="c-icon" style="">
+                                               今日面诊   3人
+                                            </div>
+                                        </el-col>
+                                        <el-col :span="12" class="add-consult">
+                                          <el-button> 新增面诊客户</el-button>
+                                        </el-col>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                            <div class="customer-block-content">
+                                <el-table
+                                        :data="aCustomerlist"
+                                        style="width: 100%"
+                                        :default-sort = "{prop: 'date', order: 'descending'}"
+                                >
+                                    <el-table-column
+                                            prop="id"
+                                            label="姓名"
+                                            width="80">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="customerName"
+                                            label="约面时间"
+                                            width="190">
+                                        <template slot-scope="scope" style="">
+                                            <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="createTime"
+                                            label="电话"
+                                            width="200">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.createTime|dateFilter}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="phoneNum"
+                                            label="咨询项目"
+                                            width="190">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.phoneNum|phoneFilter}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="wechatNum"
+                                            label="网络咨询师">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="wechatNum"
+                                            label="备注">
+                                    </el-table-column>
+
+                                    <el-table-column label="">
+                                        <template slot-scope="scope"  style="">
+                                            <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                            <div class="customer-block-content customer-pagination-align">
+                                <el-pagination
+                                        @current-change="handleCurrentChange"
+                                        layout="prev, pager, next"
+                                        :page-size="pageSize"
+                                        :total="count">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </el-tab-pane>
+                    <el-tab-pane label="已结束">
+                        <div>
+                            <div class="customer-block-content">
+                                <el-table
+                                        :data="aCustomerlist"
+                                        style="width: 100%"
+                                        :default-sort = "{prop: 'date', order: 'descending'}"
+                                >
+                                    <el-table-column
+                                            prop="id"
+                                            label="姓名"
+                                            width="80">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="customerName"
+                                            label="约面时间"
+                                            width="190">
+                                        <template slot-scope="scope" style="">
+                                            <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="createTime"
+                                            label="电话"
+                                            width="200">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.createTime|dateFilter}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="phoneNum"
+                                            label="咨询项目"
+                                            width="190">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.phoneNum|phoneFilter}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="wechatNum"
+                                            label="网络咨询师">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="wechatNum"
+                                            label="备注">
+                                    </el-table-column>
+
+                                    <el-table-column label="">
+                                        <template slot-scope="scope"  style="">
+                                            <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                            <div class="customer-block-content customer-pagination-align">
+                                <el-pagination
+                                        @current-change="handleCurrentChange"
+                                        layout="prev, pager, next"
+                                        :page-size="pageSize"
+                                        :total="count">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </el-tab-pane>
+                </el-tabs>
+            </el-col>
+        </el-row>
+    </div>
 </div>

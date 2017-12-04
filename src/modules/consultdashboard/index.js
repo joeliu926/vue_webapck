@@ -4,7 +4,10 @@ export default {
     },
     data () {
         return {
-
+            aCustomerlist:[],
+            count:0,
+            pageSize:1,
+            total:0
         }
     },
     created() {
@@ -35,6 +38,9 @@ export default {
         initData(){
 
         },
+        handleCurrentChange(){
+
+        }
 
 
     }
