@@ -37,8 +37,8 @@
 
 
 
+   <div class="control-screan" v-show="isSelectItem" :style="{display:[!isSelectItem?'':'none']}">
 
-    <div class="control-screan" :style="{display:[!isSelectItem?'':'none']}">
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -46,8 +46,8 @@
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
+                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                 <div class="s-ba-cm s-before">before</div>
                 <div class="s-ba-cm s-after">after</div>
             </div>
@@ -57,9 +57,7 @@
 
 
 
-
-
-    <div class="control-foot b-s" :style="{display:[!isSelectItem?'':'none']}">
+   <div class="control-foot b-s" :style="{display:[!isSelectItem?'':'none']}">
         <div class="layout-ct f-ct b-s">
             <div class="lay-row">
                 <div class="lay-left bt-left b-s">
@@ -99,8 +97,8 @@
                         <div class="b-s img-i-ct"  v-for="item in imgdata">
                             <div class="img-item b-s">
                                 <div class="b-ba-img-ct" style="">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
+                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
                                 </div>
@@ -126,20 +124,19 @@
             <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
             <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
             <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-
         </div>
       </div>
     <!--**********************连接设备弹出框 start**************************-->
 
 
-    <!--**********************選擇框 start**************************-->
+    <!--**********************選擇案例框 start**************************-->
     <div style="clear: both;height: 0; display: none;"></div>
-    <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
+   <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
             <div class="sel-items-ct b-s">
                 <div class="sel-img-ct sl-img-ct b-s" v-for="item in imgdata">
                     <div class="sel-img-item b-s">
-                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
-                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
+                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                         <div class="sel-ba-cm sel-before">before</div>
                         <div class="sel-ba-cm sel-after">after</div>
                         <div class="add-case add-icon" style="">
@@ -149,14 +146,13 @@
                 </div>
             </div>
         </div>
-
     <div class="add-up-icon" :style="{display:[isSelectItem?'':'none']}"><label @click="fCloseSelect" class=""  ><i class="el-icon-pa-angle-up"></i></label></div>
-    <div class="btadd-ct b-s" :style="{display:[isSelectItem?'':'none']}">
+    <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item in imgdata">
                 <div class="sel-img-item des-img-item ">
-                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/04f12f70-77cb-4b64-bad0-26021e49d090">
-                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ed1473c8-09f9-4af9-aedd-8c26976e9363">
+                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
+                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>
                     <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
                     <div class="add-case des-icon" style="">
@@ -165,7 +161,7 @@
             </div>
         </div>
     </div>
-    <!--**********************選擇框 end**************************-->
+    <!--**********************選擇案例框 end**************************-->
 
 
     <!--*******************结束咨询 start**********************-->
