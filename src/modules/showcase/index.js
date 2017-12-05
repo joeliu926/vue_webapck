@@ -65,6 +65,7 @@ export default {
                     _this.tvState ='error';
                     break;
             }
+            
         }
         ws.onclose = function (e) {
             _this.tvState = 'noconnect';
