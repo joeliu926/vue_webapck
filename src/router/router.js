@@ -15,7 +15,9 @@ var customerinfo = r => require.ensure([], () => r(require('../modules/customerI
 var showcase = r => require.ensure([], () => r(require('../modules/showcase/index.vue')), 'showcase');
 var casecontrol = r => require.ensure([], () => r(require('../modules/casecontrol/index.vue')), 'casecontrol'); //
 var consultdashboard = r => require.ensure([], () => r(require('../modules/consultdashboard/index.vue')), 'consultdashboard');
-
+var caselibrary = r => require.ensure([], () => r(require('../modules/caselibrary/index.vue')), 'caselibrary');
+var casedetail = r => require.ensure([], () => r(require('../modules/casedetail/index.vue')), 'casedetail');
+var triage = r => require.ensure([], () => r(require('../modules/triage/index.vue')), 'triage');
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
 aComponent.forEach(function (item,index) {
@@ -89,6 +91,30 @@ var routerConfig = {
             path: '/home',
             components:{
                 default:home,
+                nav:nav
+            }
+        },
+        {
+            name:'/caselibrary',
+            path: '/caselibrary',
+            components:{
+                default:caselibrary,
+                // nav:nav
+            }
+        },
+        {
+            name:'/casedetail',
+            path: '/casedetail/:id',
+            components:{
+                default: casedetail,
+                nav:nav
+            }
+        },
+        {
+            name:'/triage',
+            path: '/triage',
+            components:{
+                default: triage,
                 nav:nav
             }
         },

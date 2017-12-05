@@ -54,6 +54,9 @@ export default {
                 case "咨询台":
                     this.$router.push("/consultdashboard");
                     break;
+                case "分诊中心":
+                    this.$router.push("/triage");
+                    break;
             }
         },
         fLoginOut(cmd){

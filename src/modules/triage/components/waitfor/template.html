@@ -1,0 +1,107 @@
+<div>
+    <div class="customer-block-content">
+        <div class="customer-block-uinfo">
+            <el-row :gutter="20"  type="flex" justify="space-between" align="center" >
+                <el-col :span="8" type="flex" justify="space-between">
+
+                </el-col>
+                <el-col :span="14"  type="flex" justify="space-between">
+                    <!--  <el-col :span="1" style="float: right;">
+                          <div ><img src="../../common/img/refresh.png" class="customer-icon" @click="fRefresh"></div>
+                      </el-col>-->
+                    <!--         <el-col :span="1" style="padding-left:0px;float: right;">
+                                 <div><img src="../../common/img/setting.png" class="customer-icon" @click="fEdit"></div>
+                             </el-col>-->
+                    <el-col :span="20" style="float: right;">
+                        <div class="customer-date">
+                            <el-date-picker
+                                    v-model="startDate"
+                                    type="date"
+                                    @change="fDateChange"
+                                    placeholder="开始日期"
+                                    size="small"
+                                    :picker-options="pickerOptions">
+                            </el-date-picker>
+                            <el-date-picker
+                                    v-model="endDate"
+                                    type="date"
+                                    @change="fDateChange"
+                                    placeholder="结束日期"
+                                    size="small"
+                                    :picker-options="pickerOptions">
+                            </el-date-picker>
+                        </div>
+                    </el-col>
+
+                </el-col>
+            </el-row>
+            <el-row>
+
+            </el-row>
+        </div>
+
+
+        <div class="customer-block-content">
+            <el-table
+                    :data="aCustomerlist"
+                    style="width: 100%"
+                    :default-sort = "{prop: 'date', order: 'descending'}"
+            >
+                <el-table-column
+                        prop="id"
+                        label="姓名"
+                        width="80">
+                </el-table-column>
+                <el-table-column
+                        prop="createTime"
+                        label="面诊时间"
+                        width="200">
+                    <template slot-scope="scope" style="text-align: right;">
+                        <p>{{scope.row.createTime|dateFilter}}</p>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="phoneNum"
+                        label="电话"
+                        width="190">
+                    <template slot-scope="scope" style="text-align: right;">
+                        <p>13552557558</p>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="customerName"
+                        label="咨询项目"
+                        width="190">
+                    <template slot-scope="scope" style="">
+                        <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"></p>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="wechatNum"
+                        label="网络咨询师">
+                </el-table-column>
+                <el-table-column
+                        prop="wechatNum"
+                        label="分配现场咨询师">
+                </el-table-column>
+
+                <el-table-column label="" width="100">
+                    <template slot-scope="scope"  style="">
+                        <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
+                    </template>
+                </el-table-column>
+
+            </el-table>
+        </div>
+
+        <!--分页-->
+        <div class="customer-block-content customer-pagination-align">
+            <el-pagination
+                    @current-change="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="count">
+            </el-pagination>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,6 @@ export default {
         return {
 
         }
-
     },
     created() {
  
@@ -19,7 +18,7 @@ export default {
         goAnchor(selector) {
             var anchor = this.$el.querySelector(selector);
             document.body.scrollTop = anchor.offsetTop; // chrome
-           document.documentElement.scrollTop = anchor.offsetTop; // firefox
+            document.documentElement.scrollTop = anchor.offsetTop; // firefox
         }
 
     }

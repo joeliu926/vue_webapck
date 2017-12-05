@@ -1,86 +1,183 @@
 <div class="interact-content">
 
-
+<!--客户线索步骤-->
     <div class="interact-link item-border">
-        <p class="item-title">相关内容快速链接</p>
-        <el-row :gutter="25" type="flex" justify="center" class="link-row">
-            <el-col :span="5">
-                <div class="link-item" @click="goAnchor('#contact')">
-                    <div>
-                        <img src="../../../../common/img/contact.png">
-                        <span v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length" style="" class="icon-num">{{$parent.$parent.$parent.$parent.$parent.oConsults.length}}</span>
-                    </div>
-                  <p class="link-title">咨询沟通</p>
-                </div>
-            </el-col>
-            <el-col :span="5">
-                <div class="link-item">
-                    <div>
-                        <img src="../../../../common/img/develop.png">
-                        <span style="" class="icon-num" v-show="false">0</span>
-                    </div>
-                    <p class="link-title">开发记录</p>
-                </div>
-            </el-col>
-            <el-col :span="5">
-                <div class="link-item">
-                    <div>
-                        <img src="../../../../common/img/diagnosis.png">
-                        <span style="" class="icon-num" v-show="false">0</span>
-                    </div>
-                    <p class="link-title">诊疗记录</p>
-                </div>
-            </el-col>
-
-            <el-col :span="5">
-                <div class="link-item">
-                    <div>
-                        <img src="../../../../common/img/return.png">
-                        <span style="" class="icon-num" v-show="false">0</span>
-                    </div>
-                    <p class="link-title">顾客回访</p>
-                </div>
-            </el-col>
-            <el-col :span="5">
-                <div class="link-item" @click="goAnchor('#file')">
-                    <div>
-                        <img src="../../../../common/img/file.png">
-                        <span style="" class="icon-num">{{$parent.$parent.$parent.$parent.$parent.fileList.length}}</span>
-                    </div>
-                        <p class="link-title">文件</p>
-                </div>
-            </el-col>
-        </el-row>
+        <p class="item-title">
+            <i class=" el-icon-arrow-down"></i>
+            <span>&nbsp;2017-11-22&nbsp;</span>
+            <span>杨宏伟</span>
+        </p>
+        <div  justify="center" class="stepNav">
+            <ul class="step-first">
+                <li>网络咨询</li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <ul class="step-second">
+               <li></li>
+               <li></li>
+               <li></li>
+               <li>现场咨询</li>
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+            </ul>
+            <ul class="step-three">
+               <li></li>
+               <li></li>
+               <li></li>
+               <li>恢复中</li>
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+            </ul>
+            <ul class="step-last">
+               <li></li>
+               <li></li>
+               <li></li>
+               <li>关闭</li>
+            </ul>
+        </div>
     </div>
-    <div class="interact-contact item-border">
-        <div class="interact-content">
-            <p id="contact" class="item-title"><img src="../../../../common/img/contact.png">咨询沟通（{{$parent.$parent.$parent.$parent.$parent.oConsults.length}}）</p>
 
-            <div  class="contact-item" v-for="item,index in $parent.$parent.$parent.$parent.$parent.oConsults" v-if="index<4">
-                <p class="contact-right-more">.<span class="contact-more cursor">...</span></p>
-                <p><span  class="contact-item-name">咨询师：</span><span class="contact-item-name">{{item.counselorName}}</span></p>
-                <p><span  class="contact-item-name">咨询项目：</span><span class="contact-item-name">{{item.productName}}</span></p>
-                <p class="segment"></p>
-             <!--   <p> <span  class="contact-item-name">咨询项目：</span></p>
-                <p class="contact-item-value">{{item.productName}}</p>-->
-                <p><span  class="contact-item-name">跟进日期：</span><span class="contact-item-name">{{item.createTime}}</span></p>
-             <!--   <p><span  class="contact-item-name">咨询形式：</span><span class="contact-item-value">{{item.consultWay}}</span></p>
+    <!--客户咨询的时间轴-->
+    <div id="timeline" class="timeLine">
 
-                <p><span  class="contact-item-name">沟通类别：</span><span class="contact-item-value">{{item.consultType}}</span></p>
-                <p> <span  class="contact-item-name">备注：</span><span class="contact-item-value">{{item.remark}}</span></p>
-                 <p class="segment"></p>
-                <p> <span  class="contact-item-name">咨询项目：</span></p>
-                <p class="contact-item-value">{{item.consultProject}}</p>-->
+        <div class="left-box">
+        <!--咨询师的信息-->
+            <div class="counselor list0">
+                <div class="counselor-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">姜咨询</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                 <div class="counselor-content">
+                    <p>
+                        <span>接待了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p v-if="false"></p>
+                </div>
+            </div>
+            <div class="counselor list1">
+                <div class="counselor-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">姜咨询</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                 <div class="counselor-content">
+                    <p>
+                        <span>接待了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p v-if="false"></p>
+                </div>
+            </div>
+            <div class="counselor list2">
+                <div class="counselor-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">姜咨询</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                 <div class="counselor-content">
+                    <p>
+                        <span>接待了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p v-if="false"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right-box">
+            <!--客户的的信息-->
+            <div class="custome-item item0">
+                <div class="custome-item-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">杨宏伟</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                <div class="custome-item-content">
+                    <p>
+                        <span>提出了了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p class="second">咨询项目 : 
+                        <span>硅胶隆鼻</span>
+                        <span>埋线双眼皮</span>
+                      
+                    </p>
+                </div>
+            </div> 
+            <div class="custome-item item1">
+                <div class="custome-item-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">杨宏伟</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                <div class="custome-item-content">
+                    <p>
+                        <span>提出了了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p class="second">咨询项目 : 
+                        <span>硅胶隆鼻</span>
+                        <span>埋线双眼皮</span>
+                      
+                    </p>
+                </div>
+            </div>
+            <div class="custome-item item1">
+                <div class="custome-item-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">杨宏伟</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                <div class="custome-item-content">
+                    <p>
+                        <span>提出了了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p class="second">咨询项目 :
+                        <span>硅胶隆鼻</span>
+                        <span>埋线双眼皮</span>
+
+                    </p>
+                </div>
+            </div>
+            <div class="custome-item item1">
+                <div class="custome-item-top">
+                    <img src="../../../../common/img/zixs.png">
+                    <span class="name">杨宏伟</span>
+                    <span class="time">2017-11-13 AM 10:30</span>
+                </div>
+                <!--咨询师 咨询分享-->
+                <div class="custome-item-content">
+                    <p>
+                        <span>提出了了一次</span>
+                        <span>咨询申请</span>
+                    </p>
+                    <p class="second">咨询项目 :
+                        <span>硅胶隆鼻</span>
+                        <span>埋线双眼皮</span>
+
+                    </p>
+                </div>
             </div>
 
-            <p v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length!=0" class="show-all">查看全部</p> <p class="show-all" v-show="$parent.$parent.$parent.$parent.$parent.oConsults.length==0">无咨询消息</p>
         </div>
     </div>
-    <div class="interact-file item-border">
-        <p id="file" class="item-title"><img src="../../../../common/img/file.png"> 文件({{$parent.$parent.$parent.$parent.$parent.fileList.length}})</p>
-        <div class="file-item" v-for="item,index in $parent.$parent.$parent.$parent.$parent.fileList">
-            <img :src="item"  height="140" width="140"/>
-        </div>
-        <p class="show-all">查看全部</p>
-    </div>
+
+
 </div>
