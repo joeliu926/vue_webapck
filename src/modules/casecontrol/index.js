@@ -5,13 +5,18 @@ export default {
     },
     data () {
      return{
+         aAutoSelect:[],//模糊搜索下拉
+         faceDiagnoseRemarks:"",//原因（复诊和放弃时使用）
+         faceDiagnoseDate:"",//面诊时间（复诊使用）
+         faceDiagnoseProduct:"",//面诊成功项目（成功时使用）
          isConScreanItem:false,
          isCurrentProject:"0",
          isDocProject:"0",
          isSelectItem:false,
          dialogVisible:false,
-         activeStatus:"success",
-         endProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
+         activeStatus:"0",
+         cstProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
+         routerParam:{},
          otheritems:"",
          otherresion:"",
          bookdate:"",
@@ -32,19 +37,15 @@ export default {
      }
     },
     created() {
-        let _This=this;
-        setInterval(function(){
-            _This.dCurrentDate=new Date();
-            let temTimer=_This.dTimer;
-            _This.dTimer=temTimer+1;
-            let nSec=temTimer%60+"";
-            let nMin =parseInt(temTimer/60)%60+"";
-            let nHour = parseInt(temTimer/3600)%60+"";
-            let sSec=nSec[1]?nSec:("0"+nSec);
-            let sMin=nMin[1]?nMin:("0"+nMin);
-            let sHour=nHour[1]?nHour:("0"+nHour);
-            _This.sTimer=sHour+":"+sMin+":"+sSec;
-        },1000);
+       let _This=this;
+        //_This.fTimer();
+
+
+
+        _This.routerParam=this.$route.params;
+
+        console.log("options--------->",this.$route.params);
+
 
         this.initSocket();
     },
@@ -61,6 +62,16 @@ export default {
         },
         dateTimer:function(input){
 
+        },
+        projectFilter:function (input) {
+            if(!input||input==""||typeof(input)!="object"){
+                return "";
+            }
+            let result=[];
+            input.forEach(item=>{
+                result.push(item.projectName);
+            });
+            return result.join("、");
         }
     },
     mounted(){
@@ -71,7 +82,19 @@ export default {
 
     },
     methods: {
-        fLogin(){
+        fTimer(){
+            setInterval(function(){
+                _This.dCurrentDate=new Date();
+                let temTimer=_This.dTimer;
+                _This.dTimer=temTimer+1;
+                let nSec=temTimer%60+"";
+                let nMin =parseInt(temTimer/60)%60+"";
+                let nHour = parseInt(temTimer/3600)%60+"";
+                let sSec=nSec[1]?nSec:("0"+nSec);
+                let sMin=nMin[1]?nMin:("0"+nMin);
+                let sHour=nHour[1]?nHour:("0"+nHour);
+                _This.sTimer=sHour+":"+sMin+":"+sSec;
+            },1000);
         },
         fSelectItems(){
 
@@ -105,6 +128,63 @@ export default {
             let _This=this;
             let dataSet=e.target.dataset;
             _This.activeStatus=dataSet.tabtype;
+        },
+        fChangeCheck(){
+          console.log("dddddddd--change",this.consultItems);
+            this.faceDiagnoseProduct=this.consultItems.join(",");
+        },
+        /**
+         * 下拉框变化
+         * @param ename
+         * @returns {boolean}
+         */
+        fChangeAutoSelect(ename){
+         if(ename.trim()==""){
+             return false;
+         }
+            let _This=this;
+            let postData={
+                productName:ename
+            };
+            _.ajax({
+                url: '/product/searchList',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("product result--------",result);
+                    if(result.code==0&&result.data){
+                      _This.aAutoSelect=result.data;
+                    }
+                    console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
+                }
+            }, 'withCredentials');
+
+        },
+        /**
+         * 结束咨询提交数据
+         */
+        fSubmitEndData(){
+            let _This=this;
+            let postData={
+                id: _This.routerParam.diagid,
+                flag:_This.activeStatus,
+                faceDiagnoseRemarks:_This.faceDiagnoseRemarks,
+                faceDiagnoseDate:_This.faceDiagnoseDate?_This.faceDiagnoseDate.valueOf():"",
+                faceDiagnoseProduct:_This.faceDiagnoseProduct
+            };
+            console.log("postData======>",postData);
+            _.ajax({
+                url: '/faceDiagnose/finished',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fSubmitEndData result--------",result);
+                    if(result.code==0&&result.data){
+
+                    }
+
+                }
+            }, 'withCredentials');
         },
         fCloseEnddialog(){
             let _This=this;

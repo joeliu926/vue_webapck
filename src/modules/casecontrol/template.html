@@ -69,7 +69,7 @@
             <div style="clear: both;height: 0;"></div>
             <div class="lay-row">
                 <div class="lay-left bt-left b-s" >
-                    <img class="bt-icon" src="../../common/img/i-radio.png">咨詢項目
+                    <img class="bt-icon" src="../../common/img/i-radio.png">关联項目
                 </div>
                 <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
@@ -164,34 +164,48 @@
         <div class="dialog-ct b-s">
             <div class="end-close" @click="fCloseEnddialog"><img src="../../common/img/i-cl-close.png"> </div>
             <div class="tab-head b-s">
-                 <div class="tab-item b-s" data-tabtype="success" @click="fChangeTab">已成功
-                     <div class="tab-angle" :style="{display:[activeStatus=='success'?'':'none']}"></div>
+                 <div class="tab-item b-s" data-tabtype="0" @click="fChangeTab">已成功
+                     <div class="tab-angle" :style="{display:[activeStatus=='0'?'':'none']}"></div>
                  </div>
-                <div class="tab-item b-s" data-tabtype="next" @click="fChangeTab">预约下次面诊
-                    <div class="tab-angle" :style="{display:[activeStatus=='next'?'':'none']}"></div></div>
-                <div class="tab-item b-s" data-tabtype="nopending" @click="fChangeTab">无需后续跟进
-                    <div class="tab-angle" :style="{display:[activeStatus=='nopending'?'':'none']}"></div></div>
+                <div class="tab-item b-s" data-tabtype="1" @click="fChangeTab">预约下次面诊
+                    <div class="tab-angle" :style="{display:[activeStatus=='1'?'':'none']}"></div></div>
+                <div class="tab-item b-s" data-tabtype="2" @click="fChangeTab">无需后续跟进
+                    <div class="tab-angle" :style="{display:[activeStatus=='2'?'':'none']}"></div></div>
             </div>
            <div class="tab-content">
-               <div class="tab-ct-item" :style="{display:[activeStatus=='success'?'':'none']}">
-                   <el-checkbox-group v-model="consultItems">
-                       <el-checkbox-button v-for="eitem in endProjects" :label="eitem" :key="eitem">{{eitem}}</el-checkbox-button>
+               <div class="tab-ct-item" :style="{display:[activeStatus=='0'?'':'none']}">
+                   <el-checkbox-group v-model="consultItems" @change="fChangeCheck">
+                       <el-checkbox-button v-for="eitem in routerParam.projects" :label="eitem.projectCode" :key="eitem.projectCode">{{eitem.projectName}}</el-checkbox-button>
                    </el-checkbox-group>
                    <div class="search-ct">
 
-                       <el-input
-                               placeholder="搜索其他项目"
-                               v-model="otheritems">
-                       </el-input>
+                       <template>
+                           <el-select
+                                   v-model="otheritems"
+                                   :filterable="true"
+                                   :remote="true"
+                                   :allow-create="true"
+                                   reserve-keyword
+                                   placeholder="请输入关键词"
+                                   :loading="true"
+                                   :remote-method="fChangeAutoSelect">
+                               <el-option
+                                       v-for="item in aAutoSelect"
+                                       :key="item.projectCode"
+                                       :label="item.projectName"
+                                       :value="item.projectCode">
+                               </el-option>
+                           </el-select>
+                       </template>
                        <i  class="el-input__icon el-icon-search"></i>
 
                    </div>
                </div>
-               <div class="tab-ct-item" :style="{display:[activeStatus=='next'?'':'none']}">
+               <div class="tab-ct-item" :style="{display:[activeStatus=='1'?'':'none']}">
                    <div class="set-date-ct">
                        <label class="lb-date">设置面诊时间</label>
                        <el-date-picker
-                               v-model="bookdate"
+                               v-model="faceDiagnoseDate"
                                type="date"
                                placeholder="选择日期">
                        </el-date-picker>
@@ -200,21 +214,21 @@
                        <label class="lb-date">备注</label>
                        <el-input
                                placeholder=""
-                               v-model="otherresion">
+                               v-model="faceDiagnoseRemarks">
                        </el-input>
                    </div>
                </div>
-               <div class="tab-ct-item" :style="{display:[activeStatus=='nopending'?'':'none']}">
+               <div class="tab-ct-item" :style="{display:[activeStatus=='2'?'':'none']}">
                    <div class="search-ct">
                        <el-input
                                placeholder="原因"
-                               v-model="otherresion">
+                               v-model="faceDiagnoseRemarks">
                        </el-input>
                    </div>
                </div>
            </div>
             <div class="tab-foot">
-                <el-button type="success">确定</el-button>
+                <el-button type="success" @click="fSubmitEndData">确定</el-button>
             </div>
 
        </div>

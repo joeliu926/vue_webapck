@@ -61,6 +61,14 @@
                                 vertical-align: middle;
                                 cursor: pointer;
                             }
+                            .start-cst-btn{
+                                background: #9083ED;
+                                color: #ffffff;
+                                border-color: #9083ED;
+                            }
+                            .start-cst-btn:hover{
+                                border-color: #9083ED;
+                            }
                         }
                         .day-ct{
                             border-top:1px solid #eaeaea;
@@ -75,17 +83,6 @@
                                 color:#666666;
                             }
                         }
-                }
-                .customer-tb-div{
-                    box-sizing: border-box;
-                    .td-item{
-                        display: inline-block;
-                        width: 14%;
-                        box-sizing: border-box;
-                        padding: 10px 24px;
-                        font-size: 14px;
-                        text-align: center;
-                    }
                 }
 
             }
