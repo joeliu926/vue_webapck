@@ -26,7 +26,7 @@ export default {
             _this.timeCount =  _.date2String(passTime,'hh:mm:ss');
         },1000);
 
-        var ws = new WebSocket(constant.wsReqUrl);
+        var ws = new WebSocket(`${constant.wsReqUrl}tv`);
 
         //Connection to server opened
         ws.onopen = function (e) {

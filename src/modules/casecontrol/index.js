@@ -1,3 +1,4 @@
+var constant = require('../../common/utils/constants');
 export default {
     components: {
 
@@ -22,7 +23,12 @@ export default {
          dCurrentDate:"",
          sTimer:"00:00:00",
          dTimer:0,
-         imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1]
+         imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1],
+         //socket
+         conCode:0,
+         conSid:'',
+         webSocket:null,
+         conCodeList:[{id:0,val:''},{id:1,val:''},{id:2,val:''},{id:3,val:''},{id:4,val:''},{id:5,val:''}]
      }
     },
     created() {
@@ -40,7 +46,7 @@ export default {
             _This.sTimer=sHour+":"+sMin+":"+sSec;
         },1000);
 
-
+        this.initSocket();
     },
     filters:{
         dateFilter:function(input) {
@@ -115,6 +121,48 @@ export default {
         },
         fCloseConBox(){
             this.isConScreanItem=false;
+        },
+        initSocket(){
+            if(window.localStorage){
+                this.conCode = localStorage.getItem("rky_mc_conCode");
+            }else{
+                alert('This browser does NOT support localStorage');
+            }
+
+            this.webSocket = new WebSocket(`${constant.wsReqUrl}console`);
+
+            let _this =this;
+
+            this.webSocket.onmessage = function (e) {
+                let result = JSON.parse(e.data);
+                switch (result.type){
+                    case 'connected':
+                        _this.conSid = result.content.sid;
+                        break;
+                    case 'bind_return':
+                        break;
+                    case 'sbind_return':
+                        if(result.content.code==0){
+                            
+                        }
+                        break;
+                }
+            }
+        },
+        inputConCode(params){
+            if(params==5){
+                this.fCloseConBox();
+                let _sconCode = '';
+                this.conCodeList.forEach(m=>{
+                    _sconCode+= m.val;
+                });
+                this.conCode =parseInt(_sconCode);
+                localStorage.setItem("rky_mc_conCode",this.conCode);
+                let bindObj = {"type":"bind","content":{"code":this.conCode,"sid":this.conSid}};
+                this.webSocket.send(JSON.stringify(bindObj));
+            }else{
+                document.getElementById('codeid_'+(params+1)).focus();
+            }
         }
     }
 }

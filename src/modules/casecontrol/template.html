@@ -118,12 +118,7 @@
       <div class="common-pos-middle pop-connect" :style="{display:[isConScreanItem?'':'none']}">
         <div class="cn-middle" style="">
             <div class="cn-close" @click="fCloseConBox"><img src="../../common/img/i-cl-close.png"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
-            <div class="cn-item"  style=""><input type="text" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  v-for="item in conCodeList" style=""><input :id="'codeid_'+item.id" type="text" @keyup="inputConCode(item.id)" v-model="item.val" maxlength="1"  class="cn-input"></div>
         </div>
       </div>
     <!--**********************连接设备弹出框 start**************************-->
@@ -150,7 +145,7 @@
     <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item in imgdata">
-                <div class="sel-img-item des-img-item ">
+                <div class="sel-img-item des-img-item " onclick="">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>
