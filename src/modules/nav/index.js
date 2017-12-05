@@ -46,7 +46,7 @@ export default {
                     this.$router.push("/customers");
                     break;
                 case "案例中心":
-                    this.$router.push("/customers");
+                    this.$router.push("/case_base");
                     break;
                 case "咨询中心":
                     this.$router.push("/customers");
@@ -82,6 +82,9 @@ export default {
 
             }else if(this.$route.path.indexOf('consultdashboard')>=0){
                 this.selectedVal = "咨询台";
+
+            }else if(this.$route.path.indexOf('case_base')>=0){
+                this.selectedVal = "案例中心";
 
             }else {
                 this.selectedVal = "首页";

@@ -18,6 +18,7 @@ var consultdashboard = r => require.ensure([], () => r(require('../modules/consu
 var caselibrary = r => require.ensure([], () => r(require('../modules/caselibrary/index.vue')), 'caselibrary');
 var casedetail = r => require.ensure([], () => r(require('../modules/casedetail/index.vue')), 'casedetail');
 var triage = r => require.ensure([], () => r(require('../modules/triage/index.vue')), 'triage');
+var case_base= r => require.ensure([], () => r(require('../modules/case_base/index.vue')), 'case_base');
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
 aComponent.forEach(function (item,index) {
@@ -40,11 +41,20 @@ var routerConfig = {
             path: '/login',
             component:login
         },
+
         {
             name:'/customers',
             path: '/customers',
             components:{
                 default:customers,
+                nav:nav
+            }
+        },
+        {
+            name:'/case_base',
+            path: '/case_base',
+            components:{
+                default:case_base,
                 nav:nav
             }
         },
