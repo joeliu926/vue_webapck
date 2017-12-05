@@ -46,7 +46,7 @@ export default {
             var distop=""+parpm;
             var  disTop=document.getElementById(distop).offsetTop;
             console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-257;
+            document.getElementById("right").scrollTop=disTop-265;
             this.changestyle=parpm;
 
         },

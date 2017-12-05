@@ -9,12 +9,16 @@
     .case-top{
         text-align:center;background-color: #7084f3;
         line-height: 60px;
-        height: 136px;
+        height: 144px;
         color: white;
         box-sizing: border-box;
     }
         .case-top-demo{
-        margin-top:38px;
+        box-sizing:border-box;
+        width:60px;
+        margin-top:32px;
+            margin-left: 33.3%;
+            height:112px
     }
         .top-img{
         width:60px;height:60px
