@@ -12,7 +12,7 @@
                                     <el-col :span="24" type="flex" justify="space-between">
                                         <el-col :span="12" class="customer-icon">
                                             <div class="today-count" style="">
-                                                今日面诊   <span class="p-count"> 3人</span>
+                                                今日面诊   <span class="p-count">{{todayCount}}人</span>
                                             </div>
                                             <div class="today-count des" style="">
                                                 按即将到面诊时间顺序排序
@@ -29,42 +29,22 @@
                                   <tr>
                                       <th>姓名 </th><th>约面时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>备注</th><th></th>
                                   </tr>
-                                  <tr>
-                                      <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}} <img class="eye-img" src="../../common/img/i-eye-close.png" @click="fSeaPhone"> </td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
+                                  <template v-for="(oItem,index) in aWaitinglist">
+                                      <tr class="day-ct" v-if="index>0||todayCount<=0">
+                                          <td class="idate">{{oItem[0].faceDiagnoseDate|dateFilter("yyyy年MM月dd日")}}</td>
+                                          <td class="icount" colspan="6">{{oItem.length}} 人</td>
                                       </tr>
-                                      <tr>
-                                          <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}}  <img class="eye-img"  src="../../common/img/i-eye-open.png"  @click="fClosePhone"></td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                      <tr v-for="(item,index) in oItem">
+                                          <td>{{item.customerName}}</td>
+                                          <td>{{item.faceDiagnoseDate}}</td>
+                                          <td>{{item.customerPhone|phoneFilter}}
+                                              <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaPhone">
+                                          </td>
+                                          <td>{{item.projectList|projectFilter}}</td><td>{{item.netConsultantsName}}</td><td>{{item.faceDiagnoseRemarks}}</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
                                       </tr>
-                                      <tr>
-                                          <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
-                                      </tr>
-                                      <tr class="day-ct">
-                                          <td class="idate">2017-11-24</td>
-                                          <td class="icount" colspan="6">3 人</td>
-                                      </tr>
-                                      <tr>
-                                          <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
-                                      </tr>
-                                  <tr class="day-ct">
-                                      <td class="idate">2017-11-24</td>
-                                      <td class="icount" colspan="6">3 人</td>
-                                  </tr>
-                                  <tr>
-                                      <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
-                                  </tr>
-                                  <tr>
-                                      <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
-                                  </tr>
-                              </table>
-                            </div>
+                                  </template>
 
-                            <div class="customer-block-content customer-pagination-align">
-                                <el-pagination
-                                        @current-change="handleCurrentChange"
-                                        layout="prev, pager, next"
-                                        :page-size="pageSize"
-                                        :total="count">
-                                </el-pagination>
+                              </table>
                             </div>
                         </div>
                     </el-tab-pane>
@@ -72,53 +52,49 @@
                         <div>
                             <div class="customer-block-content">
                                 <el-table
-                                        :data="aCustomerlist"
+                                        :data="aEndList"
                                         style="width: 100%"
                                         :default-sort = "{prop: 'date', order: 'descending'}"
                                 >
                                     <el-table-column
-                                            prop="id"
+                                            prop="customerName"
                                             label="姓名"
-                                            width="80">
+                                            width="100">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="customerName"
+                                            prop="faceDiagnoseDate"
                                             label="约面时间"
-                                            width="190">
-                                        <template slot-scope="scope" style="">
-                                            <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
+                                            width="200">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.faceDiagnoseDate|dateFilter("yyyy-MM-dd hh:mm")}}</p>
                                         </template>
                                     </el-table-column>
                                     <el-table-column
-                                            prop="createTime"
+                                            prop="customerPhone"
                                             label="电话"
                                             width="200">
                                         <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.createTime|dateFilter}}</p>
+                                            <p>{{scope.row.customerPhone|phoneFilter}}</p>
                                         </template>
                                     </el-table-column>
                                     <el-table-column
-                                            prop="phoneNum"
+                                            prop="projectList"
                                             label="咨询项目"
-                                            width="190">
+                                            width="300">
                                         <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.phoneNum|phoneFilter}}</p>
+                                            <p>{{scope.row.projectList|projectFilter}}</p>
                                         </template>
                                     </el-table-column>
                                     <el-table-column
-                                            prop="wechatNum"
+                                            prop="netConsultantsName"
+                                            width="200"
                                             label="网络咨询师">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="wechatNum"
+                                            prop="faceDiagnoseRemarks"
                                             label="备注">
                                     </el-table-column>
 
-                                    <el-table-column label="">
-                                        <template slot-scope="scope"  style="">
-                                            <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
-                                        </template>
-                                    </el-table-column>
                                 </el-table>
                             </div>
 
