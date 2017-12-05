@@ -11,66 +11,51 @@
                                 <el-row :gutter="24"  type="flex" justify="space-between" align="center" >
                                     <el-col :span="24" type="flex" justify="space-between">
                                         <el-col :span="12" class="customer-icon">
-                                            <div class="c-icon" style="">
-                                               今日面诊   3人
+                                            <div class="today-count" style="">
+                                                今日面诊   <span class="p-count"> 3人</span>
+                                            </div>
+                                            <div class="today-count des" style="">
+                                                按即将到面诊时间顺序排序
                                             </div>
                                         </el-col>
                                         <el-col :span="12" class="add-consult">
-                                          <el-button> 新增面诊客户</el-button>
+                                          <el-button class="el-icon-plus"> 新增面诊客户</el-button>
                                         </el-col>
                                     </el-col>
                                 </el-row>
                             </div>
-                            <div class="customer-block-content">
-                                <el-table
-                                        :data="aCustomerlist"
-                                        style="width: 100%"
-                                        :default-sort = "{prop: 'date', order: 'descending'}"
-                                >
-                                    <el-table-column
-                                            prop="id"
-                                            label="姓名"
-                                            width="80">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="customerName"
-                                            label="约面时间"
-                                            width="190">
-                                        <template slot-scope="scope" style="">
-                                            <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="createTime"
-                                            label="电话"
-                                            width="200">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.createTime|dateFilter}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="phoneNum"
-                                            label="咨询项目"
-                                            width="190">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.phoneNum|phoneFilter}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="wechatNum"
-                                            label="网络咨询师">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="wechatNum"
-                                            label="备注">
-                                    </el-table-column>
-
-                                    <el-table-column label="">
-                                        <template slot-scope="scope"  style="">
-                                            <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
-                                        </template>
-                                    </el-table-column>
-                                </el-table>
+                            <div class="customer-waiting-content" >
+                              <table class="customer-table">
+                                  <tr>
+                                      <th>姓名 </th><th>约面时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>备注</th><th></th>
+                                  </tr>
+                                  <tr>
+                                      <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}} <img class="eye-img" src="../../common/img/i-eye-close.png" @click="fSeaPhone"> </td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
+                                      </tr>
+                                      <tr>
+                                          <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}}  <img class="eye-img"  src="../../common/img/i-eye-open.png"  @click="fClosePhone"></td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                      </tr>
+                                      <tr>
+                                          <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                      </tr>
+                                      <tr class="day-ct">
+                                          <td class="idate">2017-11-24</td>
+                                          <td class="icount" colspan="6">3 人</td>
+                                      </tr>
+                                      <tr>
+                                          <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                      </tr>
+                                  <tr class="day-ct">
+                                      <td class="idate">2017-11-24</td>
+                                      <td class="icount" colspan="6">3 人</td>
+                                  </tr>
+                                  <tr>
+                                      <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                  </tr>
+                              </table>
                             </div>
 
                             <div class="customer-block-content customer-pagination-align">

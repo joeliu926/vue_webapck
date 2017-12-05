@@ -4,7 +4,13 @@ export default {
     },
     data () {
         return {
-            aCustomerlist:[],
+            aCustomerlist:[
+            ],
+            aWaitinglist:[
+                [],
+                [],
+                []
+            ],
             count:0,
             pageSize:1,
             total:0
@@ -39,6 +45,12 @@ export default {
 
         },
         handleCurrentChange(){
+
+        },
+        fSeaPhone(){
+
+        },
+        fClosePhone(){
 
         }
 
