@@ -50,14 +50,7 @@ export default {
             this.changestyle=parpm;
 
         },
-        onscroll() {
-            var x = 0;
-            $(document).ready(function () {
-                $("#right").scroll(function () {
-                    alert(x+=1)
-                });
-            });
-        },
+
     }
 }
 
