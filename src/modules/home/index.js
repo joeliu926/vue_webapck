@@ -16,19 +16,14 @@ export default {
     },
     created() {
             this.showdata = 'hello boy';
-            console.log($('body').html());
     },
     mounted(){
-
     },
     destroyed() {
 
     },
     methods: {
         sendquery(){
-
-            console.log($('body').html());
-            
            _.ajax({
                 url: '/userate',
                 method: 'POST',
