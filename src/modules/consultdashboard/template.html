@@ -4,8 +4,8 @@
       <el-row :gutter="24" type="flex" justify="space-between">
 
             <el-col :span="18" type="flex" class="">
-                <el-tabs   type="border-card">
-                    <el-tab-pane label="待面诊">
+                <el-tabs   type="border-card" v-model="tabActive" @tab-click="handleTabClick">
+                    <el-tab-pane label="待面诊" name="waiting">
                         <div class="waiting-ct">
                             <div class="waiting-handle">
                                 <el-row :gutter="24"  type="flex" justify="space-between" align="center" >
@@ -19,7 +19,7 @@
                                             </div>
                                         </el-col>
                                         <el-col :span="12" class="add-consult">
-                                          <el-button class="el-icon-plus"> 新增面诊客户</el-button>
+                                          <el-button class="el-icon-plus" @click="fAddNewDiagnose"> 新增面诊客户</el-button>
                                         </el-col>
                                     </el-col>
                                 </el-row>
@@ -40,7 +40,8 @@
                                           <td>{{item.customerPhone|phoneFilter}}
                                               <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaPhone">
                                           </td>
-                                          <td>{{item.projectList|projectFilter}}</td><td>{{item.netConsultantsName}}</td><td>{{item.faceDiagnoseRemarks}}</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
+                                          <td>{{item.projectList|projectFilter}}</td><td>{{item.netConsultantsName}}</td><td>{{item.faceDiagnoseRemarks}}</td><td>
+                                          <el-button class="start-cst-btn"  @click="fStartConsult(item.appointmentId,item.customerId,item.id,item.projectList)"> 开始咨询</el-button></td>
                                       </tr>
                                   </template>
 
@@ -48,7 +49,7 @@
                             </div>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="已结束">
+                    <el-tab-pane label="已结束" name="eend">
                         <div>
                             <div class="customer-block-content">
                                 <el-table

@@ -4,6 +4,7 @@ export default {
     },
     data () {
         return {
+            tabActive:"waiting",
             aCustomerlist:[
             ],
             aWaitinglist:[
@@ -44,11 +45,12 @@ _This.fGetEndList();
             if(!input||input==""||typeof(input)!="object"){
                return "";
             }
-            let result="";
+            let result=[];
+
             input.forEach(item=>{
-                result+=item.projectName+"、"
+                result.push(item.projectName);
             });
-            return  result.trim();
+            return result.join("、");
         }
     },
     methods: {
@@ -67,6 +69,9 @@ _This.fGetEndList();
         fClosePhone(){
 
         },
+        /**
+         * 获取待面诊
+         */
         fGetWaitingList(){
             let postData={};
             let _This=this;
@@ -75,7 +80,7 @@ _This.fGetEndList();
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    //console.log("waiting result--------",result);
+                    console.log("waiting result--------",result);
 
                     if(result.code==0&&result.data){
                         result.data=result.data.sort(function (itemOne,itemTwo) {
@@ -91,6 +96,9 @@ _This.fGetEndList();
                 }
             }, 'withCredentials');
         },
+        /**
+         * 获取已经结束
+         */
         fGetEndList(){
             let _This=this;
             let postData={
@@ -110,9 +118,43 @@ _This.fGetEndList();
                 }
             }, 'withCredentials');
         },
+        /**
+         * 分页
+         * @param pnum
+         */
         handleCurrentChange(pnum){
             this.pageNo=pnum;
            this.fGetEndList()
+        },
+        /**
+         * 切换tab
+         * @param e
+         */
+        handleTabClick(e){
+            let _This=this;
+            if(e.name=="waiting"){
+                _This.fGetWaitingList();
+            }else {
+                _This.fGetEndList();
+            }
+        },
+        /**
+         * 新增面诊
+         */
+        fAddNewDiagnose(){
+
+            this.$router.push({path:'/casecontrol',params:{
+               // customerId:customerId
+            }});
+        },
+        fStartConsult(e){
+             let args=Array.prototype.slice.call(arguments);
+            this.$router.push({name:'/casecontrol',params:{
+                appointmentId:args[0],
+                customerId:args[1],
+                diagid:args[2],
+                projects:args[3]
+            }});
         }
     }
 }
