@@ -19,7 +19,7 @@
                                             </div>
                                         </el-col>
                                         <el-col :span="12" class="add-consult">
-                                          <el-button> 新增面诊客户</el-button>
+                                          <el-button class="el-icon-plus"> 新增面诊客户</el-button>
                                         </el-col>
                                     </el-col>
                                 </el-row>
@@ -30,10 +30,10 @@
                                       <th>姓名 </th><th>约面时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>备注</th><th></th>
                                   </tr>
                                   <tr>
-                                      <td>大伟阳</td><td>2017-11-12</td><td>134565487985 <img src="../../common/img/i-eye-close.png"> </td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
+                                      <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}} <img class="eye-img" src="../../common/img/i-eye-close.png" @click="fSeaPhone"> </td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button class="" style="background: #9083ED;color: #ffffff;"> 开始咨询</el-button></td>
                                       </tr>
                                       <tr>
-                                          <td>大伟阳</td><td>2017-11-12</td><td>134565487985 <img style="vertical-align: middle;" src="../../common/img/i-eye-open.png"></td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
+                                          <td>大伟阳</td><td>2017-11-12</td><td>{{"134565487985"|phoneFilter}}  <img class="eye-img"  src="../../common/img/i-eye-open.png"  @click="fClosePhone"></td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>
                                       </tr>
                                       <tr>
                                           <td>大伟阳</td><td>2017-11-12</td><td>134565487985</td><td>开眼皮</td><td>未央大</td><td>这个客户挺好</td><td> <el-button> 开始咨询</el-button></td>

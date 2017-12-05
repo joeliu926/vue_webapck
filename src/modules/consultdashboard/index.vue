@@ -9,7 +9,12 @@
         padding: 24px;
         box-sizing: border-box;
         .consult-content {
-
+.el-tabs__nav{
+    .is-active{
+        border-top:2px solid #9083ED !important;
+        box-sizing: border-box;
+    }
+}
             .el-col-18{width: 100%;}
             .waiting-ct{
                 width: 100%;
@@ -49,6 +54,10 @@
                         td{
                             padding: 10px 24px;
                             font-size: 14px;
+                            .eye-img{
+                                vertical-align: middle;
+                                cursor: pointer;
+                            }
                         }
                         .day-ct{
                             border-top:1px solid #eaeaea;
