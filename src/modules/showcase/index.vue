@@ -23,10 +23,17 @@
             .hold_place{
                 width: 50%;
                 .show-case-title{
-                    color:#efe8e8;
+                    color:#f9f7f7;
                     height:21px;
+                    text-align: center;
                     .float-right{
                         float: right;
+                    }
+                    .float-left{
+                        float: left;
+                    }
+                    .show-case-name{
+
                     }
                 }
                 .show-case{

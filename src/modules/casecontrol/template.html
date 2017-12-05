@@ -34,11 +34,7 @@
         </div>
     </div>
 
-
-
-
    <div class="control-screan" v-show="isSelectItem" :style="{display:[!isSelectItem?'':'none']}">
-
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -46,8 +42,8 @@
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                <img class="img-s" :src="playBeforeUrl">
+                <img class="img-s" :src="playAfterUrl">
                 <div class="s-ba-cm s-before">before</div>
                 <div class="s-ba-cm s-after">after</div>
             </div>
@@ -96,9 +92,9 @@
                     <div class="b-s lay-items img-ct">
                         <div class="b-s img-i-ct"  v-for="item in imgdata">
                             <div class="img-item b-s">
-                                <div class="b-ba-img-ct" style="">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="">
+                                    <img class="img-l" :src="item.beforeUrl">
+                                    <img class="img-l" :src="item.afterUrl">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
                                 </div>
@@ -145,7 +141,7 @@
     <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item in imgdata">
-                <div class="sel-img-item des-img-item " onclick="">
+                <div class="sel-img-item des-img-item ">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>

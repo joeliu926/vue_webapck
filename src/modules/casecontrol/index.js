@@ -23,7 +23,12 @@ export default {
          dCurrentDate:"",
          sTimer:"00:00:00",
          dTimer:0,
-         imgdata: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1],
+         imgdata: [{id:'0',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'}
+             ,{id:'1',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+             ,{id:'2',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+         ],
+         playBeforeUrl:'',
+         playAfterUrl:'',
          //socket
          conCode:0,
          conSid:'',
@@ -121,6 +126,7 @@ export default {
         },
         fCloseConBox(){
             this.isConScreanItem=false;
+            this.conCodeList.forEach(m=>{m.val ='';});
         },
         initSocket(){
             if(window.localStorage){
@@ -138,6 +144,10 @@ export default {
                 switch (result.type){
                     case 'connected':
                         _this.conSid = result.content.sid;
+                        if(this.conCode!=0){
+                            let bindObj = {"type":"sbind","content":{"code":this.conCode,"sid":_this.conSid}};
+                            _this.webSocket.send(JSON.stringify(bindObj));
+                        }
                         break;
                     case 'bind_return':
                         break;
@@ -161,8 +171,16 @@ export default {
                 let bindObj = {"type":"bind","content":{"code":this.conCode,"sid":this.conSid}};
                 this.webSocket.send(JSON.stringify(bindObj));
             }else{
-                document.getElementById('codeid_'+(params+1)).focus();
+                let netInput =document.getElementById('codeid_'+(params+1));
+                netInput.focus();
+                netInput.value='';
             }
+        },
+        playCase(params){
+            this.playBeforeUrl = params.beforeUrl;
+            this.playAfterUrl = params.afterUrl;
+            let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
+            this.webSocket.send(JSON.stringify(caseObj));
         }
     }
 }
