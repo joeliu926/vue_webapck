@@ -106,7 +106,7 @@ var routerConfig = {
         },
         {
             name:'/caselibrary',
-            path: '/caselibrary',
+            path: '/caselibrary/:id',
             components:{
                 default:caselibrary,
                 // nav:nav

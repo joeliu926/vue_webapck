@@ -42,14 +42,34 @@ export default {
                 }
             }, 'withCredentials');
         },
-        setscroll(parpm){
-            var distop=""+parpm;
+        setscroll(params){
+            var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
             console.log(disTop);
             document.getElementById("right").scrollTop=disTop-265;
-            this.changestyle=parpm;
+            this.changestyle=params;
 
-        },
+        },onscorllevent(params){
+            this.product.forEach(m=>{
+
+                var disTop=document.getElementById(m.productCode).offsetTop;
+
+                var scrolltop = document.getElementById("right").scrollTop;
+
+                if(disTop<scrolltop+300&&disTop>scrolltop-300){
+                    this.changestyle=  m.productCode;
+                }
+
+                console.log('disTop',disTop);
+                console.log('scrolltop',scrolltop);
+                //parentCode
+            })
+        },fCaseDetail(uid){
+            if(!uid){
+                return false;
+            }
+            this.$router.push({path:'/caselibrary/'+uid});
+        }
 
     }
 }
