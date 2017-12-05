@@ -15,6 +15,9 @@
         box-sizing: border-box;
     }
 }
+            .el-tabs__nav-wrap{
+                margin-bottom: -3px;
+            }
             .el-col-18{width: 100%;}
             .waiting-ct{
                 width: 100%;
@@ -72,10 +75,25 @@
                                 color:#666666;
                             }
                         }
-
-
                 }
+                .customer-tb-div{
+                    box-sizing: border-box;
+                    .td-item{
+                        display: inline-block;
+                        width: 14%;
+                        box-sizing: border-box;
+                        padding: 10px 24px;
+                        font-size: 14px;
+                        text-align: center;
+                    }
+                }
+
             }
+        }
+        .customer-pagination-align {
+            text-align: right;
+            border: none;
+            margin: 10px 0;
         }
     }
 
