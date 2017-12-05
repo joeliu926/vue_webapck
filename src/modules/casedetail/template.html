@@ -1,0 +1,270 @@
+<div>
+   <div class="case-info">
+        <!--客户日记-->
+        <div class="caseinfo-top-content">
+            <div class="caseinfo-outer">
+                <div class="caseinfo-inner">
+                    <h6>小姐姐的美丽日记</h6>
+                    <el-row :gutter="24" type="flex" justify="center" align="center">
+                        <el-col :span="4">
+                            <div class="casetop-img" >
+                                <img :src="acaseuserlist.customerLogo" width="120" height="100" >
+                              </div>
+                        </el-col>
+                        <el-col :span="20" justify="space-between" align="" class="border-padding">
+                            <el-row  type="flex" class="">
+                                <el-col :span="2">
+                                    <div>
+                                        <p >{{acaseuserlist.customerName}}</p>
+                                    </div>
+                                </el-col>
+                                <el-col :span="2">
+                                    <div>
+                                        <p>{{acaseuserlist.customerGender|Gender}}</p>
+                                    </div>
+                                </el-col>
+                                <el-col :span="2">
+                                    <div>
+                                        <p>{{acaseuserlist.customerAge}}</p>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                            <el-row :gutter="24" type="flex" justify="space-between" class="border-padding">
+                                <el-col :span="6">
+                                    <div>
+                                        <span>医院</span>
+                                        <p>{{acaseuserlist.hospitalName}}</p>
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div>
+                                        <span>医生</span>
+                                        <p>{{acaseuserlist.doctorName}}</p>
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div>
+                                        <span>项目</span>
+                                        <p>{{acaseuserlist.productName}}</p>
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div>
+                                        <span>手术于</span>
+                                        <p>{{acaseuserlist.operationDate|dateFilter}}</p>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
+        </div>
+        <!--案例详情-->
+        <div class="caseinfo-bottom-content">
+            <el-row  class="info-before">
+
+                <el-col :span="20" type="flex">
+                    <!--案例封面-->
+                    <el-row class="info-cover border-bottom">
+                        <p>案例封面</p>
+                        <el-col :span="24" type="flex" class="cover-img clearfix">
+                            <div class="fl">
+                                <img :src="acaseuserlist.frondFile.url" width="140" height="140" alt="">
+                                <span>before</span>
+                            </div>
+                            <div class="fl">
+                                <img :src="acaseuserlist.backFile.url" width="140" height="140" alt="">
+                                <span>after</span>
+                            </div>
+
+                        </el-col>
+                    </el-row>
+                    <el-row class="caseinfo-before border-bottom" type="flex">
+                        <!--术前-->
+                        <el-col :span="24" type="flex" >
+                            <h6>术前</h6>
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="description">
+                                <span>术前特征 :</span>
+                                <span>眼袋较明显</span>
+                                <span>眼袋较明显</span>
+                                <span>眼袋较明显</span>
+                            </div>
+                            <!--<el-row :gutter="4"  type="flex" justify="space-between" align="center">-->
+
+                            <!--<el-col :span="4" type="flex" class="before-img"  >-->
+                            <!--<div class="caseinfo-before" >-->
+                            <!--<img src="../../common/img/shuqian.png" width="215" height="215" >-->
+                            <!--</div>-->
+                            <!--</el-col>-->
+                            <!--<el-col :span="4" type="flex" class="before-img"  >-->
+                            <!--<div class="caseinfo-before" >-->
+                            <!--<img src="../../common/img/shuqian.png" width="215" height="215" >-->
+                            <!--</div>-->
+                            <!--</el-col>-->
+                            <!--<el-col :span="4" type="flex"  class="before-img" >-->
+                            <!--<div class="caseinfo-before" >-->
+                            <!--<img src="../../common/img/shuqian.png" width="215" height="215">-->
+                            <!--</div>-->
+                            <!--</el-col>-->
+                            <!--<el-col :span="4" type="flex" class="before-img"  >-->
+                            <!--<div class="caseinfo-before" >-->
+
+                            <!--</div>-->
+                            <!--</el-col>-->
+                            <!--<el-col :span="4" type="flex" class="before-img"  >-->
+                            <!--<div class="caseinfo-before" >-->
+
+                            <!--</div>-->
+                            <!--</el-col>-->
+
+
+
+                            <!--</el-row>-->
+
+
+                        </el-col>
+                    </el-row>
+                    <el-row  class="info-after120 border-bottom" type="flex">
+                        <!--术后120天-->
+                        <el-col :span="24" type="flex">
+                            <div class="title clearfix">
+                                <span class="frist fl">术后120天</span>
+                                <span class="second fr active">从最近开始浏览</span>
+                                <span class="three fr">从最早开始浏览</span>
+                            </div>
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                               <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                               <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                               <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <p style="margin-top:10px;">癌症发作，不能及时的来更新日记，可心里还惦记着新氧的日记返现，还有我最最亲爱的小萱美眉的嘱咐。罪恶感慢慢的我还是请求了梁静茹赐予我的勇气和毅力来更新第70天的日记。眼综合手术的恢复已经差不多了，双眼皮完全消肿了，内眼角也没有疤痕增生，提肌后漂亮的大眼睛闪闪发光，虽然做的是网红风格的大眼睛，可是我的辨识度还是很高的哦！</p>
+                            <div class="timeNow">2017-11-23</div>
+                        </el-col>
+                    </el-row>
+                    <el-row class="info-after100 border-bottom">
+                        <!--术后100天-->
+                        <el-col :span="24" >
+                            <div class="title">术后100天</div>
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="showLayer">
+                                        <img src="../../common/img/shuqian.png" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                            <p style="margin-top:10px;">癌症发作，不能及时的来更新日记，可心里还惦记着新氧的日记返现，还有我最最亲爱的小萱美眉的嘱咐。罪恶感慢慢的我还是请求了梁静茹赐予我的勇气和毅力来更新第70天的日记。眼综合手术的恢复已经差不多了，双眼皮完全消肿了，内眼角也没有疤痕增生，提肌后漂亮的大眼睛闪闪发光，虽然做的是网红风格的大眼睛，可是我的辨识度还是很高的哦！</p>
+                            <div class="timeNow">2017-11-23</div>
+
+
+                        </el-col>
+                    </el-row>
+
+                </el-col>
+                <el-col :span="4" type="flex">
+                    <!--广告预留位-->
+                </el-col>
+
+            </el-row>
+        </div>
+
+    </div>
+    <!--案例弹出层-->
+   <div class="case-layer" id="Idiv" v-show='reveal' >
+        <div class="content-box" id="mou_head">
+            <div class="left-box ">
+                <div class="carousel-wrap" id="carousel">
+                    <!--轮播图列表-->
+                    <transition-group tag="ul" class='slide-ul' name="list">
+                        <li v-for="(list,index) in slideList" :key="index" v-show="index===currentIndex">
+                            <a href="#">
+                                <img :src="list.image" >
+                            </a>
+                        </li>
+                    </transition-group>
+                    <!--/*轮播图小焦点位置指示*/-->
+                    <!--<div class="carousel-items">-->
+                        <!--<span v-for="(item,index) in slideList.length" :class="{'active':index===currentIndex}" @click="change(index)"></span>-->
+                    <!--</div>-->
+                    <!--轮播图左右焦点-->
+                    <div class="arrowbox clearfix">
+                        <span class="btn-l el-icon-arrow-left fl" @click="reduce"></span>
+                        <span class="btn-r el-icon-arrow-right fr" @click="add"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right-box">
+                <el-Button class="isclick" nativeType="button" size="small">设置为befor</el-Button>
+                <el-Button nativeType="button" size="small">设置为after</el-Button>
+                <span class="close el-icon-pa-close" @click="closeLayer"></span>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+

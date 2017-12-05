@@ -6,25 +6,87 @@
         <el-row :gutter="24" type="flex" justify="space-between">
 
             <el-col :span="18" type="flex" class="content-left">
-                <el-tabs   type="border-card">
+                <el-tabs class="content-left-border"  type="border-card">
                     <el-tab-pane label="互动">
                         <interact></interact>
                     </el-tab-pane>
                     <el-tab-pane label="客户资料">
                         <info></info>
                     </el-tab-pane>
-             <!--       <el-tab-pane label="会员帐号">
-                        <member></member>
-                    </el-tab-pane>-->
+                    <!--       <el-tab-pane label="会员帐号">
+                               <member></member>
+                           </el-tab-pane>-->
                 </el-tabs>
             </el-col>
 
             <el-col :span="6" type="flex" class="content-right">
-                <el-tabs type="border-card">
+                <!--客源渠道-->
+                <el-tabs type="border-card" class="hearder-top">
                     <el-tab-pane label="客源渠道">
                         <right></right>
                     </el-tab-pane>
                 </el-tabs>
+                <!--备注-->
+                <el-row>
+                    <el-col :span="24" type="flex" class="remarks">
+                        <p class="item-title"><img src="../../common/img/file.png"> 文件(5)</p>
+                        <div class="remark-box">
+                            <div class="remark-item" v-for="">
+                                <p>由 <span>李利</span> 备注于 <span>2017-11-22 下午2:30</span></p>
+                                <p>这个顾客刚打电话说可能会迟到半个小时，希望我们帮他预留个时间</p>
+
+                                <p>备注来源 <span>哈喽助手APP预约</span></p>
+                            </div>
+                            <div class="remark-item">
+                                <p>由 <span>李利</span> 备注于 <span>2017-11-22 下午2:30</span></p>
+                                <p>这个顾客刚打电话说可能会迟到半个小时，希望我们帮他预留个时间</p>
+
+                                <p>备注来源 <span>哈喽助手APP预约</span></p>
+                            </div>
+                            <div class="remark-item">
+                                <p>由 <span>李利</span> 备注于 <span>2017-11-22 下午2:30</span></p>
+                                <p>这个顾客刚打电话说可能会迟到半个小时，希望我们帮他预留个时间</p>
+
+                                <p>备注来源 <span>哈喽助手APP预约</span></p>
+                            </div>
+                        </div>
+                        <p class="show-all">查看全部</p>
+                    </el-col>
+                </el-row>
+
+                <!--上传文件-->
+                <el-row>
+                    <el-col :span="24" type="flex" class="update-file item-border">
+                        <p id="file" class="item-title"><img src="../../common/img/file.png"> 文件(5)</p>
+                        <div class="img-box">
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                            <div class="file-item" v-for="">
+                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            </div>
+                        </div>
+
+                        <p class="show-all">查看全部</p>
+                    </el-col>
+                </el-row>
+                <!--文件-->
+
             </el-col>
         </el-row>
     </div>

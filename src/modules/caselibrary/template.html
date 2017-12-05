@@ -1,0 +1,235 @@
+<div>
+<!-- header部分 -->
+    <div class="nav-content nav-content-gradient">
+        <el-row>
+            <el-col :span="6">
+                <el-col :span="24"><span class="nav-logo">哈罗美云</span></el-col>
+            </el-col>
+            <el-col :span="12">
+                <el-dropdown trigger="click">
+                    <span class="el-dropdown-link nav-select-list"> <!--  @click="fChooseItem" @command="fChooseItem" -->
+                        {{selectedVal}}<i class="el-icon-caret-bottom el-icon--right "></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="诊所知识库">诊所知识库</el-dropdown-item>
+                        <!-- <el-dropdown-item command="客户中心">客户中心</el-dropdown-item> -->
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-col>
+            <el-col :span="6">
+                <el-dropdown trigger="click" class="nav-img-content"><!--  @command="fLoginOut" -->
+                    <div class="nav-select-list">
+                        <img src="../../common/img/user_default.png" class="nav-user-img">
+                    </div>
+                    <el-dropdown-menu slot="dropdown" >
+                        <el-dropdown-item command="loginout">退出</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-col>
+        </el-row>
+    </div>
+    <!-- 二级导航项 -->
+
+    <div class="case-nav">
+        <el-row  type="flex" justify="center" class="nav-row">
+            <el-col :span="6" class="nav-item ">
+                <div class="icon-item active">
+                    <img src="../../common/img/1.png">
+                    <p class="nav-title">项目</p>
+                </div>
+
+            </el-col>
+            <el-col :span="6" class="nav-item ">
+                <div class="icon-item">
+                    <img src="../../common/img/2.png">
+                    <p class="nav-title">医生</p>
+                </div>
+
+            </el-col>
+            <el-col :span="6" class="nav-item ">
+                <div class="icon-item">
+                    <img src="../../common/img/3.png">
+                    <p class="nav-title">医院</p>
+                </div>
+
+            </el-col>
+            <el-col :span="6" class="nav-item ">
+                <div class="icon-item">
+                    <img src="../../common/img/4.png">
+                    <p class="nav-title">市场活动</p>
+                </div>
+
+            </el-col>
+
+        </el-row>
+    </div>
+<!--案例列表-->
+    <div class="case-menu">
+        <div class="case-list">
+            <h6>项目 : 玻尿酸去黑眼圈</h6>
+            <div>
+                <el-row  type="flex" justify="space-between" class="case-items">
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8" type="flex" style="padding:0;" class="case-item">
+                        <div class='item-info'>
+                            <div class="item-top">
+                                <span class='before-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="before">before</span>
+                                </span>
+                                <span class='after-box'>
+                                    <img src="../../common/img/5.jpg"  width="150" height="150" alt="">
+                                    <span class="after">after</span>
+                                </span>
+                            </div>
+                            <div class="item-bottom">
+                                <p class="clearfix">
+                                    <span class="left .fl">案例 : 玻尿酸抗衰</span>
+                                    <span class="right .fr">医生 ：杨宏伟</span>
+                                </p>
+                                <div class="itemName">玻尿酸去黑眼圈</div>
+                                <div class="userifo .clearfix">
+                                    <img src="" class="fl" alt="">
+                                    <span class="fl">张小小</span>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
