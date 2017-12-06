@@ -195,7 +195,20 @@ body{
                          list-style-type: none;
                      }
                  }
+                 .description{
+                     width:100%;
+                     height:20px;
+                     span{
 
+                       display:inline-block;
+                       width:75px;
+                       height:15px;
+                       font-size:14px;
+                     }
+                     span:nth-child(n){
+                       color:#5346ae;
+                     }
+                 }
                  .timeNow{
                      font-size:14px;
                      color:#ccc;

@@ -21,29 +21,10 @@ export default {
                 frondFile:{},
                 backFile:{},
             },
-            // contentList:[],
-            contentListbefore:[],
-            caseFeatureArr:[],
-            contentList130:[],
-            contentList100:[],
+            contentList:[],
             photolist:[],
             zoomPhoto:'',
             imgArr:[],
-            // slideList: [
-            //     {
-            //
-            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3e1335a6-42c4-43cb-b287-4b1b5c3a8c7f"
-            //
-            //     },
-            //     {
-            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/c47b9cb5-aaf7-4248-a055-3460d2468e09"
-            //         //"image": "http://dummyimage.com/1745x492/40b7ea"
-            //     },
-            //     {
-            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3ac8d28f-040e-486c-a145-0d4cf027bec8"
-            //         //"image": "http://dummyimage.com/1745x492/e3c933"
-            //     }
-            // ],
             currentIndex: 0,
             timer: '',
             reveal:false
@@ -98,21 +79,18 @@ export default {
                     if(result.code==0&&result.data){
                         console.log(result.data);
                         _This.acaseuserlist = result.data;
+                        _This.contentList=result.data.contentList;
+                        console.log(_This.contentList);
 
-                        _This.contentListbefore = result.data.contentList[0];
-                        _This.caseFeatureArr=result.data.contentList[0].caseFeature.split(",");
-                        // console.log(_This.caseFeature);
-                        _This.contentList130 = result.data.contentList[1];
-                        _This.contentList100 = result.data.contentList[2];
                         _This.count = result.data.count;
-                        _This.contentList = result.data.contentList;
-                        // console.log(_This.contentList);
+                        // _This.contentList = result.data.contentList;
+                        // // console.log(_This.contentList);
 
                         _This.contentList.forEach(m=>{
-                            console.log(m.files);
+                            // console.log(m.files);
                             _This.photolist = _This.photolist.concat(m.files);
                         });
-                        console.log(_This.photolist);
+                        // console.log(_This.photolist);
 
                     }
                 }
@@ -139,10 +117,17 @@ export default {
             this.currentIndex = index;
         },
         fromBefore(){
-
+            var _This=this;
+           _This.contentList= _This.contentList.sort(function(x, y){
+                console.log(y.definitionDate > x.definitionDate);
+                return y.definitionDate > x.definitionDate;
+            });
         },
         fromNow(){
-
+            var _This=this;
+            _This.contentList= _This.contentList.sort(function(x, y){
+                return x.definitionDate > y.definitionDate?1:-1;
+            });
         },
         //autoPlay() {
         //    this.currentIndex++
