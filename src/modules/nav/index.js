@@ -36,7 +36,7 @@ export default {
                             _this.menusList.push({index:4,id:menusid,name:'案例中心',url:'/case_base'});
                             break;
                         case "triage":
-                            _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage'});
+                            _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage/list'});
                             break;
                     }
                 });
@@ -82,7 +82,7 @@ export default {
                     this.$router.push("/case_base");
                     break;
                 case "分诊中心":
-                    this.$router.push("/triage");
+                    this.$router.push("/triage/list");
                     break;
                 case "咨询台":
                     this.$router.push("/consultdashboard");
