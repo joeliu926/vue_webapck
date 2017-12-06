@@ -18,7 +18,8 @@ export default {
          //cstProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
          routerParam:{},//页面传值路由参数
          oCustomer:{},//咨询客户信息
-         oProductList:[],
+         oProductList:[],//head项目列表
+         oDoctorList:[],//head医生列表
          otheritems:"",
          otherresion:"",
          bookdate:"",
@@ -51,10 +52,11 @@ export default {
        let _This=this;
         _This.fTimer();
         _This.routerParam=this.$route.params;
-        _This.initSocket();
+       // _This.initSocket();
         _This.fGetCustomerData();
        // console.log("this.$route.params--------->",this.$route.params);
         _This. fProductList();
+        _This.fDoctorList();
     },
     watch: {
         routerParam(){
@@ -191,9 +193,33 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                     console.log("product list result--------",result);
+                    // console.log("product list result--------",result);
                     if(result.code==0&&result.data){
                         _This.oProductList=result.data;
+                    }
+
+                }
+            }, 'withCredentials');
+
+        },
+        /**
+         * 获取案例相关的医生列表
+         * @param ename
+         * @returns {boolean}
+         */
+        fDoctorList(){
+            let _This=this;
+            let postData={
+                productCode:0
+            };
+            _.ajax({
+                url: '/caseheader/doctorlist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fDoctorList list result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.oDoctorList=result.data;
                     }
 
                 }
