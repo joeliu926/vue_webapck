@@ -5,7 +5,9 @@ export default {
     },
     data () {
         return {
-
+            isActive:false,
+            hasError:false,
+            isCollapse:true,
             acaseuserlist:{
                 id:"",
                 doctorName:"",
@@ -118,16 +120,24 @@ export default {
         },
         fromBefore(){
             var _This=this;
+
            _This.contentList= _This.contentList.sort(function(x, y){
                 console.log(y.definitionDate > x.definitionDate);
                 return y.definitionDate > x.definitionDate;
             });
+
+
         },
         fromNow(){
             var _This=this;
+            _This.isActive=true;
+
+
             _This.contentList= _This.contentList.sort(function(x, y){
-                return x.definitionDate > y.definitionDate?1:-1;
+                return x.definitionDate > y.definitionDate;
             });
+            console.log(_This.contentList);
+
         },
         //autoPlay() {
         //    this.currentIndex++

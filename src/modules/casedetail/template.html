@@ -107,9 +107,13 @@
                         <!--术后120天-->
                         <el-col :span="24" type="flex">
                             <div class="title clearfix">
-                                <span class="frist fl">{{item.title}}</span>
-                                <span class="second fr active" v-if=''  @click="fromBefore()" style="cursor:pointer">从最近开始浏览</span>
-                                <span class="three fr" v-if='' @click="fromNow()" style="cursor:pointer">从最早开始浏览</span>
+                                <span>{{item.title}}</span>
+                                <!--<el-radio-group v-model="isCollapse" v-show='index==1' style="margin-bottom: 0px; border-clolr:transparent; float:right;">-->
+                                    <!--<el-radio-button :label="false" @click="fromBefore()">从最近开始浏览</el-radio-button>-->
+                                    <!--<el-radio-button :label="true" @click="fromNow()">从最早开始浏览</el-radio-button>-->
+                                <!--</el-radio-group>-->
+                                <span :class="isActive?'active':''"  v-show='index==1'  @click="fromBefore()" style="cursor:pointer">从最近开始浏览</span>
+                               <span :class="isActive?'active':''" v-show='index==1'  @click="fromNow()" style="cursor:pointer" >从最早开始浏览</span>{{index}}
                             </div>
                             <ul class="clearfix">
                                 <li v-for="(file,index) in item.files">
