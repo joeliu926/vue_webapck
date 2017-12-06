@@ -2,7 +2,7 @@
 <script src="./index.js">
 
 </script>
-<style lang="scss">
+<style lang="scss" type="es6">
 
 html, body{
  background-color:#FFF;
@@ -119,7 +119,7 @@ body{
             }
             /*术前信息*/
             .caseinfo-before{
-                margin-right:24px;
+                /*margin-right:24px;*/
 
                 h6{
                    font-size:16px;
@@ -144,7 +144,7 @@ body{
                       height:15px;
                       font-size:14px;
                     }
-                    span:nth-child(n+2){
+                    span:nth-child(n){
                       color:#5346ae;
                     }
                 }

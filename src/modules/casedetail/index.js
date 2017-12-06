@@ -21,25 +21,29 @@ export default {
                 frondFile:{},
                 backFile:{},
             },
-            contentList:[],
-
-
-
-            slideList: [
-                {
-                    //"image": "http://dummyimage.com/1745x492/f1d65b"
-                    "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3e1335a6-42c4-43cb-b287-4b1b5c3a8c7f"
-
-                },
-                {
-                    "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/c47b9cb5-aaf7-4248-a055-3460d2468e09"
-                    //"image": "http://dummyimage.com/1745x492/40b7ea"
-                },
-                {
-                    "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3ac8d28f-040e-486c-a145-0d4cf027bec8"
-                    //"image": "http://dummyimage.com/1745x492/e3c933"
-                }
-            ],
+            // contentList:[],
+            contentListbefore:[],
+            caseFeatureArr:[],
+            contentList130:[],
+            contentList100:[],
+            photolist:[],
+            zoomPhoto:'',
+            imgArr:[],
+            // slideList: [
+            //     {
+            //
+            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3e1335a6-42c4-43cb-b287-4b1b5c3a8c7f"
+            //
+            //     },
+            //     {
+            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/c47b9cb5-aaf7-4248-a055-3460d2468e09"
+            //         //"image": "http://dummyimage.com/1745x492/40b7ea"
+            //     },
+            //     {
+            //         "image": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3ac8d28f-040e-486c-a145-0d4cf027bec8"
+            //         //"image": "http://dummyimage.com/1745x492/e3c933"
+            //     }
+            // ],
             currentIndex: 0,
             timer: '',
             reveal:false
@@ -61,6 +65,7 @@ export default {
                 return  _.date2String(new Date(input),"yyyy-MM-dd");
             }
         },
+        
         Gender:function(input){
             if(input&&input=="1"){
                 return "男";
@@ -84,7 +89,7 @@ export default {
             console.log('0000000000000000')
             var _This = this;
             _.ajax({
-                url: '/case/casedetail',
+                url: '/case_base/casedetail',
                 method: 'POST',
                 data: {caseid:1} ,
                 success: function (result) {
@@ -93,64 +98,69 @@ export default {
                     if(result.code==0&&result.data){
                         console.log(result.data);
                         _This.acaseuserlist = result.data;
-                        _This.contentList = result.data.contentList;
+
+                        _This.contentListbefore = result.data.contentList[0];
+                        _This.caseFeatureArr=result.data.contentList[0].caseFeature.split(",");
+                        // console.log(_This.caseFeature);
+                        _This.contentList130 = result.data.contentList[1];
+                        _This.contentList100 = result.data.contentList[2];
                         _This.count = result.data.count;
+                        _This.contentList = result.data.contentList;
+                        // console.log(_This.contentList);
 
-
+                        _This.contentList.forEach(m=>{
+                            console.log(m.files);
+                            _This.photolist = _This.photolist.concat(m.files);
+                        });
+                        console.log(_This.photolist);
 
                     }
                 }
             }, 'withCredentials');
         },
         add(){
-            this.currentIndex++;
-            if (this.currentIndex > this.slideList.length - 1) {
-                this.currentIndex = 0;
+            let plength=this.photolist.length;
+            this.currentIndex+=1;
+            if(this.currentIndex>plength-1){
+                this.currentIndex=0;
             }
+            this.zoomPhoto=this.photolist[this.currentIndex].url;
         },
+        
         reduce(){
-            this.currentIndex--;
-            if (this.currentIndex = 0) {
-                this.currentIndex = this.slideList.length - 1;
+            let plength=this.photolist.length;
+            this.currentIndex-=1;
+            if(this.currentIndex<0){
+                this.currentIndex=plength-1;
             }
+            this.zoomPhoto=this.photolist[this.currentIndex].url;
         },
         change(index) {
             this.currentIndex = index;
         },
+        fromBefore(){
+
+        },
+        fromNow(){
+
+        },
         //autoPlay() {
         //    this.currentIndex++
-        //    if (this.currentIndex > this.slideList.length - 1) {
+        //    if (this.currentIndex > this.photolist.length - 1) {
         //        this.currentIndex = 0
         //    }
         //},
         closeLayer(){
             this.reveal=false;
         },
-        showLayer(){
+        showLayer(fileName){
             this.reveal=true;
-            var _This = this;
-            var postData={
-                pageNo: _This.pageNo,
-                pageSize:  _This.pageSize,
-                /*     startDate: _This.startDate,
-                 endDate: _This.endDate,*/
-                fieldValue:_This.fieldValue,
-                searchField:_This.searchField
-
-            };
-            //_.ajax({
-            //    url: '',
-            //    method: 'GET',
-            //    data: postData,
-            //    success: function (result) {
-            //        if(result.code==0&&result.data){
-            //            _This.aCustomerlist = result.data.list;
-            //            _This.count = result.data.count;
-            //        }
-            //
-            //
-            //    }
-            //}, 'withCredentials');
+            this.photolist.forEach((item,index)=>{
+                if(fileName==item.name){
+                    this.zoomPhoto = item.url;
+                    this.currentIndex=index;
+                }
+            })
         },
 
     }

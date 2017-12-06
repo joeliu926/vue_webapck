@@ -44,64 +44,62 @@
         <div class="customer-block-content">
             <el-table
                     :data="aCustomerlist"
-                    style="width: 100%"
-                    :default-sort = "{prop: 'date', order: 'descending'}"
-            >
+                    style="width: 100%">
                 <el-table-column
-                        prop="id"
+                        prop="customerName"
                         label="姓名"
                         width="80">
                 </el-table-column>
                 <el-table-column
-                        prop="createTime"
+                        prop="appointmentTime"
                         label="面诊时间"
                         width="200">
                     <template slot-scope="scope" style="text-align: right;">
-                        <p>{{scope.row.createTime|dateFilter}}</p>
+                        <p>{{scope.row.appointmentTime|dateFilter}}</p>
                     </template>
                 </el-table-column>
                 <el-table-column
                         prop="phoneNum"
                         label="电话"
                         width="190">
-                    <template slot-scope="scope" style="text-align: right;">
-                        <p>13552557558</p>
-                    </template>
                 </el-table-column>
                 <el-table-column
-                        prop="customerName"
+                        prop="projectNames"
                         label="咨询项目"
                         width="190">
-                    <template slot-scope="scope" style="">
-                        <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"></p>
+                    <template slot-scope="scope" style="text-align: right;">
+                        <p>{{scope.row.projectNames|array2String}}</p>
                     </template>
                 </el-table-column>
                 <el-table-column
-                        prop="wechatNum"
+                        prop="consultName"
                         label="网络咨询师">
+
                 </el-table-column>
                 <el-table-column
-                        prop="wechatNum"
+                        prop="sceneConsultantsName"
                         label="分配现场咨询师">
-                </el-table-column>
 
+                </el-table-column>
                 <el-table-column label="" width="100">
-                    <template slot-scope="scope"  style="">
-                        <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
-                    </template>
-                </el-table-column>
 
+                </el-table-column>
             </el-table>
+
         </div>
 
         <!--分页-->
         <div class="customer-block-content customer-pagination-align">
             <el-pagination
-                    @current-change="handleCurrentChange"
                     layout="prev, pager, next"
-                    :page-size="pageSize"
-                    :total="count">
+                    :total="1000">
             </el-pagination>
+            <!--<el-pagination-->
+                    <!--@current-change="handleCurrentChange"-->
+                    <!--layout="prev, pager, next"-->
+                    <!--:page-size="pageSize"-->
+                    <!--:total="count">-->
+            <!--</el-pagination>-->
         </div>
     </div>
 </div>
