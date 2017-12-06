@@ -3,21 +3,16 @@
         <div class="layout-ct b-s">
             <div class="lay-row">
                 <div class="lay-left b-s" ><label class="scop-name">項目</label></div>
-                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">結束咨詢</label></div>
+                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">结束咨询</label></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
-                    <label class="lay-item h-item" data-itemCode="2" :style="{background:[isCurrentProject=='2'?'#9083ED':'']}"  @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item"data-itemCode="3" :style="{background:[isCurrentProject=='3'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="4" :style="{background:[isCurrentProject=='4'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="5" :style="{background:[isCurrentProject=='5'?'#9083ED':'']}" @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item" data-itemCode="6" :style="{background:[isCurrentProject=='6'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="7" :style="{background:[isCurrentProject=='7'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="8" :style="{background:[isCurrentProject=='8'?'#9083ED':'']}" @click="fChooseItems"> 项目一脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="9" :style="{background:[isCurrentProject=='9'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="10" :style="{background:[isCurrentProject=='10'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="11" :style="{background:[isCurrentProject=='11'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="12" :style="{background:[isCurrentProject=='12'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="13" :style="{background:[isCurrentProject=='13'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
+                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems(1)" >全部</label>
+                    <template v-for="oneItem in oProductList">
+                        <template v-for="twoItem in oneItem.productList">
+                            <template v-for="threeItem in twoItem.productList">
+                                <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject==threeItem.productCode?'#9083ED':'']}"  @click="fChooseItems(threeItem.productCode)">{{threeItem.productName}}</label>
+                            </template>
+                        </template>
+                    </template>
                 </div>
             </div>
             <div class="lay-row">

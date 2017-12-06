@@ -18,6 +18,7 @@ export default {
          //cstProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
          routerParam:{},//页面传值路由参数
          oCustomer:{},//咨询客户信息
+         oProductList:[],
          otheritems:"",
          otherresion:"",
          bookdate:"",
@@ -29,9 +30,10 @@ export default {
          dCurrentDate:"",
          sTimer:"00:00:00",
          dTimer:0,
-         imgdata: [{id:'0',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'}
-             ,{id:'1',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
-             ,{id:'2',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+         imgdata: [{id:'0',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'},
+             {id:'1',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'},
+             {id:'2',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'}
+
          ],
          playBeforeUrl:'',
          playAfterUrl:'',
@@ -49,10 +51,10 @@ export default {
        let _This=this;
         _This.fTimer();
         _This.routerParam=this.$route.params;
-       // console.log("options--------->",this.$route.params);
-        this.initSocket();
+        _This.initSocket();
         _This.fGetCustomerData();
-        console.log("this.$route.params--------->",this.$route.params);
+       // console.log("this.$route.params--------->",this.$route.params);
+        _This. fProductList();
     },
     watch: {
         routerParam(){
@@ -116,12 +118,14 @@ export default {
             let _This=this;
             _This.isSelectItem=false;
         },
-        fChooseItems(e){//选择项目
-
+        fChooseItems(eCode){//选择项目
+             console.log("ecode========>",eCode);
             let _This=this;
-             let dataSet=e.target.dataset;
-            console.log(dataSet);
-            _This.isCurrentProject= dataSet.itemcode;
+            // let dataSet=e.target.dataset;
+            //console.log(dataSet);
+            //_This.isCurrentProject= dataSet.itemcode;
+
+            _This.isCurrentProject=eCode;
             _This.isSelectItem=true;
 
         },
@@ -168,6 +172,30 @@ export default {
                       _This.aAutoSelect=result.data;
                     }
                     //console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
+                }
+            }, 'withCredentials');
+
+        },
+        /**
+         * 获取项目列表
+         * @param ename
+         * @returns {boolean}
+         */
+        fProductList(){
+            let _This=this;
+            let postData={
+                all:0
+            };
+            _.ajax({
+                url: '/product/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                     console.log("product list result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.oProductList=result.data;
+                    }
+
                 }
             }, 'withCredentials');
 
@@ -221,7 +249,7 @@ export default {
          */
         fSubmitEndData(){
 
-            return false;
+            return false; ////****************************移除**********************//
             let _This=this;
             let postData={
                 id: _This.routerParam.diagid,
