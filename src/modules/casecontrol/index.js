@@ -9,28 +9,31 @@ export default {
          faceDiagnoseRemarks:"",//原因（复诊和放弃时使用）
          faceDiagnoseDate:"",//面诊时间（复诊使用）
          faceDiagnoseProduct:"",//面诊成功项目（成功时使用）
-         isConScreanItem:false,
-         isCurrentProject:"0",
-         isDocProject:"0",
-         isSelectItem:false,
-         dialogVisible:false,
-         activeStatus:"0",
-         cstProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
-         routerParam:{},
+         isConScreanItem:false, //连接设备弹出判断
+         isCurrentProject:"0", //选择项目索引判断
+         isDocProject:"0", //选择对应医生索引判断
+         isSelectItem:false, //播放页面图片显示
+         dialogVisible:false, //结束咨询弹出框
+         activeStatus:"0", //关闭时选择tab索引
+         //cstProjects: ['鼻子整形', '脸部整形', '下巴整形', '其他整形','哈哈哈哈'],
+         routerParam:{},//页面传值路由参数
+         oCustomer:{},//咨询客户信息
+         oProductList:[],
          otheritems:"",
          otherresion:"",
          bookdate:"",
          consultItems:[],
          customerName:"",
-         customerinfoP:false,
-         gender:0,
+         isCustomerinfo:false,//客户信息窗口
+         gender:"1",
          birthday:"",
          dCurrentDate:"",
          sTimer:"00:00:00",
          dTimer:0,
-         imgdata: [{id:'0',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'}
-             ,{id:'1',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
-             ,{id:'2',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+         imgdata: [{id:'0',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'},
+             {id:'1',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'},
+             {id:'2',beforeUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d',afterUrl:'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d'}
+
          ],
          playBeforeUrl:'',
          playAfterUrl:'',
@@ -48,8 +51,16 @@ export default {
        let _This=this;
         _This.fTimer();
         _This.routerParam=this.$route.params;
-        console.log("options--------->",this.$route.params);
-        this.initSocket();
+        _This.initSocket();
+        _This.fGetCustomerData();
+       // console.log("this.$route.params--------->",this.$route.params);
+        _This. fProductList();
+    },
+    watch: {
+        routerParam(){
+            //console.log("Array.prototype.slice.call(arguments)----->",Array.prototype.slice.call(arguments));
+            //this.routerParam.projects=[{productCode: "3002", productName: "开外眼角"}];
+        }
     },
     filters:{
         dateFilter:function(input) {
@@ -107,12 +118,14 @@ export default {
             let _This=this;
             _This.isSelectItem=false;
         },
-        fChooseItems(e){//选择项目
-
+        fChooseItems(eCode){//选择项目
+             console.log("ecode========>",eCode);
             let _This=this;
-             let dataSet=e.target.dataset;
-            console.log(dataSet);
-            _This.isCurrentProject= dataSet.itemcode;
+            // let dataSet=e.target.dataset;
+            //console.log(dataSet);
+            //_This.isCurrentProject= dataSet.itemcode;
+
+            _This.isCurrentProject=eCode;
             _This.isSelectItem=true;
 
         },
@@ -144,7 +157,7 @@ export default {
         fChangeAutoSelect(ename){
          if(ename.trim()==""){
              return false;
-         }
+          }
             let _This=this;
             let postData={
                 productName:ename
@@ -154,19 +167,89 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("product result--------",result);
+                   // console.log("product result--------",result);
                     if(result.code==0&&result.data){
                       _This.aAutoSelect=result.data;
                     }
-                    console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
+                    //console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
                 }
             }, 'withCredentials');
 
         },
         /**
+         * 获取项目列表
+         * @param ename
+         * @returns {boolean}
+         */
+        fProductList(){
+            let _This=this;
+            let postData={
+                all:0
+            };
+            _.ajax({
+                url: '/product/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                     console.log("product list result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.oProductList=result.data;
+                    }
+
+                }
+            }, 'withCredentials');
+
+        },
+        /**
+         * 下拉框选中
+         */
+        fSelectProjecChange(eCode){
+           let _This=this;
+           let routerParam=_This.routerParam;
+            _This.routerParam.projects=_This.routerParam.projects||[];
+
+           // this.routerParam.projects= this.routerParam.projects.concat(this.routerParam.projects);
+           _This.aAutoSelect.forEach(item=>{
+               if(item.productCode==eCode){
+                   let projecrItem={
+                       projectCode:item.productCode,
+                       projectName:item.productName
+                   };
+                   console.log("projecrItem=======>",projecrItem);
+                   let result= _This.fExistProject(_This.routerParam.projects,projecrItem,"projectCode");
+                   if(result<0){
+                       _This.routerParam.projects.push(projecrItem);
+                       _This.consultItems.push(eCode);
+                       _This.faceDiagnoseProduct=_This.consultItems.join(",");
+                   }else {
+                       _This.$message.error('存在该项目');
+                   }
+
+                   console.log("this.routerParam.projects---->",_This.routerParam.projects);
+
+               }
+           });
+
+
+           // _This.routerParam={over:"sdfgsdfgsfdg"};
+        },
+        fExistProject(aObj,oItem,keyName,callback){
+            aObj=aObj||[];
+            let result=-1;
+            aObj.forEach(item=>{
+                if(item[keyName]==oItem[keyName]){
+                    result=1;
+                }
+            });
+           // callback(result);
+            return result;
+        },
+        /**
          * 结束咨询提交数据
          */
         fSubmitEndData(){
+
+            return false; ////****************************移除**********************//
             let _This=this;
             let postData={
                 id: _This.routerParam.diagid,
@@ -189,22 +272,88 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /**
+         * 获取面诊客户资料
+         */
+        fGetCustomerData(){
+            let _This=this;
+            let postData={
+                appointmentId: _This.routerParam.appointmentId,
+                customerId:_This.routerParam.customerId
+            };
+            console.log("postData======>",postData);
+            _.ajax({
+                url: '/faceDiagnose/getCustomerData',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fGetCustomerData result--------",result);
+                    if(result.code==0&&result.data){
+                        result.data.gender=result.data.gender+"";
+                       _This.oCustomer=result.data;
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 更新添加客户信息
+         * @param cid
+         */
+        fSaveCustomer(cid){
+            let _This=this;
+            let postData=_This.oCustomer;
+            console.log("save user info=====>",cid);//oCustomer
+            _.ajax({
+                url: '/customers/update',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fSaveCustomer result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.$message({
+                            message: '提交成功',
+                            type: 'success'
+                        });
+                    }else {
+                        _This.$message.error('更新失败');
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+
+        /**
+         * 关闭结束窗口
+         */
         fCloseEnddialog(){
             let _This=this;
             _This.dialogVisible = false;
         },
+        /**
+         * 关闭客户信息窗口
+         */
         fCloseCustomerInfo(){
-            this.customerinfoP=true;
+            this.isCustomerinfo=true;
         },
+        /**
+         * 打开客户信息窗口
+         */
         fOpenCustomerInfo(){
-            this.customerinfoP=false;
+            this.isCustomerinfo=false;
         },
+        /**
+         * 打开连接设备窗口
+         */
         fConnectDevice(){
             this.isConScreanItem=true;
             this.$nextTick(function () {
                 this.inputConCode({keyCode:0},-1);
             })
         },
+        /**
+         * 关闭连接设备窗口
+         */
         fCloseConBox(){
             this.isConScreanItem=false;
             this.conCodeList.forEach(m=>{m.val ='';});

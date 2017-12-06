@@ -51,6 +51,17 @@ _This.fGetEndList();
                 result.push(item.projectName);
             });
             return result.join("、");
+        },
+        faceDiagnoseResultFilter:function (input) {
+          let result="";
+            if(input==0){
+                result= "成功";
+            }else if(input==1){
+                result= "复诊";
+            }else  if(input==2){
+                result="放弃";
+            }
+            return result;
         }
     },
     methods: {
@@ -80,7 +91,7 @@ _This.fGetEndList();
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("waiting result--------",result);
+                    //console.log("waiting result--------",result);
 
                     if(result.code==0&&result.data){
                         result.data=result.data.sort(function (itemOne,itemTwo) {

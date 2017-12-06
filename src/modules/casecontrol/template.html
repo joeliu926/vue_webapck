@@ -3,21 +3,16 @@
         <div class="layout-ct b-s">
             <div class="lay-row">
                 <div class="lay-left b-s" ><label class="scop-name">項目</label></div>
-                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">結束咨詢</label></div>
+                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">结束咨询</label></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
-                    <label class="lay-item h-item" data-itemCode="2" :style="{background:[isCurrentProject=='2'?'#9083ED':'']}"  @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item"data-itemCode="3" :style="{background:[isCurrentProject=='3'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="4" :style="{background:[isCurrentProject=='4'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="5" :style="{background:[isCurrentProject=='5'?'#9083ED':'']}" @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item" data-itemCode="6" :style="{background:[isCurrentProject=='6'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="7" :style="{background:[isCurrentProject=='7'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="8" :style="{background:[isCurrentProject=='8'?'#9083ED':'']}" @click="fChooseItems"> 项目一脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="9" :style="{background:[isCurrentProject=='9'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="10" :style="{background:[isCurrentProject=='10'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="11" :style="{background:[isCurrentProject=='11'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="12" :style="{background:[isCurrentProject=='12'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="13" :style="{background:[isCurrentProject=='13'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
+                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems(1)" >全部</label>
+                    <template v-for="oneItem in oProductList">
+                        <template v-for="twoItem in oneItem.productList">
+                            <template v-for="threeItem in twoItem.productList">
+                                <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject==threeItem.productCode?'#9083ED':'']}"  @click="fChooseItems(threeItem.productCode)">{{threeItem.productName}}</label>
+                            </template>
+                        </template>
+                    </template>
                 </div>
             </div>
             <div class="lay-row">
@@ -198,12 +193,13 @@
                                    :remote="true"
                                    reserve-keyword
                                    placeholder="请输入关键词"
+                                   @change="fSelectProjecChange"
                                    :remote-method="fChangeAutoSelect">
                                <el-option
                                        v-for="item in aAutoSelect"
                                        :key="item.productCode"
                                        :label="item.productName"
-                                       :value="item.productName">
+                                       :value="item.productCode">
                                </el-option>
                            </el-select>
                        </template>
@@ -247,36 +243,40 @@
     <!--*******************结束咨询 end**********************-->
     <!--*******************客户信息 start**********************-->
     <div @click="fOpenCustomerInfo" class="customer-open"><i class="el-icon-pa-angle-double-right"></i><br/> 客户资料</span></div>
-    <div :class="[!customerinfoP?'mask':'']"></div>
-    <div class="customer-ct b-s" :style="{left:[!customerinfoP?'0px':'-320px']}">
+    <div :class="[!isCustomerinfo?'mask':'']"></div>
+    <div class="customer-ct b-s" :style="{left:[!isCustomerinfo?'0px':'-320px']}">
       <div class="customer-db-arr" @click="fCloseCustomerInfo"> <i class="el-icon-pa-angle-double-left"></i></div>
         <div class="c-ct">
             <p class="title">客户信息</p>
             <div class="info-content">
                 <div class="info-item">
-                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="customerName"></el-input>
+                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="oCustomer.name"></el-input>
                </div>
                 <div class="info-item">
-                    <label class="lb-name">性别</label> <el-radio v-model="gender" label="1">男</el-radio>
-                    <el-radio v-model="gender" label="2">女</el-radio>
+                    <label class="lb-name">性别</label> <el-radio v-model="oCustomer.gender" label="1">男</el-radio>
+                    <el-radio v-model="oCustomer.gender" label="2">女</el-radio>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">来源</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">来源</label>
+                    <el-input placeholder="请输入" class="cust-input" v-model="oCustomer.source"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.job"></el-input>
                 </div>
                 <div class="info-item">
                     <label class="lb-name">生日</label> <el-date-picker
-                        v-model="birthday"
+                        v-model="oCustomer.birthday"
                         type="date"
                         placeholder="客户生日"></el-date-picker>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">电话</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">电话</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.phoneNum"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.wechatNum"></el-input>
+                </div>
+                <div class="info-item" style="text-align: right;">
+                    <label class="lb-name"></label><el-button class="save-btn"  @click="fSaveCustomer(oCustomer.id)">保存</el-button>
                 </div>
             </div>
         </div>
@@ -284,19 +284,33 @@
             <p class="title">意向资料</p>
             <div class="info-content">
                 <div class="info-item">
-                    <label class="lb-name">咨询项目</label><div class="info-trend"><label>硅胶隆鼻</label><label>硅胶隆鼻</label><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">咨询项目</label>
+                      <div class="info-trend">
+                          <label class="lit-project" v-for="item in oCustomer.consultProducts">{{item.projectName}}</label>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">术前咨询</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">术前咨询</label>
+                      <div class="info-trend">
+                          <template v-for="item in oCustomer.beforePictures">
+                              <img class="lit-img" :src="item" height="20" width="20" />
+                          </template>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">喜欢案例</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">喜欢案例</label><div class="info-trend">
+                      <label v-for="item in oCustomer.likeCases">{{item.caseName}}</label></div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">沟通记录</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">沟通记录</label>
+                      <div class="info-trend">
+                          <template v-for="item in oCustomer.consultFileList">
+                              <img class="lit-img"  :src="item" height="20" width="20" />
+                          </template>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">备注</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">备注</label><div class="info-trend"><label>{{oCustomer.appointmentRemarks}}</label></div>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ export default {
                             _this.menusList.push({index:0,id:menusid,name:'首页',url:'/'});
                             break;
                         case "customer":
-                            _this.menusList.push({index:1,id:menusid,name:'客户中心',url:'/customers'});
+                            _this.menusList.push({index:1,id:menusid,name:'联系人中心',url:'/customers'});
                             break;
                         case "consultdashboard":
                             _this.menusList.push({index:2,id:menusid,name:'咨询台',url:'/consultdashboard'});
@@ -75,7 +75,7 @@ export default {
                 case "首页":
                     this.$router.push("/");
                     break;
-                case "客户中心":
+                case "联系人中心":
                     this.$router.push("/customers");
                     break;
                 case "案例中心":
@@ -105,7 +105,7 @@ export default {
         },
         setDefaultRoute(){
             if(this.$route.path.indexOf('customer')>=0){
-                this.selectedVal = "客户中心";
+                this.selectedVal = "联系人中心";
             }else if(this.$route.path.indexOf('consultdashboard')>=0){
                 this.selectedVal = "咨询台";
 

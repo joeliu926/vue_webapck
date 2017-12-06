@@ -80,11 +80,16 @@
 
         .control-head{
             background-color: #17182B;
-            padding: 24px;
+            box-sizing: border-box;
+            padding: 24px 24px 0 24px;
+            max-height:20%;
+            width: 102%;
+            overflow-y: scroll;
             .scop-name{
                 padding: 0 20px;
                 border-left: 3px solid #9083ED;
                 color: #9083ED;
+                box-sizing: border-box;
             }
             .h-item:hover{
                 background: #9083ED;
@@ -621,7 +626,8 @@
         .customer-open{
             position: absolute;
             background: #9083ED;
-            top: 220px;
+         /*   top: 220px;*/
+            top:22%;
             width: 14px;
             padding:8px 10px;
             color: #ffffff;
@@ -647,7 +653,8 @@
             width:320px;
             position: absolute;
             background: #ffffff;
-            top: 220px;
+           /* top: 220px;*/
+            top:22%;
             padding: 12px;
             transition: left 1s;
             z-index: 1001;
@@ -678,22 +685,39 @@
                         display: inline-block;
                         font-size: 14px;
                         color: #666666;
-                        width: 176px;
+                        width: 170px;
+                        word-break: break-all;
+                        .lit-img{
+                            margin-right: 10px;
+                            cursor: pointer;
+                        }
+                        .lit-project{
+                            background-color: #EFEDFF;
+                            color: #B6B0EA;
+                            border-radius: 10px;
+                            padding: 2px 10px;
+                        }
                     }
                     .lb-name{
-
+                        vertical-align: top;
                         color: #666666;
                         width: 65px;
                         display: inline-block;
                     }
-                    .cust-input{
+                    .cust-input,.el-input{
                         display: inline-block;
                         width: 166px;
+                        vertical-align: top;
                     }
                     .el-input__inner{
                         border-top: none;
                         border-left: none;
                         border-right: none;
+                    }
+                    .save-btn{
+                        background:#9083ED;
+                        color: #ffffff;
+                        border-color:#9083ED;
                     }
                 }
 
