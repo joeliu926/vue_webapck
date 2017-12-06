@@ -678,22 +678,39 @@
                         display: inline-block;
                         font-size: 14px;
                         color: #666666;
-                        width: 176px;
+                        width: 170px;
+                        word-break: break-all;
+                        .lit-img{
+                            margin-right: 10px;
+                            cursor: pointer;
+                        }
+                        .lit-project{
+                            background-color: #EFEDFF;
+                            color: #B6B0EA;
+                            border-radius: 10px;
+                            padding: 2px 10px;
+                        }
                     }
                     .lb-name{
-
+                        vertical-align: top;
                         color: #666666;
                         width: 65px;
                         display: inline-block;
                     }
-                    .cust-input{
+                    .cust-input,.el-input{
                         display: inline-block;
                         width: 166px;
+                        vertical-align: top;
                     }
                     .el-input__inner{
                         border-top: none;
                         border-left: none;
                         border-right: none;
+                    }
+                    .save-btn{
+                        background:#9083ED;
+                        color: #ffffff;
+                        border-color:#9083ED;
                     }
                 }
 

@@ -64,7 +64,7 @@
                                     </el-table-column>
                                     <el-table-column
                                             prop="faceDiagnoseDate"
-                                            label="约面时间"
+                                            label="面诊时间"
                                             width="200">
                                         <template slot-scope="scope" style="text-align: right;">
                                             <p>{{scope.row.faceDiagnoseDate|dateFilter("yyyy-MM-dd hh:mm")}}</p>
@@ -90,6 +90,14 @@
                                             prop="netConsultantsName"
                                             width="200"
                                             label="网络咨询师">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="faceDiagnoseResult"
+                                            width="200"
+                                            label="结果">
+                                        <template slot-scope="scope" style="text-align: right;">
+                                            <p>{{scope.row.faceDiagnoseResult|faceDiagnoseResultFilter}}</p>
+                                        </template>
                                     </el-table-column>
                                     <el-table-column
                                             prop="faceDiagnoseRemarks"
