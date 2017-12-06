@@ -30,7 +30,6 @@ export default {
             this.alertWaring = false;
             this.alertPhone = false;
             this.alertPassword = false;
-
         },
         fLogin(){
             let _this  = this;
@@ -47,8 +46,6 @@ export default {
                 return false;
             }
             let clientKey = new rsaService({b: 512});
-
-
             _.ajax({
                 url: '/api/getPublicKey',
                 method: 'POST',
@@ -66,7 +63,7 @@ export default {
                             },
                             success: function (res) {
                                 if(res.code==0) {
-                                    window.location.href="/";
+                                    _this.$router.push("/");
                                 }else {
                                     _this.alertWaring = true;
                                     _this.alertPhone = false;
@@ -74,14 +71,9 @@ export default {
                                 }
                             }
                         },'withCredentials');
-
-
                     }
                 }
             },'withCredentials');
-
-
-
         },
         fMessageBox(msg) {
             this.$alert(msg, '提示', {

@@ -69,6 +69,7 @@ export default {
 
     },
     methods: {
+        //查询日期
         fSearchData(){
             let _This = this;
             let uid= _This.$route.params.id;
@@ -99,6 +100,7 @@ export default {
                 }
             }, 'withCredentials');
         },
+        //咨询记录
         fConsultRecord(){
             let _This = this;
             let uid= _This.$route.params.id;

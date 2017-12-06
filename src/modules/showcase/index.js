@@ -1,6 +1,7 @@
 /**
  * Created by JoeLiu on 2017-9-15.
  */
+var constant = require('../../common/utils/constants');
 export default {
     data () {
         return{
@@ -9,6 +10,7 @@ export default {
             currentTime:_.date2String(new Date(),'hh:mm'),
             timeCount:'',
             changing:true,
+            caseName:'',
             conCodeDisplay:[0,0,0,0,0,0],
             picObjF1:{class:'show-case fade-in', visible:true,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'},
             picObjF2:{class:'show-case fade-none',visible:false,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
@@ -20,12 +22,13 @@ export default {
         //Time Count
         let startTime = new Date();
         setInterval(function () {
-            _this.currentTime = _.date2String(new Date(),'hh:mm');
+            let partTime =  new Date().getHours()>12?'下午':'上午';
+            _this.currentTime = partTime+_.date2String(new Date(),'hh:mm');
             let passTime =new Date(new Date()-startTime-28800000);
             _this.timeCount =  _.date2String(passTime,'hh:mm:ss');
         },1000);
 
-        var ws = new WebSocket("ws://localhost:8053/tv");
+        var ws = new WebSocket(`${constant.wsReqUrl}tv`);
 
         //Connection to server opened
         ws.onopen = function (e) {
@@ -64,6 +67,7 @@ export default {
                     _this.tvState ='error';
                     break;
             }
+            
         }
         ws.onclose = function (e) {
             _this.tvState = 'noconnect';
@@ -77,6 +81,7 @@ export default {
     methods: {
         changeimages(params){
             this.changing =true;
+            this.caseName = params.caseName;
             let _this =this;
             if(this.picObjF1.visible){
                 this.picObjF2.class ='show-case fade-in';
@@ -96,7 +101,7 @@ export default {
             }
             setTimeout(function () {
              _this.changing =false;
-             },1000);
+             },1000);           
         }
     }
 }

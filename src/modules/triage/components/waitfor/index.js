@@ -2,8 +2,15 @@ export default {
     components: {},
     data () {
         return {
+            count: 0,
+            first: 1,
+            last: 1,
+            prev: 1,
+            next: 1,
             pageNo: 1,
             pageSize: 15,
+            status:1,
+            repage:3,
             searchField: "name",
             fieldValue:"",
             startDate: "",
@@ -14,13 +21,15 @@ export default {
             customerBlock: "顾客",
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
-            count: 0,
-            aCustomerlist: []
+
+            aCustomerlist: [],
+
         }
 
     },
     created() {
-        this.searchData();
+        this.ready();
+        // this.searchData();
     },
     mounted(){
 
@@ -31,16 +40,50 @@ export default {
     filters:{
         dateFilter:function (input) {
             if(input&&input!=""){
-                return  _.date2String(new Date(input),"yyyy-MM-dd hh:mm:ss");
+                return  _.date2String(new Date(input),"yyyy-MM-dd ");//hh:mm:ss
             }
         },
         phoneFilter:function (input) {
             if(input&&input!=""){
                 return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
             }
+        },
+        array2String:function(input){
+            if(input&&input!=""){
+                return  input.join("");
+            }
         }
+
     },
     methods: {
+        //
+        ready(){
+            console.log("=============000000000000================");
+
+             var _This = this;
+             _.ajax({
+                 url: '/triage/list',
+                 method: "POST",
+                 data: {
+                     pageNo:_This.pageNo,
+                     pageSize:_This.pageSize,
+                     status:_This.status,
+                     repage:_This.repage
+                 } ,
+                 success: function (result) {
+                     console.log(result);
+
+                     if(result.code==0&&result.data){
+                         console.log(result.data);
+                         _This.aCustomerlist = result.data.list;
+                         console.log(_This.aCustomerlist);
+
+
+                     }
+                 }
+             }, 'withCredentials');
+
+        },
         fSearchData(e){
 
             this.searchData();
@@ -67,39 +110,39 @@ export default {
             this.pageNo=pnum;
             this.searchData();
         },
-        searchData(){
-            var _This = this;
-            var postData={
-                pageNo: _This.pageNo,
-                pageSize:  _This.pageSize,
-                /*     startDate: _This.startDate,
-                 endDate: _This.endDate,*/
-                fieldValue:_This.fieldValue,
-                searchField:_This.searchField
-
-            };
-
-
-
-            postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
-            postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
-            if(_This.fieldValue==""){
-                postData.searchField="";
-            }
-            _.ajax({
-                url: '/customers/customerlist',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    if(result.code==0&&result.data){
-                        _This.aCustomerlist = result.data.list;
-                        _This.count = result.data.count;
-                    }
-
-
-                }
-            }, 'withCredentials');
-        },
+        // searchData(){
+        //     var _This = this;
+        //     var postData={
+        //         pageNo: _This.pageNo,
+        //         pageSize:  _This.pageSize,
+        //         /*     startDate: _This.startDate,
+        //          endDate: _This.endDate,*/
+        //         fieldValue:_This.fieldValue,
+        //         searchField:_This.searchField
+        //
+        //     };
+        //
+        //
+        //
+        //     postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
+        //     postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
+        //     if(_This.fieldValue==""){
+        //         postData.searchField="";
+        //     }
+        //     _.ajax({
+        //         url: '/customers/customerlist',
+        //         method: 'POST',
+        //         data: postData,
+        //         success: function (result) {
+        //             if(result.code==0&&result.data){
+        //                 _This.aCustomerlist = result.data.list;
+        //                 _This.count = result.data.count;
+        //             }
+        //
+        //
+        //         }
+        //     }, 'withCredentials');
+        // },
         fCustomerDetail(uid){
             if(!uid){
                 return false;

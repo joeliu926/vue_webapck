@@ -11,7 +11,7 @@ export default {
             name: "",
             phoneNum: "13455555555",
             wechatNum: "wechat",
-            customerBlock: "顾客",
+            customerBlock: "联系人",
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             count: 0,

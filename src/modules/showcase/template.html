@@ -3,7 +3,8 @@
     <div v-show="tvState=='playing'" class="showcase-content">
          <div class="hold_place">
              <div  class="show-case-title">
-                 <span v-show="!changing">{{currentTime}}</span>
+                 <span v-show="!changing" class="float-left">{{currentTime}}</span>
+                 <span  v-show="!changing" class="show-case-name">{{caseName}}</span>
                  <span v-show="!changing" class="float-right">{{timeCount}}</span>
              </div>
              <div  :class="picObjF2.class">
@@ -24,7 +25,6 @@
                     <span  v-show="!changing" >after</span>
                  </div>
              </div>
-
          </div>
     </div>
     <div class="showcase-wait">

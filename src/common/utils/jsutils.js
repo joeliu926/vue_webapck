@@ -2,13 +2,13 @@
  * Created by JoeLiu on 2017-9-27.
  */
 import CONSTANT from './constants.js'
-let cacheNavMenus=[];
-let userResources=[];
+var cacheNavMenus=[];
+var userResources=[];
 
-let menuvue=null;
-let _currentProjectCode=null;
-let _currentProjectOwner=null;
-let _currentUserInfo=null;
+var menuvue=null;
+var _currentProjectCode=null;
+var _currentProjectOwner=null;
+var _currentUserInfo=null;
 /**
  * ajax封装
  * @param opts

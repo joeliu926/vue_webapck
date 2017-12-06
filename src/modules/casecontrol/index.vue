@@ -25,7 +25,7 @@
         width: 65px;
         text-align: center;
         border-radius: 0 8px 8px 0;
-        background-color: rgba(0, 0,0,0.6);
+        background-color:rgba(43, 48, 93, 0.48);
         color: #ffffff;
         font-size: 14px;
     }
@@ -33,7 +33,7 @@
         left: 50%;
     }
 .common-pos-middle{
-    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;background-color: #111429;box-sizing: border-box;
+    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;box-sizing: border-box;
 }
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
@@ -80,11 +80,16 @@
 
         .control-head{
             background-color: #17182B;
-            padding: 24px;
+            box-sizing: border-box;
+            padding: 24px 24px 0 24px;
+            max-height:20%;
+            width: 102%;
+            overflow-y: scroll;
             .scop-name{
                 padding: 0 20px;
                 border-left: 3px solid #9083ED;
                 color: #9083ED;
+                box-sizing: border-box;
             }
             .h-item:hover{
                 background: #9083ED;
@@ -134,7 +139,6 @@
                     color: #ffffff;
                     font-size: 14px;
                 }
-               /*overflow:hidden;*/
                 .s-img-ct{
                     width:100%;
                     height:100%;
@@ -148,20 +152,126 @@
             }
 
         }
+        .control-screan-wating{
+            width:100%;
+            height:100%;
+            position: relative;
+            text-align:center;
+            overflow:hidden;
+            .hold_circle {
+
+                left:25%;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                background-image: url(./../../common/img/tv/con-circle.png);
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                -webkit-transition-property: -webkit-transform;
+                -webkit-transition-duration: 1s;
+                -moz-transition-property: -moz-transform;
+                -moz-transition-duration: 1s;
+                -webkit-animation: rotate 3s linear infinite;
+                -moz-animation: rotate 3s linear infinite;
+                -o-animation: rotate 3s linear infinite;
+                animation: rotate 3s linear infinite;
+            }
+            @-webkit-keyframes rotate {
+                from {
+                    -webkit-transform: rotate(0deg)
+                }
+                to {
+                    -webkit-transform: rotate(360deg)
+                }
+            }
+
+            @-moz-keyframes rotate {
+                from {
+                    -moz-transform: rotate(0deg)
+                }
+                to {
+                    -moz-transform: rotate(359deg)
+                }
+            }
+
+            @-o-keyframes rotate {
+                from {
+                    -o-transform: rotate(0deg)
+                }
+                to {
+                    -o-transform: rotate(359deg)
+                }
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg)
+                }
+                to {
+                    transform: rotate(359deg)
+                }
+            }
+            .hold_play {
+                left:25%;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            .play {
+                width: 10%;
+                border-radius: 10px;
+            }
+            }
+        }
+
+
         /*********连接大屏 start***********/
         .pop-connect{
             z-index: 1001;
             .cn-middle{
                 height:100px;position: relative;top:50%;margin-top:-50px;box-sizing: border-box;padding: 0 20px;
+                width:600px;
                 .cn-close{
-                    height: 30px;width: 30px;position: absolute;right: -7px;top:-25px;cursor: pointer;
+                    height: 30px;width: 30px;position: absolute;right: 0px;top:-25px;cursor: pointer;
                 }
-            .cn-item{
-                margin: 0 3px;height: 100px;width: 100px;background: #ffffff;display: inline-block;box-sizing: border-box;
-                .cn-input{
-                    height:100px;width: 100px;text-align: center;border: none;font-size: 30px;
+                .co-state{
+                    text-align: center;
+                    img {
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 10px;
+
+                    }
+                    span{
+                        color:#fff;
+                        line-height: 30px;
+                        margin-left: 10px;;
+                    }
                 }
-            }
+
+            .cn-item {
+                margin: 0 6px;
+                height: 80px;
+                width: 80px;
+                display: inline-block;
+                box-sizing: border-box;
+                    .cn-input {
+                        height: 80px;
+                        width: 80px;
+                        text-align: center;
+                        border: none;
+                        font-size: 30px;
+                        border-radius: 5px;
+              /*          background: transparent;
+                        border: 1px solid #fff;
+                        color:#fff;*/
+                    }
+                }
             }
         }
         /*********连接大屏 end***********/
@@ -302,9 +412,11 @@
             }
             .sel-before{
                 left: 0;
+                background-color: rgba(43, 48, 93, 0.48);
             }
             .sel-after{
                 left: 50%;
+                background-color: rgba(43, 48, 93, 0.48);
             }
         }
             .select-content{
@@ -514,7 +626,8 @@
         .customer-open{
             position: absolute;
             background: #9083ED;
-            top: 220px;
+         /*   top: 220px;*/
+            top:22%;
             width: 14px;
             padding:8px 10px;
             color: #ffffff;
@@ -540,7 +653,8 @@
             width:320px;
             position: absolute;
             background: #ffffff;
-            top: 220px;
+           /* top: 220px;*/
+            top:22%;
             padding: 12px;
             transition: left 1s;
             z-index: 1001;
@@ -571,22 +685,39 @@
                         display: inline-block;
                         font-size: 14px;
                         color: #666666;
-                        width: 176px;
+                        width: 170px;
+                        word-break: break-all;
+                        .lit-img{
+                            margin-right: 10px;
+                            cursor: pointer;
+                        }
+                        .lit-project{
+                            background-color: #EFEDFF;
+                            color: #B6B0EA;
+                            border-radius: 10px;
+                            padding: 2px 10px;
+                        }
                     }
                     .lb-name{
-
+                        vertical-align: top;
                         color: #666666;
                         width: 65px;
                         display: inline-block;
                     }
-                    .cust-input{
+                    .cust-input,.el-input{
                         display: inline-block;
                         width: 166px;
+                        vertical-align: top;
                     }
                     .el-input__inner{
                         border-top: none;
                         border-left: none;
                         border-right: none;
+                    }
+                    .save-btn{
+                        background:#9083ED;
+                        color: #ffffff;
+                        border-color:#9083ED;
                     }
                 }
 

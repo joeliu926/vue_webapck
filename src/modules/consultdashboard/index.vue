@@ -15,6 +15,9 @@
         box-sizing: border-box;
     }
 }
+            .el-tabs__nav-wrap{
+                margin-bottom: -3px;
+            }
             .el-col-18{width: 100%;}
             .waiting-ct{
                 width: 100%;
@@ -58,6 +61,14 @@
                                 vertical-align: middle;
                                 cursor: pointer;
                             }
+                            .start-cst-btn{
+                                background: #9083ED;
+                                color: #ffffff;
+                                border-color: #9083ED;
+                            }
+                            .start-cst-btn:hover{
+                                border-color: #9083ED;
+                            }
                         }
                         .day-ct{
                             border-top:1px solid #eaeaea;
@@ -72,10 +83,14 @@
                                 color:#666666;
                             }
                         }
-
-
                 }
+
             }
+        }
+        .customer-pagination-align {
+            text-align: right;
+            border: none;
+            margin: 10px 0;
         }
     }
 

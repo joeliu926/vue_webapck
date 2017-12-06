@@ -5,5 +5,6 @@ module.exports ={
     pageSize: 15,
     host:"http://localhost:8023", //"http://localhost:8023",  https://27478500.qcloud.la/node
     fileDownload:"",
-    fileUpload:""
+    fileUpload:"",
+    wsReqUrl:"ws://localhost:8053/"
 };
