@@ -171,14 +171,19 @@ body{
                         line-height:20px;
                         text-align:center;
                     }
-                    span.frist{
+                    span:nth-child(1){
+                        float:left;
                         border-radius:8px;
                         background:#f76120 ;
                         color:#FFF   ;
                     }
-                    span.second,
-                    span.three{
-                        margin-left:15px;
+                    span:nth-child(2),
+                    span:nth-child(3){
+                        float:right;
+                        margin-left:1px;
+                        border-color:transparent;
+
+
                         width:112px;
                         color:#666;
                     }
