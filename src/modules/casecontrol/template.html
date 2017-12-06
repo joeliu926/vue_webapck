@@ -3,22 +3,16 @@
         <div class="layout-ct b-s">
             <div class="lay-row">
                 <div class="lay-left b-s" ><label class="scop-name">項目</label></div>
-                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">結束咨詢</label></div>
+                <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">结束咨询</label></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
-
-                    <label class="lay-item h-item" data-itemCode="2" :style="{background:[isCurrentProject=='2'?'#9083ED':'']}"  @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item"data-itemCode="3" :style="{background:[isCurrentProject=='3'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="4" :style="{background:[isCurrentProject=='4'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="5" :style="{background:[isCurrentProject=='5'?'#9083ED':'']}" @click="fChooseItems">项目一</label>
-                    <label class="lay-item h-item" data-itemCode="6" :style="{background:[isCurrentProject=='6'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="7" :style="{background:[isCurrentProject=='7'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="8" :style="{background:[isCurrentProject=='8'?'#9083ED':'']}" @click="fChooseItems"> 项目一脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="9" :style="{background:[isCurrentProject=='9'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="10" :style="{background:[isCurrentProject=='10'?'#9083ED':'']}" @click="fChooseItems">项目三</label>
-                    <label class="lay-item h-item" data-itemCode="11" :style="{background:[isCurrentProject=='11'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
-                    <label class="lay-item h-item" data-itemCode="12" :style="{background:[isCurrentProject=='12'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item h-item" data-itemCode="13" :style="{background:[isCurrentProject=='13'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
+                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems(1)" >全部</label>
+                    <template v-for="oneItem in oProductList">
+                        <template v-for="twoItem in oneItem.productList">
+                            <template v-for="threeItem in twoItem.productList">
+                                <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject==threeItem.productCode?'#9083ED':'']}"  @click="fChooseItems(threeItem.productCode)">{{threeItem.productName}}</label>
+                            </template>
+                        </template>
+                    </template>
                 </div>
             </div>
             <div class="lay-row">
@@ -34,11 +28,7 @@
         </div>
     </div>
 
-
-
-
-   <div class="control-screan" v-show="isSelectItem" :style="{display:[!isSelectItem?'':'none']}">
-
+   <div class="control-screan" v-show="playingState=='playing'" >
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -46,15 +36,21 @@
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                <img class="img-s" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="playBeforeUrl">
+                <img class="img-s" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em;"  :src="playAfterUrl">
                 <div class="s-ba-cm s-before">before</div>
                 <div class="s-ba-cm s-after">after</div>
             </div>
         </div>
     </div>
 
-
+    <div class="control-screan-wating" v-show="playingState=='waiting'" >
+        <div   class="hold_circle">
+        </div>
+        <div    class="hold_play">
+            <img class="play" src="./../../common/img/tv/con-play.png">
+        </div>
+    </div>
 
 
    <div class="control-foot b-s" :style="{display:[!isSelectItem?'':'none']}">
@@ -96,9 +92,9 @@
                     <div class="b-s lay-items img-ct">
                         <div class="b-s img-i-ct"  v-for="item in imgdata">
                             <div class="img-item b-s">
-                                <div class="b-ba-img-ct" style="">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                                    <img class="img-l" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="">
+                                    <img class="img-l"  :src="item.beforeUrl">
+                                    <img class="img-l" :src="item.afterUrl">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
                                 </div>
@@ -112,17 +108,28 @@
         </div>
     </div>
 
-
     <!--**********************连接设备弹出框 start**************************-->
     <div :class="[isConScreanItem?'mask':'']"></div>
       <div class="common-pos-middle pop-connect" :style="{display:[isConScreanItem?'':'none']}">
-        <div class="cn-middle" style="">
+          <div class="cn-middle" v-show="conState=='connected'" >
+              <div class="co-state">
+                  <img src="./../../common/img/tv/con-ok.png">
+                  <span>连接成功！</span>
+              </div>
+          </div>
+          <div class="cn-middle" v-show="conState=='connecteerror'" >
+              <div class="co-state">
+                  <img src="./../../common/img/tv/con-error.png">
+                  <span>{{conErrorMsg}}</span>
+              </div>
+          </div>
+        <div class="cn-middle" v-show="conState=='noconnected'">
             <div class="cn-close" @click="fCloseConBox"><img src="../../common/img/i-cl-close.png"></div>
-            <div class="cn-item"  v-for="item in conCodeList" style=""><input :id="'codeid_'+item.id" type="text" @keyup="inputConCode(item.id)" v-model="item.val" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  v-for="item in conCodeList" style="">
+                <input :id="'codeid_'+item.id" type="text" @keyup="inputConCode($event,item.id)" v-model="item.val" maxlength="1"  class="cn-input"></div>
         </div>
       </div>
     <!--**********************连接设备弹出框 start**************************-->
-
 
     <!--**********************選擇案例框 start**************************-->
     <div style="clear: both;height: 0; display: none;"></div>
@@ -145,7 +152,7 @@
     <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item in imgdata">
-                <div class="sel-img-item des-img-item " onclick="">
+                <div class="sel-img-item des-img-item ">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
                     <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>
@@ -186,12 +193,13 @@
                                    :remote="true"
                                    reserve-keyword
                                    placeholder="请输入关键词"
+                                   @change="fSelectProjecChange"
                                    :remote-method="fChangeAutoSelect">
                                <el-option
                                        v-for="item in aAutoSelect"
                                        :key="item.productCode"
                                        :label="item.productName"
-                                       :value="item.productName">
+                                       :value="item.productCode">
                                </el-option>
                            </el-select>
                        </template>
@@ -235,36 +243,40 @@
     <!--*******************结束咨询 end**********************-->
     <!--*******************客户信息 start**********************-->
     <div @click="fOpenCustomerInfo" class="customer-open"><i class="el-icon-pa-angle-double-right"></i><br/> 客户资料</span></div>
-    <div :class="[!customerinfoP?'mask':'']"></div>
-    <div class="customer-ct b-s" :style="{left:[!customerinfoP?'0px':'-320px']}">
+    <div :class="[!isCustomerinfo?'mask':'']"></div>
+    <div class="customer-ct b-s" :style="{left:[!isCustomerinfo?'0px':'-320px']}">
       <div class="customer-db-arr" @click="fCloseCustomerInfo"> <i class="el-icon-pa-angle-double-left"></i></div>
         <div class="c-ct">
             <p class="title">客户信息</p>
             <div class="info-content">
                 <div class="info-item">
-                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="customerName"></el-input>
+                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="oCustomer.name"></el-input>
                </div>
                 <div class="info-item">
-                    <label class="lb-name">性别</label> <el-radio v-model="gender" label="1">男</el-radio>
-                    <el-radio v-model="gender" label="2">女</el-radio>
+                    <label class="lb-name">性别</label> <el-radio v-model="oCustomer.gender" label="1">男</el-radio>
+                    <el-radio v-model="oCustomer.gender" label="2">女</el-radio>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">来源</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">来源</label>
+                    <el-input placeholder="请输入" class="cust-input" v-model="oCustomer.source"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.job"></el-input>
                 </div>
                 <div class="info-item">
                     <label class="lb-name">生日</label> <el-date-picker
-                        v-model="birthday"
+                        v-model="oCustomer.birthday"
                         type="date"
                         placeholder="客户生日"></el-date-picker>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">电话</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">电话</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.phoneNum"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="customerName"></el-input>
+                    <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.wechatNum"></el-input>
+                </div>
+                <div class="info-item" style="text-align: right;">
+                    <label class="lb-name"></label><el-button class="save-btn"  @click="fSaveCustomer(oCustomer.id)">保存</el-button>
                 </div>
             </div>
         </div>
@@ -272,19 +284,33 @@
             <p class="title">意向资料</p>
             <div class="info-content">
                 <div class="info-item">
-                    <label class="lb-name">咨询项目</label><div class="info-trend"><label>硅胶隆鼻</label><label>硅胶隆鼻</label><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">咨询项目</label>
+                      <div class="info-trend">
+                          <label class="lit-project" v-for="item in oCustomer.consultProducts">{{item.projectName}}</label>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">术前咨询</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">术前咨询</label>
+                      <div class="info-trend">
+                          <template v-for="item in oCustomer.beforePictures">
+                              <img class="lit-img" :src="item" height="20" width="20" />
+                          </template>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">喜欢案例</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">喜欢案例</label><div class="info-trend">
+                      <label v-for="item in oCustomer.likeCases">{{item.caseName}}</label></div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">沟通记录</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">沟通记录</label>
+                      <div class="info-trend">
+                          <template v-for="item in oCustomer.consultFileList">
+                              <img class="lit-img"  :src="item" height="20" width="20" />
+                          </template>
+                      </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">备注</label><div class="info-trend"><label>硅胶隆鼻</label></div>
+                    <label class="lb-name">备注</label><div class="info-trend"><label>{{oCustomer.appointmentRemarks}}</label></div>
                 </div>
             </div>
         </div>
