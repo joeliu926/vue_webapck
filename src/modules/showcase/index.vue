@@ -141,7 +141,7 @@
                     }
                 }
                 .sky {
-                    height: 320px;
+                    height: 220px;
                     position: absolute;
                     right:0px;
                     left:0px;

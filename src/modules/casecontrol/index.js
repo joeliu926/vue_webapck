@@ -433,6 +433,7 @@ export default {
         playCase(params){
                 this.playBeforeUrl = params.beforeUrl;
                 this.playAfterUrl = params.afterUrl;
+                //{"type":"closed","content":{"code":1234,"sid":"aaa"}}
                 let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
                 this.webSocket.send(JSON.stringify(caseObj));
                 this.playingState = 'playing';
