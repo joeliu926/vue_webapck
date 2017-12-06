@@ -4,85 +4,45 @@ export default {
     components: {},
     data () {
         return {
-            selectedVal:'诊所知识库'
+            msg:0,
+           caselist:[]
         };
     }
      ,
      created() {
-
+        this.getcaselist()
      },
-    // mounted(){
-    //     this.setDefaultRoute();
-    // },
+    mounted(){
+
+    },
      destroyed() {
 
      },
-    // methods: {
-    //     goback(){
-    //         window.history.back();
-    //         //this.$router.push("/customers");
-    //     },
-    //     gohome(){
-    //         this.$router.push("/");
-    //     },
-    //     incustomers(){
-    //         this.$router.push("/customers");
-    //     },
-    //     intest(){
-    //         this.$router.push("/test");
-    //     },
-    //     inhome(){
-    //         this.$router.push("/home");
-    //     },
-    //     fChooseItem(cmd){
-    //         //this.selectedVal = cmd;
+     methods: {
+         getcaselist(){
+             let _This = this;
+             let uid= _This.$route.params.id;
+             if(!uid){
+                 _This.$router.push('/case_base');
+             }
+             let postData = {
+                 id: uid
+             };
+             _.ajax({
+                 url: '/case_base/caselibrary',
+                 method: 'POST',
+                 data: postData,
 
-
-    //         switch(cmd){
-    //             case "首页":
-    //                 this.$router.push("/");
-    //                 break;
-    //             case "客户中心":
-    //                 this.$router.push("/customers");
-    //                 break;
-    //             case "案例中心":
-    //                 this.$router.push("/customers");
-    //                 break;
-    //             case "咨询中心":
-    //                 this.$router.push("/customers");
-    //                 break;
-    //         }
-    //     },
-    //     fLoginOut(cmd){
-    //         let _This=this;
-    //         console.log("----click----");
-    //         console.log(cmd);
-    //         console.log(_.ajax);
-    //         if (cmd == "loginout") {
-    //             _.ajax({
-    //                 url: '/user/loginout/entry',
-    //                 method: 'POST',
-    //                 data: {},
-    //                 success: function (result) {
-    //                     _This.$router.push("/login");
-    //                 }
-    //             }, 'withCredentials');
-    //         }
-
-    //     },
-    //     setDefaultRoute(){
-    //         if(this.$route.path.indexOf('customer')>=0){
-    //             this.selectedVal = "客户中心";
-
-    //         }else{
-    //             this.selectedVal = "首页";
-    //         }
-    //     }
-    // },
-    // watch: {
-    //     $route(){
-    //        this.setDefaultRoute();
-
-    //     }
-    // }
+                 success: function (result) {
+                     console.log('caselibrayrresult.data',result);
+                     if (result.code == 0 && result.data) {
+                         _This.caselist =JSON.parse(JSON.stringify(result.data)) ;
+                         console.log('_This.caselist',_This.caselist);
+                     }else {
+                         //_This.$router.push('/customers');
+                     }
+                 }
+             }, 'withCredentials');
+         },
+}
 }

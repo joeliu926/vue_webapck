@@ -4,67 +4,29 @@
 </script>
 
 <style lang="sass">
-    html,body{
-             background-color: #f7f7f7;
-         }
+    .case-top{
+        text-align:center;
+        background-color: #7084f3;
+        line-height: 60px;
+        height: 136px;
+        color: white;
+        box-sizing: border-box;
+        .case-top-demo{
+            box-sizing:border-box;
+            width:60px;
+            margin-top:24px;
+            margin-left: 33.3%;
+                height:112px;
+                font-size:14px;
 
-    .nav-content{
-         line-height: 60px;
-         height: 60px;
-         color: white;
-         box-sizing: border-box;
-         padding: 0 30px;
-        .el-col:first-child{
-            text-align: left;
-        }
-        .el-col:last-child{
-            text-align: right;
-        }
-        .el-col:nth-child(2){
-            text-align: center;
-        }
-        .el-dropdown-link{
-            color: white;
-            font-size: 16px;
-        }
-        .nav-logo{
-          margin-left: 30px;
-        }
-        .nav-logo:before{
-            content: url("../../common/img/logo.png");
-            position: relative;
-            top: 5px;
-            right: 10px;
-        }
-        .nav-select-list{
-            cursor: pointer;
-        }
+                    .top-img{
+                        width:60px;height:60px
+                    }
     }
-    .nav-user-img{
-        height: 40px;
-        width: 40px;
     }
-    .nav-img-content{
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
-        float: right;
-        border: 1px solid #eaeaea;
-        position: relative;
-        top:10px;
-    }
-    .nav-content-gradient{
-        background: -moz-linear-gradient(left, #4962D4 0%, #4F3CCA 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4962D4), color-stop(100%,#4F3CCA));
-        background: -webkit-linear-gradient(top, #4962D4 0%,#4F3CCA 100%);
-        background: -o-linear-gradient(left, #4962D4 0%,#4F3CCA 100%);
-        background: -ms-linear-gradient(left, #4962D4 0%,#4F3CCA 100%);
-        background: linear-gradient(to right,#4962D4 0%,#4F3CCA 100%);
-    }
-
 
     .case-nav{
-        background-color: #534CE7;
+        background-color: #7084F3;
 
         border: none;
         height: 134px;
@@ -150,7 +112,7 @@
 
                       .item-top{
                          width:100%;
-                         height:150px;
+                         height:215px;
                          display:flex;
                             span{
                                 flex:1;
@@ -192,6 +154,7 @@
                          width:100%;
                          padding:10px;
                          height:148px;
+                         margin-top: 13px;
 
                          p{
                             font-size:16px;

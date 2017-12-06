@@ -109,7 +109,7 @@ var routerConfig = {
             path: '/caselibrary/:id',
             components:{
                 default:caselibrary,
-                // nav:nav
+                 nav:nav
             }
         },
         {

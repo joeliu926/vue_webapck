@@ -33,7 +33,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('result.data',result);
+                    //console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
@@ -46,7 +46,7 @@ export default {
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
             console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-265;
+            document.getElementById("right").scrollTop=disTop-256;
             this.changestyle=params;
 
         },onscorllevent(params){
@@ -56,7 +56,7 @@ export default {
 
                 var scrolltop = document.getElementById("right").scrollTop;
 
-                if(disTop<scrolltop+300&&disTop>scrolltop-300){
+                if(disTop<scrolltop+350&&disTop>scrolltop-350){
                     this.changestyle=  m.productCode;
                 }
 
