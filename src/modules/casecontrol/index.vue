@@ -25,7 +25,7 @@
         width: 65px;
         text-align: center;
         border-radius: 0 8px 8px 0;
-        background-color: rgba(0, 0,0,0.6);
+        background-color:rgba(43, 48, 93, 0.48);
         color: #ffffff;
         font-size: 14px;
     }
@@ -134,7 +134,6 @@
                     color: #ffffff;
                     font-size: 14px;
                 }
-               /*overflow:hidden;*/
                 .s-img-ct{
                     width:100%;
                     height:100%;
@@ -148,6 +147,84 @@
             }
 
         }
+        .control-screan-wating{
+            width:100%;
+            height:100%;
+            position: relative;
+            text-align:center;
+            overflow:hidden;
+            .hold_circle {
+
+                left:25%;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                background-image: url(./../../common/img/tv/con-circle.png);
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                -webkit-transition-property: -webkit-transform;
+                -webkit-transition-duration: 1s;
+                -moz-transition-property: -moz-transform;
+                -moz-transition-duration: 1s;
+                -webkit-animation: rotate 3s linear infinite;
+                -moz-animation: rotate 3s linear infinite;
+                -o-animation: rotate 3s linear infinite;
+                animation: rotate 3s linear infinite;
+            }
+            @-webkit-keyframes rotate {
+                from {
+                    -webkit-transform: rotate(0deg)
+                }
+                to {
+                    -webkit-transform: rotate(360deg)
+                }
+            }
+
+            @-moz-keyframes rotate {
+                from {
+                    -moz-transform: rotate(0deg)
+                }
+                to {
+                    -moz-transform: rotate(359deg)
+                }
+            }
+
+            @-o-keyframes rotate {
+                from {
+                    -o-transform: rotate(0deg)
+                }
+                to {
+                    -o-transform: rotate(359deg)
+                }
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg)
+                }
+                to {
+                    transform: rotate(359deg)
+                }
+            }
+            .hold_play {
+                left:25%;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            .play {
+                width: 10%;
+                border-radius: 10px;
+            }
+            }
+        }
+
+
         /*********连接大屏 start***********/
         .pop-connect{
             z-index: 1001;
@@ -157,6 +234,21 @@
                 .cn-close{
                     height: 30px;width: 30px;position: absolute;right: 0px;top:-25px;cursor: pointer;
                 }
+                .co-state{
+                    text-align: center;
+                    img {
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 10px;
+
+                    }
+                    span{
+                        color:#fff;
+                        line-height: 30px;
+                        margin-left: 10px;;
+                    }
+                }
+
             .cn-item {
                 margin: 0 6px;
                 height: 80px;
@@ -315,9 +407,11 @@
             }
             .sel-before{
                 left: 0;
+                background-color: rgba(43, 48, 93, 0.48);
             }
             .sel-after{
                 left: 50%;
+                background-color: rgba(43, 48, 93, 0.48);
             }
         }
             .select-content{

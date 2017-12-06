@@ -6,7 +6,6 @@
                 <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">結束咨詢</label></div>
                 <div class="lay-items">
                     <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems" >项目一</label>
-
                     <label class="lay-item h-item" data-itemCode="2" :style="{background:[isCurrentProject=='2'?'#9083ED':'']}"  @click="fChooseItems">项目一</label>
                     <label class="lay-item h-item"data-itemCode="3" :style="{background:[isCurrentProject=='3'?'#9083ED':'']}" @click="fChooseItems">项目二</label>
                     <label class="lay-item h-item" data-itemCode="4" :style="{background:[isCurrentProject=='4'?'#9083ED':'']}" @click="fChooseItems">项目三脸部整形玻尿酸玻尿酸</label>
@@ -34,7 +33,7 @@
         </div>
     </div>
 
-   <div class="control-screan" v-show="isSelectItem" :style="{display:[!isSelectItem?'':'none']}">
+   <div class="control-screan" v-show="playingState=='playing'" >
         <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
@@ -42,15 +41,21 @@
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
-                <img class="img-s" :src="playBeforeUrl">
-                <img class="img-s" :src="playAfterUrl">
+                <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="playBeforeUrl">
+                <img class="img-s" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em;"  :src="playAfterUrl">
                 <div class="s-ba-cm s-before">before</div>
                 <div class="s-ba-cm s-after">after</div>
             </div>
         </div>
     </div>
 
-
+    <div class="control-screan-wating" v-show="playingState=='waiting'" >
+        <div   class="hold_circle">
+        </div>
+        <div    class="hold_play">
+            <img class="play" src="./../../common/img/tv/con-play.png">
+        </div>
+    </div>
 
 
    <div class="control-foot b-s" :style="{display:[!isSelectItem?'':'none']}">
@@ -93,7 +98,7 @@
                         <div class="b-s img-i-ct"  v-for="item in imgdata">
                             <div class="img-item b-s">
                                 <div class="b-ba-img-ct" @click="playCase(item)" style="">
-                                    <img class="img-l" :src="item.beforeUrl">
+                                    <img class="img-l"  :src="item.beforeUrl">
                                     <img class="img-l" :src="item.afterUrl">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
@@ -108,18 +113,28 @@
         </div>
     </div>
 
-
     <!--**********************连接设备弹出框 start**************************-->
     <div :class="[isConScreanItem?'mask':'']"></div>
       <div class="common-pos-middle pop-connect" :style="{display:[isConScreanItem?'':'none']}">
-        <div class="cn-middle" style="">
+          <div class="cn-middle" v-show="conState=='connected'" >
+              <div class="co-state">
+                  <img src="./../../common/img/tv/con-ok.png">
+                  <span>连接成功！</span>
+              </div>
+          </div>
+          <div class="cn-middle" v-show="conState=='connecteerror'" >
+              <div class="co-state">
+                  <img src="./../../common/img/tv/con-error.png">
+                  <span>{{conErrorMsg}}</span>
+              </div>
+          </div>
+        <div class="cn-middle" v-show="conState=='noconnected'">
             <div class="cn-close" @click="fCloseConBox"><img src="../../common/img/i-cl-close.png"></div>
             <div class="cn-item"  v-for="item in conCodeList" style="">
-                <input :id="'codeid_'+item.id" type="number" @keyup="inputConCode($event,item.id)" oninput="if(value.length>1)value=value.slice(0,1)" v-model="item.val" maxlength="1"  class="cn-input"></div>
+                <input :id="'codeid_'+item.id" type="text" @keyup="inputConCode($event,item.id)" v-model="item.val" maxlength="1"  class="cn-input"></div>
         </div>
       </div>
     <!--**********************连接设备弹出框 start**************************-->
-
 
     <!--**********************選擇案例框 start**************************-->
     <div style="clear: both;height: 0; display: none;"></div>

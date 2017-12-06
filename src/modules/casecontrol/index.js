@@ -38,20 +38,17 @@ export default {
          conCode:0,
          conSid:'',
          webSocket:null,
-         conCodeList:[{id:0,val:''},{id:1,val:''},{id:2,val:''},{id:3,val:''},{id:4,val:''},{id:5,val:''}]
+         conCodeList:[{id:0,val:''},{id:1,val:''},{id:2,val:''},{id:3,val:''},{id:4,val:''},{id:5,val:''}],
+         conState:'noconnected',
+         playingState:'waiting',
+         conErrorMsg:''
      }
     },
     created() {
        let _This=this;
-        //_This.fTimer();
-
-
-
+        _This.fTimer();
         _This.routerParam=this.$route.params;
-
         console.log("options--------->",this.$route.params);
-
-
         this.initSocket();
     },
     filters:{
@@ -88,6 +85,7 @@ export default {
     },
     methods: {
         fTimer(){
+            let _This = this;
             setInterval(function(){
                 _This.dCurrentDate=new Date();
                 let temTimer=_This.dTimer;
@@ -210,6 +208,7 @@ export default {
         fCloseConBox(){
             this.isConScreanItem=false;
             this.conCodeList.forEach(m=>{m.val ='';});
+            this.conState='noconnected';
         },
         initSocket(){
             if(window.localStorage){
@@ -224,28 +223,46 @@ export default {
 
             this.webSocket.onmessage = function (e) {
                 let result = JSON.parse(e.data);
-                switch (result.type){
-                    case 'connected':
+                if (result.type=='connected'){
                         _this.conSid = result.content.sid;
                         if(this.conCode&&this.conCode!=0){
                             let bindObj = {"type":"sbind","content":{"code":this.conCode,"sid":_this.conSid}};
                             _this.webSocket.send(JSON.stringify(bindObj));
                         }
+                }
+                switch (result.code){
+                    case 11:
+                        _this.conState = 'connected';
+                        setTimeout(function () {
+                            _this.fCloseConBox();
+                        },1000);
                         break;
-                    case 'bind_return':
+                    case 1003:
+                        _this.conState = 'connecteerror';
+                        _this.conErrorMsg ="连接失败,请刷新重试！";
+                        setTimeout(function () {
+                            _this.fCloseConBox();
+                        },1000);
                         break;
-                    case 'sbind_return':
-                        if(result.content.code==0){
-                            
-                        }
+                    case 1001:
+                        _this.conState = 'connecteerror';
+                        _this.conErrorMsg ="客户端不存在,请重试！";
+                        setTimeout(function () {
+                            _this.fCloseConBox();
+                        },1000);
+                        break;
+                    case 1002:
+                        _this.conState = 'connecteerror';
+                        _this.conErrorMsg ="连接会话已结束,请刷新重试！";
+                        setTimeout(function () {
+                            _this.fCloseConBox();
+                        },1000);
                         break;
                 }
             }
         },
         inputConCode(e,params){
-            console.log('e',e);
             if(e.keyCode !=8&&e.keyCode !=13) {
-                console.log('params',params);
                 if (params == 5) {
                     let _sconCode = '';
                     this.conCodeList.forEach(m=> {
@@ -255,7 +272,8 @@ export default {
                     localStorage.setItem("rky_mc_conCode", this.conCode);
                     let bindObj = {"type": "bind", "content": {"code": this.conCode, "sid": this.conSid}};
                     this.webSocket.send(JSON.stringify(bindObj));
-                    this.fCloseConBox();
+
+
                 } else {
                     let netInput = document.getElementById('codeid_' + (params + 1));
                     netInput.focus();
@@ -268,6 +286,7 @@ export default {
                 this.playAfterUrl = params.afterUrl;
                 let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
                 this.webSocket.send(JSON.stringify(caseObj));
+                this.playingState = 'playing';
         }
     }
 }
