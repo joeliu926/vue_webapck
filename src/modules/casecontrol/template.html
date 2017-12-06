@@ -181,16 +181,14 @@
                                    v-model="otheritems"
                                    :filterable="true"
                                    :remote="true"
-                                   :allow-create="true"
                                    reserve-keyword
                                    placeholder="请输入关键词"
-                                   :loading="true"
                                    :remote-method="fChangeAutoSelect">
                                <el-option
                                        v-for="item in aAutoSelect"
-                                       :key="item.projectCode"
-                                       :label="item.projectName"
-                                       :value="item.projectCode">
+                                       :key="item.productCode"
+                                       :label="item.productName"
+                                       :value="item.productName">
                                </el-option>
                            </el-select>
                        </template>
