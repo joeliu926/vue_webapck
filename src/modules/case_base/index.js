@@ -33,7 +33,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('result.data',result);
+                    //console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
@@ -42,14 +42,34 @@ export default {
                 }
             }, 'withCredentials');
         },
-        setscroll(parpm){
-            var distop=""+parpm;
+        setscroll(params){
+            var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
             console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-265;
-            this.changestyle=parpm;
+            document.getElementById("right").scrollTop=disTop-256;
+            this.changestyle=params;
 
-        },
+        },onscorllevent(params){
+            this.product.forEach(m=>{
+
+                var disTop=document.getElementById(m.productCode).offsetTop;
+
+                var scrolltop = document.getElementById("right").scrollTop;
+
+                if(disTop<scrolltop+350&&disTop>scrolltop-350){
+                    this.changestyle=  m.productCode;
+                }
+
+                console.log('disTop',disTop);
+                console.log('scrolltop',scrolltop);
+                //parentCode
+            })
+        },fCaseDetail(uid){
+            if(!uid){
+                return false;
+            }
+            this.$router.push({path:'/caselibrary/'+uid});
+        }
 
     }
 }
