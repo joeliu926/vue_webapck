@@ -203,6 +203,9 @@ export default {
         },
         fConnectDevice(){
             this.isConScreanItem=true;
+            this.$nextTick(function () {
+                this.inputConCode({keyCode:0},-1);
+            })
         },
         fCloseConBox(){
             this.isConScreanItem=false;
@@ -224,7 +227,7 @@ export default {
                 switch (result.type){
                     case 'connected':
                         _this.conSid = result.content.sid;
-                        if(this.conCode!=0){
+                        if(this.conCode&&this.conCode!=0){
                             let bindObj = {"type":"sbind","content":{"code":this.conCode,"sid":_this.conSid}};
                             _this.webSocket.send(JSON.stringify(bindObj));
                         }
@@ -239,28 +242,32 @@ export default {
                 }
             }
         },
-        inputConCode(params){
-            if(params==5){
-                this.fCloseConBox();
-                let _sconCode = '';
-                this.conCodeList.forEach(m=>{
-                    _sconCode+= m.val;
-                });
-                this.conCode =parseInt(_sconCode);
-                localStorage.setItem("rky_mc_conCode",this.conCode);
-                let bindObj = {"type":"bind","content":{"code":this.conCode,"sid":this.conSid}};
-                this.webSocket.send(JSON.stringify(bindObj));
-            }else{
-                let netInput =document.getElementById('codeid_'+(params+1));
-                netInput.focus();
-                netInput.value='';
+        inputConCode(e,params){
+            console.log('e',e);
+            if(e.keyCode !=8&&e.keyCode !=13) {
+                console.log('params',params);
+                if (params == 5) {
+                    let _sconCode = '';
+                    this.conCodeList.forEach(m=> {
+                        _sconCode += m.val;
+                    });
+                    this.conCode = parseInt(_sconCode);
+                    localStorage.setItem("rky_mc_conCode", this.conCode);
+                    let bindObj = {"type": "bind", "content": {"code": this.conCode, "sid": this.conSid}};
+                    this.webSocket.send(JSON.stringify(bindObj));
+                    this.fCloseConBox();
+                } else {
+                    let netInput = document.getElementById('codeid_' + (params + 1));
+                    netInput.focus();
+                    netInput.value = '';
+                }
             }
         },
         playCase(params){
-            this.playBeforeUrl = params.beforeUrl;
-            this.playAfterUrl = params.afterUrl;
-            let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
-            this.webSocket.send(JSON.stringify(caseObj));
+                this.playBeforeUrl = params.beforeUrl;
+                this.playAfterUrl = params.afterUrl;
+                let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
+                this.webSocket.send(JSON.stringify(caseObj));
         }
     }
 }

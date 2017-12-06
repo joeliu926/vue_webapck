@@ -101,7 +101,7 @@ export default {
             }
             setTimeout(function () {
              _this.changing =false;
-             },1000);
+             },1000);           
         }
     }
 }

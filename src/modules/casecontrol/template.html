@@ -114,7 +114,8 @@
       <div class="common-pos-middle pop-connect" :style="{display:[isConScreanItem?'':'none']}">
         <div class="cn-middle" style="">
             <div class="cn-close" @click="fCloseConBox"><img src="../../common/img/i-cl-close.png"></div>
-            <div class="cn-item"  v-for="item in conCodeList" style=""><input :id="'codeid_'+item.id" type="text" @keyup="inputConCode(item.id)" v-model="item.val" maxlength="1"  class="cn-input"></div>
+            <div class="cn-item"  v-for="item in conCodeList" style="">
+                <input :id="'codeid_'+item.id" type="number" @keyup="inputConCode($event,item.id)" oninput="if(value.length>1)value=value.slice(0,1)" v-model="item.val" maxlength="1"  class="cn-input"></div>
         </div>
       </div>
     <!--**********************连接设备弹出框 start**************************-->

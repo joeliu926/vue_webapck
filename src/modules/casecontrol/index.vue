@@ -33,7 +33,7 @@
         left: 50%;
     }
 .common-pos-middle{
-    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;background-color: #111429;box-sizing: border-box;
+    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;box-sizing: border-box;
 }
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
@@ -153,15 +153,28 @@
             z-index: 1001;
             .cn-middle{
                 height:100px;position: relative;top:50%;margin-top:-50px;box-sizing: border-box;padding: 0 20px;
+                width:600px;
                 .cn-close{
-                    height: 30px;width: 30px;position: absolute;right: -7px;top:-25px;cursor: pointer;
+                    height: 30px;width: 30px;position: absolute;right: 0px;top:-25px;cursor: pointer;
                 }
-            .cn-item{
-                margin: 0 3px;height: 100px;width: 100px;background: #ffffff;display: inline-block;box-sizing: border-box;
-                .cn-input{
-                    height:100px;width: 100px;text-align: center;border: none;font-size: 30px;
+            .cn-item {
+                margin: 0 6px;
+                height: 80px;
+                width: 80px;
+                display: inline-block;
+                box-sizing: border-box;
+                    .cn-input {
+                        height: 80px;
+                        width: 80px;
+                        text-align: center;
+                        border: none;
+                        font-size: 30px;
+                        border-radius: 5px;
+              /*          background: transparent;
+                        border: 1px solid #fff;
+                        color:#fff;*/
+                    }
                 }
-            }
             }
         }
         /*********连接大屏 end***********/
