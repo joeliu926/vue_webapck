@@ -10,8 +10,8 @@ export default {
          faceDiagnoseDate:"",//面诊时间（复诊使用）
          faceDiagnoseProduct:"",//面诊成功项目（成功时使用）
          isConScreanItem:false, //连接设备弹出判断
-         isCurrentProject:"0", //选择项目索引判断
-         isDocProject:"0", //选择对应医生索引判断
+         isCurrentProject:"0", //当前选择项目判断
+         isDocProject:"", //当前选中的医生
          isSelectItem:false, //播放页面图片显示
          dialogVisible:false, //结束咨询弹出框
          activeStatus:"0", //关闭时选择tab索引
@@ -20,6 +20,10 @@ export default {
          oCustomer:{},//咨询客户信息
          oProductList:[],//head项目列表
          oDoctorList:[],//head医生列表
+         oCaseList:[], //查询获取案例列表
+         oShowCaseList:[],//选择需要演示的案例
+         oShowCaseListIds:[],//选择演示的id集合
+         oCurrentShowItem:{},//当前展示的案例
          otheritems:"",
          otherresion:"",
          bookdate:"",
@@ -52,7 +56,7 @@ export default {
        let _This=this;
         _This.fTimer();
         _This.routerParam=this.$route.params;
-       // _This.initSocket();
+        _This.initSocket();
         _This.fGetCustomerData();
        // console.log("this.$route.params--------->",this.$route.params);
         _This. fProductList();
@@ -121,22 +125,21 @@ export default {
             _This.isSelectItem=false;
         },
         fChooseItems(eCode){//选择项目
-             console.log("ecode========>",eCode);
+            // console.log("ecode========>",eCode);
             let _This=this;
-            // let dataSet=e.target.dataset;
-            //console.log(dataSet);
-            //_This.isCurrentProject= dataSet.itemcode;
-
             _This.isCurrentProject=eCode;
             _This.isSelectItem=true;
+            _This.isDocProject= "";
+            _This.fDoctorList();
+            _This.fCaseHeaderList();
 
         },
-        fChooseDoc(e){//选择医生
-            let dataSet=e.target.dataset;
-            console.log(dataSet);
+        fChooseDoc(eDoctor){//选择医生
+            //console.log(eDoctor);
             let _This=this;
             _This.isSelectItem=true;
-            _This.isDocProject= dataSet.doccode;
+            _This.isDocProject= eDoctor;
+            _This.fCaseHeaderList();
         },
         fEndConsult(){//结束咨询
             let _This=this;
@@ -209,15 +212,16 @@ export default {
          */
         fDoctorList(){
             let _This=this;
+            let currentCode=_This.isCurrentProject=="0"||_This.isCurrentProject=="1"?"":_This.isCurrentProject;
             let postData={
-                productCode:0
+                productCode:currentCode
             };
             _.ajax({
                 url: '/caseheader/doctorlist',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fDoctorList list result--------",result);
+                    //console.log("fDoctorList list result--------",result);
                     if(result.code==0&&result.data){
                         _This.oDoctorList=result.data;
                     }
@@ -225,6 +229,54 @@ export default {
                 }
             }, 'withCredentials');
 
+        },
+        /**
+         * 获取项目医生相关案例列表
+         * @param ename
+         * @returns {boolean}
+         */
+        fCaseHeaderList(){
+            let _This=this;
+            let currentCode=_This.isCurrentProject=="1"?"":_This.isCurrentProject;
+            let postData={
+                productCode:currentCode,
+                doctorName:_This.isDocProject
+            };
+            _.ajax({
+                url: '/caseheader/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fCaseHeaderList list result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.oCaseList=result.data;
+                    }
+
+                }
+            }, 'withCredentials');
+
+        },
+        /**
+         * 选择需要演示的案例
+         * @param scase
+         * @param sindex
+         */
+        fSelectShowCase(scase,sindex){
+            let _This=this;
+            _This.oCaseList.splice(sindex,1);
+            _This.oShowCaseList.push(scase);
+
+         },
+        /**
+         * 移除需要演示的案例
+         */
+        fRemoveShowCase(scase,sindex){
+            let _This=this;
+            _This.oShowCaseList.splice(sindex,1);
+            _This.oCaseList.push(scase);
+        },
+        fShowNextCase(param){
+            console.log("next------>",param)
         },
         /**
          * 下拉框选中
@@ -447,8 +499,6 @@ export default {
                     localStorage.setItem("rky_mc_conCode", this.conCode);
                     let bindObj = {"type": "bind", "content": {"code": this.conCode, "sid": this.conSid}};
                     this.webSocket.send(JSON.stringify(bindObj));
-
-
                 } else {
                     let netInput = document.getElementById('codeid_' + (params + 1));
                     netInput.focus();
@@ -457,10 +507,11 @@ export default {
             }
         },
         playCase(params){
-                this.playBeforeUrl = params.beforeUrl;
-                this.playAfterUrl = params.afterUrl;
-                //{"type":"closed","content":{"code":1234,"sid":"aaa"}}
-                let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.beforeUrl, "afterUrl":params.afterUrl } };
+            console.log("show select img item------>",params);
+                this.oCurrentShowItem=params;
+                this.playBeforeUrl = params.frondFile.url;
+                this.playAfterUrl = params.backFile.url;
+                let caseObj ={ "type":"image", "content":{ "code":this.conCode, "caseName":"玻尿酸瘦脸", "beforeUrl":params.frondFile.url, "afterUrl":params.backFile.url } };
                 this.webSocket.send(JSON.stringify(caseObj));
                 this.playingState = 'playing';
         }

@@ -105,6 +105,7 @@
                 }
             }
         }
+        /*************中间显示部分start*************/
         .control-screan{
             .s-position{
                 position: absolute;
@@ -152,6 +153,11 @@
             }
 
         }
+
+        /*************中间显示部分结束*************/
+
+
+
         .control-screan-wating{
             width:100%;
             height:100%;
@@ -278,7 +284,7 @@
 
         .control-foot{
             position: absolute;
-            height: 296px;
+            height: 246px;
             bottom: 0;
             width: 100%;
             color: #ffffff;
@@ -308,22 +314,15 @@
             }
             .f-item{
                 background: #595985;
-               font-size: 14px;
-            }
-            .up-icon{
-                text-align: center;
-                background-color: #29295C;
-                .el-icon-pa-angle-double-up:before{
-                    font-size: 25px;
-                }
+                 font-size: 14px;
             }
             .foot-img{
                 background-color: #29295C;
-                height: 170px;
+                height: 150px;
                 .f-icon{
                     width: 60px;
-                    height:170px;
-                    line-height: 170px;
+                    height:150px;
+                    line-height: 150px;
                     box-sizing: border-box;
                     padding:0 40px;
                 }
@@ -335,34 +334,35 @@
                     white-space:nowrap;
                     overflow: hidden;
                     padding-top: 10px;
-                    height: 170px;
+                    height: 150px;
                     margin:0 100px 0 100px;
-         .img-i-ct{
-             display: inline-block;
-             width: 14.28%;
-            .img-item{
-                    width: 180px;
-                    margin: 0 auto;
-                    position: relative;
-                    width: 80%;
-                   .b-ba-img-ct{
-                       position: absolute;
-                       top: -15px;
-                   }
-                    .s-ba-cm{
-                        font-size: 12px;
-                        width: 50px;
-                    }
-                    .img-l{
-                        float: left;
-                        width: 50%;
-                        height: 140px;
-                    }
-                }
-            }
+                     .img-i-ct{
+                         display: inline-block;
+                         width: 14.28%;
+                        .img-item{
+                                width: 160px;
+                                margin: 0 auto;
+                                position: relative;
+                                width: 80%;
+                               .b-ba-img-ct{
+                                   position: absolute;
+                                   top: -15px;
+                                   cursor: pointer;
+                               }
+                                .s-ba-cm{
+                                    font-size: 12px;
+                                    width: 50px;
+                                }
+                                .img-l{
+                                    float: left;
+                                    width: 50%;
+                                    height: 120px;
+                                }
+                            }
+                        }
                     .img-item:hover{
-                        transform:scale(1.2);
-                        z-index: 1000000;
+                        transform:scale(1.1);
+                        z-index: 1000;
                         position: relative;
                         top: -10px;
                     }
@@ -421,6 +421,7 @@
         }
             .select-content{
                 color: #ffffff;
+                background-color: #17182B;
                 padding: 0;
                 margin-top: -10px;
                 overflow-y: auto;
@@ -729,5 +730,24 @@
 
 
     }
-
+@media screen and (max-width: 1424px) and (min-width: 860px)    {
+    .control-content .control-screan .s-content {
+        width: 508px;
+        height: 328px;
+        top: 50%;
+        left: 50%;
+        margin-left: -254px;
+        margin-top: -164px;
+    }
+}
+@media screen and (max-width: 860px)   {
+    .control-content .control-screan .s-content {
+        width: 400px;
+        height: 258px;
+        top: 50%;
+        left: 50%;
+        margin-left: -200px;
+        margin-top: -129px;
+    }
+}
 </style>

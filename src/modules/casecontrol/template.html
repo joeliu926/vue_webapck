@@ -19,9 +19,9 @@
                 <div class="lay-left b-s"><label class="scop-name">医生</label> </div>
                 <div class="lay-right"></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" data-docCode="14" :style="{background:[isDocProject=='14'?'#9083ED':'']}" @click="fChooseDoc" >李院长</label>
-                    <label class="lay-item h-item" data-docCode="15" :style="{background:[isDocProject=='15'?'#9083ED':'']}" @click="fChooseDoc" >王院长</label>
-                    <label class="lay-item h-item" data-docCode="16" :style="{background:[isDocProject=='16'?'#9083ED':'']}" @click="fChooseDoc" >趙院长</label>
+                    <template v-for="(docitem,index) in oDoctorList">
+                        <label class="lay-item h-item" data-docCode="14" :style="{background:[isDocProject==docitem?'#9083ED':'']}" @click="fChooseDoc(docitem)" >{{docitem}}</label>
+                    </template>
                 </div>
             </div>
 
@@ -29,8 +29,8 @@
     </div>
 
    <div class="control-screan" v-show="playingState=='playing'" >
-        <div class="s-position s-icon s-left-icon" ><img src="../../common/img/i-left.png"></div>
-        <div class="s-position s-icon s-right-icon"><img src="../../common/img/i-right.png"></div>
+        <div class="s-position s-icon s-left-icon"  @click="fShowNextCase(-1)" ><img src="../../common/img/i-left.png"></div>
+        <div class="s-position s-icon s-right-icon" @click="fShowNextCase(1)"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
             <div class="s-time-ct" style="">
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
@@ -60,7 +60,7 @@
                     <img class="bt-icon" src="../../common/img/i-radio.png" >医生
                 </div>
                 <div class="lay-right"></div>
-                <div class="lay-items bt-items">  <label class="lay-item f-item" >李院长</label></div>
+                <div class="lay-items bt-items">  <label class="lay-item f-item" >{{oCurrentShowItem.doctorName}}</label></div>
             </div>
             <div style="clear: both;height: 0;"></div>
             <div class="lay-row">
@@ -69,20 +69,10 @@
                 </div>
                 <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
-                    <label class="lay-item f-item" >项目一</label>
-                    <label class="lay-item f-item">项目二</label>
-                    <label class="lay-item f-item">项目三脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item f-item" >项目一</label>
-                    <label class="lay-item f-item">项目二</label>
-                    <label class="lay-item f-item">项目三</label>
-                    <label class="lay-item f-item" >项目一脸部整形玻尿酸玻尿酸</label>
-                    <label class="lay-item f-item">项目二</label>
+                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" >{{item.productName}}</label>
                 </div>
             </div>
         </div>
- <div class="up-icon">
-     <i class="el-icon-pa-angle-double-up"></i>
- </div>
         <div class="foot-img b-s">
             <div class="layout-ct b-s">
                 <div class="lay-row">
@@ -90,11 +80,11 @@
                     <div class="lay-right f-right-icon f-icon"><label class="" ><i class="el-icon-d-arrow-right
 "></i></label></div>
                     <div class="b-s lay-items img-ct">
-                        <div class="b-s img-i-ct"  v-for="item in imgdata">
+                        <div class="b-s img-i-ct"  v-for="item in oShowCaseList">
                             <div class="img-item b-s">
                                 <div class="b-ba-img-ct" @click="playCase(item)" style="">
-                                    <img class="img-l"  :src="item.beforeUrl">
-                                    <img class="img-l" :src="item.afterUrl">
+                                    <img class="img-l"  :src="item.frondFile.url">
+                                    <img class="img-l" :src="item.backFile.url">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
                                 </div>
@@ -135,14 +125,13 @@
     <div style="clear: both;height: 0; display: none;"></div>
    <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
             <div class="sel-items-ct b-s">
-                <div class="sel-img-ct sl-img-ct b-s" v-for="item in imgdata">
+                <div class="sel-img-ct sl-img-ct b-s" v-for="(oItem,index) in oCaseList" @click="fSelectShowCase(oItem,index)">
                     <div class="sel-img-item b-s">
-                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                        <img class="sel-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                        <img class="sel-img" :src="oItem.frondFile.url">
+                        <img class="sel-img" :src="oItem.backFile.url">
                         <div class="sel-ba-cm sel-before">before</div>
                         <div class="sel-ba-cm sel-after">after</div>
                         <div class="add-case add-icon" style="">
-                        <!--  <img src="../../common/img/i-add.png" class="add-img" style="" >-->
                         </div>
                     </div>
                 </div>
@@ -151,10 +140,10 @@
     <div class="add-up-icon" :style="{display:[isSelectItem?'':'none']}"><label @click="fCloseSelect" class=""  ><i class="el-icon-pa-angle-up"></i></label></div>
     <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
         <div class="des-items-ct b-s">
-            <div class="des-img-ct b-s" v-for="item in imgdata">
+            <div class="des-img-ct b-s" v-for="item,index in oShowCaseList" @click="fRemoveShowCase(item,index)">
                 <div class="sel-img-item des-img-item ">
-                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3d4f8896-13db-4a6a-a731-1a561107484d">
-                    <img class="sel-img des-img" src="http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/6329c5bc-9b30-44eb-8bd1-f41caf1dbcbe">
+                    <img class="sel-img des-img" :src="item.frondFile.url">
+                    <img class="sel-img des-img" :src="item.backFile.url">
                     <div class="sel-ba-cm des-ba-cm des-before">before</div>
                     <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
                     <div class="add-case des-icon" style="">
