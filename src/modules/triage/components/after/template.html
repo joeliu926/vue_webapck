@@ -2,10 +2,10 @@
     <div class="customer-block-content">
         <div class="customer-block-uinfo">
             <el-row :gutter="20"  type="flex" justify="space-between" align="center" >
-                <el-col :span="8" type="flex" justify="space-between">
+                <el-col :span="6" type="flex" justify="space-between">
 
                 </el-col>
-                <el-col :span="14"  type="flex" justify="space-between">
+                <el-col :span="18"  type="flex" justify="space-between">
                     <!--  <el-col :span="1" style="float: right;">
                           <div ><img src="../../common/img/refresh.png" class="customer-icon" @click="fRefresh"></div>
                       </el-col>-->
@@ -35,11 +35,8 @@
 
                 </el-col>
             </el-row>
-            <el-row>
-
-            </el-row>
+            <el-row></el-row>
         </div>
-
 
         <div class="customer-block-content">
             <el-table
@@ -54,7 +51,7 @@
                 <el-table-column
                         prop="appointmentTime"
                         label="面诊时间"
-                        width="200">
+                        width="120">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.appointmentTime|dateFilter}}</p>
                     </template>
@@ -62,12 +59,15 @@
                 <el-table-column
                         prop="phoneNum"
                         label="电话"
-                        width="190">
+                        width="140">
+                    <template slot-scope="scope" style="text-align: right;">
+                        <span>{{scope.row.phoneNum|phoneFilter}}</span><img class="eye-img" v-if="phoneNum" src="../../../../common/img/i-eye-open.png" style="margin-left:5px;">
+                    </template>
                 </el-table-column>
                 <el-table-column
                         prop="projectNames"
                         label="咨询项目"
-                        width="190">
+                        width="180">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.projectNames|array2String}}</p>
                     </template>
@@ -75,23 +75,18 @@
                 <el-table-column
                         prop="consultName"
                         label="网络咨询师">
-
                 </el-table-column>
                 <el-table-column
                         prop="sceneConsultantsName"
                         label="现场分配咨询师">
-
-
                 </el-table-column>
                 <el-table-column
-                        prop="id"
-                        label="id" width="100">
-
+                        prop=""
+                        label=""
+                        width="10">
                 </el-table-column>
             </el-table>
-
         </div>
-
         <!--分页-->
         <div class="customer-block-content customer-pagination-align">
             <!--<el-pagination-->
@@ -101,7 +96,6 @@
             <el-pagination
                     @current-change="handleCurrentChange"
                     layout="prev, pager, next"
-
                     :total="count">
             </el-pagination>
         </div>

@@ -2,10 +2,10 @@
     <div class="customer-block-content">
         <div class="customer-block-uinfo">
             <el-row :gutter="20"  type="flex" justify="space-between" align="center" >
-                <el-col :span="8" type="flex" justify="space-between">
+                <el-col :span="6" type="flex" justify="space-between">
 
                 </el-col>
-                <el-col :span="14"  type="flex" justify="space-between">
+                <el-col :span="18"  type="flex" justify="space-between">
                     <!--  <el-col :span="1" style="float: right;">
                           <div ><img src="../../common/img/refresh.png" class="customer-icon" @click="fRefresh"></div>
                       </el-col>-->
@@ -53,7 +53,7 @@
                 <el-table-column
                         prop="appointmentTime"
                         label="面诊时间"
-                        width="200">
+                        width="120">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.appointmentTime|dateFilter}}</p>
                     </template>
@@ -61,7 +61,10 @@
                 <el-table-column
                         prop="phoneNum"
                         label="电话"
-                        width="190">
+                        width="140">
+                        <template style="text-align: right;">
+                            <!--<span></span><img class="eye-img" v-if="item.customerPhone" src="../../../../common/img/i-eye-close.png" @click="fSeaPhone">-->
+                        </template>
                 </el-table-column>
                 <el-table-column
                         prop="projectNames"
@@ -76,11 +79,8 @@
                         label="网络咨询师">
 
                 </el-table-column>
-                <el-table-column>
 
-
-                </el-table-column>
-                <el-table-column label="" width="100">
+                <el-table-column >
 
                 </el-table-column>
             </el-table>
