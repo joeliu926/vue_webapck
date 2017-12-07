@@ -429,6 +429,7 @@
                 position: absolute;
                 bottom: 192px;
                 top:195px;
+             /*   top:156px;*/
                 width: 102%;
                 .sel-items-ct{
                     background-color: #17182B;
