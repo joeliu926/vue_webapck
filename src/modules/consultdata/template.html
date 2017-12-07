@@ -2,7 +2,7 @@
 <div class="consult-content" >
      <div class="data-content box-shadow" style="vertical-align: middle;">
          <el-row :gutter="24">
-             <el-col :span="12"><div class="today-count"><span>今日咨询总量</span><span class="s-count"> {{todayNum}}</span> 人</div></el-col>
+             <el-col :span="12"><div class="today-count"><span>今日微信咨询总量</span><span class="s-count"> {{todayNum}}</span> 人</div></el-col>
              <el-col :span="12"><div class="today-cmp"><span>对比昨日</span>
                  <span class="s-last"> <i class="el-icon-pa-long-arrow-down sdown" v-if="!isUp">
 
@@ -73,6 +73,40 @@
 
         <div class="col-chart">
             <highcharts-component :options="optionsColumn"  :styles="styles"></highcharts-component>
+        </div>
+    </div>
+
+
+    <div class="data-content box-shadow" style="vertical-align: middle;margin-top:20px;">
+        <el-row :gutter="24">
+            <el-col :span="12"><div class="today-count"><span>今日现场咨询总量</span><span class="s-count"> {{todayNum_scene}}</span> 人</div></el-col>
+            <el-col :span="12"><div class="today-cmp"><span>对比昨日</span>
+                 <span class="s-last"> <i class="el-icon-pa-long-arrow-down sdown" v-if="!isUp_scene">
+                 </i> <i class="el-icon-pa-long-arrow-up sup" v-if="isUp_scene"></i> {{compareNum_scene}}</span>人</div></el-col>
+        </el-row>
+    </div>
+
+    <div class="chart-content box-shadow">
+        <div class="choose-ct">
+            <el-date-picker
+                    class="choose-date"
+                    v-model="startDate_scene"
+                    type="date"
+                    @change="changedate_scene"
+                    placeholder="选择日期"
+            >
+            </el-date-picker>-
+            <el-date-picker
+                    class="choose-date"
+                    v-model="endDate_scene"
+                    type="date"
+                    @change="changedate_scene"
+                    placeholder="选择日期">
+            </el-date-picker>
+        </div>
+
+        <div class="col-chart">
+            <highcharts-component :options="optionsColumn_scene"  :styles="styles"></highcharts-component>
         </div>
     </div>
 </div>

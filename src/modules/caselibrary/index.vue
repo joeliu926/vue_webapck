@@ -100,7 +100,7 @@
                 flex-wrap:wrap;
                 .case-item{
                     width:31.33%;
-                    margin-left:6px;
+                    margin:0px 12px 0px 12px;
                     padding: 0 !important;
                     margin-bottom:12px;
                     height:300px;
@@ -187,6 +187,13 @@
                             text-align:center;
                             border:1px solid #e0e0e0;
                             border-radius:14px;
+                                a{ display: inline-block;
+                                    text-align: center;
+                                    font-size: 14px;
+                                    background: white;
+                                    color: #333;
+                                    text-decoration:none;
+                            }
                          }
                          .userifo{
                              margin-top:25px;

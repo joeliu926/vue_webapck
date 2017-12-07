@@ -49,7 +49,14 @@ export default {
                 value: '5',
                 label: '最近一年'
             }],
-            thisDay:_.date2String(new Date(),"MM月dd日")
+            thisDay:_.date2String(new Date(),"MM月dd日"),
+
+            todayNum_scene:0,
+            compareNum_scene:0,
+            startDate_scene:_.date2String(new Date(),"yyyy-MM-dd"),
+            endDate_scene:_.date2String(new Date(),"yyyy-MM-dd"),
+            isUp_scene:true,
+            optionsColumn_scene:{}
         }
     },
     created() {
@@ -57,6 +64,7 @@ export default {
     },
     mounted(){
         this.initData();
+        this.initData_scene();
 
     },
     destroyed() {
@@ -77,6 +85,9 @@ export default {
     methods: {
         changedate(){
             this.initData();
+        },
+        changedate_scene(){
+            this.initData_scene();
         },
         initData(){
             var settingColumn={
@@ -218,6 +229,148 @@ export default {
                 }
             }, 'withCredentials');
         },
+
+        initData_scene(){
+            var settingColumn={
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                credits: {
+                    enabled: false
+                },
+                colors:[
+                    '#FFEBD6',//黄
+                    '#BEC5FC',//蓝
+                    '#f198ad',//
+                    '#d3bef1',//紫
+                    '#FF0000',//红
+                    '#FFFFFF',//紫
+                    '#7cb5ec',
+                    '#90ed7d',
+                    '#f7a35c',
+                    '#8085e9',
+                    '#f15c80',
+                    '#e4d354',
+                    '#2b908f',
+                    '#f45b5b',
+                    '#91e8e1'
+                ],
+                xAxis: {
+                    categories: []
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    stackLabels: {
+                        enabled: true,
+                        formatter:function(){
+                            return "<span style='color:purple;'>"+this.total+"人</span>";
+                        }
+                    },
+                    useHTML:true,
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    shared: true,
+                    useHTML: true,
+                    headerFormat: '<small style="font-size:16px">{point.key}</small><br/>',
+                    backgroundColor:"rgba(0,0,0,0.4)",
+                    borderWidth:0,
+                    style:{
+                        color:"#ffffff",
+                    },
+                    /* formatter: function () {
+                     return '<b>' + this.x + '</b><br/>' +
+                     this.series.name + ': ' + this.y + '<br/>' +
+                     '总量: ' + this.point.stackTotal;
+                     }*/
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        pointWidth:60
+                    }
+                },
+                series: [{
+                    name: '待面诊',
+                    data: [],
+                    stack: 'male'
+                }, {
+                    name: '已结束',
+                    data: [],
+                    stack: 'male'
+                }]
+            };
+            let _this =this;
+            _.ajax({
+                url: '/consults/getrecords_scene',
+                method: 'POST',
+                data: {
+                    beginDate:_.date2String(new Date(_this.startDate_scene),"yyyy-MM-dd"),
+                    endDate:_.date2String(new Date(_this.endDate_scene),"yyyy-MM-dd")
+                },
+                success: function (result) {
+                    if (result.code ==0&&result.data) {
+                        _this.todayNum_scene = result.data.todayConsultNum;
+                        _this.compareNum_scene = Math.abs(result.data.changeValue);
+                        _this.isUp_scene =result.data.changeValue>0?true:false;
+                        result.data.detailList = result.data.detailList.sort(function(x, y){
+                            return x.endConsultCount+x.notConsultCount > y.endConsultCount+y.notConsultCount ? -1:1;
+                        });
+
+                        let subArray = [];
+                        let sortIndex =-1;
+                        //二维排序
+                        for(let i=0;i<result.data.detailList.length;i++){
+                            let f_count = result.data.detailList[i].endConsultCount;
+                            let f_notcount = result.data.detailList[i].notConsultCount;
+
+                            if(result.data.detailList.length<=i+1){
+                                continue;
+                            }
+
+                            let l_count = result.data.detailList[i+1].endConsultCount;
+                            let l_notcount = result.data.detailList[i+1].notConsultCount;
+
+                            if(f_count+f_notcount ==l_count+l_notcount){
+                                if(sortIndex==-1){
+                                    sortIndex=i;
+                                }
+                                subArray.push(result.data.detailList[i]);
+                            }
+                            else{
+                                subArray.push(result.data.detailList[i]);
+                                if(subArray.length>1){
+                                    subArray = subArray.sort(function(x, y){
+                                        return x.endConsultCount > y.endConsultCount ? -1:1;
+                                    });
+                                    //二维重排序后替换
+                                    result.data.detailList.splice(sortIndex,subArray.length,...subArray);
+                                }
+                                sortIndex=-1;
+                                subArray =[];
+                            }
+                        }
+
+                        result.data.detailList.forEach(item=>{
+                            settingColumn.xAxis.categories.push(item.userName);
+                            settingColumn.series[0].data.push(item.notConsultCount);
+                            settingColumn.series[1].data.push(item.endConsultCount);
+                        })
+
+                        _this.optionsColumn_scene =  settingColumn;
+                    }else {
+                        //_This.$router.push('/customers');
+                    }
+                }
+            }, 'withCredentials');
+        },
+
         fSelectDate(e){
 
         },

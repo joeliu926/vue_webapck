@@ -24,12 +24,15 @@ export default {
                 backFile:{},
             },
             contentList:[],
+            contentListAfter:[],
             photolist:[],
             zoomPhoto:'',
             imgArr:[],
             currentIndex: 0,
             timer: '',
-            reveal:false
+            reveal:false,
+            zoomPhotoName:'',
+            isclick_before:''
         }
     },
     created() {
@@ -69,31 +72,24 @@ export default {
     },
     methods: {
         reday(){
-            console.log('0000000000000000')
             var _This = this;
+            let uid= _This.$route.params.id;
             _.ajax({
                 url: '/case_base/casedetail',
                 method: 'POST',
-                data: {caseid:1} ,
+                data: {caseid:uid},
                 success: function (result) {
-                    console.log(result);
-                    
                     if(result.code==0&&result.data){
-                        console.log(result.data);
                         _This.acaseuserlist = result.data;
                         _This.contentList=result.data.contentList;
-                        console.log(_This.contentList);
-
                         _This.count = result.data.count;
-                        // _This.contentList = result.data.contentList;
-                        // // console.log(_This.contentList);
-
-                        _This.contentList.forEach(m=>{
-                            // console.log(m.files);
+                        _This.contentList&& _This.contentList.forEach(m=>{
                             _This.photolist = _This.photolist.concat(m.files);
-                        });
-                        // console.log(_This.photolist);
 
+                            if(m.nodeType==1){
+                                _This.contentListAfter.push(m);
+                            }
+                        });
                     }
                 }
             }, 'withCredentials');
@@ -105,6 +101,7 @@ export default {
                 this.currentIndex=0;
             }
             this.zoomPhoto=this.photolist[this.currentIndex].url;
+            this.zoomPhotoName=this.photolist[this.currentIndex].name;
         },
         
         reduce(){
@@ -114,42 +111,62 @@ export default {
                 this.currentIndex=plength-1;
             }
             this.zoomPhoto=this.photolist[this.currentIndex].url;
+            this.zoomPhotoName=this.photolist[this.currentIndex].name;
         },
         change(index) {
             this.currentIndex = index;
         },
         fromBefore(){
             var _This=this;
-
-           _This.contentList= _This.contentList.sort(function(x, y){
+           _This.contentListAfter= _This.contentListAfter.sort(function(x, y){
                 console.log(y.definitionDate > x.definitionDate);
                 return y.definitionDate > x.definitionDate;
             });
-
-
+            this.isActive =false;
         },
         fromNow(){
             var _This=this;
             _This.isActive=true;
-
-
-            _This.contentList= _This.contentList.sort(function(x, y){
+            _This.contentListAfter= _This.contentListAfter.sort(function(x, y){
                 return x.definitionDate > y.definitionDate;
             });
-            console.log(_This.contentList);
+            this.isActive =true;
 
         },
-        //autoPlay() {
-        //    this.currentIndex++
-        //    if (this.currentIndex > this.photolist.length - 1) {
-        //        this.currentIndex = 0
-        //    }
-        //},
+        setPhone(type){
+            let setObje =null;
+            let uid= this.$route.params.id;
+
+            if(type==0){
+                this.isclick_before = 'before';
+                setObje = {caseid:uid,beforePic:this.zoomPhotoName,afterPic:''}
+            }else{
+                this.isclick_before = 'after';
+                setObje = {caseid:uid,beforePic:'',afterPic:this.zoomPhotoName}
+            }
+
+            var _This = this;
+            _.ajax({
+                url: '/case_base/setfacephone',
+                method: 'POST',
+                data: setObje ,
+                success: function (result) {
+                    if(result.code==0&&result.data){
+                        console.log('result',result);
+                    }
+                }
+            }, 'withCredentials');
+
+        },
         closeLayer(){
             this.reveal=false;
+            this.isclick_before = '';
         },
         showLayer(fileName){
             this.reveal=true;
+
+            this.zoomPhotoName=fileName;
+
             this.photolist.forEach((item,index)=>{
                 if(fileName==item.name){
                     this.zoomPhoto = item.url;

@@ -71,18 +71,16 @@
                         <p>案例封面</p>
                         <el-col :span="24" type="flex" class="cover-img clearfix">
                             <div class="fl">
-                                <img :src="acaseuserlist.frondFile.url" width="140" height="140" alt="">
+                                <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">
                                 <span>before</span>
                             </div>
                             <div class="fl">
-                                <img :src="acaseuserlist.backFile.url" width="140" height="140" alt="">
+                                <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">
                                 <span>after</span>
                             </div>
 
                         </el-col>
                     </el-row>
-
-
 
                     <el-row class="caseinfo-before border-bottom" type="flex" v-for="item in contentList" v-if=" item.nodeType == 0 ">
                         <!--术前-->
@@ -103,17 +101,14 @@
                     </el-row>
 
 
-                    <el-row  class="info-after120 border-bottom" type="flex" v-for="(item,index)  in contentList" v-if=" item.nodeType == 1  " :key="index">
+                    <el-row  class="info-after120 border-bottom" type="flex" v-for="(item,index)  in contentListAfter"  :key="index">
                         <!--术后120天-->
                         <el-col :span="24" type="flex">
                             <div class="title clearfix">
                                 <span>{{item.title}}</span>
-                                <!--<el-radio-group v-model="isCollapse" v-show='index==1' style="margin-bottom: 0px; border-clolr:transparent; float:right;">-->
-                                    <!--<el-radio-button :label="false" @click="fromBefore()">从最近开始浏览</el-radio-button>-->
-                                    <!--<el-radio-button :label="true" @click="fromNow()">从最早开始浏览</el-radio-button>-->
-                                <!--</el-radio-group>-->
-                                <span :class="isActive?'active':''"  v-show='index==1'  @click="fromBefore()" style="cursor:pointer">从最近开始浏览</span>
-                               <span :class="isActive?'active':''" v-show='index==1'  @click="fromNow()" style="cursor:pointer" >从最早开始浏览</span>{{index}}
+                                <span :class="isActive?'':'active'"  v-show='index==0'  @click="fromBefore()" style="cursor:pointer">从最近开始浏览</span>
+
+                                <span :class="isActive?'active':''" v-show='index==0'  @click="fromNow()" style="cursor:pointer; margin-right: 20px;" >从最早开始浏览</span>
                             </div>
                             <ul class="clearfix">
                                 <li v-for="(file,index) in item.files">
@@ -124,27 +119,8 @@
                             </ul>
                             <p style="margin-top:10px;">{{item.description}}</p>
                             <div class="timeNow">{{item.definitionDate|dateFilter}}</div>
-                            <!--<div class="timeNow">{{contentList.definitionDate|dateFilter}}</div>-->
                         </el-col>
                     </el-row>
-                    <!--<el-row class="info-after100 border-bottom">-->
-                        <!--&lt;!&ndash;术后100天&ndash;&gt;-->
-                        <!--<el-col :span="24" >-->
-                            <!--<div class="title">{{contentList100.title}}</div>-->
-                            <!--<ul class="clearfix">-->
-                                <!--<li v-for="(file ,index) in contentList100.files" :key="index">-->
-                                    <!--<a href="javascript:;" @click="showLayer(file.name)">-->
-                                        <!--<img :src="file.url"  width="215" height="215">-->
-                                    <!--</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                            <!--<p style="margin-top:10px;">{{contentList130.description}}</p>-->
-                            <!--<div class="timeNow">{{contentList100.definitionDate|dateFilter}}</div>-->
-
-
-                        <!--</el-col>-->
-                    <!--</el-row>-->
-
                 </el-col>
                 <el-col :span="4" type="flex">
                     <!--广告预留位-->
@@ -159,32 +135,16 @@
         <div class="content-box" id="mou_head">
             <div class="left-box ">
                 <div class="carousel-wrap" id="carousel">
-                    <!--轮播图列表-->
-                   <!-- <transition-group tag="ul" class='slide-ul' name="list">
-                        <li v-for="(item,index) in photolist" :key="index" v-show="index===currentIndex">
-
-                            <a href="#">
-                                &lt;!&ndash;<div>{{index}}</div>&ndash;&gt;
-                                <img :src="item.url" :key="item.name">
-                            </a>
-                        </li>
-                    </transition-group>-->
                     <img :src="zoomPhoto" >
-                    <!--/*轮播图小焦点位置指示*/-->
-                    <!--<div class="carousel-items">-->
-                        <!--<span v-for="(item,index) in slideList.length" :class="{'active':index===currentIndex}" @click="change(index)"></span>-->
-                    <!--</div>-->
-                    <!--轮播图左右焦点-->
                     <div class="arrowbox clearfix">
                         <span class="btn-l el-icon-arrow-left fl" @click="reduce"></span>
                         <span class="btn-r el-icon-arrow-right fr" @click="add"></span>
                     </div>
                 </div>
-
             </div>
             <div class="right-box">
-                <el-Button class="isclick" nativeType="button" size="small">设置为befor</el-Button>
-                <el-Button nativeType="button" size="small">设置为after</el-Button>
+                <el-Button :class="isclick_before=='before'?'isclick':''" nativeType="button" size="small" @click="setPhone(0)">设置为befor</el-Button>
+                <el-Button :class="isclick_before=='after'?'isclick':''" nativeType="button" size="small" @click="setPhone(1)">设置为after</el-Button>
                 <span class="close el-icon-pa-close" @click="closeLayer"></span>
             </div>
         </div>
