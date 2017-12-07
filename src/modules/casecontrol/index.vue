@@ -420,6 +420,7 @@
             }
         }
             .select-content{
+                z-index: 10;
                 color: #ffffff;
                 background-color: #17182B;
                 padding: 0;
@@ -428,9 +429,10 @@
                 overflow-x: hidden;
                 position: absolute;
                 bottom: 192px;
-                top:195px;
-             /*   top:156px;*/
+               /* top:165px;*/
+                top:160px;
                 width: 102%;
+                border-top: 2px solid transparent;
                 .sel-items-ct{
                     background-color: #17182B;
                     padding:12px 24px 12px 0;
@@ -451,6 +453,7 @@
 
 
         .add-up-icon{
+            z-index: 10;
             position: absolute;
             height: 35px;
             background: #17182B;
@@ -466,6 +469,7 @@
             }
         }
         .btadd-ct{
+            z-index: 10;
             position: absolute;
             padding:12px 24px;
             bottom: 0;

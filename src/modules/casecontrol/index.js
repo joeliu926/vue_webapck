@@ -277,7 +277,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fCaseHeaderList list result--------", result);
+                    //console.log("fCaseHeaderList list result--------", result);
                     if (result.code != 0 || !result.data) {
                         return false;
                     }
