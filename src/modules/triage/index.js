@@ -1,8 +1,10 @@
 import waitfor from './components/waitfor/index.vue';
+import after from './components/after/index.vue';
 
 export default {
     components: {
-        waitfor
+        waitfor,
+        after
     },
     data () {
         return {

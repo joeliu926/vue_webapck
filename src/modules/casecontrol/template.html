@@ -28,6 +28,48 @@
         </div>
     </div>
 
+
+    <!--**********************test start**************************-->
+    <div style="height: 1000px;width: 1000px;background-color: #4F3CCA;display: none;">
+
+    </div>
+
+    <!--**********************test end**************************-->
+    <!--**********************選擇案例框 start**************************-->
+    <div style="clear: both;height: 0; display: none;"></div>
+    <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
+        <div class="sel-items-ct b-s">
+            <div class="sel-img-ct sl-img-ct b-s" v-for="(oItem,index) in oCaseList" @click="fSelectShowCase(oItem,index)">
+                <div class="sel-img-item b-s">
+                    <img class="sel-img" :src="oItem.frondFile.url">
+                    <img class="sel-img" :src="oItem.backFile.url">
+                    <div class="sel-ba-cm sel-before">before</div>
+                    <div class="sel-ba-cm sel-after">after</div>
+                    <div class="add-case add-icon" style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-up-icon" :style="{display:[isSelectItem?'':'none']}"><label @click="fCloseSelect" class=""  ><i class="el-icon-pa-angle-up"></i></label></div>
+    <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
+        <div class="des-items-ct b-s">
+            <div class="des-img-ct b-s" v-for="item,index in oShowCaseList" @click="fRemoveShowCase(item,index)">
+                <div class="sel-img-item des-img-item ">
+                    <img class="sel-img des-img" :src="item.frondFile.url">
+                    <img class="sel-img des-img" :src="item.backFile.url">
+                    <div class="sel-ba-cm des-ba-cm des-before">before</div>
+                    <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
+                    <div class="add-case des-icon" style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************選擇案例框 end**************************-->
+
+
+
    <div class="control-screan" v-show="playingState=='playing'" >
         <div class="s-position s-icon s-left-icon"  @click="fShowNextCase(-1)" ><img src="../../common/img/i-left.png"></div>
         <div class="s-position s-icon s-right-icon" @click="fShowNextCase(1)"><img src="../../common/img/i-right.png"></div>
@@ -92,8 +134,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -121,38 +161,11 @@
       </div>
     <!--**********************连接设备弹出框 start**************************-->
 
-    <!--**********************選擇案例框 start**************************-->
-    <div style="clear: both;height: 0; display: none;"></div>
-   <div class="select-content b-s" :style="{display:[isSelectItem?'':'none']}">
-            <div class="sel-items-ct b-s">
-                <div class="sel-img-ct sl-img-ct b-s" v-for="(oItem,index) in oCaseList" @click="fSelectShowCase(oItem,index)">
-                    <div class="sel-img-item b-s">
-                        <img class="sel-img" :src="oItem.frondFile.url">
-                        <img class="sel-img" :src="oItem.backFile.url">
-                        <div class="sel-ba-cm sel-before">before</div>
-                        <div class="sel-ba-cm sel-after">after</div>
-                        <div class="add-case add-icon" style="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="add-up-icon" :style="{display:[isSelectItem?'':'none']}"><label @click="fCloseSelect" class=""  ><i class="el-icon-pa-angle-up"></i></label></div>
-    <div class="btadd-ct b-s"  :style="{display:[isSelectItem?'':'none']}">
-        <div class="des-items-ct b-s">
-            <div class="des-img-ct b-s" v-for="item,index in oShowCaseList" @click="fRemoveShowCase(item,index)">
-                <div class="sel-img-item des-img-item ">
-                    <img class="sel-img des-img" :src="item.frondFile.url">
-                    <img class="sel-img des-img" :src="item.backFile.url">
-                    <div class="sel-ba-cm des-ba-cm des-before">before</div>
-                    <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
-                    <div class="add-case des-icon" style="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--**********************選擇案例框 end**************************-->
+
+
+
+
+
 
 
     <!--*******************结束咨询 start**********************-->

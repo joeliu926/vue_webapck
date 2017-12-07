@@ -76,9 +76,8 @@
                         label="网络咨询师">
 
                 </el-table-column>
-                <el-table-column
-                        prop="sceneConsultantsName"
-                        label="分配现场咨询师">
+                <el-table-column>
+
 
                 </el-table-column>
                 <el-table-column label="" width="100">
@@ -90,16 +89,16 @@
 
         <!--分页-->
         <div class="customer-block-content customer-pagination-align">
-            <el-pagination
-                    layout="prev, pager, next"
-                    :total="1000">
-            </el-pagination>
             <!--<el-pagination-->
-                    <!--@current-change="handleCurrentChange"-->
                     <!--layout="prev, pager, next"-->
-                    <!--:page-size="pageSize"-->
-                    <!--:total="count">-->
+                    <!--:total="1000">page-size="pageSize"-->
             <!--</el-pagination>-->
+            <el-pagination
+                    @current-change="handleCurrentChange"
+                    layout="prev, pager, next"
+
+                    :total="count">
+            </el-pagination>
         </div>
     </div>
 </div>
