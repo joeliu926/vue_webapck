@@ -124,6 +124,7 @@ export default {
                 }
             }, 'withCredentials');
         },
+        //获取客户文件
         getFileList(){
             let _This = this;
             let uid= _This.$route.params.id;
@@ -135,6 +136,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
+                    console.log("+++++++++++",result.data);
                     if (result.code == 0 && result.data) {
                         _This.fileList = result.data;
                     }else {
@@ -142,6 +144,10 @@ export default {
                     }
                 }
             }, 'withCredentials');
+        },
+        //
+        showMore(){
+
         }
 
     }
