@@ -84,16 +84,16 @@
 
                          }
                      .case-right-col a{
-                        display: inline-block;
-                        text-align: center;
-                        float:left;
-                         font-size: 14px;
+                    display: inline-block;
+                    text-align: center;
+                    float:left;
+                    font-size: 14px;
                     background: white;
                     color: #333;
                     text-decoration:none;
-                        padding:8px 16px 8px 16px;
-                            margin-left: 40px;
-                            margin-right: 40px;
+                    padding:8px 16px 8px 16px;
+                    margin-left: 40px;
+                    margin-right: 40px;
                     }
         .changecol:hover{
             color: white;

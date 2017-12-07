@@ -64,7 +64,7 @@ export default {
                 console.log('scrolltop',scrolltop);
                 //parentCode
             })
-        },fCaseDetail(uid){
+        },fCaselibrary(uid){
             if(!uid){
                 return false;
             }
