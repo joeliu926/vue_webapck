@@ -73,7 +73,7 @@
                                     <span class="left .fl">{{list0.caseName}}</span>
                                     <span class="right .fr">医生 ：{{list0.doctorName}}</span>
                                 </p>
-                                <div class="itemName" v-for="listooo in list0.relatedProduct"> <a href="javascript:;" @click="fCaselibrary(listooo.productCode)">{{listooo.productName}}</a></div>
+                                <div class="itemName" v-for="listooo ,index in list0.relatedProduct" :key="index"> <a href="javascript:;" @click="fCaselibrary(listooo.productCode)">{{listooo.productName}}</a></div>
                                 <div class="userifo .clearfix">
                                     <img :src="list0.customerLogo" class="fl" alt="">
                                     <span class="fl">{{list0.customerName}}</span>

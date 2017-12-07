@@ -17,16 +17,16 @@
 
             <div class="case-left box-shadow" style="font-size=14px">
 
-                <a  href="javascript:;" v-for="(list1,index) in product" @click="setscroll(list1.productCode)" :class="{cur:changestyle==list1.productCode}">{{list1.productName}}</a><br>
+                <a  href="javascript:;" v-for="(list,index) in product" :key="index"@click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a><br>
 
             </div>
 
 
             <div id="right" style="float:right;width:87.6%;padding:0;height:1082px;margin-top:14px;overflow-y:scroll" @scroll="onscorllevent" >
-                <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index) in  product "  style="">
+                <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index0) in  product "  :key="index0"style="">
                     <div class="tab-con" >
-                        <el-row class="case-right-row" key="list1.productName" v-for="(list1,index) in  list0.productList "  ><div class="case-title" style="font-size: 14px">{{list1.productName}}</div><div style="height:12px"></div>
-                            <div class="case-right-col" v-for="(list2,index) in list1.productList"   >
+                        <el-row class="case-right-row"  v-for="(list1,index1) in  list0.productList " :key="index1" ><div class="case-title" style="font-size: 14px">{{list1.productName}}</div><div style="height:12px"></div>
+                            <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2"  >
                                 <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol" ><p class="p" style="font-size:14px">{{list2.productName}}</p></a>
                             </div>
                         </el-row>
