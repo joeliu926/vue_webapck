@@ -5,19 +5,29 @@ export default {
     data () {
         return {
             msg:0,
-           caselist:[]
+           caselist:[],
+            judgelength:"hello mc",
         };
     }
      ,
      created() {
-        this.getcaselist()
+        this.getcaselist();
+
+
      },
     mounted(){
 
     },
      destroyed() {
 
-     },
+     },filters:{
+        //judegdatalenth:function(input){
+           // if( this.caselist.length<=0){
+            //    return "哎呀，人家还在精心给你准备案呢！";
+           // }
+
+        //},
+    },
      methods: {
          getcaselist(){
              let _This = this;
@@ -43,7 +53,9 @@ export default {
                      }
                  }
              }, 'withCredentials');
-         },fCaselibrary(uid){
+         },
+
+         fCaselibrary(uid){
             // console.log("uid",uid);
              if(!uid){
                  return false;

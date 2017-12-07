@@ -1,43 +1,6 @@
 <div>
 
-    <!-- 二级导航项 -->
-<!--
-    <div class="case-nav">
-        <el-row  type="flex" justify="center" class="nav-row">
-            <el-col :span="3"></el-col>
-            <el-col :span="3"></el-col>
-            <el-col :span="3"  class="nav-item ">
-                <div class="icon-item active">
-                    <img src="../../common/img/1.png">
-                    <p class="nav-title">项目</p>
-                </div>
 
-            </el-col>
-            <el-col :span="3" class="nav-item ">
-                <div class="icon-item">
-                    <img src="../../common/img/2.png">
-                    <p class="nav-title">医生</p>
-                </div>
-
-            </el-col>
-            <el-col :span="3" class="nav-item ">
-                <div class="icon-item">
-                    <img src="../../common/img/3.png">
-                    <p class="nav-title">医院</p>
-                </div>
-
-            </el-col>
-            <el-col :span="3" class="nav-item ">
-                <div class="icon-item">
-                    <img src="../../common/img/4.png">
-                    <p class="nav-title">市场活动</p>
-                </div>
-                <el-col :span="3"></el-col>
-                <el-col :span="3"></el-col>
-            </el-col>
-
-        </el-row>
-    </div>-->
     <div class="case-top" >
         <div style="height: 136px">
             <el-row  justify="center" style="height: 134px">
@@ -51,7 +14,8 @@
 <!--案例列表-->
     <div class="case-menu">
         <div class="case-list">
-            <h6 v-for="item,index in caselist" v-if="index==0" >{{item.doctorName}}</h6>
+            <h6 v-for="item,index in caselist" v-if="index==0" >{{item.productName}}</h6>
+            <el-col :span="8" :offset="8" style="text-align: center" v-if="caselist.length<=0"> {{judgelength}}</el-col>
             <div>
                 <div  type="flex" justify="space-between" class="case-items">
                     <div  type="flex" style="padding:0;height: 390px;width:430px;" class="case-item"v-for="(list0,index) in  caselist">

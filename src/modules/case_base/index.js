@@ -60,8 +60,8 @@ export default {
                     this.changestyle=  m.productCode;
                 }
 
-                //console.log('disTop',disTop);
-               // console.log('scrolltop',scrolltop);
+                console.log('disTop',disTop);
+                console.log('scrolltop',scrolltop);
                 //parentCode
             })
         },fCaselibrary(uid){
