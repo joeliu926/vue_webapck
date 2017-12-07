@@ -711,6 +711,7 @@
                         width: 166px;
                         vertical-align: top;
                     }
+
                     .el-input__inner{
                         border-top: none;
                         border-left: none;

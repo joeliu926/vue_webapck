@@ -91,7 +91,7 @@ _This.fGetEndList();
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    //console.log("waiting result--------",result);
+                    console.log("waiting result--------",result);
 
                     if(result.code==0&&result.data){
                         result.data=result.data.sort(function (itemOne,itemTwo) {
@@ -100,7 +100,7 @@ _This.fGetEndList();
                         _This.aWaitinglist=result.data;
                          let latest=_.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)),"yyyy-MM-dd");
                          let today=_.date2String((new Date()),"yyyy-MM-dd");
-                          if(today==latest){;
+                          if(today==latest){
                            _This.todayCount=_This.aWaitinglist[0].length;
                         }
                     }

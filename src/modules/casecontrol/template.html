@@ -33,7 +33,7 @@
         <div class="s-position s-icon s-right-icon" @click="fShowNextCase(1)"><img src="../../common/img/i-right.png"></div>
         <div class="s-position s-content" style="">
             <div class="s-time-ct" style="">
-                <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>玻尿酸瘦脸</label><label style="float: right;" >{{sTimer}}</label>
+                <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>{{oCurrentShowItem.productName}}</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
                 <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="oCurrentShowItem.frondFile.url">
@@ -239,7 +239,30 @@
             <p class="title">客户信息</p>
             <div class="info-content">
                 <div class="info-item">
-                <label class="lb-name">姓名</label><el-input placeholder="客户姓名" class="cust-input" v-model="oCustomer.name"></el-input>
+                <label class="lb-name">姓名</label>
+                <!--    <el-input placeholder="客户姓名" class="cust-input" @keyup.native="fGetCustomerList" v-model="oCustomer.name">
+
+                    </el-input>-->
+                    <div class="cust-input">
+                        <template>
+                            <el-select
+                                    v-model="oCustomer.name"
+                                    :filterable="true"
+                                    :remote="true"
+                                    reserve-keyword
+                                    placeholder="请输入关键词"
+                                    @change="fSelectNameItem"
+                                    :remote-method="fGetCustomerList">
+                                <el-option
+                                        v-for="item in oNameList"
+                                        :key="item.name"
+                                        :label="item.name"
+                                        :value="item.name">
+                                </el-option>
+                            </el-select>
+                        </template>
+                    </div>
+
                </div>
                 <div class="info-item">
                     <label class="lb-name">性别</label> <el-radio v-model="oCustomer.gender" label="1">男</el-radio>
@@ -247,7 +270,17 @@
                 </div>
                 <div class="info-item">
                     <label class="lb-name">来源</label>
-                    <el-input placeholder="请输入" class="cust-input" v-model="oCustomer.source"></el-input>
+                 <!--   <el-input placeholder="请输入" class="cust-input" v-model="oCustomer.source"></el-input>-->
+                    <template>
+                        <el-dropdown split-button  @command="fChooseSource">
+                            {{oCustomer.source|sourceFilter(oSourceList)}}
+                            <el-dropdown-menu slot="dropdown">
+                                <template v-for="oSItem in oSourceList">
+                                        <el-dropdown-item :command="oSItem.code">{{oSItem.name}}</el-dropdown-item>
+                                </template>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </template>
                 </div>
                 <div class="info-item">
                     <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.job"></el-input>
@@ -265,7 +298,7 @@
                     <label class="lb-name">微信号</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.wechatNum"></el-input>
                 </div>
                 <div class="info-item" style="text-align: right;">
-                    <label class="lb-name"></label><el-button class="save-btn"  @click="fSaveCustomer(oCustomer.id)">保存</el-button>
+                    <label class="lb-name"></label><el-button class="save-btn"  @click="fUpdateCustomer(oCustomer.id)">保存</el-button>
                 </div>
             </div>
         </div>
