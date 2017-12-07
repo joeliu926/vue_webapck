@@ -3,8 +3,12 @@
 
 </script>
 <style  lang="scss">
+.el-tabs--border-card>.el-tabs__content {
+    padding-top: 10px;
+}
  .customer-block-content {
-             margin: 24px;
+
+             margin: 2px;
              border: 1px solid transparent;
              background-color: #ffffff;
              th div{
@@ -41,7 +45,7 @@
          }
 
          .customer-block-uinfo {
-             margin: 24px;
+             margin: 10px;
              height: 32px;
              .customers-name {
                  color: #333333;
