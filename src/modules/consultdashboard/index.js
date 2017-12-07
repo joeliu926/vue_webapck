@@ -163,10 +163,14 @@ _This.fGetEndList();
          */
         fAddNewDiagnose(){
 
-            this.$router.push({path:'/casecontrol',params:{
-               // customerId:customerId
+            this.$router.push({name:'/casecontrol',params:{
+                adddiag:true
             }});
         },
+        /**
+         * 开始咨询
+         * @param e
+         */
         fStartConsult(e){
              let args=Array.prototype.slice.call(arguments);
             this.$router.push({name:'/casecontrol',params:{

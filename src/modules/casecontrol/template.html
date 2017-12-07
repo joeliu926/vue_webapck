@@ -248,6 +248,7 @@
     <div :class="[!isCustomerinfo?'mask':'']"></div>
     <div class="customer-ct b-s" :style="{left:[!isCustomerinfo?'0px':'-320px']}">
       <div class="customer-db-arr" @click="fCloseCustomerInfo"> <i class="el-icon-pa-angle-double-left"></i></div>
+        <div style="position: absolute;top:40px;bottom: 0;overflow-y: scroll">
         <div class="c-ct">
             <p class="title">客户信息</p>
             <div class="info-content">
@@ -349,7 +350,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
     </div>
 
     <!--*******************客户信息 end**********************-->

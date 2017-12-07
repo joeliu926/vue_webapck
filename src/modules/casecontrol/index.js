@@ -55,7 +55,7 @@ export default {
         _This.routerParam = this.$route.params;
         _This.initSocket();
         _This.fGetCustomerData();
-        // console.log("this.$route.params--------->",this.$route.params);
+         console.log("this.$route.params--------->",this.$route.params);
         _This.fProductList();
         _This.fDoctorList();
     },
@@ -481,7 +481,7 @@ export default {
                     console.log("模糊搜索客户列表-------》",result);
                     if(result.code==0&&result.data){
                        _This.oNameList=result.data.list;
-                        if(!_This.oCustomer.id&&result.data.list.length==1){
+                        if(_This.routerParam.adddiag&&result.data.list.length==1){
                             _This.oCustomer=_This.oNameList[0];
                         }
                     }
