@@ -3,11 +3,12 @@ export default {
     data () {
         return {
             selectedVal:'',
-            culeList:[]
+            culeList:[],
+            currentClue:{name:''}
         }
     },
     created() {
-        this.changeClue();
+        this.initClue();
     },
     mounted(){
 
@@ -21,7 +22,7 @@ export default {
             document.body.scrollTop = anchor.offsetTop; // chrome
             document.documentElement.scrollTop = anchor.offsetTop; // firefox
         },
-        changeClue(){
+        initClue(){
             let _this=this;
             let uid= _this.$route.params.id;
             let postData = {
@@ -34,12 +35,15 @@ export default {
                 data: postData,
                 success: function (result) {
                     if (result.code == 0 && result.data) {
-                        _this.culeList = result.data;
-                        console.log('_this.culeList',_this.culeList);
+                        _this.culeList = result.data.list;
+                        _this.currentClue =   _this.culeList[0];
                     }else {
                     }
                 }
             }, 'withCredentials');
+        },
+        changeClue(params){
+            this.currentClue =   params;
         }
 
     }
