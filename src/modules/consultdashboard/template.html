@@ -29,16 +29,19 @@
                                   <tr>
                                       <th>姓名 </th><th>约面时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>备注</th><th></th>
                                   </tr>
-                                  <template v-for="(oItem,index) in aWaitinglist">
-                                      <tr class="day-ct" v-if="index>0||todayCount<=0">
+                                  <template v-for="(oItem,oIndex) in aWaitinglist">
+                                      <tr class="day-ct" v-if="oIndex>0||todayCount<=0">
                                           <td class="idate">{{oItem[0].faceDiagnoseDate|dateFilter("yyyy年MM月dd日")}}</td>
                                           <td class="icount" colspan="6">{{oItem.length}} 人</td>
                                       </tr>
-                                      <tr v-for="(item,index) in oItem">
+                                      <tr v-for="(item,ind) in oItem">
                                           <td>{{item.customerName}}</td>
                                           <td>{{item.faceDiagnoseDate}}</td>
-                                          <td>{{item.customerPhone|phoneFilter}}
-                                              <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaPhone">
+                                          <td :style="{display:[item.show!='1'?'':'none']}">{{item.customerPhone|phoneFilter}}
+                                              <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaPhone(oIndex,ind,'1')">
+                                          </td>
+                                          <td :style="{display:[item.show=='1'?'':'none']}">{{item.customerPhone}}
+                                              <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-open.png" @click="fSeaPhone(oIndex,ind,'0')">
                                           </td>
                                           <td>{{item.projectList|projectFilter}}</td><td>{{item.netConsultantsName}}</td><td>{{item.faceDiagnoseRemarks}}</td><td>
                                           <el-button class="start-cst-btn"  @click="fStartConsult(item.appointmentId,item.customerId,item.id,item.projectList)"> 开始咨询</el-button></td>
@@ -51,60 +54,34 @@
                     </el-tab-pane>
                     <el-tab-pane label="已结束" name="eend">
                         <div>
-                            <div class="customer-block-content">
-                                <el-table
-                                        :data="aEndList"
-                                        style="width: 100%"
-                                        :default-sort = "{prop: 'date', order: 'descending'}"
-                                >
-                                    <el-table-column
-                                            prop="customerName"
-                                            label="姓名"
-                                            width="100">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="faceDiagnoseDate"
-                                            label="面诊时间"
-                                            width="200">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.faceDiagnoseDate|dateFilter("yyyy-MM-dd hh:mm")}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="customerPhone"
-                                            label="电话"
-                                            width="200">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.customerPhone|phoneFilter}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="projectList"
-                                            label="咨询项目"
-                                            width="300">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.projectList|projectFilter}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="netConsultantsName"
-                                            width="200"
-                                            label="网络咨询师">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="faceDiagnoseResult"
-                                            width="200"
-                                            label="结果">
-                                        <template slot-scope="scope" style="text-align: right;">
-                                            <p>{{scope.row.faceDiagnoseResult|faceDiagnoseResultFilter}}</p>
-                                        </template>
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="faceDiagnoseRemarks"
-                                            label="备注">
-                                    </el-table-column>
+                            <div class="customer-waiting-content">
 
-                                </el-table>
+
+                                <table class="customer-table">
+                                    <tr>
+                                        <th>姓名 </th><th>面诊时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>结果</th><th>备注</th>
+                                    </tr>
+                                    <template v-for="(item,oIndex) in aEndList">
+                                        <tr>
+                                            <td>{{item.customerName}}</td>
+                                            <td>{{item.faceDiagnoseDate}}</td>
+                                            <td :style="{display:[item.show!='1'?'':'none']}">{{item.customerPhone|phoneFilter}}
+                                                <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaEndPhone(oIndex,'1')">
+                                            </td>
+                                            <td :style="{display:[item.show=='1'?'':'none']}">{{item.customerPhone}}
+                                                <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-open.png" @click="fSeaEndPhone(oIndex,'0')">
+                                            </td>
+                                            <td>{{item.projectList|projectFilter}}</td>
+                                            <td>{{item.netConsultantsName}}</td>
+
+                                            <td>{{item.faceDiagnoseResult|faceDiagnoseResultFilter}}</td>
+                                            <td>{{item.faceDiagnoseRemarks}}</td>
+
+                                        </tr>
+                                    </template>
+
+                                </table>
+
                             </div>
 
                             <div class="customer-block-content customer-pagination-align">

@@ -37,7 +37,7 @@ _This.fGetEndList();
         },
         phoneFilter:function (input) {
             if(input&&input!=""){
-                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
+                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1*****$2");
             }
         },
         projectFilter:function (input) {
@@ -74,8 +74,17 @@ _This.fGetEndList();
         handleCurrentChange(){
 
         },
-        fSeaPhone(){
-
+        fSeaPhone(oindex,index,otype){
+           let temp=this.aWaitinglist;
+            temp[oindex][index].show=otype;
+            this.aWaitinglist=[];
+            this.aWaitinglist=temp;
+        },
+        fSeaEndPhone(oindex,etype){
+            let temp=this.aEndList;
+            temp[oindex].show=etype;
+            this.aEndList=[];
+             this.aEndList=temp;
         },
         fClosePhone(){
 
@@ -91,7 +100,7 @@ _This.fGetEndList();
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("waiting result--------",result);
+                   // console.log("waiting result--------",result);
 
                     if(result.code==0&&result.data){
                         result.data=result.data.sort(function (itemOne,itemTwo) {
