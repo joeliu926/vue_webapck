@@ -34,7 +34,7 @@ export default {
                  data: postData,
 
                  success: function (result) {
-                     console.log('caselibrayrresult.data',result);
+                    // console.log('caselibrayrresult.data',result);
                      if (result.code == 0 && result.data) {
                          _This.caselist =JSON.parse(JSON.stringify(result.data)) ;
                          console.log('_This.caselist',_This.caselist);

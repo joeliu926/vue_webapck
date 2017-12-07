@@ -82,12 +82,12 @@
                         </el-col>
                     </el-row>
 
-                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item in contentList" v-if=" item.nodeType == 0 ">
+                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item,index in contentList" :key="index" v-if=" item.nodeType == 0 ">
                         <!--术前-->
                         <el-col :span="24" type="flex" >
                             <h6>{{item.title}}</h6>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files">
+                                <li v-for="(file,index) in item.files" :key="index">
                                     <a href="javascript:;" @click="showLayer(file.name)">
                                         <img :src="file.url" data-fileName="file.name" width="215" height="215">
                                     </a>
@@ -95,7 +95,7 @@
                             </ul>
                             <div class="description">
                                 术前特征 :
-                                <span v-for='btn in item.caseFeature.split(",")'>眼袋较明显</span>
+                                <span v-for='btn,index in item.caseFeature.split(",")' :key="index">眼袋较明显</span>
                             </div>
                         </el-col>
                     </el-row>
@@ -111,7 +111,7 @@
                                 <span :class="isActive?'active':''" v-show='index==0'  @click="fromNow()" style="cursor:pointer; margin-right: 20px;" >从最早开始浏览</span>
                             </div>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files">
+                                <li v-for="(file,index) in item.files" :key="index">
                                     <a href="javascript:;" @click="showLayer(file.name)">
                                         <img :src="file.url"  width="215" height="215">
                                     </a>
