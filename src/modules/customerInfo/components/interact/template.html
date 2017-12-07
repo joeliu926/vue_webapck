@@ -3,11 +3,21 @@
 <!--客户线索步骤-->
     <div class="interact-link item-border">
         <div class="item-title">
-            <p>
+           <!-- <p>
                 <i class=" el-icon-arrow-down"></i>
                 <span>&nbsp;2017-11-22&nbsp;</span>
                 <span>杨宏伟</span>
-            </p>
+            </p>-->
+
+            <el-dropdown trigger="click" @click="changeClue" @command="changeClue">
+                <span class="el-dropdown-link nav-select-list">
+                    <i class="el-icon-arrow-down el-icon--right"></i>{{selectedVal}}
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for="item in culeList" key="item.index" :command="item.name">{{item.name}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
         </div>
         <!--<p class="item-title">-->
             <!--<i class=" el-icon-arrow-down"></i>-->
