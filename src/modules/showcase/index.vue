@@ -13,7 +13,7 @@
         overflow: hidden;
         .showcase-tite{}
         .showcase-content{
-            background-image:url(./../../common/img/tv/play.jpg);
+            background-image:url(./../../common/img/tv/play.png);
             background-size: cover;
             height: 100%;
             background-position:center;
@@ -23,6 +23,7 @@
             .hold_place{
                 width: 50%;
                 .show-case-title{
+                    display: none;
                     color:#f9f7f7;
                     height:21px;
                     text-align: center;
@@ -45,7 +46,11 @@
                         border: 0;
                         display: inline-block;
                         position: relative;
-                        img{ width: 100%;}
+                        img{ width: 100%;
+                            -webkit-box-reflect: below 0 -webkit-linear-gradient(top,rgba(250,250,250,0),rgba(250,250,250,.0) 90%,rgba(250,250,250,0.6));
+                            box-reflect: below 0 -webkit-linear-gradient(top,rgba(250,250,250,0),rgba(250,250,250,.0) 90%,rgba(250,250,250,0.6));
+
+                        }
                         span{
                             color:#efe8e8;
                             background-color: rgba(43, 48, 93, 0.48);
