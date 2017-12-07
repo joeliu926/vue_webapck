@@ -1,26 +1,28 @@
-
 export default {
-    components: {
-    },
+    components: {},
     data () {
         return {
-            tabActive:"waiting",
-            aCustomerlist:[
-            ],
-            aWaitinglist:[
-            ],
-            todayCount:0,
-            aEndList:[],
-            count:0,
-            pageSize:3,
+            tabActive: "waiting",
+            aCustomerlist: [],
+            aWaitinglist: [],
+            todayCount: 0,
+            aEndList: [],
+            count: 0,
+            pageSize: 3,
             pageNo: 1,
-            total:0
+            total: 0
         }
     },
     created() {
-let _This=this;
-_This.fGetWaitingList();
-_This.fGetEndList();
+        let _This = this;
+        _This.fGetWaitingList();
+        _This.fGetEndList();
+        let loadparams =_This.$route.params;
+        console.log("loadparams-----",loadparams);
+        if (loadparams && loadparams.sbsuccess) {
+            _This.tabActive = "eend";
+        }
+
     },
     mounted(){
 
@@ -28,38 +30,38 @@ _This.fGetEndList();
     destroyed() {
 
     },
-    filters:{
-      dateFilter:function (input,format) {
-          format=format||"yyyy-MM-dd hh:mm:ss";
-          if(input&&input!=""){
-              return  _.date2String(new Date(input),format);
-          }
-        },
-        phoneFilter:function (input) {
-            if(input&&input!=""){
-                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1*****$2");
+    filters: {
+        dateFilter: function (input, format) {
+            format = format || "yyyy-MM-dd hh:mm:ss";
+            if (input && input != "") {
+                return _.date2String(new Date(input), format);
             }
         },
-        projectFilter:function (input) {
-
-            if(!input||input==""||typeof(input)!="object"){
-               return "";
+        phoneFilter: function (input) {
+            if (input && input != "") {
+                return input.replace(/(\d{3})\d{4}(\d{3})/, "$1*****$2");
             }
-            let result=[];
+        },
+        projectFilter: function (input) {
 
-            input.forEach(item=>{
+            if (!input || input == "" || typeof(input) != "object") {
+                return "";
+            }
+            let result = [];
+
+            input.forEach(item => {
                 result.push(item.projectName);
             });
             return result.join("、");
         },
-        faceDiagnoseResultFilter:function (input) {
-          let result="";
-            if(input==0){
-                result= "成功";
-            }else if(input==1){
-                result= "复诊";
-            }else  if(input==2){
-                result="放弃";
+        faceDiagnoseResultFilter: function (input) {
+            let result = "";
+            if (input == 0) {
+                result = "成功";
+            } else if (input == 1) {
+                result = "复诊";
+            } else if (input == 2) {
+                result = "放弃";
             }
             return result;
         }
@@ -74,17 +76,17 @@ _This.fGetEndList();
         handleCurrentChange(){
 
         },
-        fSeaPhone(oindex,index,otype){
-           let temp=this.aWaitinglist;
-            temp[oindex][index].show=otype;
-            this.aWaitinglist=[];
-            this.aWaitinglist=temp;
+        fSeaPhone(oindex, index, otype){
+            let temp = this.aWaitinglist;
+            temp[oindex][index].show = otype;
+            this.aWaitinglist = [];
+            this.aWaitinglist = temp;
         },
-        fSeaEndPhone(oindex,etype){
-            let temp=this.aEndList;
-            temp[oindex].show=etype;
-            this.aEndList=[];
-             this.aEndList=temp;
+        fSeaEndPhone(oindex, etype){
+            let temp = this.aEndList;
+            temp[oindex].show = etype;
+            this.aEndList = [];
+            this.aEndList = temp;
         },
         fClosePhone(){
 
@@ -93,24 +95,24 @@ _This.fGetEndList();
          * 获取待面诊
          */
         fGetWaitingList(){
-            let postData={};
-            let _This=this;
+            let postData = {};
+            let _This = this;
             _.ajax({
                 url: '/faceDiagnose/getwaitinglist',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log("waiting result--------",result);
+                    // console.log("waiting result--------",result);
 
-                    if(result.code==0&&result.data){
-                        result.data=result.data.sort(function (itemOne,itemTwo) {
-                            return itemOne[0].faceDiagnoseDate>itemTwo[0].faceDiagnoseDate;
+                    if (result.code == 0 && result.data) {
+                        result.data = result.data.sort(function (itemOne, itemTwo) {
+                            return itemOne[0].faceDiagnoseDate > itemTwo[0].faceDiagnoseDate;
                         });
-                        _This.aWaitinglist=result.data;
-                         let latest=_.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)),"yyyy-MM-dd");
-                         let today=_.date2String((new Date()),"yyyy-MM-dd");
-                          if(today==latest){
-                           _This.todayCount=_This.aWaitinglist[0].length;
+                        _This.aWaitinglist = result.data;
+                        let latest = _.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)), "yyyy-MM-dd");
+                        let today = _.date2String((new Date()), "yyyy-MM-dd");
+                        if (today == latest) {
+                            _This.todayCount = _This.aWaitinglist[0].length;
                         }
                     }
                 }
@@ -120,10 +122,10 @@ _This.fGetEndList();
          * 获取已经结束
          */
         fGetEndList(){
-            let _This=this;
-            let postData={
-                pageNo:_This.pageNo,
-                pageSize:_This.pageSize
+            let _This = this;
+            let postData = {
+                pageNo: _This.pageNo,
+                pageSize: _This.pageSize
             };
             _.ajax({
                 url: '/faceDiagnose/getendlist',
@@ -131,9 +133,9 @@ _This.fGetEndList();
                 data: postData,
                 success: function (result) {
                     //console.log("end result--------",result);
-                    if(result.code==0&&result.data){
-                        _This.aEndList=result.data.list;
-                        _This.count=result.data.count;
+                    if (result.code == 0 && result.data) {
+                        _This.aEndList = result.data.list;
+                        _This.count = result.data.count;
                     }
                 }
             }, 'withCredentials');
@@ -143,18 +145,18 @@ _This.fGetEndList();
          * @param pnum
          */
         handleCurrentChange(pnum){
-            this.pageNo=pnum;
-           this.fGetEndList()
+            this.pageNo = pnum;
+            this.fGetEndList()
         },
         /**
          * 切换tab
          * @param e
          */
         handleTabClick(e){
-            let _This=this;
-            if(e.name=="waiting"){
+            let _This = this;
+            if (e.name == "waiting") {
                 _This.fGetWaitingList();
-            }else {
+            } else {
                 _This.fGetEndList();
             }
         },
@@ -163,22 +165,26 @@ _This.fGetEndList();
          */
         fAddNewDiagnose(){
 
-            this.$router.push({name:'/casecontrol',params:{
-                adddiag:true
-            }});
+            this.$router.push({
+                name: '/casecontrol', params: {
+                    adddiag: true
+                }
+            });
         },
         /**
          * 开始咨询
          * @param e
          */
         fStartConsult(e){
-             let args=Array.prototype.slice.call(arguments);
-            this.$router.push({name:'/casecontrol',params:{
-                appointmentId:args[0],
-                customerId:args[1],
-                diagid:args[2],
-                projects:args[3]
-            }});
+            let args = Array.prototype.slice.call(arguments);
+            this.$router.push({
+                name: '/casecontrol', params: {
+                    appointmentId: args[0],
+                    customerId: args[1],
+                    diagid: args[2],
+                    projects: args[3]
+                }
+            });
         }
     }
 }

@@ -24,6 +24,7 @@ export default {
             oCurrentShowItem: {frondFile:[],backFile:[]},//当前展示的案例
             oCurrentShowItemIndex: {},//当前展示的案例的索引
             oSourceList:[],//客户来源列表
+            isFillProject:false,//结束是否填写项目信息
             oNameList:[],
             otheritems: "",
             otherresion: "",
@@ -399,7 +400,7 @@ export default {
          */
         fSubmitEndData(){
 
-            return false; ////****************************移除**********************//
+            ////****************************移除**********************//
             let _This = this;
             let postData = {
                 id: _This.routerParam.diagid,
@@ -409,6 +410,17 @@ export default {
                 faceDiagnoseProduct: _This.faceDiagnoseProduct
             };
             console.log("postData======>", postData);
+          if(postData.flag=="0"&&postData.faceDiagnoseProduct.length<=0){
+             // _This.isFillProject=true;
+              _This.$message.error('项目信息必选');
+              return false;
+          }
+            if(postData.flag=="1"&&postData.faceDiagnoseDate.length<=0){
+                _This.$message.error('面诊时间必填');
+                return false;
+            }
+
+
             _.ajax({
                 url: '/faceDiagnose/finished',
                 method: 'POST',
@@ -416,11 +428,21 @@ export default {
                 success: function (result) {
                     console.log("fSubmitEndData result--------", result);
                     if (result.code == 0 && result.data) {
-
+                        _This.$router.push({name:'/consultdashboard',params:{
+                            sbsuccess:true
+                        }});
+                    }else {
+                        _This.$message.error('提交失败');
                     }
 
                 }
             }, 'withCredentials');
+        },
+        /**
+         * 关闭未选择项目提示框
+         */
+        fCloseFillProject(){
+            this.isFillProject=false;
         },
         /**
          * 获取面诊客户资料
@@ -573,6 +595,7 @@ export default {
             //return false;
             let _This = this;
             let postData = _This.oCustomer;
+            postData.birthday=postData.birthday?postData.birthday.valueOf():"";
             postData.diagnoseId=_This.routerParam.diagid||"";
             console.log("save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
             _.ajax({

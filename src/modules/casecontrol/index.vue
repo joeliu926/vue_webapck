@@ -588,17 +588,27 @@
                       }
                         .search-ct{
                             width: 250px;
-                            margin: 40px auto;
+                           /* margin: 40px auto;*/
+                            margin: 30px auto 6px;
                             position: relative;
                             .el-input__inner{padding-left: 30px;}
                             .el-icon-search{
                                 left: 0;
                             }
+                            .end-reason-input{
+                                width: 350px;
+                                text-align: center;
+                                margin-left: -30px;
+                                .el-input__inner{
+                                    padding-left: 20px;
+                                }
+                            }
                         }
                         .set-date-ct,.set-date-remark{
                             padding: 3px 5px;
                             width: 360px;
-                            margin: 40px auto;
+                          /*  margin: 40px auto;*/
+                            margin: 30px auto 5px;
                             border:1px solid #bfcbd9;
                             .lb-date{
                                 font-size: 16px;
@@ -612,6 +622,12 @@
                         }
                         .set-date-remark{
                             .el-input__inner{width: 320px;}
+                        }
+                        .error-ct{
+                            width: 100%;height: 40px;position: relative;
+                            .err-tips{
+                                width: 250px;margin: 0 auto;
+                            }
                         }
                     }
                     .snext{

@@ -187,14 +187,13 @@
                        <el-checkbox-button v-for="eitem in routerParam.projects" :label="eitem.projectCode" :key="eitem.projectCode">{{eitem.projectName}}</el-checkbox-button>
                    </el-checkbox-group>
                    <div class="search-ct">
-
                        <template>
                            <el-select
                                    v-model="otheritems"
                                    :filterable="true"
                                    :remote="true"
                                    reserve-keyword
-                                   placeholder="请输入关键词"
+                                   placeholder="搜索其他项目"
                                    @change="fSelectProjecChange"
                                    :remote-method="fChangeAutoSelect">
                                <el-option
@@ -206,8 +205,14 @@
                            </el-select>
                        </template>
                        <i  class="el-input__icon el-icon-search"></i>
-
                    </div>
+                   <div  class="error-ct" :style="{display:[isFillProject?'':'none']}"><el-alert
+                           class="err-tips"
+                           @close="fCloseFillProject"
+                           :closable="true"
+                           title="项目信息必选"
+                           type="error">
+                   </el-alert></div>
                </div>
                <div class="tab-ct-item" :style="{display:[activeStatus=='1'?'':'none']}">
                    <div class="set-date-ct">
@@ -217,7 +222,13 @@
                                type="date"
                                placeholder="选择日期">
                        </el-date-picker>
+
                    </div>
+                   <div style="width: 100%;display: none;" class="error-ct"><el-alert
+                           style="width: 370px;margin: 0 auto;"
+                           title="面诊时间必填"
+                           type="error">
+                   </el-alert></div>
                    <div class="set-date-remark">
                        <label class="lb-date">备注</label>
                        <el-input
@@ -228,7 +239,7 @@
                </div>
                <div class="tab-ct-item" :style="{display:[activeStatus=='2'?'':'none']}">
                    <div class="search-ct">
-                       <el-input
+                       <el-input class="end-reason-input"
                                placeholder="原因"
                                v-model="faceDiagnoseRemarks">
                        </el-input>
