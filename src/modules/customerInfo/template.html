@@ -26,8 +26,8 @@
                         <right></right>
                     </el-tab-pane>
                 </el-tabs>
-                <!--备注-->
-                <el-row>
+                <!--备注  暂时不做-->
+                <el-row style="display:none">
                     <el-col :span="24" type="flex" class="remarks">
                         <p class="item-title"><img src="../../common/img/file.png"> 文件(5)</p>
                         <div class="remark-box">
@@ -59,30 +59,15 @@
                     <el-col :span="24" type="flex" class="update-file item-border">
                         <p id="file" class="item-title"><img src="../../common/img/file.png"> 文件(5)</p>
                         <div class="img-box">
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
+                            <div class="file-item" v-for="(file,index) in fileList" :key="index">
+                                <img :src="file"  height="60" width="60"/>
                             </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
-                            <div class="file-item" v-for="">
-                                <img src="../../common/img/shuhou.png"  height="60" width="60"/>
-                            </div>
+
+
+
                         </div>
 
-                        <p class="show-all">查看全部</p>
+                        <p class="show-all" @click="showMore">查看全部</p>
                     </el-col>
                 </el-row>
                 <!--文件-->

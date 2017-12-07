@@ -1,33 +1,55 @@
 
     <!--客源渠道
 -->
-
     <div class="customerinfo-right-content">
         <div>
-            <!--v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.source"-->
-            <el-input
-            placeholder="">
+            <!-- <el-input
+                     placeholder=""
+                     v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.source">
+             </el-input>-->
+            {{$parent.$parent.$parent.$parent.$parent.oCustomer.source}}
 
-
-            </el-input>
         </div>
         <div>
             <div class="rigth-remark">备注:</div>
             <div style="height: 100px;margin-top: 10px;">
-                <!--v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.comment-->
-                <el-input
-                type="textarea"
-                :rows="3"
-                placeholder="" >
+                {{$parent.$parent.$parent.$parent.$parent.oCustomer.comment}}
 
-                </el-input>
+                <!-- <el-input
+                     type="textarea"
+                     :rows="3"
+                     placeholder=""
+                     v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.comment">
+             </el-input>-->
             </div>
         </div>
-        <div>
-            <el-button class="save-btn" type="primary" size="small">保存</el-button>
-        </div>
-
     </div>
+    <!--<div class="customerinfo-right-content">-->
+        <!--<div>-->
+            <!--&lt;!&ndash;v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.source"&ndash;&gt;-->
+            <!--<el-input-->
+            <!--placeholder="">-->
+
+
+            <!--</el-input>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<div class="rigth-remark">备注:</div>-->
+            <!--<div style="height: 100px;margin-top: 10px;">-->
+                <!--&lt;!&ndash;v-model="$parent.$parent.$parent.$parent.$parent.oCustomer.comment&ndash;&gt;-->
+                <!--<el-input-->
+                <!--type="textarea"-->
+                <!--:rows="3"-->
+                <!--placeholder="" >-->
+
+                <!--</el-input>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<el-button class="save-btn" type="primary" size="small">保存</el-button>-->
+        <!--</div>-->
+
+    <!--</div>-->
 
 
 

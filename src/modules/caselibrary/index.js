@@ -43,6 +43,18 @@ export default {
                      }
                  }
              }, 'withCredentials');
-         },
-}
+         },fCaselibrary(uid){
+            // console.log("uid",uid);
+             if(!uid){
+                 return false;
+             }
+             this.$router.push({path:'/caselibrary/'+uid});
+         },fCaseDetail(id){
+             if(!id){
+                 return false;
+             }
+             this.$router.push({path:'/casedetail/'+id});
+         }
+
+     }
 }

@@ -27,7 +27,7 @@
                     <div class="tab-con" >
                         <el-row class="case-right-row" key="list1.productName" v-for="(list1,index) in  list0.productList "  ><div class="case-title" style="font-size: 14px">{{list1.productName}}</div><div style="height:12px"></div>
                             <div class="case-right-col" v-for="(list2,index) in list1.productList"   >
-                                <a href="javascript:;" @click="fCaseDetail(list2.productCode)" class="changecol" ><p class="p" style="font-size:14px">{{list2.productName}}</p></a>
+                                <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol" ><p class="p" style="font-size:14px">{{list2.productName}}</p></a>
                             </div>
                         </el-row>
                     </div>
