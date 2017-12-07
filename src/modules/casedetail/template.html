@@ -82,7 +82,7 @@
                         </el-col>
                     </el-row>
 
-                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item in contentList" v-if=" item.nodeType == 0 ">
+                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item in contentList" v-if="item.nodeType == 0 ">
                         <!--术前-->
                         <el-col :span="24" type="flex" >
                             <h6>{{item.title}}</h6>
@@ -148,8 +148,6 @@
                 <span class="close el-icon-pa-close" @click="closeLayer"></span>
             </div>
         </div>
-
-
     </div>
 
 

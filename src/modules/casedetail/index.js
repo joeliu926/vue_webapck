@@ -6,8 +6,8 @@ export default {
     data () {
         return {
             isActive:false,
-            hasError:false,
-            isCollapse:true,
+            // hasError:false,
+            // isCollapse:true,
             acaseuserlist:{
                 id:"",
                 doctorName:"",
@@ -27,11 +27,11 @@ export default {
             contentListAfter:[],
             photolist:[],
             zoomPhoto:'',
+            zoomPhotoName:'',//图片id
             imgArr:[],
             currentIndex: 0,
             timer: '',
             reveal:false,
-            zoomPhotoName:'',
             isclick_before:''
         }
     },
@@ -48,7 +48,7 @@ export default {
     filters:{
         dateFilter:function (input) {
             if(input&&input!=""){
-                return  _.date2String(new Date(input),"yyyy-MM-dd");
+                return  _.date2String(new Date(input),"yyyy-MM-dd");//hh:mm:ss
             }
         },
         
@@ -103,7 +103,6 @@ export default {
             this.zoomPhoto=this.photolist[this.currentIndex].url;
             this.zoomPhotoName=this.photolist[this.currentIndex].name;
         },
-        
         reduce(){
             let plength=this.photolist.length;
             this.currentIndex-=1;

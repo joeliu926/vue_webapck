@@ -131,6 +131,7 @@ export default {
             let postData = {
                 customerId: uid
             };
+            let Flength=0;
             _.ajax({
                 url: '/customers/filelist',
                 method: 'POST',
@@ -139,6 +140,7 @@ export default {
                     console.log("+++++++++++",result.data);
                     if (result.code == 0 && result.data) {
                         _This.fileList = result.data;
+                        Flength=_This.fileList.length;
                     }else {
                         //_This.$router.push('/customers');
                     }

@@ -57,16 +57,12 @@
                 <!--上传文件-->
                 <el-row>
                     <el-col :span="24" type="flex" class="update-file item-border">
-                        <p id="file" class="item-title"><img src="../../common/img/file.png"> 文件(5)</p>
+                        <p id="file" class="item-title"><img src="../../common/img/file.png"> 文件( {{fileList.length}} )</p>
                         <div class="img-box">
                             <div class="file-item" v-for="(file,index) in fileList" :key="index">
                                 <img :src="file"  height="60" width="60"/>
                             </div>
-
-
-
                         </div>
-
                         <p class="show-all" @click="showMore">查看全部</p>
                     </el-col>
                 </el-row>
