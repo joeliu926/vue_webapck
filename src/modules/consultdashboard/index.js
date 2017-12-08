@@ -14,11 +14,6 @@ export default {
         }
     },
     created() {
-<<<<<<< HEAD
-        let _This=this;
-        _This.fGetWaitingList();
-        _This.fGetEndList();
-=======
         let _This = this;
         _This.fGetWaitingList();
         _This.fGetEndList();
@@ -27,8 +22,6 @@ export default {
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
         }
-
->>>>>>> 75d41b6a08d8dafc855036e313dd8f3217dc7268
     },
     mounted(){
 
