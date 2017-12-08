@@ -140,7 +140,6 @@ body{
                     span{
 
                       display:inline-block;
-                      width:75px;
                       height:15px;
                       font-size:14px;
                     }

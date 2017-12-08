@@ -79,6 +79,7 @@ export default {
                 method: 'POST',
                 data: {caseid:uid},
                 success: function (result) {
+                    console.log("casedetail",result);
                     if(result.code==0&&result.data){
                         _This.acaseuserlist = result.data;
                         _This.contentList=result.data.contentList;
