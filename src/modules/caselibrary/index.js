@@ -6,7 +6,7 @@ export default {
         return {
             msg:0,
            caselist:[],
-            judgelength:"你要的案例还在精心准备中！",
+            judgelength:"您要的案例还在精心准备中！",
         };
     }
      ,
