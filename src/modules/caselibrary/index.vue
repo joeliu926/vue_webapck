@@ -190,7 +190,6 @@
                                 a{ display: inline-block;
                                     text-align: center;
                                     font-size: 14px;
-                                    background: white;
                                     color: #333;
                                     text-decoration:none;
                             }

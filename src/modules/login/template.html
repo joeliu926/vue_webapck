@@ -10,7 +10,7 @@
                         title="手机号有误"
                         type="warning">
                 </el-alert>
-                <el-input v-model="sPassword"  size="large" type="password" @input="clearwaring"  @keyup.enter.native="fLogin" class="login-pwd login-input" placeholder="请输入密码"></el-input>
+                <el-input v-model="sPassword" autocomplete="off" size="large" type="password" @input="clearwaring"  @keyup.enter.native="fLogin" class="login-pwd login-input" placeholder="请输入密码"></el-input>
                 <el-alert v-if="alertPassword"  :closable="false"
                         title="密码有误"
                         type="warning">

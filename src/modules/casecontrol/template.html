@@ -30,9 +30,7 @@
 
 
     <!--**********************test start**************************-->
-    <div style="height: 1000px;width: 1000px;background-color: #4F3CCA;display: none;">
 
-    </div>
 
     <!--**********************test end**************************-->
     <!--**********************選擇案例框 start**************************-->
@@ -111,10 +109,11 @@
                 </div>
                 <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
-                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" >{{item.productName}}</label>
+                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" @click="fChooseItems(item.productCode)" >{{item.productName}}</label>
                 </div>
             </div>
         </div>
+       <!--**********************底部展示 start**************************-->
         <div class="foot-img b-s">
             <div class="layout-ct b-s">
                 <div class="lay-row">
@@ -122,13 +121,16 @@
                     <div class="lay-right f-right-icon f-icon"><label class="" ><i class="el-icon-d-arrow-right
 "></i></label></div>
                     <div class="b-s lay-items img-ct">
-                        <div class="b-s img-i-ct"  v-for="item in oShowCaseList">
-                            <div class="img-item b-s">
-                                <div class="b-ba-img-ct" @click="playCase(item)" style="">
+                      <!--  <div class="b-s img-i-ct"  v-for="item in oShowCaseList">-->
+                        <div class="b-s img-i-ct"  v-for="item,index in oShowCaseTempList">
+                            <div class="img-item b-s" :style="{transform:[index==3?'scale(1.1)':'']}">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.frondFile.url">
                                     <img class="img-l"  :src="item.frondFile.url">
                                     <img class="img-l" :src="item.backFile.url">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
+                                    <div class="add-case i-video-icon" v-if="index==3" style="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,6 +138,7 @@
                 </div>
             </div>
         </div>
+       <!--**********************底部展示 end**************************-->
     </div>
 
     <!--**********************连接设备弹出框 start**************************-->
@@ -187,14 +190,13 @@
                        <el-checkbox-button v-for="eitem in routerParam.projects" :label="eitem.projectCode" :key="eitem.projectCode">{{eitem.projectName}}</el-checkbox-button>
                    </el-checkbox-group>
                    <div class="search-ct">
-
                        <template>
                            <el-select
                                    v-model="otheritems"
                                    :filterable="true"
                                    :remote="true"
                                    reserve-keyword
-                                   placeholder="请输入关键词"
+                                   placeholder="搜索其他项目"
                                    @change="fSelectProjecChange"
                                    :remote-method="fChangeAutoSelect">
                                <el-option
@@ -206,8 +208,14 @@
                            </el-select>
                        </template>
                        <i  class="el-input__icon el-icon-search"></i>
-
                    </div>
+                   <div  class="error-ct" :style="{display:[isFillProject?'':'none']}"><el-alert
+                           class="err-tips"
+                           @close="fCloseFillProject"
+                           :closable="true"
+                           title="项目信息必选"
+                           type="error">
+                   </el-alert></div>
                </div>
                <div class="tab-ct-item" :style="{display:[activeStatus=='1'?'':'none']}">
                    <div class="set-date-ct">
@@ -217,7 +225,13 @@
                                type="date"
                                placeholder="选择日期">
                        </el-date-picker>
+
                    </div>
+                   <div style="width: 100%;display: none;" class="error-ct"><el-alert
+                           style="width: 370px;margin: 0 auto;"
+                           title="面诊时间必填"
+                           type="error">
+                   </el-alert></div>
                    <div class="set-date-remark">
                        <label class="lb-date">备注</label>
                        <el-input
@@ -228,7 +242,7 @@
                </div>
                <div class="tab-ct-item" :style="{display:[activeStatus=='2'?'':'none']}">
                    <div class="search-ct">
-                       <el-input
+                       <el-input class="end-reason-input"
                                placeholder="原因"
                                v-model="faceDiagnoseRemarks">
                        </el-input>
@@ -300,7 +314,8 @@
                     <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.job"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">生日</label> <el-date-picker
+                    <label class="lb-name">生日</label>
+                    <el-date-picker
                         v-model="oCustomer.birthday"
                         type="date"
                         placeholder="客户生日"></el-date-picker>
