@@ -279,11 +279,12 @@ export default {
          */
         fCaseHeaderList(){
             let _This = this;
-            let currentCode = _This.isCurrentProject == "1" ? "" : _This.isCurrentProject;
+            let currentCode = (_This.isCurrentProject == "1"||_This.isCurrentProject == "0") ? "" : _This.isCurrentProject;
             let postData = {
                 productCode: currentCode,
                 doctorName: _This.isDocProject
             };
+            //console.log("fCaseHeaderList list postData--------", postData);
             _.ajax({
                 url: '/caseheader/list',
                 method: 'POST',
@@ -293,8 +294,6 @@ export default {
                     if (result.code != 0 || !result.data) {
                         return false;
                     }
-                   // _This.oCaseList = result.data;
-                    // _This.oShowCaseListIds;
                     _This.oCaseList=[];
                     result.data.forEach(item => {
                         if (_This.oShowCaseListIds.indexOf(item.id)<0) {
@@ -450,11 +449,18 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fSubmitEndData result--------", result);
+                   // console.log("fSubmitEndData result--------", result);
                     if (result.code == 0 && result.data) {
-                        _This.$router.push({name:'/consultdashboard',params:{
-                            sbsuccess:true
-                        }});
+                        _This.$message({
+                            message: '提交成功',
+                            type: 'success'
+                        });
+                        setTimeout(function () {
+                            _This.$router.push({name:'/consultdashboard',params:{
+                                sbsuccess:true
+                            }});
+                        },2000);
+
                     }else {
                         _This.$message.error('提交失败');
                     }
@@ -490,6 +496,7 @@ export default {
                     console.log("fGetCustomerData result--------", result);
                     if (result.code == 0 && result.data) {
                         result.data.gender = result.data.gender + "";
+                        result.data.birthday=result.data.birthday?_.date2String(new Date(parseInt(result.data.birthday)), "yyyy-MM-dd"):"";
                         _This.oCustomer = result.data;
                     }
                 }
@@ -500,7 +507,6 @@ export default {
          */
         fGetCustomerList(ename){
             console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
-
             var _This = this;
             this.oCustomer.name=ename;
             if(_This.oCustomer.name==""){
@@ -541,7 +547,7 @@ export default {
          * 选择下拉的名称
          */
         fSelectNameItem(ename){
-            console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            console.log("-=-=-=-=-=-choose=-=-=-=-=-=-=-=-",ename);
             this.oCustomer.name=ename;
         },
         /**
@@ -551,13 +557,13 @@ export default {
             let _This = this;
             let postData = {
             };
-            console.log("postData======>", postData);
+           // console.log("postData======>", postData);
             _.ajax({
                 url: '/source/list',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fGetCustomerSource result--------", result);
+                    //console.log("fGetCustomerSource result--------", result);
                     if (result.code == 0 && result.data) {
                         let oData=result.data||[];
                         oData.forEach(oItem=>{
@@ -575,7 +581,7 @@ export default {
          * 选择咨询客户来源
          */
         fChooseSource(eCode){
-            console.log("customer source-------->",eCode);
+           // console.log("customer source-------->",eCode);
             let _This=this;
 
             _This.oSourceList.forEach(item=>{
@@ -621,7 +627,7 @@ export default {
             let postData = _This.oCustomer;
             postData.birthday=postData.birthday?postData.birthday.valueOf():"";
             postData.diagnoseId=_This.routerParam.diagid||"";
-            console.log("save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
+            console.log("new save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
             _.ajax({
                 url: '/faceDiagnose/newFaceDiagnose',
                 method: 'POST',
@@ -771,11 +777,6 @@ export default {
         },
         /**
          * 计算需要展示的案例
-         * oShowCaseList: [],//选择需要演示的案例
-         * oShowCaseListIds: [],//选择演示的id集合
-         * oShowCaseTempList:[], //演示案例的临时集合*************
-         * oCurrentShowItem: {frondFile:[],backFile:[]},//当前展示的案例
-         * oCurrentShowItemIndex: 0,//当前展示的案例的索引
          */
         fCalculateShowList(){
             //oShowCaseTempList
