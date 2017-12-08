@@ -5,11 +5,11 @@
                 <div class="lay-left b-s" ><label class="scop-name">項目</label></div>
                 <div class="lay-right"><label class="lay-btn cur end-btn" @click="fEndConsult">结束咨询</label></div>
                 <div class="lay-items">
-                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems(1)" >全部</label>
+                    <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject=='1'?'#9083ED':'']}" @click="fChooseItems({productCode:1})" >全部</label>
                     <template v-for="oneItem in oProductList">
                         <template v-for="twoItem in oneItem.productList">
                             <template v-for="threeItem in twoItem.productList">
-                                <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject==threeItem.productCode?'#9083ED':'']}"  @click="fChooseItems(threeItem.productCode)">{{threeItem.productName}}</label>
+                                <label class="lay-item h-item" data-itemCode="1" :style="{background:[isCurrentProject==threeItem.productCode?'#9083ED':'']}"  @click="fChooseItems(threeItem)">{{threeItem.productName}}</label>
                             </template>
                         </template>
                     </template>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
-                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" @click="fChooseItems(item.productCode)" >{{item.productName}}</label>
+                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" @click="fChooseItems(item)" >{{item.productName}}</label>
                 </div>
             </div>
         </div>

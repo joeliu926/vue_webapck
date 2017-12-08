@@ -8,17 +8,12 @@ export default {
             todayCount: 0,
             aEndList: [],
             count: 0,
-            pageSize: 3,
+            pageSize: 12,
             pageNo: 1,
             total: 0
         }
     },
     created() {
-<<<<<<< HEAD
-        let _This=this;
-        _This.fGetWaitingList();
-        _This.fGetEndList();
-=======
         let _This = this;
         _This.fGetWaitingList();
         _This.fGetEndList();
@@ -26,9 +21,8 @@ export default {
         console.log("loadparams-----",loadparams);
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
-        }
+        };
 
->>>>>>> 75d41b6a08d8dafc855036e313dd8f3217dc7268
     },
     mounted(){
 
@@ -154,7 +148,6 @@ export default {
                     if(result.code==0&&result.data){
                         _This.aEndList=result.data.list;
                         _This.count=result.data.count;
-                        console.log("============",_This.pageSize,_This.count);
                     }
                 }
             }, 'withCredentials');
