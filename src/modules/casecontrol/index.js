@@ -21,8 +21,9 @@ export default {
             oCaseList: [], //查询获取案例列表
             oShowCaseList: [],//选择需要演示的案例
             oShowCaseListIds: [],//选择演示的id集合
+            oShowCaseTempList:[], //演示案例的临时集合*************
             oCurrentShowItem: {frondFile:[],backFile:[]},//当前展示的案例
-            oCurrentShowItemIndex: {},//当前展示的案例的索引
+            oCurrentShowItemIndex: 0,//当前展示的案例的索引
             oSourceList:[],//客户来源列表
             isFillProject:false,//结束是否填写项目信息
             oNameList:[],
@@ -155,7 +156,11 @@ export default {
                 _This.playingState='waiting';
             }
         },
-        fChooseItems(eCode){//选择项目
+        /**
+         * 头部选择项目
+         * @param eCode
+         */
+        fChooseItems(eCode){
             // console.log("ecode========>",eCode);
             let _This = this;
             _This.isCurrentProject = eCode;
@@ -165,22 +170,36 @@ export default {
             _This.fCaseHeaderList();
 
         },
-        fChooseDoc(eDoctor){//选择医生
+        /**
+         * 头部选择医生
+         * @param eDoctor
+         */
+        fChooseDoc(eDoctor){
             //console.log(eDoctor);
             let _This = this;
             _This.isSelectItem = true;
             _This.isDocProject = eDoctor;
             _This.fCaseHeaderList();
         },
-        fEndConsult(){//结束咨询
+        /**
+         * 结束咨询弹出框
+         */
+        fEndConsult(){
             let _This = this;
             _This.dialogVisible = true;
         },
+        /**
+         * 结束框切换tab
+         * @param e
+         */
         fChangeTab(e){
             let _This = this;
             let dataSet = e.target.dataset;
             _This.activeStatus = dataSet.tabtype;
         },
+        /**
+         * 结束框选择项目
+         */
         fChangeCheck(){
             console.log("dddddddd--change", this.consultItems);
             this.faceDiagnoseProduct = this.consultItems.join(",");
@@ -309,6 +328,8 @@ export default {
             _This.oCaseList.splice(sindex, 1);
             _This.oShowCaseList.push(scase);
             _This.oShowCaseListIds.push(scase.id);
+
+            console.log("oShowCaseList=======>",_This.oShowCaseList);
 
         },
         /**
@@ -743,6 +764,33 @@ export default {
             };
             this.webSocket.send(JSON.stringify(caseObj));
             this.playingState = 'playing';
+        },
+        /**
+         * 计算需要展示的案例
+         * oShowCaseList: [],//选择需要演示的案例
+         * oShowCaseListIds: [],//选择演示的id集合
+         * oShowCaseTempList:[], //演示案例的临时集合*************
+         * oCurrentShowItem: {frondFile:[],backFile:[]},//当前展示的案例
+         * oCurrentShowItemIndex: 0,//当前展示的案例的索引
+         */
+        fCalculateShowList(){
+            //oShowCaseTempList
+            let _This=this;
+            let iShowCount=_This.oShowCaseList.length;
+            let currIndex=_This.oCurrentShowItemIndex;
+            let temEnd=currIndex+3;
+            let temStart=currIndex-3; //
+            let istart=temStart>0?temStart:0;
+            let iend=temEnd<=iShowCount?temEnd:iShowCount;
+
+
+            _This.oShowCaseTempList=_ThisoShowCaseList.slice(istart,iend);
+
+           for(let i=0;i<3-istart;i++){
+               let oTemShowItem={frondFile:[],backFile:[]};
+               _This.oShowCaseTempList.unshift(oTemShowItem);
+           }
+
         }
     }
 }
