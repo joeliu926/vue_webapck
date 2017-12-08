@@ -715,7 +715,7 @@
                         display: inline-block;
                         font-size: 14px;
                         color: #666666;
-                        width: 170px;
+                        width: 160px;
                         word-break: break-all;
                         .lit-img{
                             margin-right: 10px;
