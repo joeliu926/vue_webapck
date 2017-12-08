@@ -5,13 +5,15 @@
 <style  lang="scss">
  .customer-block-content {
              margin: 24px;
-             border: 1px solid #eeeeee;
+             border: 1px solid transparent;
              background-color: #ffffff;
              th div{
                  font-size: 14px;
                  color: #333333;
               }
-
+                table{
+                    border-sizing:border-box;
+                }
              table tr td:last-child {
                  text-align: right;
              }

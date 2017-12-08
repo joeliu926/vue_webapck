@@ -655,6 +655,7 @@
             background: rgba(0,0,0,0.4);
             z-index: 1000;
         }
+
         .customer-ct{
             width:320px;
             position: absolute;
@@ -662,6 +663,7 @@
            /* top: 220px;*/
             top:22%;
             padding: 12px;
+            bottom: 0;
             transition: left 1s;
             z-index: 1001;
             .customer-db-arr{

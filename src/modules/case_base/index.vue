@@ -5,7 +5,9 @@
 </script>
 
 <style lang="sass">
-
+    html, body{
+        background-color:#FFF;
+    }
     .case-top{
         text-align:center;
         background-color: #7084f3;
@@ -64,6 +66,13 @@
                         background: #9083ed;
                         color: #fff;
                             }
+                .right{float:right;
+                        width:87.6%;
+                        padding:0;
+                        height:1082px;
+                        margin-top:14px;
+                        overflow-y:scroll
+                    }
                 .case-right{
 
                         width:92%;
@@ -107,8 +116,8 @@
 
 
     }
-    .case-title
-    {font-family: "Helvetica Neue";
+    .case-title1
+    {
     font-weight:bold;
     }
     .el-row {

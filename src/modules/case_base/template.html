@@ -22,10 +22,10 @@
             </div>
 
 
-            <div id="right" style="float:right;width:87.6%;padding:0;height:1082px;margin-top:14px;overflow-y:scroll" @scroll="onscorllevent" >
+            <div id="right" class="right" style="" @scroll="onscorllevent" >
                 <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index0) in  product "  :key="index0"style="">
                     <div class="tab-con" >
-                        <el-row class="case-right-row"  v-for="(list1,index1) in  list0.productList " :key="index1" ><div class="case-title" style="font-size: 14px">{{list1.productName}}</div><div style="height:12px"></div>
+                        <el-row class="case-right-row"  v-for="(list1,index1) in  list0.productList " :key="index1" ><p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p><div style="height:12px"></div>
                             <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2"  >
                                 <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol" ><p class="p" style="font-size:14px">{{list2.productName}}</p></a>
                             </div>

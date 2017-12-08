@@ -5,7 +5,7 @@
 <style  lang="scss">
  .customer-block-content {
              margin: 24px;
-             border: 1px solid #eeeeee;
+             border: 1px solid transparent;
              background-color: #ffffff;
              th div{
                  font-size: 14px;
