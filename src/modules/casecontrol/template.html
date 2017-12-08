@@ -121,13 +121,16 @@
                     <div class="lay-right f-right-icon f-icon"><label class="" ><i class="el-icon-d-arrow-right
 "></i></label></div>
                     <div class="b-s lay-items img-ct">
-                        <div class="b-s img-i-ct"  v-for="item in oShowCaseList">
+                      <!--  <div class="b-s img-i-ct"  v-for="item in oShowCaseList">-->
+                        <div class="b-s img-i-ct"  v-for="item,index in oShowCaseTempList">
                             <div class="img-item b-s">
-                                <div class="b-ba-img-ct" @click="playCase(item)" style="">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.frondFile.url">
                                     <img class="img-l"  :src="item.frondFile.url">
                                     <img class="img-l" :src="item.backFile.url">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
+                                    <div class="add-case i-video-icon" v-if="index==3" style="">
+                                    </div>
                                 </div>
                             </div>
                         </div>

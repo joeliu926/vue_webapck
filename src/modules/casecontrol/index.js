@@ -129,15 +129,7 @@ export default {
         fSelectItems(){
 
         },
-        /**
-         * 关闭选择案例向上的小箭头点击
-         */
-        fCloseSelect(){
-            //console.log("close choose case");
-            let _This = this;
-            _This.isSelectItem = false;
-            _This.fCheckPlayingItem();
-        },
+
         /**
          * 校验当前的播放情况
          */
@@ -340,6 +332,17 @@ export default {
             _This.oShowCaseList.splice(sindex, 1);
             _This.oShowCaseListIds.splice(_This.oShowCaseListIds.indexOf(scase.id),1);
             _This.oCaseList.push(scase);
+        },
+        /**
+         * 关闭选择案例向上的小箭头点击
+         */
+        fCloseSelect(){
+            //console.log("close choose case");
+            let _This = this;
+            _This.isSelectItem = false;
+            _This.fCheckPlayingItem();
+
+            _This.fCalculateShowList();//******
         },
         /**
          * 左右切换案例
@@ -753,6 +756,7 @@ export default {
             let _This=this;
             _This.oCurrentShowItem = params;
             _This.fCheckPlayingItem();
+            _This.fCalculateShowList();
             let caseObj = {
                 "type": "image",
                 "content": {
@@ -777,20 +781,18 @@ export default {
             //oShowCaseTempList
             let _This=this;
             let iShowCount=_This.oShowCaseList.length;
-            let currIndex=_This.oCurrentShowItemIndex;
-            let temEnd=currIndex+3;
+            let currIndex=_This.oCurrentShowItemIndex<0?0:_This.oCurrentShowItemIndex;
+            let temEnd=currIndex+4;
             let temStart=currIndex-3; //
             let istart=temStart>0?temStart:0;
-            let iend=temEnd<=iShowCount?temEnd:iShowCount;
+            let iend=temEnd<iShowCount?temEnd:iShowCount;
 
+            _This.oShowCaseTempList=_This.oShowCaseList.slice(istart,iend);
 
-            _This.oShowCaseTempList=_ThisoShowCaseList.slice(istart,iend);
-
-           for(let i=0;i<3-istart;i++){
+           for(let i=0;i<3-currIndex;i++){
                let oTemShowItem={frondFile:[],backFile:[]};
                _This.oShowCaseTempList.unshift(oTemShowItem);
            }
-
         }
     }
 }
