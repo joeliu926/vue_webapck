@@ -2,9 +2,12 @@
 <script src="./index.js">
 
 </script>
-<style  lang="scss">
+<style  lang="scss">\
+.el-tabs--border-card>.el-tabs__content {
+    padding-top: 10px;
+}
  .customer-block-content {
-             margin: 24px;
+             margin :2px;
              border: 1px solid transparent;
              background-color: #ffffff;
              th div{
