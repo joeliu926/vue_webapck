@@ -3,14 +3,11 @@ export default {
     data () {
         return {
             count: 0,
-            first: 1,
-            last: 1,
-            prev: 1,
-            next: 1,
+            total:0,
             pageNo: 1,
-            pageSize:1,
+            pageSize:12,
             status:1,
-            repage:3,
+            repage:1,
             searchField: "name",
             fieldValue:"",
             startDate: "",
@@ -22,13 +19,14 @@ export default {
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             aCustomerlist: [],
-
+            show:0
         }
 
     },
     created() {
         this.ready();
-        // this.searchData();
+        let _This=this;
+        _This.aCustomerlist;
     },
     mounted(){
 
@@ -67,7 +65,7 @@ export default {
                      pageNo:_This.pageNo,
                      pageSize:_This.pageSize,
                      status:0,
-                     repage:_This.repage
+                     // repage:_This.repage
                  } ,
                  success: function (result) {
                      console.log(result);
@@ -75,11 +73,13 @@ export default {
                      if(result.code==0&&result.data){
                          console.log(result.data);
                          _This.aCustomerlist = result.data.list;
+                         _This.count=result.data.count;
                          console.log(_This.aCustomerlist);
-                         if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
-                             _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
-                             console.log(_This.count);
-                         }
+                         console.log(_This.count)
+                         // if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
+                         //     _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
+                         //     console.log(_This.count);
+                         // }
 
                      }
 
@@ -95,6 +95,12 @@ export default {
             this.fieldValue="";
             this.searchData();
         },
+        // 显示和隐鲹电话号码
+       
+        openEyePhone(){
+           
+        },
+
         pickerOptions(){},
         fDateChange(date){
             this.searchData();
@@ -111,7 +117,7 @@ export default {
         },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
-            this.searchData();
+            this.ready();
         },
         searchData(){
             var _This = this;

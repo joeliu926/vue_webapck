@@ -16,16 +16,16 @@
         color: white;
         box-sizing: border-box;
         .case-top-demo{
-                       box-sizing:border-box;
-                       width:60px;
-                       margin-top:22px;
-                       margin-left: 33.3%;
-                        height:112px;
-                        font-size:14px;
+           box-sizing:border-box;
+           width:60px;
+           margin-top:22px;
+           margin-left: 33.3%;
+           height:112px;
+           font-size:14px;
 
-                         .top-img{
-                            width:60px;height:60px
-                            }
+            .top-img{
+                 width:60px;height:60px
+            }
         }
     }
     .content{

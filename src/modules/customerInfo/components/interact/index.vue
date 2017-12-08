@@ -14,7 +14,13 @@
             font-size:12px;
     }
             
-          
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
             
 
 }
@@ -220,22 +226,24 @@
 
 
     /*时间轴*/
+
     .timeLine{
-
+        height:100%;
         width:100%;
-        height:800px;
         position:relative;
-        .left-box{
-            width:50%;
-            height:100%;
-            float:left;
-
+        .line{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 10000px;
+            width: 4px;
+            background: #d7e4ed;
         }
         .left-box{
             width:50%;
             height:100%;
             padding-right:20px;
-            
+            float:left;
             border-top:1px solid transparent;
             box-sizing:border-box;
             .counselor::before{
@@ -399,26 +407,51 @@
                             border-radius:16px;
                         }
                     }
+                    .imgbox{
+                        padding:0 10px;
 
+                        .cover-img{
 
+                            div{
+                               width:80px;
+                               height:80px;
+                               margin:auto 0 ;
+                               border-radius:6px;
+                               position:relative;
+                               float:left;
+                               span{
+                                  display:block;
+                                  width:55px;
+                                  height:20px;
+                                  padding:0;
+                                  line-height:20px;
+                                  text-align:center;
+                                  position:absolute;
+                                  left:0px;
+                                  bottom:0px;
+                                  background:#FFF;
+                                  color:#333;
+                                  border-radius:0 6px 6px 0;
+                               }
+                            }
+                        }
+                    }
+                    .file-box{
+                         padding:0 10px;
+
+                         file-item{
+                            width:100%;
+                            img{
+                               margin-right:10px;
+                            }
+                         }
+                    }
                 }
             }
-
-
         }
-
     }
 
-    .timeLine::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        height: 100%;
-        width: 4px;
-        background: #d7e4ed;
 
-    }
 
 
 

@@ -15,9 +15,9 @@
             <p style="margin-top:20px">
                 分类索引</p>
 
-            <div class="case-left box-shadow" style="font-size=14px">
+            <div class="case-left box-shadow" style="font-size:14px">
 
-                <a  href="javascript:;" v-for="(list,index) in product" :key="index"@click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a><br>
+                <a  href="javascript:;" v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a><br>
 
             </div>
 

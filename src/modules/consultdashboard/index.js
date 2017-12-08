@@ -18,9 +18,9 @@ export default {
         }
     },
     created() {
-let _This=this;
-_This.fGetWaitingList();
-_This.fGetEndList();
+        let _This=this;
+        _This.fGetWaitingList();
+        _This.fGetEndList();
     },
     mounted(){
 
@@ -107,6 +107,7 @@ _This.fGetEndList();
                             return itemOne[0].faceDiagnoseDate>itemTwo[0].faceDiagnoseDate;
                         });
                         _This.aWaitinglist=result.data;
+                        console.log(_This.aWaitinglist);
                          let latest=_.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)),"yyyy-MM-dd");
                          let today=_.date2String((new Date()),"yyyy-MM-dd");
                           if(today==latest){
@@ -134,6 +135,7 @@ _This.fGetEndList();
                     if(result.code==0&&result.data){
                         _This.aEndList=result.data.list;
                         _This.count=result.data.count;
+                        console.log("============",_This.pageSize,_This.count);
                     }
                 }
             }, 'withCredentials');
