@@ -109,7 +109,7 @@
                 </div>
                 <div class="lay-right" @click="fConnectDevice"><label class="bt-btn lay-btn "><img class="bt-icon" src="../../common/img/i-connect.png"> 连接设备</label></div>
                 <div class="lay-items bt-items">
-                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" >{{item.productName}}</label>
+                    <label class="lay-item f-item" v-for="item in oCurrentShowItem.relatedProduct" @click="fChooseItems(item.productCode)" >{{item.productName}}</label>
                 </div>
             </div>
         </div>
@@ -121,13 +121,16 @@
                     <div class="lay-right f-right-icon f-icon"><label class="" ><i class="el-icon-d-arrow-right
 "></i></label></div>
                     <div class="b-s lay-items img-ct">
-                        <div class="b-s img-i-ct"  v-for="item in oShowCaseList">
-                            <div class="img-item b-s">
-                                <div class="b-ba-img-ct" @click="playCase(item)" style="">
+                      <!--  <div class="b-s img-i-ct"  v-for="item in oShowCaseList">-->
+                        <div class="b-s img-i-ct"  v-for="item,index in oShowCaseTempList">
+                            <div class="img-item b-s" :style="{transform:[index==3?'scale(1.1)':'']}">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.frondFile.url">
                                     <img class="img-l"  :src="item.frondFile.url">
                                     <img class="img-l" :src="item.backFile.url">
                                     <div class="s-ba-cm s-before">before</div>
                                     <div class="s-ba-cm s-after">after</div>
+                                    <div class="add-case i-video-icon" v-if="index==3" style="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -311,7 +314,8 @@
                     <label class="lb-name">职业</label><el-input placeholder="请输入" class="cust-input" v-model="oCustomer.job"></el-input>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">生日</label> <el-date-picker
+                    <label class="lb-name">生日</label>
+                    <el-date-picker
                         v-model="oCustomer.birthday"
                         type="date"
                         placeholder="客户生日"></el-date-picker>

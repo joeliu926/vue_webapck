@@ -348,6 +348,12 @@
                                    position: absolute;
                                    top: -15px;
                                    cursor: pointer;
+                                   .i-video-icon{
+                                       background: url("../../common/img/i-video.png") no-repeat;
+                                       background-color:rgba(0,0,0,0.4);
+                                       background-position: center;
+                                      /* transform:scale(1.1);*/
+                                   }
                                }
                                 .s-ba-cm{
                                     font-size: 12px;
@@ -709,7 +715,7 @@
                         display: inline-block;
                         font-size: 14px;
                         color: #666666;
-                        width: 170px;
+                        width: 160px;
                         word-break: break-all;
                         .lit-img{
                             margin-right: 10px;

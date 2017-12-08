@@ -66,6 +66,9 @@ body{
                 p{
                    font-size:14px;
                 }
+                .color{
+                    color:#999;
+                }
             }
             .casetop-img{
               padding:12px 0;
@@ -140,7 +143,6 @@ body{
                     span{
 
                       display:inline-block;
-                      width:75px;
                       height:15px;
                       font-size:14px;
                     }
