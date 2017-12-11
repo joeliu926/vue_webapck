@@ -57,10 +57,16 @@
                 li{
                     background-color:#9febc6;
                 }
+                li:hover{
+                    background-color:#4c5cff;
+                }
             }
             .state-two{
                 li{
                     background-color:#4cb0ff;
+                }
+                li:hover{
+                    background-color:#4c5cff;
                 }
             }
             .state-three{

@@ -19,13 +19,6 @@ export default {
             _this.initClue();
             _this.unionid  = _this.$parent.$parent.$parent.$parent.$parent.oCustomer.unionid;
         },200);
-
-       /* this.$nextTick(function () {
-
-            this.initClue();
-            this.unionid  = this.$parent.$parent.$parent.$parent.$parent.oCustomer.unionid;
-        })*/
-
     },
     mounted(){
 
@@ -110,7 +103,28 @@ export default {
             }, 'withCredentials');
         },
         initSceneClue(){
+            let _this=this;
 
+            let postData = {
+                unionId: this.unionid ,
+                consultingId:_this.sessionId
+            };
+            _.ajax({
+                url: '/customers/culescenedetail',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if (result.code == 0 && result.data) {
+                        _this.sceneEvent = result.data;
+                        _this.sceneEvent.trackDesc.forEach(m=>{
+                            m.leftTrack.date =_.date2String(new Date(m.leftTrack.date),'yyyy-MM-dd hh:mm');
+                            m.rightTrack.trackDetailList.forEach(mr=>{
+                                mr.date = _.date2String(new Date(mr.date),'yyyy-MM-dd hh:mm');
+                            });
+                        });
+                    }
+                }
+            }, 'withCredentials');
         },
         checkState(params){
             if(params<=this.culeState)
