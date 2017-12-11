@@ -97,7 +97,7 @@
         <div v-for="sceneE in sceneEvent">
             <div  class="left-box">
                 <!--咨询师的信息-->
-                <div v-for="leftDiv in sceneE.events" v-if="leftDiv.code.length>0" class="counselor ">
+                <div v-for="leftDiv in sceneE.events" v-if="leftDiv.code&&leftDiv.code=='reserve'" class="counselor ">
                     <div class="counselor-top">
                         <img :src="leftDiv.userPhoto">
                         <span class="name">{{leftDiv.userName}}</span>
@@ -105,20 +105,19 @@
                     </div>
                     <!--咨询师 咨询分享-->
                     <!--咨询师 咨询分享-->
-                    <div class="custome-item-content">
+                    <div class="counselor-content">
                         <p>
-                            {{leftDiv.desc}}
+                            <span>{{leftDiv.desc}}</span>
                         </p>
-                        <p class="second">
-                            <img v-for="img in leftDiv.products" :src="img">
-                        </p>
+                        <p v-if="false"></p>
                     </div>
+
                 </div>
             </div>
 
             <div  class="right-box" >
                 <!--客户的的信息-->
-                <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code.length==0" class="custome-item">
+                <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code&&rightDiv.code!='reserve'" class="custome-item">
                     <div class="custome-item-top">
                         <img :src="rightDiv.customerPhoto">
                         <span class="name">{{rightDiv.customerName}}</span>
@@ -130,7 +129,8 @@
                             {{rightDiv.desc}}
                         </p>
                         <p class="second">
-                            <img v-for="img in rightDiv.products" :src="img">
+                            <img  v-if="rightDiv.before&&rightDiv.before.length>0" :src="rightDiv.before">
+                            <img  v-if="rightDiv.after&&rightDiv.after.length>0" :src="rightDiv.after">
                         </p>
                     </div>
                 </div>

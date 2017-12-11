@@ -112,7 +112,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log('result.data',result.data);
                     if (result.code == 0 && result.data) {
                         result.data.forEach(item=>{
                             item.createTime = _.date2String(new Date(item.createTime),'yyyy-MM-dd');
@@ -137,7 +136,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("+++++++++++",result.data);
                     if (result.code == 0 && result.data) {
                         _This.fileList = result.data;
                         Flength=_This.fileList.length;

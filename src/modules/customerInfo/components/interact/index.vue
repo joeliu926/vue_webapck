@@ -278,6 +278,7 @@
             .counselor{
                 width:100%;
                 position:relative;
+                margin-bottom: 20px;
                 .counselor-top{
                     width:100%;
                     height:60px;
