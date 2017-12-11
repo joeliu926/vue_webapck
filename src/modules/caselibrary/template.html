@@ -15,7 +15,7 @@
     <div class="case-menu">
         <div class="case-list">
             <h6 v-for="item,index in caselist" v-if="index==0" >{{item.productName}}</h6>
-            <div :span="8" :offset="8" style="display:flex;justify-content:center;align-items:center;text-align: center;height: 200px;" v-if="caselist.length<=0"> {{judgelength}}</div>
+            <div :span="8" :offset="8" style=" display:flex;align-items:center;justify-content:center;text-align: center;height: 200px" v-if="caselist.length<=0"> {{judgelength}}</div>
             <div>
                 <div  type="flex" justify="space-between" class="case-items">
                     <div  type="flex" style="padding:0;height: 390px;width:430px;" class="case-item"v-for="(list0,index) in  caselist">
