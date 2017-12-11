@@ -836,7 +836,7 @@ export default {
                 "type": "image",
                 "content": {
                     "code": _This.conCode,
-                    "caseName": "玻尿酸瘦脸",
+                    "caseName": _This.oCurrentShowItem.productName,
                     "beforeUrl": _This.oCurrentShowItem.frondFile.url,
                     "afterUrl": _This.oCurrentShowItem.backFile.url
                 }
@@ -850,6 +850,19 @@ export default {
             console.log("播放项目--------》",params);
             _This.fEvent();
 
+        },
+        /**
+         * 结束演示，退出控制台//console closed  {"type":"closed","content":{"code":1234,"sid":"aaa"}}
+         */
+        fExitConsole(){
+            let _This=this;
+            let oExitCode={
+                "type":"closed",
+                "content":{
+                    "code":_This.conCode,
+                    "sid":"aaa"
+                }
+            }
         },
         /**
          * 计算需要展示的案例
