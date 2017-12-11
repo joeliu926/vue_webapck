@@ -121,6 +121,10 @@ export default {
                         _this.sceneEvent.forEach(item=>{
                             item.events.forEach(event=>{
                                 event.time =  _.date2String(new Date(event.time),'yyyy-MM-dd hh:mm');
+                                if(event.reserveTime){
+                                    event.reserveTime =  _.date2String(new Date(event.reserveTime),'yyyy-MM-dd hh:mm');
+                                }
+
                             });
                         })
 

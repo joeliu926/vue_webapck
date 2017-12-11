@@ -13,6 +13,8 @@ function resolve(relPath) {
 
 /////////////////////////modify CONSTANT file///////////////////////////
 var sBaseUrl=process.argv[2]||"http://localhost:8023";
+
+var sWsUrl=process.argv[3]||"ws://localhost:8053/";
 var constantFile="../src/common/utils/constants.js";
 var constantPath=path.join(__dirname,constantFile);
 var constantData = fs.readFileSync(constantPath,'utf-8');
@@ -20,6 +22,11 @@ constantData = constantData + "";
 constantData = constantData.replace(/host:\s*\S+?,/,function (word){
     return 'host:"'+sBaseUrl+'",';
 });
+
+constantData = constantData.replace(/wsReqUrl:\s*\S+?,/,function (word){
+    return 'wsReqUrl:"'+sWsUrl+'"';
+});
+
 fs.writeFileSync(constantPath, constantData, function(err){
     if(err){
         console.log("error! " + file);

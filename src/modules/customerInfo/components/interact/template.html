@@ -107,9 +107,16 @@
                     <!--咨询师 咨询分享-->
                     <div class="counselor-content">
                         <p>
-                            <span>{{leftDiv.desc}}</span>
+                            {{leftDiv.desc}}
                         </p>
-                        <p v-if="false"></p>
+                        <p>
+                            <span>预约时间：</span>
+                            <span>{{leftDiv.reserveTime}}</span>
+                        </p>
+                        <p>
+                            <span>项目：</span>
+                            <span class="product" v-for="product in leftDiv.products">{{product.product_name}}</span>
+                        </p>
                     </div>
 
                 </div>
