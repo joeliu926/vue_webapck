@@ -2,13 +2,10 @@ export default {
     components: {},
     data () {
         return {
+            total:0,
             count: 0,
-            first: 1,
-            last: 1,
-            prev: 1,
-            next: 1,
             pageNo: 1,
-            pageSize:10,
+            pageSize:12,
             status:1,
             repage:3,
             searchField: "name",
@@ -21,9 +18,9 @@ export default {
             customerBlock: "顾客",
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
-
             aCustomerlist: [],
-
+            show:true,
+            id:0
         }
 
     },
@@ -68,7 +65,7 @@ export default {
                      pageNo:_This.pageNo,
                      pageSize:_This.pageSize,
                      status:1,
-                     repage:_This.repage
+                     
                  } ,
                  success: function (result) {
                      console.log(result);
@@ -76,11 +73,14 @@ export default {
                      if(result.code==0&&result.data){
                          console.log(result.data);
                          _This.aCustomerlist = result.data.list;
-                         console.log(_This.aCustomerlist);
-                         if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
-                             _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
-                             console.log(_This.count);
-                         }
+                         _This.count=result.data.count;
+                         // console.log(_This.aCustomerlist);
+                         // console.log(_This.count);
+                        
+                         // if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
+                         //     _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
+                         //     console.log(_This.count);
+                         // }
                          
 
                      }
@@ -96,6 +96,15 @@ export default {
             this.fieldValue="";
             this.searchData();
         },
+         // 显示和隐鲹电话号码
+       openPhone(eid){
+            console.log(eid);
+            let temp=this.aCustomerlist;
+            temp.show=false;
+            this.aCustomerlist=[];
+             this.aCustomerlist=temp;
+        },
+
         pickerOptions(){},
         fDateChange(date){
             this.searchData();
@@ -111,8 +120,9 @@ export default {
             console.log("get more user info");
         },
         handleCurrentChange(pnum){
+           console.log(pnum);
             this.pageNo=pnum;
-            this.searchData();
+            this.ready();
         },
         searchData(){
             var _This = this;

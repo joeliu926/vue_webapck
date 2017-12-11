@@ -62,7 +62,7 @@
                                         <th>姓名 </th><th>面诊时间</th><th>电话</th><th>咨询项目</th><th>网络咨询师</th><th>结果</th><th>成功项目</th><th>备注</th>
                                     </tr>
                                     <template v-for="(item,oIndex) in aEndList">
-                                        <tr>
+                                        <tr class="tr-end">
                                             <td>{{item.customerName}}</td>
                                             <td>{{item.faceDiagnoseDate|dateFilter("yyyy-MM-dd")}}</td>
                                             <td :style="{display:[item.show!='1'?'':'none']}">{{item.customerPhone|phoneFilter}}

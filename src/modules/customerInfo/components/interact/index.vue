@@ -241,6 +241,7 @@
             height:100%;
             float:left;
             padding-right:20px;
+
             border-top:1px solid transparent;
             box-sizing:border-box;
             display:inline-block;
@@ -409,17 +410,50 @@
                             margin:0px 0px  5px 5px;
                         }
                     }
+                    .imgbox{
+                        padding:0 10px;
 
+                        .cover-img{
 
+                            div{
+                               width:80px;
+                               height:80px;
+                               margin:auto 0 ;
+                               border-radius:6px;
+                               position:relative;
+                               float:left;
+                               span{
+                                  display:block;
+                                  width:55px;
+                                  height:20px;
+                                  padding:0;
+                                  line-height:20px;
+                                  text-align:center;
+                                  position:absolute;
+                                  left:0px;
+                                  bottom:0px;
+                                  background:#FFF;
+                                  color:#333;
+                                  border-radius:0 6px 6px 0;
+                               }
+                            }
+                        }
+                    }
+                    .file-box{
+                         padding:0 10px;
+
+                         file-item{
+                            width:100%;
+                            img{
+                               margin-right:10px;
+                            }
+                         }
+                    }
                 }
             }
-
-
         }
-
     }
-
-    .timeLine::before{
+    .timeLine::before {
         content: '';
         position: absolute;
         top: 0;
@@ -427,14 +461,7 @@
         height: 100%;
         width: 3px;
         background: #d1dbe5;
-
     }
-
-
-
-
-
-
 }
 
 </style>

@@ -48,18 +48,54 @@ export default {
             }, {id: 5, val: ''}],
             conState: 'noconnected',
             playingState: 'waiting',
-            conErrorMsg: ''
+            conErrorMsg: '',
+            oEvent: {
+                code: "",//事件码 consultingBegin  caseSearch  casePlay consultingEnd
+                eventAttrs: {
+                    triggeredTime:"",//触发时间
+                    consultingItem: "",//咨询项目
+                    startTime: "",//开始时间
+                    reserveId: 0,//预约ID
+                    diagnoseId: "",//面诊id
+                    /***************************/
+                    consultingId: 0,//咨询id
+                    item: "",//案例项目
+                    doctor:"",//案例医生,
+                    consultingMark:"",//咨询结果
+                    dealItems:"",//成功项目
+                    reserveTime:"",//复诊时间
+                    reserveMark:"",//复诊备注
+                    giveupMark:"",//无需跟进原因
+                    endTime:"",//结束时间
+
+                }
+            }
         }
     },
     created() {
         let _This = this;
         _This.fTimer();
         _This.routerParam = this.$route.params;
+        if(_This.routerParam.projects){
+            _This.routerParam.projects.forEach(item=>{
+                _This.consultItems.push(item.projectCode);
+            });
+        }
         _This.initSocket();
         _This.fGetCustomerData();
          console.log("this.$route.params--------->",this.$route.params);
         _This.fProductList();
         _This.fDoctorList();
+        /****事件触发 start****/
+        _This.code="consultingBegin";
+        _This.consultingItem=_This.routerParam.projects;
+        _This.reserveId=_This.routerParam.appointmentId;
+        _This.diagnoseId=_This.routerParam.diagid;
+
+        _This.fEvent();
+        /****事件触发 end****/
+
+
     },
     watch: {
         routerParam(){
@@ -152,14 +188,20 @@ export default {
          * 头部选择项目
          * @param eCode
          */
-        fChooseItems(eCode){
-            // console.log("ecode========>",eCode);
+        fChooseItems(eItem){
+             console.log("eItem========>",eItem);
             let _This = this;
-            _This.isCurrentProject = eCode;
+            _This.isCurrentProject = eItem.productCode;
             _This.isSelectItem = true;
             _This.isDocProject = "";
             _This.fDoctorList();
             _This.fCaseHeaderList();
+
+            /*项目上报事件*/
+            _This.code="caseSearch";
+            _This.item=eItem;
+            _This.doctor=_This.isDocProject||"";
+            _This.fEvent();
 
         },
         /**
@@ -172,6 +214,12 @@ export default {
             _This.isSelectItem = true;
             _This.isDocProject = eDoctor;
             _This.fCaseHeaderList();
+
+            /*医生上报事件*/
+            _This.code="caseSearch";
+           //_This.item=eItem;
+            _This.doctor=_This.isDocProject;
+            _This.fEvent();
         },
         /**
          * 结束咨询弹出框
@@ -196,33 +244,7 @@ export default {
             console.log("dddddddd--change", this.consultItems);
             this.faceDiagnoseProduct = this.consultItems.join(",");
         },
-        /**
-         * 下拉框变化
-         * @param ename
-         * @returns {boolean}
-         */
-        fChangeAutoSelect(ename){
-            if (ename.trim() == "") {
-                return false;
-            }
-            let _This = this;
-            let postData = {
-                productName: ename
-            };
-            _.ajax({
-                url: '/product/searchList',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    // console.log("product result--------",result);
-                    if (result.code == 0 && result.data) {
-                        _This.aAutoSelect = result.data;
-                    }
-                    //console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
-                }
-            }, 'withCredentials');
 
-        },
         /**
          * 获取项目列表
          * @param ename
@@ -367,9 +389,38 @@ export default {
             _This.playCase(_This.oCurrentShowItem);
         },
         /**
+         * 下拉框变化
+         * @param ename
+         * @returns {boolean}
+         */
+        fChangeAutoSelect(ename){
+           // console.log("--------自动选择-----------",ename);
+            if (ename.trim() == "") {
+                return false;
+            }
+            let _This = this;
+            let postData = {
+                productName: ename
+            };
+            _.ajax({
+                url: '/product/searchList',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    // console.log("product result--------",result);
+                    if (result.code == 0 && result.data) {
+                        _This.aAutoSelect = result.data;
+                    }
+                    //console.log(" _This.aAutoSelect======>", _This.aAutoSelect);
+                }
+            }, 'withCredentials');
+
+        },
+        /**
          * 下拉框选中
          */
         fSelectProjecChange(eCode){
+           // console.log("----下拉结束选中----",eCode);
             let _This = this;
             let routerParam = _This.routerParam;
             _This.routerParam.projects = _This.routerParam.projects || [];
@@ -381,7 +432,7 @@ export default {
                         projectCode: item.productCode,
                         projectName: item.productName
                     };
-                    console.log("projecrItem=======>", projecrItem);
+                   // console.log("projecrItem=======>", projecrItem);
                     let result = _This.fExistProject(_This.routerParam.projects, projecrItem, "projectCode");
                     if (result < 0) {
                         _This.routerParam.projects.push(projecrItem);
@@ -391,7 +442,7 @@ export default {
                         _This.$message.error('存在该项目');
                     }
 
-                    console.log("this.routerParam.projects---->", _This.routerParam.projects);
+                   // console.log("this.routerParam.projects---->", _This.routerParam.projects);
 
                 }
             });
@@ -432,7 +483,7 @@ export default {
                 faceDiagnoseDate: _This.faceDiagnoseDate ? _This.faceDiagnoseDate.valueOf() : "",
                 faceDiagnoseProduct: _This.faceDiagnoseProduct
             };
-            console.log("postData======>", postData);
+           // console.log("postData======>", postData);
           if(postData.flag=="0"&&postData.faceDiagnoseProduct.length<=0){
              // _This.isFillProject=true;
               _This.$message.error('项目信息必选');
@@ -443,6 +494,14 @@ export default {
                 return false;
             }
 
+            /*结束播放提交事件*/
+            _This.code="consultingEnd";
+            _This.consultingMark=_This.flag;
+            _This.dealItems=_This.consultItems;
+            _This.reserveTime=postData.faceDiagnoseDate;
+            _This.reserveMark=postData.faceDiagnoseRemarks;
+            _This.giveupMark=postData.faceDiagnoseRemarks;
+            _This.fEvent();
 
             _.ajax({
                 url: '/faceDiagnose/finished',
@@ -487,7 +546,7 @@ export default {
                 appointmentId: _This.routerParam.appointmentId,
                 customerId: _This.routerParam.customerId
             };
-            console.log("postData======>", postData);
+            //console.log("postData======>", postData);
             _.ajax({
                 url: '/faceDiagnose/getCustomerData',
                 method: 'POST',
@@ -533,7 +592,7 @@ export default {
                     console.log("模糊搜索客户列表-------》",result);
                     if(result.code==0&&result.data){
                        _This.oNameList=result.data.list;
-                        if(_This.routerParam.adddiag&&result.data.list.length==1){
+                        if(!_This.oCustomer.id&&_This.routerParam.adddiag&&result.data.list.length==1){
                             _This.oCustomer=_This.oNameList[0];
                         }
                     }
@@ -541,14 +600,14 @@ export default {
 
                 }
             }, 'withCredentials');
-            console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
+            //console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
         },
         /**
          * 选择下拉的名称
          */
         fSelectNameItem(ename){
-            console.log("-=-=-=-=-=-choose=-=-=-=-=-=-=-=-",ename);
-            this.oCustomer.name=ename;
+            console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
+            //this.oCustomer.name=ename;
         },
         /**
          * 获取面诊客户渠道来源
@@ -591,19 +650,19 @@ export default {
             });
         },
         /**
-         * 更新添加客户信息
+         * 更新添加客户信息(弃用)
          * @param cid
          */
         fSaveCustomer(cid){
             let _This = this;
             let postData = _This.oCustomer;
-            console.log("save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
+            //console.log("save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
             _.ajax({
                 url: '/customers/update',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fSaveCustomer result--------", result);
+                   // console.log("fSaveCustomer result--------", result);
                     if (result.code == 0 && result.data) {
                         _This.$message({
                             message: '提交成功',
@@ -624,10 +683,10 @@ export default {
             //this.oCustomer.name="dsfgsdfgdsfgfd";
             //return false;
             let _This = this;
-            let postData = _This.oCustomer;
+            let postData = _This.oCustomer||{};
             postData.birthday=postData.birthday?postData.birthday.valueOf():"";
             postData.diagnoseId=_This.routerParam.diagid||"";
-            console.log("new save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
+           // console.log("new save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
             _.ajax({
                 url: '/faceDiagnose/newFaceDiagnose',
                 method: 'POST',
@@ -635,6 +694,15 @@ export default {
                 success: function (result) {
                     console.log("fUpdateCustomer result--------", result);
                     if (result.code == 0 && result.data) {
+
+                        if(_This.routerParam.adddiag&&!_This.routerParam.diagid){
+                            _This.diagnoseId=result.data.id;
+                            _This.routerParam.diagid=result.data.id;
+                            _This.oCustomer.id=result.data.customerId;
+                            _This.code="consultingBegin";
+                            _This.fEvent();
+                        }
+
                         _This.$message({
                             message: '提交成功',
                             type: 'success'
@@ -759,6 +827,7 @@ export default {
          * @param params
          */
         playCase(params){
+
             let _This=this;
             _This.oCurrentShowItem = params;
             _This.fCheckPlayingItem();
@@ -774,6 +843,13 @@ export default {
             };
             this.webSocket.send(JSON.stringify(caseObj));
             this.playingState = 'playing';
+
+            /*播放上报事件*/
+            _This.code="casePlay";
+            _This.item=params;
+            console.log("播放项目--------》",params);
+            _This.fEvent();
+
         },
         /**
          * 计算需要展示的案例
@@ -794,6 +870,54 @@ export default {
                let oTemShowItem={frondFile:[],backFile:[]};
                _This.oShowCaseTempList.unshift(oTemShowItem);
            }
+        },
+        /**
+         * 事件上报
+         * @param e
+         */
+        fEvent(){
+           // console.log("event start--------");
+            let _This = this;
+            let postData={EventData:_This.fGetEventParam()};
+           // console.log("JSON.stringify(postData) ------>",postData);
+            _.ajax({
+                url: '/event/v2',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    //console.log("event result--------",result);
+                    if (result.code == 0 && result.data) {
+
+                    }
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取事件参数
+         */
+        fGetEventParam(){
+            let _This=this;
+           let oEvent={
+                    code:_This.code||"",//事件码 consultingBegin  caseSearch  casePlay consultingEnd
+                    eventAttrs:{
+                        triggeredTime: new Date().valueOf(),
+                        consultingItem:  _This.consultingItem||"",//咨询项目
+                        startTime: new Date().valueOf(),//开始时间
+                        reserveId:  _This.reserveId||"",//预约ID
+                        diagnoseId:  _This.diagnoseId||"",//面诊id
+                        /***************************/
+                        consultingId:  _This.consultingId||"",//咨询id
+                        item:  _This.item||"",//案例项目
+                        doctor: _This.doctor||"",//案例医生,
+                        consultingMark: _This.consultingMark||"",//咨询结果
+                        dealItems: _This.dealItems||"",//成功项目
+                        reserveTime: _This.reserveTime||"",//复诊时间
+                        reserveMark: _This.reserveMark||"",//复诊备注
+                        giveupMark: _This.giveupMark||"",//无需跟进原因
+                        endTime: new Date().valueOf(),//结束时间
+                }
+            }
+            return JSON.stringify(oEvent);
         }
     }
 }
