@@ -19,7 +19,6 @@ var caselibrary = r => require.ensure([], () => r(require('../modules/caselibrar
 var casedetail = r => require.ensure([], () => r(require('../modules/casedetail/index.vue')), 'casedetail');
 var triage = r => require.ensure([], () => r(require('../modules/triage/index.vue')), 'triage');
 var case_base = r => require.ensure([], () => r(require('../modules/case_base/index.vue')), 'case_base');
-var ceshi = r => require.ensure([], () => r(require('../modules/ceshi/index.vue')), 'ceshi');
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
 aComponent.forEach(function (item,index) {
