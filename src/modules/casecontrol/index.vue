@@ -164,6 +164,7 @@
             position: relative;
             text-align:center;
             overflow:hidden;
+            display:none;
             .hold_circle {
 
                 left:25%;
