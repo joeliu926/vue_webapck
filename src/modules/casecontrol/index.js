@@ -514,6 +514,7 @@ export default {
                             message: '提交成功',
                             type: 'success'
                         });
+                        _This.fExitConsole();//结束演示提交控制台消息
                         setTimeout(function () {
                             _This.$router.push({name:'/consultdashboard',params:{
                                 sbsuccess:true
@@ -860,9 +861,10 @@ export default {
                 "type":"closed",
                 "content":{
                     "code":_This.conCode,
-                    "sid":"aaa"
+                    "sid": _This.conSid
                 }
-            }
+            };
+            _This.webSocket.send(JSON.stringify(oExitCode));
         },
         /**
          * 计算需要展示的案例
