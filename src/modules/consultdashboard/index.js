@@ -8,7 +8,7 @@ export default {
             todayCount: 0,
             aEndList: [],
             count: 0,
-            pageSize: 3,
+            pageSize: 12,
             pageNo: 1,
             total: 0
         }
@@ -21,7 +21,7 @@ export default {
         console.log("loadparams-----",loadparams);
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
-        }
+        };
 
     },
     mounted(){
@@ -119,6 +119,7 @@ export default {
                         result.data = result.data.sort(function (itemOne, itemTwo) {
                             return itemOne[0].faceDiagnoseDate > itemTwo[0].faceDiagnoseDate;
                         });
+
                         _This.aWaitinglist = result.data;
                         let latest = _.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)), "yyyy-MM-dd");
                         let today = _.date2String((new Date()), "yyyy-MM-dd");
@@ -143,10 +144,10 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("end result--------",result);
-                    if (result.code == 0 && result.data) {
-                        _This.aEndList = result.data.list;
-                        _This.count = result.data.count;
+                    //console.log("end result--------",result);
+                    if(result.code==0&&result.data){
+                        _This.aEndList=result.data.list;
+                        _This.count=result.data.count;
                     }
                 }
             }, 'withCredentials');

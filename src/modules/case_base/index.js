@@ -3,11 +3,8 @@ export default {
     data () {
         return {
             product: [],
-
             changestyle:0,
-
             msg:0
-
         };
     },
     created() {
@@ -19,7 +16,8 @@ export default {
     },
     destroyed() {
 
-    },  methods: {
+    }, 
+    methods: {
         getdata(){
             let _This = this;
             let uid= _This.$route.params.id;
@@ -33,7 +31,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    //console.log('result.data',result);
+                    console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
@@ -49,7 +47,8 @@ export default {
             document.getElementById("right").scrollTop=disTop-256;
             this.changestyle=params;
 
-        },onscorllevent(params){
+        },
+        onscorllevent(params){
             this.product.forEach(m=>{
 
                 var disTop=document.getElementById(m.productCode).offsetTop;
@@ -64,7 +63,8 @@ export default {
                 console.log('scrolltop',scrolltop);
                 //parentCode
             })
-        },fCaselibrary(uid){
+        },
+        fCaselibrary(uid){
             if(!uid){
                 return false;
             }

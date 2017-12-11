@@ -89,14 +89,10 @@
 
         <!--分页-->
         <div class="customer-block-content customer-pagination-align">
-            <!--<el-pagination-->
-                    <!--layout="prev, pager, next"-->
-                    <!--:total="1000">page-size="pageSize"-->
-            <!--</el-pagination>-->
-            <el-pagination
+           <el-pagination
                     @current-change="handleCurrentChange"
                     layout="prev, pager, next"
-
+                    :page-size="pageSize"
                     :total="count">
             </el-pagination>
         </div>
