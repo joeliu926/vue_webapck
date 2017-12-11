@@ -5,7 +5,7 @@ export default {
             count: 0,
             total:0,
             pageNo: 1,
-            pageSize:12,
+            pageSize:1,
             status:1,
             repage:1,
             searchField: "name",
@@ -19,9 +19,8 @@ export default {
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             aCustomerlist: [],
-            show:0
+            willShow:0
         }
-
     },
     created() {
         this.ready();
@@ -29,10 +28,8 @@ export default {
         _This.aCustomerlist;
     },
     mounted(){
-
     },
     destroyed() {
-
     },
     filters:{
         dateFilter:function (input) {
@@ -49,8 +46,18 @@ export default {
             if(input&&input!=""){
                 return  input.join("");
             }
-        }
+        },
+        projectFilter: function (input) {
+            if (!input || input == "" || typeof(input) != "object") {
+                return "";
+            }
+            let result = [];
 
+            input.forEach(item => {
+                result.push(item.projectName);
+            });
+            return result.join("、");
+        },
     },
     methods: {
         //
@@ -65,7 +72,6 @@ export default {
                      pageNo:_This.pageNo,
                      pageSize:_This.pageSize,
                      status:0,
-                     // repage:_This.repage
                  } ,
                  success: function (result) {
                      console.log(result);
@@ -76,13 +82,7 @@ export default {
                          _This.count=result.data.count;
                          console.log(_This.aCustomerlist);
                          console.log(_This.count)
-                         // if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
-                         //     _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
-                         //     console.log(_This.count);
-                         // }
-
                      }
-
                  }
              }, 'withCredentials');
 
@@ -96,11 +96,20 @@ export default {
             this.searchData();
         },
         // 显示和隐鲹电话号码
-       
-        openEyePhone(){
-           
+       openPhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
         },
-
+        closePhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
+        },
         pickerOptions(){},
         fDateChange(date){
             this.searchData();
@@ -128,9 +137,7 @@ export default {
                  endDate: _This.endDate,*/
                 fieldValue:_This.fieldValue,
                 searchField:_This.searchField
-
             };
-
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             if(_This.fieldValue==""){
@@ -145,8 +152,6 @@ export default {
                         _This.aCustomerlist = result.data.list;
                         _This.count = result.data.count;
                     }
-
-
                 }
             }, 'withCredentials');
         },
@@ -156,6 +161,5 @@ export default {
             }
             this.$router.push({path:'/customerinfo/'+uid});
         }
-
     }
 }

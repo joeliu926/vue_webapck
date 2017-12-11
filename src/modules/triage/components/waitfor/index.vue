@@ -39,6 +39,46 @@
                  height: 60px;
                  p,div{font-size: 14px;color: #999999;}
              }
+            .customer-table{
+                color: #999999;
+                width:100%;
+                border: 1px solid #eaeaea;
+                th{
+                    background-color: #F7F7F7;
+                    padding: 10px 24px;
+                    font-size: 16px;
+                    color: #333333;
+                }
+                tr{
+                    width: 100%;
+                }
+                td{
+                    padding: 10px 24px;
+                    font-size: 14px;
+
+                    .start-cst-btn{
+                        background: #9083ED;
+                        color: #ffffff;
+                        border-color: #9083ED;
+                    }
+                    .start-cst-btn:hover{
+                        border-color: #9083ED;
+                    }
+            }
+            .day-ct{
+                border-top:1px solid #eaeaea;
+                padding: 10px 24px;
+                font-size: 14px;
+                width: 100%;
+                .idate{
+
+                }
+                .icount{
+                    margin-left: 24px;
+                    color:#666666;
+                }
+            }
+        }
          }
 
          .customer-block-uinfo {
