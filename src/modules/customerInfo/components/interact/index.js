@@ -47,10 +47,13 @@ export default {
                     if (result.code == 0 && result.data) {
                         _this.culeList = result.data.list;
                         if(_this.culeList.length>0){
-                            _this.currentClue = _this.culeList[0];
+                            let orderDesc = _this.culeList.sort(function(x, y){
+                                return x.phase > y.phase ? -1:1;
+                            });
+                            _this.currentClue =orderDesc[0];
                             _this.culeState = _this.currentClue.phase;
                             _this.sessionId = _this.currentClue.sessionId;
-                            console.log('_this.currentClue.phase',_this.currentClue.phase);
+
                             if(_this.culeState==1){
                                 _this.initwebClue();
                                 _this.currentCuleState =1;
@@ -69,6 +72,7 @@ export default {
             this.currentClue =  params;
             this.culeState = this.currentClue.phase;
             this.sessionId = this.currentClue.sessionId;
+            this.currentCuleState = this.currentClue.phase;
 
             if(this.culeState==1){
                 this.initwebClue();
@@ -93,7 +97,6 @@ export default {
                         _this.webEvent = result.data;
                         _this.webEvent.trackDesc.forEach(m=>{
                             m.leftTrack.date =_.date2String(new Date(m.leftTrack.date),'yyyy-MM-dd hh:mm');
-
                             m.rightTrack.trackDetailList.forEach(mr=>{
                                 mr.date = _.date2String(new Date(mr.date),'yyyy-MM-dd hh:mm');
                             });
@@ -104,10 +107,9 @@ export default {
         },
         initSceneClue(){
             let _this=this;
-
             let postData = {
-                unionId: this.unionid ,
-                consultingId:_this.sessionId
+                clueId: _this.currentClue.id,
+                phase:2
             };
             _.ajax({
                 url: '/customers/culescenedetail',
@@ -116,12 +118,12 @@ export default {
                 success: function (result) {
                     if (result.code == 0 && result.data) {
                         _this.sceneEvent = result.data;
-                        _this.sceneEvent.trackDesc.forEach(m=>{
-                            m.leftTrack.date =_.date2String(new Date(m.leftTrack.date),'yyyy-MM-dd hh:mm');
-                            m.rightTrack.trackDetailList.forEach(mr=>{
-                                mr.date = _.date2String(new Date(mr.date),'yyyy-MM-dd hh:mm');
+                        _this.sceneEvent.forEach(item=>{
+                            item.events.forEach(event=>{
+                                event.time =  _.date2String(new Date(event.time),'yyyy-MM-dd hh:mm');
                             });
-                        });
+                        })
+
                     }
                 }
             }, 'withCredentials');
