@@ -12,8 +12,8 @@ export default {
             changing:true,
             caseName:'',
             conCodeDisplay:[0,0,0,0,0,0],
-            picObjF1:{class:'show-case fade-in', visible:true,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'},
-            picObjF2:{class:'show-case fade-none',visible:false,code:'0',caseName:'客户案例',beforeUrl:'https://27478500.qcloud.la/serverpic/default_before.jpg',afterUrl:'https://27478500.qcloud.la/serverpic/default_after.jpg'}
+            picObjF1:{class:'show-case fade-in', visible:false,code:'0',caseName:'客户案例',beforeUrl:'',afterUrl:''},
+            picObjF2:{class:'show-case fade-none',visible:true,code:'0',caseName:'客户案例',beforeUrl:'',afterUrl:''}
         }
     },
     created() {
@@ -54,7 +54,7 @@ export default {
                 case 'sbind_return':
                     if(result.content.code==0){
                         _this.tvState ='waiting';
-                   }f
+                   }
                     break;
                 case 'image':
                     _this.changeimages(result.content);

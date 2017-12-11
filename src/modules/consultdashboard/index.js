@@ -8,7 +8,7 @@ export default {
             todayCount: 0,
             aEndList: [],
             count: 0,
-            pageSize: 3,
+            pageSize: 12,
             pageNo: 1,
             total: 0
         }
@@ -21,13 +21,11 @@ export default {
         console.log("loadparams-----",loadparams);
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
-        }
+        };
     },
     mounted(){
-
     },
     destroyed() {
-
     },
     filters: {
         dateFilter: function (input, format) {
@@ -148,7 +146,6 @@ export default {
                     if(result.code==0&&result.data){
                         _This.aEndList=result.data.list;
                         _This.count=result.data.count;
-                        console.log("============",_This.pageSize,_This.count);
                     }
                 }
             }, 'withCredentials');

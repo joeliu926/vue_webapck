@@ -2,7 +2,7 @@
 <script src="./index.js">
 
 </script>
-<style  lang="scss">\
+<style  lang="scss">
 .el-tabs--border-card>.el-tabs__content {
     padding-top: 10px;
 }
@@ -79,7 +79,7 @@
                 }
             }
         }
-         }
+    }
 
          .customer-block-uinfo {
              margin: 24px;
@@ -121,4 +121,5 @@
              background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
              background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
          }
+
 </style>
