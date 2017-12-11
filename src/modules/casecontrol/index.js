@@ -86,6 +86,7 @@ export default {
          console.log("this.$route.params--------->",this.$route.params);
         _This.fProductList();
         _This.fDoctorList();
+        _This.fUpdateClue();
         /****事件触发 start****/
         _This.code="consultingBegin";
         _This.consultingItem=_This.routerParam.projects;
@@ -711,6 +712,28 @@ export default {
                     } else {
                         _This.$message.error('更新失败');
                     }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 更新线索信息NETWORK_CONSULTING(1,"网络咨询"),LIVE_CONSULTANT(2,"现场咨询"),  REVERTING_IN(3,"恢复中"),  FINISH(4,"关闭")
+         * @param cid
+         */
+        fUpdateClue(){
+            let _This = this;
+            let postData = {
+                appointmentId:  _This.routerParam.appointmentId,
+                phase: 2,
+                phaseName: "现场咨询"
+            };
+            _.ajax({
+                url: '/clue/update',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fUpdateClue result--------", result);
+
 
                 }
             }, 'withCredentials');
