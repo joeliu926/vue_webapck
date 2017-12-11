@@ -19,8 +19,8 @@ export default {
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             aCustomerlist: [],
-            show:true,
-            id:0
+            willShow:0,
+
         }
 
     },
@@ -50,13 +50,10 @@ export default {
                 return  input.join("");
             }
         }
-
     },
-    methods: {
-        //
+    methods: { 
         ready(){
             console.log("=============000000000000================");
-
              var _This = this;
              _.ajax({
                  url: '/triage/list',
@@ -73,36 +70,32 @@ export default {
                      if(result.code==0&&result.data){
                          console.log(result.data);
                          _This.aCustomerlist = result.data.list;
-                         _This.count=result.data.count;
-                         // console.log(_This.aCustomerlist);
-                         // console.log(_This.count);
-                        
-                         // if( _This.aCustomerlist&& _This.aCustomerlist!==[]){
-                         //     _This.count=Math.ceil(_This.aCustomerlist.length/_This.pageSize);
-                         //     console.log(_This.count);
-                         // }
-                         
-
+                         _This.count=result.data.count;  
                      }
                  }
              }, 'withCredentials');
-
         },
         fSearchData(e){
-
             this.searchData();
         },
         handleClick(){
             this.fieldValue="";
             this.searchData();
         },
-         // 显示和隐鲹电话号码
-       openPhone(eid){
-            console.log(eid);
-            let temp=this.aCustomerlist;
-            temp.show=false;
-            this.aCustomerlist=[];
-             this.aCustomerlist=temp;
+        // 显示和隐藏电话号码（只针对点击的当前行）
+        openPhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
+        },
+        closePhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
         },
 
         pickerOptions(){},
@@ -114,7 +107,6 @@ export default {
         },
         fEdit(){
             console.log("edit data");
-
         },
         fMoreUserInfo(){
             console.log("get more user info");
@@ -133,7 +125,6 @@ export default {
                  endDate: _This.endDate,*/
                 fieldValue:_This.fieldValue,
                 searchField:_This.searchField
-
             };
 
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
@@ -150,8 +141,6 @@ export default {
                         _This.aCustomerlist = result.data.list;
                         _This.count = result.data.count;
                     }
-
-
                 }
             }, 'withCredentials');
         },
