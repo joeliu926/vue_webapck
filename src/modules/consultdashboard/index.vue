@@ -19,9 +19,13 @@
                 vertical-align: middle;
                 cursor: pointer;
             }
-            .el-tabs__nav-wrap{
-                margin-bottom: -3px;
+            .el-tabs__header{
+                background-color: #ffffff;
+                .el-tabs__nav-wrap{
+                    margin-bottom: -3px;
+                }
             }
+
             .el-col-18{width: 100%;}
             .waiting-ct{
                 width: 100%;
@@ -62,6 +66,9 @@
             tr{
                 width: 100%;
             }
+            tr.tr-end{
+                border-bottom: 1px solid #eaeaea;
+            }
             td{
                 padding: 10px 24px;
                 font-size: 14px;
@@ -88,6 +95,9 @@
                     color:#666666;
                 }
             }
+        }
+        .customer-waiting-content{
+            margin: 24px 12px;
         }
         .customer-pagination-align {
             text-align: right;
