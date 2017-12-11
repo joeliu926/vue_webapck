@@ -571,19 +571,17 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
-            console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
+           // console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
             var _This = this;
-
            // this.oCustomer.name=ename;
             if(_This.oCustomer.name==""||ename==""){
                 return false;
             }
             _This.fSearchUserDpData(ename,function (result) {
+               // console.log("fGetCustomerList-------》",result);
                 if(result.code==0&&result.data){
                     _This.oNameList=result.data.list;
                     _This.oCustomer.name=ename;
-
-                    console.log("_This.oNameList---->",_This.oNameList);
                 }
             });
             //console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
@@ -592,16 +590,32 @@ export default {
          * 选择下拉的名称
          */
         fSelectNameItem(ename){
-            console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
+           // console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
             let _This=this;
             if(!_This.routerParam.adddiag){
                 return false;
             }
+
+
+            let strIndex=ename.indexOf("(");
+            if(strIndex>0){
+                ename=ename.substr(0,strIndex);
+                //console.log("ename.ename--+++------",ename);
+            }
             _This.fSearchUserDpData(ename,function (result) {
+                //console.log("fSelectNameItem-------》",result);
                 if(result.code==0&&result.data){
                     if(_This.routerParam.adddiag&&result.data.list.length==1&&result.data.list[0].name== _This.oCustomer.name){
+                        result.data.list[0].gender =result.data.list[0].gender + "";
                         _This.oCustomer=result.data.list[0];
-                     }
+
+                       // console.log("000000------->",ename);
+
+                     }else {
+                       // console.log("no data-------",ename);
+                       // _This.oCustomer.name=ename;
+                    }
+                    _This.oCustomer.name=ename;
                 }
             });
         },
@@ -620,17 +634,6 @@ export default {
                 data: postData,
                 success: function (result) {
                     callback(result);
-                    console.log("模糊搜索客户列表-------》",result);
-                    //if(result.code==0&&result.data){
-                      //  _This.oNameList=result.data.list;
-                      //  if(result.data.list.length==0){
-
-                      //  }
-                     //   _This.oCustomer.name=ename;
-                        /*  if(!_This.oCustomer.id&&_This.routerParam.adddiag&&result.data.list.length==1){
-                         _This.oCustomer=_This.oNameList[0];
-                         }*/
-                   // }
                 }
             }, 'withCredentials');
         },
