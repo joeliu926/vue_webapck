@@ -514,6 +514,7 @@ export default {
                             message: '提交成功',
                             type: 'success'
                         });
+                        _This.fExitConsole();//结束演示提交控制台消息
                         setTimeout(function () {
                             _This.$router.push({name:'/consultdashboard',params:{
                                 sbsuccess:true
@@ -836,7 +837,7 @@ export default {
                 "type": "image",
                 "content": {
                     "code": _This.conCode,
-                    "caseName": "玻尿酸瘦脸",
+                    "caseName": _This.oCurrentShowItem.productName,
                     "beforeUrl": _This.oCurrentShowItem.frondFile.url,
                     "afterUrl": _This.oCurrentShowItem.backFile.url
                 }
@@ -850,6 +851,20 @@ export default {
             console.log("播放项目--------》",params);
             _This.fEvent();
 
+        },
+        /**
+         * 结束演示，退出控制台//console closed  {"type":"closed","content":{"code":1234,"sid":"aaa"}}
+         */
+        fExitConsole(){
+            let _This=this;
+            let oExitCode={
+                "type":"closed",
+                "content":{
+                    "code":_This.conCode,
+                    "sid": _This.conSid
+                }
+            };
+            _This.webSocket.send(JSON.stringify(oExitCode));
         },
         /**
          * 计算需要展示的案例
