@@ -5,9 +5,7 @@
 </script>
 
 <style lang="sass">
-    html, body{
-        background-color:#FFF;
-    }
+
     .case-top{
         text-align:center;
         background-color: #7084f3;
