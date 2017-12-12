@@ -42,12 +42,6 @@
                         margin-top:20px;
                         border-radius: 4px;
                           }
-                .box-shadow{
-                    -moz-box-shadow: 2px 2px 10px 2px #e8e8e8;
-                    -webkit-box-shadow:  2px 2px 10px 2px #e8e8e8;
-                     box-shadow: 2px 2px 10px 2px #e8e8e8;
-                    border-radius: 4px;
-                             }
                 .case-left a{
                           display: inline-block;
                           line-height: 50px;

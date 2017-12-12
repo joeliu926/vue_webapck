@@ -3,7 +3,7 @@ export default {
     data () {
         return {
             product: [],
-            changestyle:0,
+            changestyle:1001,
             msg:0
         };
     },
@@ -43,7 +43,7 @@ export default {
         setscroll(params){
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
-            console.log(disTop);
+           // console.log(disTop);
             document.getElementById("right").scrollTop=disTop-256;
             this.changestyle=params;
 
@@ -59,8 +59,8 @@ export default {
                     this.changestyle=  m.productCode;
                 }
 
-                console.log('disTop',disTop);
-                console.log('scrolltop',scrolltop);
+                //console.log('disTop',disTop);
+                //console.log('scrolltop',scrolltop);
                 //parentCode
             })
         },

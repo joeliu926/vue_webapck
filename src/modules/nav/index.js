@@ -8,7 +8,10 @@ export default {
     data () {
         return {
             selectedVal:'首页',
-            menusList:[]
+            menusList:[],
+            userImage:'',
+            allowBack:false
+
         };
     },
     created() {
@@ -17,9 +20,8 @@ export default {
             url: '/user/getuserinfo',
             method: 'POST',
             success: function (res) {
-
                 let _menus = res.menus?res.menus:[];
-
+                _this.userImage = res.headImgUrl;
                 _menus.forEach(m=>{
                     let menusid =m.split(':')[2];
                     switch(menusid){
@@ -45,6 +47,8 @@ export default {
                 })
             }
         },'withCredentials');
+
+
     },
     mounted(){
         this.setDefaultRoute();
@@ -54,7 +58,9 @@ export default {
     },
     methods: {
         goback(){
-            window.history.back();
+           if(this.allowBack){
+               window.history.back();
+           }
             //this.$router.push("/customers");
         },
         gohome(){
@@ -123,7 +129,11 @@ export default {
     watch: {
         $route(){
            this.setDefaultRoute();
-
+           if(this.$route.path+""=="/"){
+               this.allowBack=false;
+           }else {
+               this.allowBack=true;
+           }
         }
     }
 }

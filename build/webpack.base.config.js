@@ -23,9 +23,11 @@ constantData = constantData.replace(/host:\s*\S+?,/,function (word){
     return 'host:"'+sBaseUrl+'",';
 });
 
-constantData = constantData.replace(/wsReqUrl:"\s*"/,function (word){
-    return 'wsReqUrl:"'+sWsUrl+'"';
+constantData = constantData.replace(/wsReqUrl:\s*\S+?,/,function (word){
+    return 'wsReqUrl:"'+sWsUrl+'",';
 });
+
+console.log('constantData',constantData);
 
 fs.writeFileSync(constantPath, constantData, function(err){
     if(err){

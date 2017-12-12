@@ -136,7 +136,7 @@ export default {
         setPhone(type){
             let setObje =null;
             let uid= this.$route.params.id;
-
+            console.log("++++++++",uid);
             if(type==0){
                 this.isclick_before = 'before';
                 setObje = {caseid:uid,beforePic:this.zoomPhotoName,afterPic:''}
@@ -154,10 +154,12 @@ export default {
                     if(result.code==0&&result.data){
                         console.log('result',result);
                     }
+                    _This.reday();    
                 }
             }, 'withCredentials');
-
+         
         },
+
         closeLayer(){
             this.reveal=false;
             this.isclick_before = '';
