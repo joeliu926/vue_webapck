@@ -7,6 +7,7 @@
 
 
 <style scope  lang="sass" type="es6">
+
 .case-content{
      position:relative;
     .case-top{
@@ -222,7 +223,12 @@
             }
         }
     }
+
 }
+
+
+
+
 
 </style>
 
