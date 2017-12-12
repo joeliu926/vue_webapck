@@ -9,12 +9,12 @@
         padding: 24px;
         box-sizing: border-box;
         .consult-content {
-.el-tabs__nav{
-    .is-active{
-        border-top:2px solid #9083ED !important;
-        box-sizing: border-box;
-    }
-}
+            .el-tabs__nav{
+                .is-active{
+                    border-top:2px solid #9083ED !important;
+                    box-sizing: border-box;
+                }
+            }
             .eye-img{
                 vertical-align: middle;
                 cursor: pointer;
