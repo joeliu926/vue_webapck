@@ -100,7 +100,7 @@
                 margin-top:10px;
                 display:flex;
                 flex-wrap:wrap;
-                .case-item:hover{ box-shadow: 0px 0px 1px 1px #e0e0e0;
+                .case-item:hover{ box-shadow: 2px 2px 10px #e8e8e8;
                 }
                 .case-item{
                     width:31.33%;
