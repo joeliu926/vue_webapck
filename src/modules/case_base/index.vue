@@ -5,7 +5,7 @@
 </script>
 
 <style lang="sass">
-
+ .case_base{
     .case-top{
         text-align:center;
         background-color: #7084f3;
@@ -124,6 +124,7 @@
             margin-bottom: 0;
     }
     }
+}
 }
 }
 </style>
