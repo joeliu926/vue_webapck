@@ -89,7 +89,7 @@
             padding: 12px;
             border: 2px solid #eeeeee;
             border-radius: 4px;
-            background: #FFF
+            background:#FFF;
             h6{
 
                 font-size:16px;

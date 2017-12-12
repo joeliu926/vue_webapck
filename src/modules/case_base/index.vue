@@ -4,7 +4,7 @@
 
 </script>
 
-<style lang="sass">
+<style lang="scss">
  .case_base{
     .case-top{
         text-align:center;
