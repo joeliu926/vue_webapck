@@ -245,7 +245,6 @@
             border-radius: 4px;
             width:50%;
             height:100%;
-            float:left;
             padding-right:20px;
 
             border-top:1px solid transparent;
@@ -327,6 +326,21 @@
                             color:#333;
 
                         }
+                    }
+                    p.second{
+                        text-indent: 0px;
+                    span:nth-child(n+1){
+                        padding:4px 8px ;
+                        margin-right:5px;
+                        color:#9083ed;
+                        border:1px solid transparent;
+                        background: #d8dcfd;
+                        border-radius:16px;
+                    }
+                    img{
+                        width:31%;
+                        margin:0px 0px  5px 5px;
+                    }
                     }
                 }
             }
@@ -413,7 +427,7 @@
                         text-indent: 0px;
                         span:nth-child(n+1){
                             padding:4px 8px ;
-                            margin-right:5px;                    
+                            margin-right:5px;
                             color:#9083ed;
                             border:1px solid transparent;
                             background: #d8dcfd;

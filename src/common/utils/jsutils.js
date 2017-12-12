@@ -24,7 +24,7 @@ module.exports = {
                 withCredentials: true
             };
         }
-
+        opts.crossDomain= true;
         if(opts.urlType=='full')
         {
             opts.url=opts.url;

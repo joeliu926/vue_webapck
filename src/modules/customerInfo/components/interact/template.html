@@ -51,7 +51,7 @@
     <!--客户web咨询的时间轴-->
     <div v-if="currentCuleState==1" class="timeLine">
       <div v-for="webE in webEvent.trackDesc">
-        <div class="left-box">
+        <div class="left-box" style="float: left;">
         <!--咨询师的信息-->
             <div class="counselor ">
                 <div class="counselor-top">
@@ -95,9 +95,9 @@
     <!--客户现场咨询的时间轴-->
     <div v-if="currentCuleState==2"  class="timeLine">
         <div v-for="sceneE in sceneEvent">
-            <div  class="left-box">
+            <div  class="left-box" style="padding-top: 100px;">
                 <!--咨询师的信息-->
-                <div v-for="leftDiv in sceneE.events" v-if="leftDiv.code&&leftDiv.code=='reserve'" class="counselor ">
+                <div v-for="leftDiv in sceneE.events" v-if="leftDiv.code&&leftDiv.code!='reserve'" class="counselor ">
                     <div class="counselor-top">
                         <img :src="leftDiv.userPhoto">
                         <span class="name">{{leftDiv.userName}}</span>
@@ -109,22 +109,18 @@
                         <p>
                             {{leftDiv.desc}}
                         </p>
-                        <p>
-                            <span>预约时间：</span>
-                            <span>{{leftDiv.reserveTime}}</span>
-                        </p>
-                        <p>
-                            <span>项目：</span>
-                            <span class="product" v-for="product in leftDiv.products">{{product.product_name}}</span>
+                        <p class="second">
+                            <img  v-if="leftDiv.before&&leftDiv.before.length>0" :src="leftDiv.before">
+                            <img  v-if="leftDiv.after&&leftDiv.after.length>0" :src="leftDiv.after">
                         </p>
                     </div>
 
                 </div>
             </div>
 
-            <div  class="right-box" >
+            <div  class="right-box" style="padding-top: 0px; float: right;">
                 <!--客户的的信息-->
-                <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code&&rightDiv.code!='reserve'" class="custome-item">
+                <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code&&rightDiv.code=='reserve'" class="custome-item">
                     <div class="custome-item-top">
                         <img :src="rightDiv.customerPhoto">
                         <span class="name">{{rightDiv.customerName}}</span>
@@ -135,9 +131,14 @@
                         <p>
                             {{rightDiv.desc}}
                         </p>
-                        <p class="second">
-                            <img  v-if="rightDiv.before&&rightDiv.before.length>0" :src="rightDiv.before">
-                            <img  v-if="rightDiv.after&&rightDiv.after.length>0" :src="rightDiv.after">
+
+                        <p>
+                            <span>预约时间：</span>
+                            <span>{{rightDiv.reserveTime}}</span>
+                        </p>
+                        <p>
+                            <span>项目：</span>
+                            <span class="product" v-for="product in rightDiv.products">{{product.product_name}}</span>
                         </p>
                     </div>
                 </div>
