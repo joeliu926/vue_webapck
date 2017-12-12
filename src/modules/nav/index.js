@@ -8,7 +8,8 @@ export default {
     data () {
         return {
             selectedVal:'首页',
-            menusList:[]
+            menusList:[],
+            allowBack:false
         };
     },
     created() {
@@ -54,7 +55,9 @@ export default {
     },
     methods: {
         goback(){
-            window.history.back();
+           if(this.allowBack){
+               window.history.back();
+           }
             //this.$router.push("/customers");
         },
         gohome(){
@@ -123,7 +126,11 @@ export default {
     watch: {
         $route(){
            this.setDefaultRoute();
-
+           if(this.$route.path+""=="/"){
+               this.allowBack=false;
+           }else {
+               this.allowBack=true;
+           }
         }
     }
 }
