@@ -26,6 +26,7 @@ export default {
             oCurrentShowItemIndex: 0,//当前展示的案例的索引
             oSourceList:[],//客户来源列表
             isFillProject:false,//结束是否填写项目信息
+            isAllowNameDrop:false, //是否允许根据名称模糊查询下拉
             oNameList:[],
             otheritems: "",
             otherresion: "",
@@ -81,11 +82,15 @@ export default {
                 _This.consultItems.push(item.projectCode);
             });
         }
+  /*      if(_This.routerParam.adddiag){
+            _This.isAllowNameDrop=true;
+        }*/
         _This.initSocket();
         _This.fGetCustomerData();
-         console.log("this.$route.params--------->",this.$route.params);
+         //console.log("this.$route.params--------->",this.$route.params);
         _This.fProductList();
         _This.fDoctorList();
+        _This.fUpdateClue();
         /****事件触发 start****/
         _This.code="consultingBegin";
         _This.consultingItem=_This.routerParam.projects;
@@ -394,7 +399,7 @@ export default {
          * @returns {boolean}
          */
         fChangeAutoSelect(ename){
-           // console.log("--------自动选择-----------",ename);
+           console.log("--------自动选择-- project---------",ename);
             if (ename.trim() == "") {
                 return false;
             }
@@ -420,7 +425,7 @@ export default {
          * 下拉框选中
          */
         fSelectProjecChange(eCode){
-           // console.log("----下拉结束选中----",eCode);
+            console.log("----下拉结束选中 project----",eCode);
             let _This = this;
             let routerParam = _This.routerParam;
             _This.routerParam.projects = _This.routerParam.projects || [];
@@ -514,6 +519,7 @@ export default {
                             message: '提交成功',
                             type: 'success'
                         });
+                        _This.fExitConsole();//结束演示提交控制台消息
                         setTimeout(function () {
                             _This.$router.push({name:'/consultdashboard',params:{
                                 sbsuccess:true
@@ -565,23 +571,61 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
-            console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
+           // console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
             var _This = this;
-            this.oCustomer.name=ename;
-            if(_This.oCustomer.name==""){
+           // this.oCustomer.name=ename;
+            if(_This.oCustomer.name==""||ename==""){
                 return false;
             }
-            let namel=_This.oCustomer.name.indexOf("(");
-            if(namel>0){
-                /// console.log("-----rrrrrrrrrr-------》",namel);
-                _This.oCustomer.name=_This.oCustomer.name.substr(0,namel);
+            _This.fSearchUserDpData(ename,function (result) {
+               // console.log("fGetCustomerList-------》",result);
+                if(result.code==0&&result.data){
+                    _This.oNameList=result.data.list;
+                    _This.oCustomer.name=ename;
+                }
+            });
+            //console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
+        },
+        /**
+         * 选择下拉的名称
+         */
+        fSelectNameItem(ename){
+           // console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
+            let _This=this;
+            if(!_This.routerParam.adddiag){
+                return false;
             }
+
+
+            let strIndex=ename.indexOf("(");
+            if(strIndex>0){
+                ename=ename.substr(0,strIndex);
+                //console.log("ename.ename--+++------",ename);
+            }
+            _This.fSearchUserDpData(ename,function (result) {
+                //console.log("fSelectNameItem-------》",result);
+                if(result.code==0&&result.data){
+                    if(_This.routerParam.adddiag&&result.data.list.length==1&&result.data.list[0].name== _This.oCustomer.name){
+                        result.data.list[0].gender =result.data.list[0].gender + "";
+                        _This.oCustomer=result.data.list[0];
+
+                       // console.log("000000------->",ename);
+
+                     }else {
+                       // console.log("no data-------",ename);
+                       // _This.oCustomer.name=ename;
+                    }
+                    _This.oCustomer.name=ename;
+                }
+            });
+        },
+        fSearchUserDpData(ename,callback){
             var postData={
                 startDate:"",
                 endDate:"",
                 pageNo: 1,
                 pageSize: 6,
-                fieldValue:_This.oCustomer.name,
+                fieldValue:ename,
                 searchField:"name"
             };
             _.ajax({
@@ -589,25 +633,9 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("模糊搜索客户列表-------》",result);
-                    if(result.code==0&&result.data){
-                       _This.oNameList=result.data.list;
-                        if(!_This.oCustomer.id&&_This.routerParam.adddiag&&result.data.list.length==1){
-                            _This.oCustomer=_This.oNameList[0];
-                        }
-                    }
-
-
+                    callback(result);
                 }
             }, 'withCredentials');
-            //console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
-        },
-        /**
-         * 选择下拉的名称
-         */
-        fSelectNameItem(ename){
-            console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
-            //this.oCustomer.name=ename;
         },
         /**
          * 获取面诊客户渠道来源
@@ -710,6 +738,31 @@ export default {
                     } else {
                         _This.$message.error('更新失败');
                     }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 更新线索信息NETWORK_CONSULTING(1,"网络咨询"),LIVE_CONSULTANT(2,"现场咨询"),  REVERTING_IN(3,"恢复中"),  FINISH(4,"关闭")
+         * @param cid
+         */
+        fUpdateClue(){
+            let _This = this;
+            if(!_This.routerParam.appointmentId){
+                return false;
+            }
+            let postData = {
+                appointmentId:  _This.routerParam.appointmentId,
+                phase: 2,
+                phaseName: "现场咨询"
+            };
+            _.ajax({
+                url: '/clue/update',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("fUpdateClue result--------", result);
+
 
                 }
             }, 'withCredentials');
@@ -836,7 +889,7 @@ export default {
                 "type": "image",
                 "content": {
                     "code": _This.conCode,
-                    "caseName": "玻尿酸瘦脸",
+                    "caseName": _This.oCurrentShowItem.productName,
                     "beforeUrl": _This.oCurrentShowItem.frondFile.url,
                     "afterUrl": _This.oCurrentShowItem.backFile.url
                 }
@@ -850,6 +903,20 @@ export default {
             console.log("播放项目--------》",params);
             _This.fEvent();
 
+        },
+        /**
+         * 结束演示，退出控制台//console closed  {"type":"closed","content":{"code":1234,"sid":"aaa"}}
+         */
+        fExitConsole(){
+            let _This=this;
+            let oExitCode={
+                "type":"closed",
+                "content":{
+                    "code":_This.conCode,
+                    "sid": _This.conSid
+                }
+            };
+            _This.webSocket.send(JSON.stringify(oExitCode));
         },
         /**
          * 计算需要展示的案例

@@ -4,37 +4,7 @@
 </script>
 
 <style lang="scss">
-.hide{
-    display: none;
-}
-    .b-d{
-        border: 1px solid red;
-    }
-    .b-s{
-        box-sizing: border-box;
-    }
-    .cur{
-        cursor: pointer;
-    }
-    .i-block{
-        display: inline-block;
-    }
-    .s-ba-cm{
-        position: absolute;
-        bottom: 0;
-        width: 65px;
-        text-align: center;
-        border-radius: 0 8px 8px 0;
-        background-color:rgba(43, 48, 93, 0.48);
-        color: #ffffff;
-        font-size: 14px;
-    }
-    .s-after{
-        left: 50%;
-    }
-.common-pos-middle{
-    position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;box-sizing: border-box;
-}
+
     .control-content {
         background: url("../../common/img/control-bgd.png") no-repeat;
         background-size:100% 100%;
@@ -758,6 +728,39 @@
 
         /**********************客户信息 end**************************/
 
+        /**********************common start*********************/
+        .hide{
+            display: none;
+        }
+        .b-d{
+            border: 1px solid red;
+        }
+        .b-s{
+            box-sizing: border-box;
+        }
+        .cur{
+            cursor: pointer;
+        }
+        .i-block{
+            display: inline-block;
+        }
+        .s-ba-cm{
+            position: absolute;
+            bottom: 0;
+            width: 65px;
+            text-align: center;
+            border-radius: 0 8px 8px 0;
+            background-color:rgba(43, 48, 93, 0.48);
+            color: #ffffff;
+            font-size: 14px;
+        }
+        .s-after{
+            left: 50%;
+        }
+        .common-pos-middle{
+            position: absolute;  height: 300px;  width: 700px;  top:50%;  left:50%;  margin-top: -150px;margin-left: -350px;box-sizing: border-box;
+        }
+        /**********************common end***********************/
 
 
     }

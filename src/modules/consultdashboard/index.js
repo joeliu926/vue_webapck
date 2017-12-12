@@ -22,13 +22,10 @@ export default {
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
         };
-
     },
     mounted(){
-
     },
     destroyed() {
-
     },
     filters: {
         dateFilter: function (input, format) {
@@ -121,6 +118,7 @@ export default {
                         });
 
                         _This.aWaitinglist = result.data;
+                        console.log(_This.aWaitinglist);
                         let latest = _.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)), "yyyy-MM-dd");
                         let today = _.date2String((new Date()), "yyyy-MM-dd");
                         if (today == latest) {
