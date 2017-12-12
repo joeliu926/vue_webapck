@@ -146,6 +146,7 @@
                     }
                 }
                 .sky {
+                    display: none;
                     height: 220px;
                     position: absolute;
                     right:0px;
