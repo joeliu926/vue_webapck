@@ -4,13 +4,9 @@
 </script>
 
 <style scope  lang="sass" type="es6">
-    html, body{
-        background-color:#FFF;
-    }
-    body{
-        background:#FFF;
-        position:relative;
-    }
+ .caselibrary{
+    background:#FFF;
+
     .case-top{
         text-align:center;
         background-color: #7084f3;
@@ -236,7 +232,7 @@
             }
         }
     }
-
+ }
 
 
 
