@@ -48,25 +48,25 @@
             ul{
                display:flex;
 
-               height:60px;
+               height:70px;
                text-align:center;
                justify-content:space-between ;
 
+            }
+
+            .zoom-cicle{
+                width:70px !important;
+                height:70px !important;
+                line-height: 70px !important;
             }
             .state-one{
                 li{
                     background-color:#9febc6;
                 }
-                li:hover{
-                    background-color:#4c5cff;
-                }
             }
             .state-two{
                 li{
                     background-color:#4cb0ff;
-                }
-                li:hover{
-                    background-color:#4c5cff;
                 }
             }
             .state-three{
@@ -113,9 +113,7 @@
                 li{
                     display: inline-block;
                     margin:auto;
-
                     border-radius:50%;
-
                 }
                 li:nth-child(1){
                     width:8px;
@@ -129,7 +127,6 @@
                     width:8px;
                     height:8px;
                 }
-
                 li:nth-child(4){
                     width:60px;
                     height:60px;

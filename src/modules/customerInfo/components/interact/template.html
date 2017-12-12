@@ -10,11 +10,10 @@
                     <el-dropdown-item v-for="item in culeList" key="item.index" :command="item">{{item.name}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-
         </div>
         <div  justify="center" class="stepNav">
             <ul :class="getClass(1)+' step-first'"  @click="checkState(1)">
-                <li>网络咨询</li>
+                <li :class="getZoom(1)">网络咨询</li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -24,7 +23,7 @@
                <li></li>
                <li></li>
                <li></li>
-               <li>现场咨询</li>
+               <li :class="getZoom(2)">现场咨询</li>
                <li></li>
                <li></li>
                <li></li>
@@ -34,7 +33,7 @@
                <li></li>
                <li></li>
                <li></li>
-               <li>恢复中</li>
+               <li :class="getZoom(3)">恢复中</li>
                <li></li>
                <li></li>
                <li></li>
@@ -44,7 +43,7 @@
                <li></li>
                <li></li>
                <li></li>
-               <li>关闭</li>
+               <li :class="getZoom(4)">关闭</li>
             </ul>
         </div>
     </div>
@@ -91,7 +90,6 @@
       </div>
     </div>
 
-
     <!--客户现场咨询的时间轴-->
     <div v-if="currentCuleState==2"  class="timeLine">
         <div v-for="sceneE in sceneEvent">
@@ -131,7 +129,6 @@
                         <p>
                             {{rightDiv.desc}}
                         </p>
-
                         <p>
                             <span>预约时间：</span>
                             <span>{{rightDiv.reserveTime}}</span>
