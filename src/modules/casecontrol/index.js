@@ -486,7 +486,7 @@ export default {
                 flag: _This.activeStatus,
                 faceDiagnoseRemarks: _This.faceDiagnoseRemarks,
                 faceDiagnoseDate: _This.faceDiagnoseDate ? _This.faceDiagnoseDate.valueOf() : "",
-                faceDiagnoseProduct: _This.faceDiagnoseProduct
+                faceDiagnoseProduct: _This.consultItems.join(",")
             };
            // console.log("postData======>", postData);
           if(postData.flag=="0"&&postData.faceDiagnoseProduct.length<=0){
