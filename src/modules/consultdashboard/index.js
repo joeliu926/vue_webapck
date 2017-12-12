@@ -112,13 +112,12 @@ export default {
                 success: function (result) {
                     // console.log("waiting result--------",result);
 
-                    if (result.code == 0 && result.data) {
+                    if (result.code == 0 && result.data&&result.data.length>0) {
                         result.data = result.data.sort(function (itemOne, itemTwo) {
                             return itemOne[0].faceDiagnoseDate > itemTwo[0].faceDiagnoseDate;
                         });
 
                         _This.aWaitinglist = result.data;
-                        console.log(_This.aWaitinglist);
                         let latest = _.date2String((new Date(_This.aWaitinglist[0][0].faceDiagnoseDate)), "yyyy-MM-dd");
                         let today = _.date2String((new Date()), "yyyy-MM-dd");
                         if (today == latest) {
@@ -143,7 +142,7 @@ export default {
                 data: postData,
                 success: function (result) {
                     //console.log("end result--------",result);
-                    if(result.code==0&&result.data){
+                    if(result.code==0&&result.data&&result.data.length>0){
                         _This.aEndList=result.data.list;
                         _This.count=result.data.count;
                     }

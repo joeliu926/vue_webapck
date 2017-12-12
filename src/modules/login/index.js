@@ -64,6 +64,7 @@ export default {
                             success: function (res) {
                                 if(res.code==0) {
                                     _this.$router.push("/");
+                                    console.log('99999999999')
                                 }else {
                                     _this.alertWaring = true;
                                     _this.alertPhone = false;

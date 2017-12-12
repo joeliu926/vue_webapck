@@ -6,7 +6,7 @@
 </script>
 
 
-<style scope  lang="sass" type="es6">
+<style scope  lang="scss" >
 
 .case-content{
      position:relative;
@@ -89,7 +89,7 @@
             padding: 12px;
             border: 2px solid #eeeeee;
             border-radius: 4px;
-            background: #FFF
+            background: #FFF ;
             h6{
 
                 font-size:16px;
