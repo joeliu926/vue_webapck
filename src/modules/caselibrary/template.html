@@ -1,10 +1,17 @@
-<div>
+<div class="case-content">
 
 
     <div class="case-top" >
         <div style="height: 136px">
             <el-row  justify="center" style="height: 134px">
-                <el-col :span="3" :offset="6"><div class="case-top-demo"style=" border-bottom :4px solid #FFF;"><a style="margin-top: 100px" herf="case_base;" @click="msg=1" :class="{'bottomchange':msg==1}"><img src="../../common/img/case-top1.png" class="top-img"></a><a class="case-top-title"style="margin-bottom:10px;font-size: 16px">项目</a></div></el-col>
+                <el-col :span="3" :offset="6">
+                    <div class="case-top-demo"style=" border-bottom :4px solid #FFF;">
+                        <a style="margin-top: 100px" herf="case_base;" @click="msg=1" :class="{'bottomchange':msg==1}">
+                            <img src="../../common/img/case-top1.png" class="top-img">
+                        </a>
+                        <a class="case-top-title"style="margin-bottom:10px;font-size: 16px">项目</a>
+                    </div>
+                </el-col>
                 <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=2" :class="{'bottomchange':msg==2}"><img src="../../common/img/case-top2.png" class="top-img"></a>医生</div></el-col>
                 <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=3" :class="{'bottomchange':msg==3}"><img src="../../common/img/case-top3.png" class="top-img"></a>医院</div></el-col>
                 <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=4" :class="{'bottomchange':msg==4}"><img src="../../common/img/case-top4.png" class="top-img"></a>市场活动</div></el-col>

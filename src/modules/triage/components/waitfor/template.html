@@ -40,7 +40,7 @@
             </el-row>
         </div>
         <!-- 分诊表格 -->
-        <div class="customer-block-content">
+        <div class="table-content">
             <el-table
                     :data="aCustomerlist"
                     style="width: 100%">
@@ -64,11 +64,11 @@
                        <template slot-scope="scope"  style="text-align: right;">
                             <div :style="{display:[aCustomerlist[scope.$index].willShow!='1'?'':'none']}" >
                                 <span>{{scope.row.phoneNum|phoneFilter}}</span>
-                                <img class="eye-img" src="../../../../common/img/i-eye-close.png" v-if="phoneNum" style="margin-left:5px;" @click="openPhone(scope.$index,'1')" >
+                                <img class="eye-img" src="../../../../common/img/i-eye-close.png" v-if="" style="margin-left:5px;" @click="openPhone(scope.$index,'1')" >
                             </div>
                             <div :style="{display:[aCustomerlist[scope.$index].willShow=='1'?'':'none']}">
                                 <span>{{scope.row.phoneNum}}</span>
-                                <img class="eye-img" src="../../../../common/img/i-eye-open.png" v-if="phoneNum" style="margin-left:5px;" @click="closePhone(scope.$index,'0')" >
+                                <img class="eye-img" src="../../../../common/img/i-eye-open.png" v-if="" style="margin-left:5px;" @click="closePhone(scope.$index,'0')" >
                             </div>
                         </template>    
                 </el-table-column>

@@ -5,7 +5,7 @@ export default {
             count: 0,
             total:0,
             pageNo: 1,
-            pageSize:1,
+            pageSize:12,
             status:1,
             repage:1,
             searchField: "name",
