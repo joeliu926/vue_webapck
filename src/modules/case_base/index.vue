@@ -88,7 +88,7 @@
                              margin-top:20px;
                              }
                      .case-right-col{
-
+                        margin-bottom: 4px;
                          }
                      .case-right-col a{
                     display: inline-block;
@@ -98,7 +98,7 @@
                     background: white;
                     color: #333;
                     text-decoration:none;
-                    padding:8px 16px 8px 16px;
+                    padding:3px 16px 3px 16px;
                     margin-left: 40px;
                     margin-right: 40px;
                     }
@@ -107,7 +107,7 @@
             font-size:14px;
             border-radius: 25px;
             background: #9083ed;
-            padding:8px 16px 8px 16px;
+            padding:3px 16px 3px 16px;
     }
     .case-content{
     font-family: " 微软雅黑";

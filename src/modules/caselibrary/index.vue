@@ -81,6 +81,7 @@
         height:0;
         line-height:0;
         visibility:hidden;
+        border-radius: 15px;
         clear:both;
     }    
     .case-menu{
@@ -99,15 +100,17 @@
                 margin-top:10px;
                 display:flex;
                 flex-wrap:wrap;
+                .case-item:hover{ box-shadow: 0px 0px 1px 1px #e0e0e0;
+                }
                 .case-item{
                     width:31.33%;
                     margin:0px 12px 0px 12px;
                     padding: 0 !important;
+                    border-radius:4px;
                     margin-bottom:12px;
                     height:300px;
                     border:1px solid #eeeeee;
-                    border-radius:4px;
-                    box-shadow: 0px 0px 1px 1px #e0e0e0;
+
                     .item-info {
                        width:100%;
                       .item-top{
@@ -118,7 +121,6 @@
                                 flex:1;
                                 display:block;
                                 float:left;
-                                border-radius:4px;
                                 position:relative;
                                 vertical-align:top;
                                 img {
@@ -127,7 +129,7 @@
                                 }
                                 .before{
                                     display:block;
-                                    border-radius:0 8px 8px  0;
+                                    border-radius:0 10px 10px  0;
                                     position:absolute;
                                     color:#FFF;
                                     left:0px;
@@ -137,7 +139,7 @@
                                 }
                                  .after{
                                     display:block;
-                                    border-radius:0 8px 8px  0;
+                                    border-radius:0 10px 10px  0;
                                     position:absolute;
                                     color:#FFF;
                                     left:0px;
@@ -176,10 +178,10 @@
                             }
                          }
                          .itemName{
-                            width:40%;
                             height:24px;
                             color:#666;
                             font-size:14px;
+                             float:left;
                             padding:0 4px;
                             line-height:24px;
                             text-align:center;
@@ -188,6 +190,7 @@
                                 a{ display: inline-block;
                                     text-align: center;
                                     font-size: 14px;
+                                    padding:0 4px;
                                     color: #333;
                                     text-decoration:none;
                             }
@@ -198,7 +201,6 @@
                                 display:block;
                                 width:40px;
                                 height:40px;
-                                background:red;
                                 border-radius:50%;
                                 vertical:middle;
                             }
