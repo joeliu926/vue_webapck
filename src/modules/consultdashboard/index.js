@@ -141,8 +141,8 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    //console.log("end result--------",result);
-                    if(result.code==0&&result.data&&result.data.length>0){
+                   // console.log("end result--------",result);
+                    if(result.code==0&&result.data&&result.data.list.length>0){
                         _This.aEndList=result.data.list;
                         _This.count=result.data.count;
                     }
