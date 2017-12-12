@@ -4,9 +4,6 @@
 </script>
 
 <style lang="scss">
-    html,body{
-        background-color: #f7f7f7;
-    }
     .nav-content{
          line-height: 60px;
          height: 60px;
