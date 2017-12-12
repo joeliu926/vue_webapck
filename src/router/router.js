@@ -83,7 +83,7 @@ var routerConfig = {
         },
         {
             name:'/casecontrol',
-            path:'/casecontrol',
+            path:'/casecontrol/:diagid',
             components:{
                 default:casecontrol
             }

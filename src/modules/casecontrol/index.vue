@@ -687,7 +687,7 @@
                         font-size: 14px;
                         color: #666666;
                         width: 160px;
-                        word-break: break-all;
+                        word-break: keep-all;
                         .lit-img{
                             margin-right: 10px;
                             cursor: pointer;
@@ -697,6 +697,8 @@
                             color: #B6B0EA;
                             border-radius: 10px;
                             padding: 2px 10px;
+                            display: inline-block;
+                            margin-bottom: 5px;
                         }
                     }
                     .lb-name{
