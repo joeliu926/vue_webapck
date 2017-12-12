@@ -23,7 +23,7 @@ constantData = constantData.replace(/host:\s*\S+?,/,function (word){
     return 'host:"'+sBaseUrl+'",';
 });
 
-constantData = constantData.replace(/wsReqUrl:\s*\S+?,/,function (word){
+constantData = constantData.replace(/wsReqUrl:"\s*"/,function (word){
     return 'wsReqUrl:"'+sWsUrl+'"';
 });
 
