@@ -8,7 +8,8 @@ export default {
     data () {
         return {
             selectedVal:'首页',
-            menusList:[]
+            menusList:[],
+            userImage:''
         };
     },
     created() {
@@ -17,9 +18,8 @@ export default {
             url: '/user/getuserinfo',
             method: 'POST',
             success: function (res) {
-
                 let _menus = res.menus?res.menus:[];
-
+                _this.userImage = res.headImgUrl;
                 _menus.forEach(m=>{
                     let menusid =m.split(':')[2];
                     switch(menusid){
@@ -45,6 +45,8 @@ export default {
                 })
             }
         },'withCredentials');
+
+
     },
     mounted(){
         this.setDefaultRoute();

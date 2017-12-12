@@ -52,13 +52,13 @@
     .nav-user-img{
         height: 40px;
         width: 40px;
+        border-radius: 30px;
     }
     .nav-img-content{
         border-radius: 50%;
         height: 40px;
         width: 40px;
         float: right;
-        border: 1px solid #eaeaea;
         position: relative;
         top:10px;
     }
