@@ -88,13 +88,14 @@
             }
             .customer-record {
                 color: #666666;
-                font-size: 14px;
+                font-size: 12px;
             }
             .customer-icon {
                 cursor: pointer;
+                padding-left: 0px !important;
             }
             .c-icon {
-                text-align: center;
+                text-align: left;
             }
 
         }
