@@ -60,7 +60,7 @@ export default {
                             data:{
                                 name:un,
                                 password:pd
-                            },
+                            },                                                 
                             success: function (res) {
                                 if(res.code==0) {
                                     _this.$router.push("/");
