@@ -1,33 +1,46 @@
+
 <div class="case_base">
     <div class="case-top" >
-        <div style="height: 134px">
-            <el-row  justify="center" style="height: 134px">
-                <el-col :span="3" :offset="6"><div class="case-top-demo"style=" border-bottom :4px solid #FFF;"><a style="margin-top: 100px" herf="case_base;" @click="msg=1" :class="{'bottomchange':msg==1}"><img src="../../common/img/case-top1.png" class="top-img"></a><a class="case-top-title"style="margin-bottom:10px;font-size: 16px">项目</a></div></el-col>
-                <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=2" :class="{'bottomchange':msg==2}"><img src="../../common/img/case-top2.png" class="top-img"></a>医生</div></el-col>
-                <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=3" :class="{'bottomchange':msg==3}"><img src="../../common/img/case-top3.png" class="top-img"></a>医院</div></el-col>
-                <el-col :span="3"><div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=4" :class="{'bottomchange':msg==4}"><img src="../../common/img/case-top4.png" class="top-img"></a>市场活动</div></el-col>
+            <div style="height: 134px">
+            <el-row justify="center" style="height: 134px">
+                <el-col :span="3" :offset="6">
+                    <div class="case-top-demo" style=" border-bottom :4px solid #FFF;">
+                        <a style="margin-top: 100px" herf="case_base;" @click="msg=1" :class="{'bottomchange':msg==1}">
+                            <img src="../../common/img/case-top1.png" class="top-img">
+                        </a>
+                        <a class="case-top-title" style="margin-bottom:10px;font-size: 16px">项目</a>
+                    </div>
+                </el-col>
+                <el-col :span="3">
+                    <div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=2" :class="{'bottomchange':msg==2}"><img src="../../common/img/case-top2.png" class="top-img"></a>医生</div>
+                </el-col>
+                <el-col :span="3">
+                    <div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=3" :class="{'bottomchange':msg==3}"><img src="../../common/img/case-top3.png" class="top-img"></a>医院</div>
+                </el-col>
+                <el-col :span="3">
+                    <div class="case-top-demo"><a style="height: 100px" herf="case_base;" @click="msg=4" :class="{'bottomchange':msg==4}"><img src="../../common/img/case-top4.png" class="top-img"></a>市场活动</div>
+                </el-col>
             </el-row>
         </div>
     </div>
     <div class="content" style="">
-
         <div class="search">
             <p style="margin-top:20px">
                 分类索引</p>
-
             <div class="case-left box-shadow" style="font-size:14px">
-
-                <a  href="javascript:;" v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a><br>
-
+                <a href="javascript:;" v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
+                <br>
             </div>
-
-
-            <div id="right" class="right" style="" @scroll="onscorllevent" >
-                <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index0) in  product "  :key="index0"style="">
-                    <div class="tab-con" >
-                        <el-row class="case-right-row"  v-for="(list1,index1) in  list0.productList " :key="index1" ><p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p><div style="height:12px"></div>
-                            <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2"  >
-                                <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol" ><p class="p" style="font-size:14px">{{list2.productName}}</p></a>
+            <div id="right" class="right" style="" @scroll="onscorllevent">
+                <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index0) in  product " :key="index0" style="">
+                    <div class="tab-con">
+                        <el-row class="case-right-row" v-for="(list1,index1) in  list0.productList " :key="index1">
+                            <p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p>
+                            <div style="height:12px"></div>
+                            <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2">
+                                <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol">
+                                    <p class="p" style="font-size:14px">{{list2.productName}}</p>
+                                </a>
                             </div>
                         </el-row>
                     </div>
@@ -35,6 +48,4 @@
             </div>
         </div>
     </div>
-
 </div>
-

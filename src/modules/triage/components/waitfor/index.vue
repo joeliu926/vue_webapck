@@ -3,13 +3,59 @@
 
 </script>
 <style  lang="scss">
-.el-tabs--border-card>.el-tabs__content {
-    padding-top: 10px;
-}
+
  .customer-block-content {
              margin :2px;
              border: 1px solid transparent;
              background-color: #ffffff;
+         .el-tabs--border-card>.el-tabs__content {
+            padding-top: 10px;
+        }   
+         .customer-block-uinfo {
+             margin: 24px;
+             height: 32px;
+             .customers-name {
+                 color: #333333;
+                 font-size: 16px;
+             }
+             .customer-record {
+                 color: #666666;
+                 font-size: 14px;
+             }
+             .customer-icon{
+                 cursor: pointer;
+             }
+             .c-icon{text-align: center;}
+
+         }
+
+         .customer-user-name {
+             font-size: 11px;
+             color: #444;
+         }
+
+         .customer-user-title {
+             vertical-align: middle;
+             height: 40px;
+             width: 40px;
+         }
+
+         .customer-pagination-align {
+             text-align: right;
+             border: none;
+         }
+
+         .customer-content-gradient {
+             background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
+             background: -webkit-gradient(linear,0 50%,100% 50%,from(#7084f3),to(#7a71fe));
+             background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
+             background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
+         }
+
+
+
+
+             // 
              th div{
                  font-size: 14px;
                  color: #333333;
@@ -81,45 +127,6 @@
         }
     }
 
-         .customer-block-uinfo {
-             margin: 24px;
-             height: 32px;
-             .customers-name {
-                 color: #333333;
-                 font-size: 16px;
-             }
-             .customer-record {
-                 color: #666666;
-                 font-size: 14px;
-             }
-             .customer-icon{
-                 cursor: pointer;
-             }
-             .c-icon{text-align: center;}
-
-         }
-
-         .customer-user-name {
-             font-size: 11px;
-             color: #444;
-         }
-
-         .customer-user-title {
-             vertical-align: middle;
-             height: 40px;
-             width: 40px;
-         }
-
-         .customer-pagination-align {
-             text-align: right;
-             border: none;
-         }
-
-         .customer-content-gradient {
-             background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
-             background: -webkit-gradient(linear,0 50%,100% 50%,from(#7084f3),to(#7a71fe));
-             background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
-             background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
-         }
+        
 
 </style>

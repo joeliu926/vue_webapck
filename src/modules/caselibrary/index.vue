@@ -1,12 +1,15 @@
 <template src="./template.html"></template>
+
+
 <script src="./index.js">
 
 </script>
 
-<style scope  lang="sass" type="es6">
- .caselibrary{
-    background:#FFF;
 
+<style scope  lang="scss" >
+
+.case-content{
+     position:relative;
     .case-top{
         text-align:center;
         background-color: #7084f3;
@@ -19,55 +22,52 @@
             width:60px;
             margin-top:24px;
             margin-left: 33.3%;
-                height:112px;
-                font-size:14px;
-
-                    .top-img{
-                        width:60px;height:60px
-                    }
-    }
-    }
-
-    .case-nav{
-        background-color: #7084F3;
-
-        border: none;
-        height: 134px;
-        .nav-row{
-            width:100%;
-            height: 134px;
-            .nav-item{
-                padding-top:30px;
-                width:60px;
-                height:134px;
-                margin:0 auto;
-                height:100px;
-                div{
-                    width:60px;
-                    height:100px;
-                    border-bottom:4px solid transparent;
-                    img{
-                        display:block;
-                        width:60px;
-                        height:60px;
-                        border-radius:50px;
-                        margin-bottom:10px;
-                    }
-                    p{
-                        color:white;
-                        font-size:14px;
-                        text-align:center;
-                    }
-                }
-                .icon-item.active{
-                     border-bottom:4px solid #FFF;
-                }
-
-
+            height:112px;
+            font-size:14px;
+            .top-img{
+                width:60px;height:60px
             }
 
         }
+    }
+    .case-nav{
+            background-color: #7084F3;
+            border: none;
+            height: 134px;
+            .nav-row{
+                width:100%;
+                height: 134px;
+                .nav-item{
+                    padding-top:30px;
+                    width:60px;
+                    height:134px;
+                    margin:0 auto;
+                    height:100px;
+                    div{
+                        width:60px;
+                        height:100px;
+                        border-bottom:4px solid transparent;
+                        img{
+                            display:block;
+                            width:60px;
+                            height:60px;
+                            border-radius:50px;
+                            margin-bottom:10px;
+                        }
+                        p{
+                            color:white;
+                            font-size:14px;
+                            text-align:center;
+                        }
+                    }
+                    .icon-item.active{
+                         border-bottom:4px solid #FFF;
+                    }
 
+
+                }
+
+            }
     }
     .fl {
         float:left;
@@ -82,16 +82,14 @@
         line-height:0;
         visibility:hidden;
         clear:both;
-
-    }
-
+    }    
     .case-menu{
         padding:12px 12px 0 12px;
         .case-list{
             padding: 12px;
             border: 2px solid #eeeeee;
             border-radius: 4px;
-            background: #FFF
+            background: #FFF ;
             h6{
 
                 font-size:16px;
@@ -112,7 +110,6 @@
                     box-shadow: 0px 0px 1px 1px #e0e0e0;
                     .item-info {
                        width:100%;
-
                       .item-top{
                          width:100%;
                          height:215px;
@@ -122,13 +119,11 @@
                                 display:block;
                                 float:left;
                                 border-radius:4px;
-
                                 position:relative;
                                 vertical-align:top;
                                 img {
                                   width:100%;
                                   display:block;
-
                                 }
                                 .before{
                                     display:block;
@@ -219,20 +214,18 @@
                             }
                          }
 
-
-
-
                       }
 
 
 
                     }
-
                 }
             }
         }
     }
- }
+
+}
+
 
 
 

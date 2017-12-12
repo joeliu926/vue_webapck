@@ -1,4 +1,4 @@
-<div>
+<div class="casedetail-content">
    <div class="case-info">
         <!--客户日记-->
         <div class="caseinfo-top-content">
@@ -130,7 +130,7 @@
 
     </div>
     <!--案例弹出层-->
-   <div class="case-layer" id="Idiv" v-show='reveal' >
+    <div class="case-layer" id="Idiv" v-show='reveal' >
         <div class="content-box" id="mou_head">
             <div class="left-box ">
                 <div class="carousel-wrap" id="carousel">
@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div class="right-box">
-                <el-Button :class="isclick_before=='before'?'isclick':''" nativeType="button" size="small" @click="setPhone(0)">设置为befor</el-Button>
+                <el-Button :class="isclick_before=='before'?'isclick':''" nativeType="button" size="small" @click="setPhone(0)">设置为before</el-Button>
                 <el-Button :class="isclick_before=='after'?'isclick':''" nativeType="button" size="small" @click="setPhone(1)">设置为after</el-Button>
                 <span class="close el-icon-pa-close" @click="closeLayer"></span>
             </div>
