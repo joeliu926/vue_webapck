@@ -268,8 +268,7 @@
             <div class="info-content">
                 <div class="info-item">
                 <label class="lb-name">姓名</label>
-                <!--    <el-input placeholder="客户姓名" class="cust-input" @keyup.native="fGetCustomerList" v-model="oCustomer.name">
-
+                 <!--  <el-input placeholder="客户姓名" class="cust-input"  :style="{display:[!isAllowNameDrop?'':'none']}" v-model="oCustomer.name">
                     </el-input>-->
                     <div class="cust-input">
                         <template>
@@ -280,7 +279,8 @@
                                     reserve-keyword
                                     placeholder="请输入关键词"
                                     @change="fSelectNameItem"
-                                    :remote-method="fGetCustomerList">
+                                    :remote-method="fGetCustomerList"
+                                  >
                                 <el-option
                                         v-for="item in oNameList"
                                         :key="item.name"

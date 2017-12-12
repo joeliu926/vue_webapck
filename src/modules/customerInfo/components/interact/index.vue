@@ -278,6 +278,7 @@
             .counselor{
                 width:100%;
                 position:relative;
+                margin-bottom: 20px;
                 .counselor-top{
                     width:100%;
                     height:60px;
@@ -312,6 +313,13 @@
                         text-indent:10px;
                         padding:10px 0;
                         font-size:14px;
+                        .product{
+                            background-color: #c3bcf7;
+                            color:#6F61D3;
+                            border-radius: 10px;
+                            padding: 4px;
+                            font-size: 12px;
+                        }
                         span{
                            color:#ccc;
                         }
@@ -354,7 +362,7 @@
                 border-radius:50%;
             }
             .custome-item{
-                padding-right:20px;
+
                 padding-left:30px;
                 width:100%;
                 margin-bottom:25px;

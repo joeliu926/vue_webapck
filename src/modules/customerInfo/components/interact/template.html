@@ -94,151 +94,54 @@
 
     <!--客户现场咨询的时间轴-->
     <div v-if="currentCuleState==2"  class="timeLine">
-        <div class="left-box">
-            <!--咨询师的信息-->
-            <div class="counselor list0">
-                <div class="counselor-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">姜咨询</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="counselor-content">
-                    <p>
-                        <span>接待了一次</span>
-                        <span>咨询申请</span>
-                    </p>
-                    <p v-if="false"></p>
-                </div>
-            </div>
-            <div class="counselor list1">
-                <div class="counselor-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">姜咨询</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="counselor-content">
-                    <p>
-                        <span>接待了一次</span>
-                        <span>咨询申请</span>
-                    </p>
-                    <p v-if="false"></p>
-                </div>
-            </div>
-            <div class="counselor list2">
-                <div class="counselor-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">姜咨询</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="counselor-content">
-                    <p>
-                        <span>接待了一次</span>
-                        <span>咨询申请</span>
-                    </p>
-                    <p v-if="false"></p>
-                </div>
-            </div>
-        </div>
-        <div class="right-box" >
-            <!--客户的的信息-->
-            <div class="custome-item item0">
-                <div class="custome-item-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">杨宏伟</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="custome-item-content">
-                    <p>
-                        <span>提出了了一次</span>
-                        <span>咨询申请</span>
-                    </p>
-                    <p class="second">咨询项目 :
-                        <span>硅胶隆鼻</span>
-                        <span>埋线双眼皮</span>
+        <div v-for="sceneE in sceneEvent">
+            <div  class="left-box">
+                <!--咨询师的信息-->
+                <div v-for="leftDiv in sceneE.events" v-if="leftDiv.code&&leftDiv.code=='reserve'" class="counselor ">
+                    <div class="counselor-top">
+                        <img :src="leftDiv.userPhoto">
+                        <span class="name">{{leftDiv.userName}}</span>
+                        <span class="time">{{leftDiv.time}}</span>
+                    </div>
+                    <!--咨询师 咨询分享-->
+                    <!--咨询师 咨询分享-->
+                    <div class="counselor-content">
+                        <p>
+                            {{leftDiv.desc}}
+                        </p>
+                        <p>
+                            <span>预约时间：</span>
+                            <span>{{leftDiv.reserveTime}}</span>
+                        </p>
+                        <p>
+                            <span>项目：</span>
+                            <span class="product" v-for="product in leftDiv.products">{{product.product_name}}</span>
+                        </p>
+                    </div>
 
-                    </p>
                 </div>
             </div>
-            <div class="custome-item item1">
-                <div class="custome-item-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">杨宏伟</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="custome-item-content">
-                    <p>
-                        <span>提出了了一次</span>
-                        <span>咨询申请</span>
-                    </p>
-                    <p class="second">咨询项目 :
-                        <span>硅胶隆鼻</span>
-                        <span>埋线双眼皮</span>
 
-                    </p>
-                </div>
-            </div>
-            <div class="custome-item item1">
-                <div class="custome-item-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">杨宏伟</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="custome-item-content">
-                    <p>
-                        <span>喜欢了</span>
-                        <span>我的美丽日志</span>
-                    </p>
-                    <p class="second">咨询项目 :
-                        <span>硅胶隆鼻</span>
-                        <span>埋线双眼皮</span>
-                    </p>
-                    <el-row type="flex" class="imgbox">
-                        <el-col :span="24" type="flex" class="cover-img clearfix">
-                            <div class="fl">
-                                <img src="../../../../common/img/shuqian.png" width="80" height="80" alt="">
-                                <span>before</span>
-                            </div>
-                            <div class="fl">
-                                <img src="../../../../common/img/shuhou.png" width="80" height="80" alt="">
-                                <span>after</span>
-                            </div>
-
-                        </el-col>
-                    </el-row>
-                </div>
-            </div>
-            <div class="custome-item item2">
-                <div class="custome-item-top">
-                    <img src="../../../../common/img/zixs.png">
-                    <span class="name">杨宏伟</span>
-                    <span class="time">2017-11-13 AM 10:30</span>
-                </div>
-                <!--咨询师 咨询分享-->
-                <div class="custome-item-content">
-                    <p>
-                        <span>上传了</span>
-                        <span>照片</span>
-                    </p>
-                    <p class="second">咨询项目 :
-                        <span>硅胶隆鼻</span>
-                        <span>埋线双眼皮</span>
-                    </p>
-                    <div class="file-box">
-                        <div class="file-item" v-for="" :key="">
-                            <img src="../../../../common/img/shuhou.png"  height="80" width="80"/>
-                            <img src="../../../../common/img/shuhou.png"  height="80" width="80"/>
-                            <img src="../../../../common/img/shuhou.png"  height="80" width="80"/>
-                        </div>
+            <div  class="right-box" >
+                <!--客户的的信息-->
+                <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code&&rightDiv.code!='reserve'" class="custome-item">
+                    <div class="custome-item-top">
+                        <img :src="rightDiv.customerPhoto">
+                        <span class="name">{{rightDiv.customerName}}</span>
+                        <span class="time">{{rightDiv.time}}</span>
+                    </div>
+                    <!--咨询师 咨询分享-->
+                    <div class="custome-item-content">
+                        <p>
+                            {{rightDiv.desc}}
+                        </p>
+                        <p class="second">
+                            <img  v-if="rightDiv.before&&rightDiv.before.length>0" :src="rightDiv.before">
+                            <img  v-if="rightDiv.after&&rightDiv.after.length>0" :src="rightDiv.after">
+                        </p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

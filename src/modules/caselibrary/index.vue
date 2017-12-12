@@ -1,7 +1,10 @@
 <template src="./template.html"></template>
+
+
 <script src="./index.js">
 
 </script>
+
 
 <style scope  lang="sass" type="es6">
 .case-content{
@@ -64,7 +67,6 @@
                 }
 
             }
-
     }
     .fl {
         float:left;
@@ -80,7 +82,6 @@
         visibility:hidden;
         clear:both;
     }    
-
     .case-menu{
         padding:12px 12px 0 12px;
         .case-list{
@@ -217,19 +218,11 @@
 
 
                     }
-
                 }
             }
         }
     }
-
-   
 }
-
-    
-
-
-
 
 </style>
 
