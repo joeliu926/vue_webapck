@@ -7,20 +7,22 @@
 
 .triage-content{
     margin: 24px;
-    .el-tabs__header{
-            background-color:#fff;
-            .el-tabs__item{   
-                 border-top: 3px solid transparent;
-                 border-bottom: 1px solid transparent;
-             }
-            .el-tabs__item.is-active{
-                border-top: 3px solid #8162e0 !important; 
-                border-bottom:1px solid #FFF;
-                color:#333333;
-                font-weight: bold;
+    .content-border{
+              .el-tabs__nav{
+                .is-active{
+                    border-top:2px solid #9083ED !important;
+                    box-sizing: border-box;
+                }
             }
 
-        }
+        .el-tabs__header{
+                background-color: #ffffff;
+                .el-tabs__nav-wrap{
+                    margin-bottom: -3px;
+                }
+            }
+    }
+
     // .el-tabs--border-card> .el-tabs__content {
     //     padding-top: 10px;
     // }
