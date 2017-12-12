@@ -27,12 +27,12 @@
         <div class="search">
             <p style="margin-top:20px">
                 分类索引</p>
-            <div class="case-left box-shadow" style="font-size:14px">
+            <div class="case-left out-box-border" style="font-size:14px">
                 <a href="javascript:;" v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
                 <br>
             </div>
             <div id="right" class="right" style="" @scroll="onscorllevent">
-                <div :id="list0.productCode" class="case-right  box-shadow" v-for="(list0,index0) in  product " :key="index0" style="">
+                <div :id="list0.productCode" class="case-right  out-box-border" v-for="(list0,index0) in  product " :key="index0" style="">
                     <div class="tab-con">
                         <el-row class="case-right-row" v-for="(list1,index1) in  list0.productList " :key="index1">
                             <p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p>
