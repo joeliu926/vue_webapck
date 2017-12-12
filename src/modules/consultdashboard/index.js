@@ -175,7 +175,7 @@ export default {
         fAddNewDiagnose(){
 
             this.$router.push({
-                name: '/casecontrol', params: {
+                path: '/casecontrol/0', params: {
                     adddiag: true
                 }
             });
@@ -186,14 +186,17 @@ export default {
          */
         fStartConsult(e){
             let args = Array.prototype.slice.call(arguments);
-            this.$router.push({
+            //path:'/home/game', query: { num:  1}
+      /*      this.$router.push({
                 name: '/casecontrol', params: {
                     appointmentId: args[0],
                     customerId: args[1],
                     diagid: args[2],
                     projects: args[3]
                 }
-            });
+            });*/
+            this.$router.push({
+                path: '/casecontrol/'+args[2]});
         }
     }
 }

@@ -26,7 +26,6 @@ export default {
             oCurrentShowItemIndex: 0,//当前展示的案例的索引
             oSourceList:[],//客户来源列表
             isFillProject:false,//结束是否填写项目信息
-            isAllowNameDrop:false, //是否允许根据名称模糊查询下拉
             oNameList:[],
             otheritems: "",
             otherresion: "",
@@ -76,29 +75,45 @@ export default {
     created() {
         let _This = this;
         _This.fTimer();
-        _This.routerParam = this.$route.params;
-        if(_This.routerParam.projects){
-            _This.routerParam.projects.forEach(item=>{
-                _This.consultItems.push(item.projectCode);
-            });
-        }
-  /*      if(_This.routerParam.adddiag){
-            _This.isAllowNameDrop=true;
-        }*/
-        _This.initSocket();
-        _This.fGetCustomerData();
-         //console.log("this.$route.params--------->",this.$route.params);
-        _This.fProductList();
-        _This.fDoctorList();
-        _This.fUpdateClue();
-        /****事件触发 start****/
-        _This.code="consultingBegin";
-        _This.consultingItem=_This.routerParam.projects;
-        _This.reserveId=_This.routerParam.appointmentId;
-        _This.diagnoseId=_This.routerParam.diagid;
 
-        _This.fEvent();
-        /****事件触发 end****/
+        let faceId=_This.$route.params.diagid;
+        _This.routerParam = this.$route.params;
+        if(_This.$route.params.diagid==0){
+            _This.routerParam.adddiag=true;
+        }
+        _This.fGetSingleDiagnose(function (oUserData) {
+
+
+            _This.routerParam.appointmentId=oUserData.appointmentId||"";
+            _This.routerParam.customerId=oUserData.customerId||"";
+            _This.routerParam.projects=oUserData.projectList||[];
+            _This.routerParam.diagid=oUserData.id||"";
+            if(_This.routerParam.projects){
+                _This.routerParam.projects.forEach(item=>{
+                    _This.consultItems.push(item.projectCode);
+                });
+            }
+
+            _This.initSocket();
+            _This.fGetCustomerData();
+            //console.log("this.$route.params--------->",this.$route.params);
+            _This.fProductList();
+            _This.fDoctorList();
+            _This.fUpdateClue();
+            /****事件触发 start****/
+            _This.code="consultingBegin";
+            _This.consultingItem=_This.routerParam.projects;
+            _This.reserveId=_This.routerParam.appointmentId;
+            _This.diagnoseId=_This.routerParam.diagid;
+
+            _This.fEvent();
+            /****事件触发 end****/
+
+        });
+
+
+
+
 
 
     },
@@ -194,7 +209,7 @@ export default {
          * @param eCode
          */
         fChooseItems(eItem){
-             console.log("eItem========>",eItem);
+             //console.log("eItem========>",eItem);
             let _This = this;
             _This.isCurrentProject = eItem.productCode;
             _This.isSelectItem = true;
@@ -246,8 +261,35 @@ export default {
          * 结束框选择项目
          */
         fChangeCheck(){
-            console.log("dddddddd--change", this.consultItems);
+           // console.log("dddddddd--change", this.consultItems);
             this.faceDiagnoseProduct = this.consultItems.join(",");
+        },
+
+        /**
+         * 获取单条面诊记录
+         * @param ename
+         * @returns {boolean}
+         */
+        fGetSingleDiagnose(callback){
+            let _This = this;
+            let postData = {
+                faceId: _This.$route.params.diagid||0
+            };
+            _.ajax({
+                url: '/faceDiagnose/getSingleDiagnose',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    // console.log("fGetSingleDiagnose--------",result);
+                    if (result.code == 0 && result.data) {
+                         callback(result.data);
+                    }else {
+                        callback({});
+                    }
+
+                }
+            }, 'withCredentials');
+
         },
 
         /**
@@ -347,7 +389,7 @@ export default {
             _This.oShowCaseList.push(scase);
             _This.oShowCaseListIds.push(scase.id);
 
-            console.log("oShowCaseList=======>",_This.oShowCaseList);
+           // console.log("oShowCaseList=======>",_This.oShowCaseList);
 
         },
         /**
@@ -399,7 +441,7 @@ export default {
          * @returns {boolean}
          */
         fChangeAutoSelect(ename){
-           console.log("--------自动选择-- project---------",ename);
+          // console.log("--------自动选择-- project---------",ename);
             if (ename.trim() == "") {
                 return false;
             }
@@ -425,7 +467,7 @@ export default {
          * 下拉框选中
          */
         fSelectProjecChange(eCode){
-            console.log("----下拉结束选中 project----",eCode);
+           // console.log("----下拉结束选中 project----",eCode);
             let _This = this;
             let routerParam = _This.routerParam;
             _This.routerParam.projects = _This.routerParam.projects || [];
@@ -558,7 +600,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fGetCustomerData result--------", result);
+                   // console.log("fGetCustomerData result--------", result);
                     if (result.code == 0 && result.data) {
                         result.data.gender = result.data.gender + "";
                         result.data.birthday=result.data.birthday?_.date2String(new Date(parseInt(result.data.birthday)), "yyyy-MM-dd"):"";
@@ -573,7 +615,6 @@ export default {
         fGetCustomerList(ename){
            // console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
             var _This = this;
-           // this.oCustomer.name=ename;
             if(_This.oCustomer.name==""||ename==""){
                 return false;
             }
@@ -584,7 +625,6 @@ export default {
                     _This.oCustomer.name=ename;
                 }
             });
-            //console.log("22222_This.oCustomer-=-=-=-=-",_This.oCustomer);
         },
         /**
          * 选择下拉的名称
@@ -609,10 +649,7 @@ export default {
                         result.data.list[0].gender =result.data.list[0].gender + "";
                         _This.oCustomer=result.data.list[0];
 
-                       // console.log("000000------->",ename);
-
                      }else {
-                       // console.log("no data-------",ename);
                        // _This.oCustomer.name=ename;
                     }
                     _This.oCustomer.name=ename;
@@ -720,7 +757,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fUpdateCustomer result--------", result);
+                   // console.log("fUpdateCustomer result--------", result);
                     if (result.code == 0 && result.data) {
 
                         if(_This.routerParam.adddiag&&!_This.routerParam.diagid){
@@ -761,7 +798,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("fUpdateClue result--------", result);
+                   // console.log("fUpdateClue result--------", result);
 
 
                 }
