@@ -29,26 +29,27 @@
                         <div class='item-info'>
                             <div class="item-top">
                                 <a href="javascript:;" @click="fCaseDetail(list0.id)">
-                                <span class='before-box'style="height: 215px;width:215px;overflow: hidden">
-                                     <img :src="list0.frondFile.url"   alt="">
-                                    <span class="before">before</span>
-                                </span>
-                                <span class='after-box'style="height: 215px;width:215px;overflow: hidden">
-                                    <img :src="list0.backFile.url"  width="215px" alt="">
-                                    <span class="after">after</span>
-                                </span>
+                                    <span class='before-box' style="height: 215px;width:215px;overflow: hidden">
+                                        <img :src="list0.frondFile.url"  width="215"  alt="">
+                                        <span class="before">before</span>
+                                    </span>
+                                    <span class='after-box' style="height: 215px;width:215px;overflow: hidden">
+                                        <img :src="list0.backFile.url"  width="215px" alt="">
+                                        <span class="after">after</span>
+                                    </span>
                                 </a>
                             </div>
                             <div class="item-bottom">
                                 <p class="clearfix">
                                     <span class="left .fl">案例：{{list0.caseName}}</span>
-                                    <span class="right .fr">医生 ：{{list0.doctorName}}</span>
+                                    <!-- <span class="right .fr">医生 ：{{list0.doctorName}}</span> -->
                                 </p>
                                 <div class="itemName" v-for="listooo ,index in list0.relatedProduct" :key="index"> <a href="javascript:;" @click="fCaselibrary(listooo.productCode)">{{listooo.productName}}</a></div>
                                 <br>
                                 <div class="userifo .clearfix">
                                     <img :src="list0.customerLogo" class="fl" alt="">
                                     <span class="fl">{{list0.customerName}}</span>
+                                    <span class="right .fr">医生 ：{{list0.doctorName}}</span>
                                 </div>
                             </div>
                         </div>

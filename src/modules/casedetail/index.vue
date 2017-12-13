@@ -60,7 +60,15 @@
                        font-weight:900;
                     }
                     p{
+                        // margin-right:-20px;
                        font-size:14px;
+                    }
+                    p.gender{
+                      margin-left:-30px;
+
+                    }
+                    p.age{
+                      margin-left:-60px;
                     }
                     .color{
                         color:#999;
@@ -73,7 +81,7 @@
                 .case-name{
                   font-weight: bold;
                 }
-                span{color:#8391a5; font-size: 14px;}
+                span{color:#999; font-size: 14px;}
             }
       }
       .caseinfo-bottom-content{
@@ -83,15 +91,21 @@
                 padding:0 24px;
                 /*案例封面*/
                 .info-cover{
-
                      padding-bottom:10px;
                      margin-bottom:10px;
                      p{
                         padding:10px 0px;
-                        font-size:16px!important;
-                        color:#8391a5;
+                        font-size:14px!important;
+                        color:#000;
                      }
                      .cover-img{
+                        // border-radius:4px;
+                        div.left{
+                            border-radius:4px 0 0 4px;    
+                        }
+                        div.right{
+                            border-radius: 0 4px 4px 0 ;    
+                        }
                         div{
                            width:140px;
                            height:140px;
@@ -100,17 +114,19 @@
 
                            span{
                               display:block;
-                              width:55px;
+                              width:65px;
+                              text-align:center;
                               height:20px;
+                              font-size:12px; 
                               padding:0;
                               line-height:20px;
                               text-align:center;
                               position:absolute;
                               left:0px;
                               bottom:0px;
-                              background:#FFF;
-                              color:#333;
-                              border-radius:0 6px 6px 0;
+                              color:#FFF;
+                              background:rgba(0,0,0,0.4);    
+                              border-radius:0 10px 10px 0;
 
                            }
                         }
@@ -121,7 +137,7 @@
                     /*margin-right:24px;*/
 
                     h6{
-                       font-size:16px;
+                       font-size:14px;
                        margin-bottom:10px;
                     }
                     ul{
@@ -130,21 +146,29 @@
                             float:left;
                             margin-bottom:10px;
                             margin-right:12px;
+                            border-radius:4px;
+                            overflow: hidden;
                             list-style-type: none;
                         }
                     }
                     .description{
                         width:100%;
                         height:20px;
+                        // .fristcolor{
+                        //   font-size:14px;
+                        //   color:#000;
+                        // }
                         span{
-
                           display:inline-block;
                           height:15px;
                           font-size:14px;
                         }
-                        span:nth-child(n){
+                        span + span{
                           color:#5346ae;
                         }
+                        // span:nth-child(n){
+                        //   color:#5346ae;
+                        // }
                     }
                 }
 
@@ -163,6 +187,8 @@
                         margin-bottom:10px;
                         span{
                             padding:0;
+                            font-size:14px;
+                            padding:0 10px;
                             display:block;
                             width:90px;
                             height:20px;
@@ -171,7 +197,7 @@
                         }
                         span:nth-child(1){
                             float:left;
-                            border-radius:8px;
+                            border-radius:10px;
                             background:#f76120 ;
                             color:#FFF   ;
                         }
@@ -180,8 +206,6 @@
                             float:right;
                             margin-left:1px;
                             border-color:transparent;
-
-
                             width:112px;
                             color:#666;
                         }
@@ -195,19 +219,22 @@
                              float:left;
                              margin-bottom:10px;
                              margin-right:12px;
+                             overflow: hidden;
+                             border-radius:4px;
                              list-style-type: none;
                          }
                      }
                      .description{
                          width:100%;
                          height:20px;
+                        
                          span{
-
                            display:inline-block;
                            width:75px;
                            height:15px;
                            font-size:14px;
                          }
+
                          span:nth-child(n){
                            color:#5346ae;
                          }

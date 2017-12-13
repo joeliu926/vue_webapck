@@ -8,24 +8,24 @@
                     <el-row :gutter="24" type="flex" justify="center" align="center">
                         <el-col :span="4">
                             <div class="casetop-img" >
-                                <img :src="acaseuserlist.customerLogo" width="120" height="100" >
+                                <img :src="acaseuserlist.customerLogo" width="88" height="88" >
                               </div>
                         </el-col>
                         <el-col :span="20" justify="space-between" align="" class="border-padding">
                             <el-row  type="flex" class="">
                                 <el-col :span="4">
                                     <div>
-                                        <p >{{acaseuserlist.customerName}}</p>
+                                        <p class="frist">{{acaseuserlist.customerName}}</p>
                                     </div>
                                 </el-col>
                                 <el-col :span="2">
                                     <div>
-                                        <p class="color">{{acaseuserlist.customerGender|Gender}}</p>
+                                        <p class="gender color">{{acaseuserlist.customerGender|Gender}}</p>
                                     </div>
                                 </el-col>
                                 <el-col :span="2">
                                     <div>
-                                        <p class="color">{{acaseuserlist.customerAge}}</p>
+                                        <p class="age color">{{acaseuserlist.customerAge}}</p>
                                     </div>
                                 </el-col>
                             </el-row>
@@ -70,11 +70,11 @@
                     <el-row class="info-cover border-bottom">
                         <p>案例封面</p>
                         <el-col :span="24" type="flex" class="cover-img clearfix">
-                            <div class="fl">
+                            <div class="left fl">
                                 <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">
                                 <span>before</span>
                             </div>
-                            <div class="fl">
+                            <div class="right fl">
                                 <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">
                                 <span>after</span>
                             </div>
@@ -93,7 +93,7 @@
                                 </li>
                             </ul>
                             <div class="description">
-                                术前特征 :
+                                <span class="fristcolor">术前特征 :</span>
                                 <span v-for="list,index in contentList"  :key="index">{{list.caseFeature}}</span>
                             </div>
                         </el-col>
