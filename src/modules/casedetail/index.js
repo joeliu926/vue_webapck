@@ -32,7 +32,9 @@ export default {
             currentIndex: 0,
             timer: '',
             reveal:false,
-            isclick_before:''
+            isclick_before:'',
+            isclick_after:''
+            
         }
     },
     created() {
@@ -82,6 +84,7 @@ export default {
                     console.log("casedetail",result);
                     if(result.code==0&&result.data){
                         _This.acaseuserlist = result.data;
+                        console.log(_This.acaseuserlist);
                         _This.contentList=result.data.contentList;
                         _This.count = result.data.count;
                         _This.contentList&& _This.contentList.forEach(m=>{
@@ -95,24 +98,7 @@ export default {
                 }
             }, 'withCredentials');
         },
-        add(){
-            let plength=this.photolist.length;
-            this.currentIndex+=1;
-            if(this.currentIndex>plength-1){
-                this.currentIndex=0;
-            }
-            this.zoomPhoto=this.photolist[this.currentIndex].url;
-            this.zoomPhotoName=this.photolist[this.currentIndex].name;
-        },
-        reduce(){
-            let plength=this.photolist.length;
-            this.currentIndex-=1;
-            if(this.currentIndex<0){
-                this.currentIndex=plength-1;
-            }
-            this.zoomPhoto=this.photolist[this.currentIndex].url;
-            this.zoomPhotoName=this.photolist[this.currentIndex].name;
-        },
+       
         change(index) {
             this.currentIndex = index;
         },
@@ -133,6 +119,54 @@ export default {
             this.isActive =true;
 
         },
+         add(){
+            let plength=this.photolist.length;
+            this.currentIndex+=1;
+            if(this.currentIndex>plength-1){
+                this.currentIndex=0;
+            };
+            this.zoomPhoto=this.photolist[this.currentIndex].url;
+            this.zoomPhotoName=this.photolist[this.currentIndex].name;
+            // 图片轮播的时候对应得按钮进行状态的选中
+            if(this.zoomPhotoName==this.acaseuserlist.frondFile.name){
+                console.log(true);
+                this.isclick_before="before";
+            }else{
+                this.isclick_before="";
+            };
+             // 图片轮播的时候对应得按钮进行状态的选中  after
+            if(this.zoomPhotoName==this.acaseuserlist.backFile.name){
+                console.log(true);
+                this.isclick_after="after";
+            }else{
+                this.isclick_after="";
+            };
+        },
+        reduce(){
+            let plength=this.photolist.length;
+           
+            // console.log(beforeBtn);
+            this.currentIndex-=1;
+            if(this.currentIndex<0){
+                this.currentIndex=plength-1;
+            }
+            this.zoomPhoto=this.photolist[this.currentIndex].url;
+            this.zoomPhotoName=this.photolist[this.currentIndex].name;
+            // 图片轮播的时候对应得按钮进行状态的选中  before
+            if(this.zoomPhotoName==this.acaseuserlist.frondFile.name){
+                console.log(true);
+                this.isclick_before="before";
+            }else{
+                this.isclick_before="";
+            }
+            // 图片轮播的时候对应得按钮进行状态的选中  after
+            if(this.zoomPhotoName==this.acaseuserlist.backFile.name){
+                console.log(true);
+                this.isclick_after="after";
+            }else{
+                this.isclick_after="";
+            }
+        },
         setPhone(type){
             let setObje =null;
             let uid= this.$route.params.id;
@@ -141,7 +175,7 @@ export default {
                 this.isclick_before = 'before';
                 setObje = {caseid:uid,beforePic:this.zoomPhotoName,afterPic:''}
             }else{
-                this.isclick_before = 'after';
+                this.isclick_after = 'after';
                 setObje = {caseid:uid,beforePic:'',afterPic:this.zoomPhotoName}
             }
 

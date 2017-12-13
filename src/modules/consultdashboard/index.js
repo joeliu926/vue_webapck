@@ -111,7 +111,6 @@ export default {
                 data: postData,
                 success: function (result) {
                     // console.log("waiting result--------",result);
-
                     if (result.code == 0 && result.data&&result.data.length>0) {
                         result.data = result.data.sort(function (itemOne, itemTwo) {
                             return itemOne[0].faceDiagnoseDate > itemTwo[0].faceDiagnoseDate;

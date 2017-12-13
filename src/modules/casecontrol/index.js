@@ -276,15 +276,19 @@ export default {
          */
         fGetSingleDiagnose(callback){
             let _This = this;
+            if(!_This.$route.params.diagid||_This.$route.params.diagid==0){
+                callback({});
+                return false;
+            }
             let postData = {
-                faceId: _This.$route.params.diagid||0
+                faceId: _This.$route.params.diagid
             };
             _.ajax({
                 url: '/faceDiagnose/getSingleDiagnose',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    // console.log("fGetSingleDiagnose--------",result);
+                     console.log("fGetSingleDiagnose--------",result);
                     if (result.code == 0 && result.data) {
                          callback(result.data);
                     }else {

@@ -130,20 +130,21 @@
 
     </div>
     <!--案例弹出层-->
+    <!-- v-show="show==0?true:false;"  v-on:mouseenter="showArrBtn(0)" v-on:mouseleave="hideArrBtn(1)"  v-show="isShow!= '1' ?'false' :'true' ;"-->
     <div class="case-layer" id="Idiv" v-show='reveal' >
         <div class="content-box" id="mou_head">
-            <div class="left-box ">
-                <div class="carousel-wrap" id="carousel">
-                    <img :src="zoomPhoto" >
+            <div class="left-box">
+                <div class="carousel-wrap" id="carousel" >
+                    <img :src="zoomPhoto">
                     <div class="arrowbox clearfix">
                         <span class="btn-l el-icon-arrow-left fl" @click="reduce"></span>
                         <span class="btn-r el-icon-arrow-right fr" @click="add"></span>
                     </div>
                 </div>
             </div>
-            <div class="right-box">
-                <el-Button :class="isclick_before=='before'?'isclick':''" nativeType="button" size="small" @click="setPhone(0)">设置为before</el-Button>
-                <el-Button :class="isclick_before=='after'?'isclick':''" nativeType="button" size="small" @click="setPhone(1)">设置为after</el-Button>
+            <div class="right-box" >
+                <el-Button :class="isclick_before=='before'?'isclick':'' " nativeType="button" size="small" @click="setPhone(0)">设置为before</el-Button>
+                <el-Button :class="isclick_after=='after'?'isclick':''" nativeType="button" size="small" @click="setPhone(1)">设置为after</el-Button>
                 <span class="close el-icon-pa-close" @click="closeLayer"></span>
             </div>
         </div>
