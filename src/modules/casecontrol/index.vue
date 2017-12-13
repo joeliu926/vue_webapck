@@ -6,7 +6,7 @@
 <style lang="scss">
 
     .control-content {
-        background: url("../../common/img/control-bgd.png") no-repeat;
+        background: url("../../common/img/tv/play.png") no-repeat;
         background-size:100% 100%;
         left: 0;
         right: 0;
@@ -136,7 +136,6 @@
             overflow:hidden;
             display:none;
             .hold_circle {
-
                 left:25%;
                 width: 50%;
                 height: 50%;

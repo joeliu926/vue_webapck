@@ -23,15 +23,17 @@
             .hold_place{
                 width: 50%;
                 .show-case-title{
-                    display: none;
+
                     color:#f9f7f7;
                     height:21px;
                     text-align: center;
                     padding-bottom:5px;
                     .float-right{
+                        display: none;
                         float: right;
                     }
                     .float-left{
+                        display: none;
                         float: left;
                     }
                     .show-case-name{
@@ -139,10 +141,11 @@
                     span{
                         font-size: 30px;
                         border: solid 1px #fff;
-                        color:#fff;
+                        color:#000;
                         padding: 10px 20px;
                         margin: 5px;
                         border-radius: 5px;
+                        background-color: #fff;
                     }
                 }
                 .sky {

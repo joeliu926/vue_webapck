@@ -77,23 +77,7 @@ export default {
         },
         fChooseItem(cmd){
             //this.selectedVal = cmd;
-            switch(cmd){
-                case "首页":
-                    this.$router.push("/");
-                    break;
-                case "联系人中心":
-                    this.$router.push("/customers");
-                    break;
-                case "案例中心":
-                    this.$router.push("/case_base");
-                    break;
-                case "分诊中心":
-                    this.$router.push("/triage/list");
-                    break;
-                case "咨询台":
-                    this.$router.push("/consultdashboard");
-                    break;
-            }
+            this.$router.push(cmd);
         },
         fLoginOut(cmd){
             let _This=this;
@@ -129,11 +113,18 @@ export default {
     watch: {
         $route(){
            this.setDefaultRoute();
-           if(this.$route.path+""=="/"){
-               this.allowBack=false;
-           }else {
-               this.allowBack=true;
-           }
+            /* let aRoute=["/","/customers","/consultdashboard","/triage/list","/case_base"];
+                if(aRoute.indexOf(this.$route.path)>=0){
+                  this.allowBack=false;
+                     }else {
+                     this.allowBack=true;
+             }*/
+            this.allowBack=true;
+            this.menusList.forEach(item=>{
+                if(item.url==this.$route.path){
+                    this.allowBack=false;
+                }
+            });
         }
     }
 }
