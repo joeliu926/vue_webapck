@@ -6,7 +6,6 @@
     .consult-dashboard-ct{
         clear: both;
         width: 100%;
-        padding: 24px;
         box-sizing: border-box;
         .consult-content {
             .el-tabs__nav{
