@@ -4,7 +4,7 @@
             <el-row :gutter="24" type="flex" justify="center" align="center">
                 <el-col :span="4">
                     <div class="customertop-img">
-                        <img :src="$parent.oCustomer.logo" width="120" height="100" >
+                        <img :src="$parent.oCustomer.logo" width="88px" height="88px" >
                     </div>
                 </el-col>
                 <el-col :span="20" justify="space-between" align="" class="border-padding">
@@ -12,7 +12,7 @@
                         <el-col :span="20">
                             <div>
                                 <span>客户</span>
-                                <p class="customer-name">{{$parent.oCustomer.name}}</p>
+                                <p class="customer-info">{{$parent.oCustomer.name}}</p>
                             </div>
                         </el-col>
                         <el-col :span="4">
@@ -25,25 +25,25 @@
                         <el-col :span="5">
                             <div>
                                 <span>电话</span>
-                                <p>{{$parent.oCustomer.phoneNum}}</p>
+                                <p class="customer-info">{{$parent.oCustomer.phoneNum}}</p>
                             </div>
                         </el-col>
                         <el-col :span="5">
                             <div>
                                 <span>微信</span>
-                                <p>{{$parent.oCustomer.wechatNum}}</p>
+                                <p class="customer-info">{{$parent.oCustomer.wechatNum}}</p>
                             </div>
                         </el-col>
                         <el-col :span="5">
                             <div>
                                 <span>通讯地址</span>
-                                <p>{{$parent.oCustomer.phoneAddress}}</p>
+                                <p class="customer-info">{{$parent.oCustomer.phoneAddress}}</p>
                             </div>
                         </el-col>
                         <el-col :span="5">
                             <div>
                                 <span>客源渠道</span>
-                                <p>{{$parent.oCustomer.source}}</p>
+                                <p class="customer-info">{{$parent.oCustomer.source}}</p>
                             </div>
                         </el-col>
 

@@ -53,10 +53,10 @@
         <div class="left-box" style="float: left;">
         <!--咨询师的信息-->
             <div class="counselor ">
-                <div class="counselor-top">
+                <div class="counselor-top"  >
                     <img :src="webE.leftTrack.headPhoto">
                     <span class="name">{{webE.leftTrack.subject}}</span>
-                    <span class="time">{{webE.leftTrack.date}}</span>
+                    <span class="time" >{{webE.leftTrack.date}}</span>
                 </div>
                 <!--咨询师 咨询分享-->
                  <div class="counselor-content">
@@ -72,9 +72,11 @@
             <!--客户的的信息-->
             <div v-for="rItem in webE.rightTrack.trackDetailList" class="custome-item">
                 <div class="custome-item-top">
-                    <img :src="rItem.headPhoto">
-                    <span class="name">{{rItem.subject}}</span>
                     <span class="time">{{rItem.date}}</span>
+                    <div>
+                    <span class="name">{{rItem.subject}}</span>
+                    <img :src="rItem.headPhoto">
+                    </div>
                 </div>
                 <!--咨询师 咨询分享-->
                 <div class="custome-item-content">
@@ -120,9 +122,11 @@
                 <!--客户的的信息-->
                 <div v-for="rightDiv in sceneE.events" v-if="rightDiv.code&&rightDiv.code=='reserve'" class="custome-item">
                     <div class="custome-item-top">
-                        <img :src="rightDiv.customerPhoto">
-                        <span class="name">{{rightDiv.customerName}}</span>
                         <span class="time">{{rightDiv.time}}</span>
+                        <div>
+                        <span class="name">{{rightDiv.customerName}}</span>
+                        <img :src="rightDiv.customerPhoto">
+                        </div>
                     </div>
                     <!--咨询师 咨询分享-->
                     <div class="custome-item-content">
@@ -131,11 +135,11 @@
                         </p>
                         <p>
                             <span>预约时间：</span>
-                            <span>{{rightDiv.reserveTime}}</span>
+                            <span style="">{{rightDiv.reserveTime}}</span>
                         </p>
                         <p>
                             <span>项目：</span>
-                            <span class="product" v-for="product in rightDiv.products">{{product.product_name}}</span>
+                            <span class="product" style=""v-for="product in rightDiv.products">{{product.product_name}}</span>
                         </p>
                     </div>
                 </div>

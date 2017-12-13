@@ -7,6 +7,7 @@
         clear: both;
         width: 100%;
         box-sizing: border-box;
+        padding: 24px;
         .consult-content {
             .el-tabs__nav{
                 .is-active{

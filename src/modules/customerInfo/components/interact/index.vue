@@ -264,7 +264,7 @@
                 content: '';
                 position: absolute;
                 top: 16px;
-                right: -27px;
+                right: -26px;
                 background:#d1dbe5;
                 border-radius:50%;
             }
@@ -276,6 +276,7 @@
                 position:relative;
                 margin-bottom: 20px;
                 .counselor-top{
+                    color: #fff;
                     width:100%;
                     height:60px;
 
@@ -295,7 +296,9 @@
                          margin-top:5px;
                     }
                     span.time{
-                        margin-left: 36px;
+                        float:right;
+                        margin-top: 22px;
+                        margin-right: 24px;
                         font-size: 12px;
                     }
                 }
@@ -303,21 +306,22 @@
                     border:1px solid #eeeeee;
                     border-top:none;
                     border-radius:0 0 4px 4px;
-                    padding-bottom:20px;
                     box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+                    .product{
+                        background-color: #efedff;
+                        color:#6F61D4;
+                        border-radius: 10px;
+                        padding: 4px;
+                        font-size: 12px;
+                    }
                     p{
                         text-indent:10px;
                         padding:10px 0;
                         font-size:14px;
-                        .product{
-                            background-color: #c3bcf7;
-                            color:#6F61D3;
-                            border-radius: 10px;
-                            padding: 4px;
-                            font-size: 12px;
-                        }
+
                         span{
                            color:#ccc;
+
                         }
                         span:nth-child(2){
                             color:#333;
@@ -368,7 +372,7 @@
                 content: '';
                 position: absolute;
                 top: 16px;
-                left:-3px;
+                left:-4px;
                 background:#d1dbe5;
                 border-radius:50%;
             }
@@ -380,11 +384,22 @@
                 box-sizing:border-box;
                 position:relative;
                 .custome-item-top{
+                    color: #fff;
+                    display:flex;
+                    justify-content: space-between;
                     width:100%;
                     height:60px;
 
                     background:linear-gradient( 45deg, #9e95ff,#c6affd );
+
+                    span.name{
+                         font-size:14px;
+                         display:inline-block;
+                         margin-right:10px;
+                         margin-top:20px;
+                    }
                     img{
+                        float: right;
                         display:inline-block;
                         margin:10px;
                         width:40px;
@@ -392,14 +407,10 @@
                         border-radius:50%;
                         vertical-align:middle;
                     }
-                    span.name{
-                         font-size:14px;
-                         display:inline-block;
-                         margin-left:10px;
-                         margin-top:5px;
-                    }
                     span.time{
-                        margin-left: 36px;
+                        float: left!important;
+                        margin-top: 22px;
+                        margin-left:24px;
                         font-size:12px;
                     }
                 }
@@ -407,7 +418,6 @@
                     border:1px solid #eeeeee;
                     border-top: 1px solid transparent;
                     border-radius:0 0 4px 4px;
-                    padding-bottom:20px;
                     box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
                     p{
                         text-indent:10px;
@@ -416,8 +426,15 @@
                         span{
                            color:#ccc;
                         }
+                        .product{
+                            background-color: #efedff;
+                            color:#6F61D4!important;
+                            border-radius: 10px;
+                            padding: 2px 10px 2px 10px;
+                            font-size: 12px;
+                        }
                         span:nth-child(2){
-                            color:#333;
+                            color:#333;font-size: 14px;
                         }
                     }
                     p.second{
@@ -484,7 +501,7 @@
         top: 0;
         left: 50%;
         height: 100%;
-        width: 3px;
+        width: 1px;
         background: #d1dbe5;
     }
 }
