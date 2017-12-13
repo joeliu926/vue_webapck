@@ -24,8 +24,8 @@
             
             padding: 24px;
         }
-        .customer-name{
-            font-weight: bold;
+        .customer-info{
+            font-size:14px;
         }
         span{color:#8391a5; font-size: 14px;}
     }
