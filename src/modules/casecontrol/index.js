@@ -781,6 +781,10 @@ export default {
                             message: '提交成功',
                             type: 'success'
                         });
+                        _This.isCustomerinfo=true;
+                        if(_This.oShowCaseList.length<=0){
+                            _This.fChooseItems({productCode:1});
+                        }
                     } else {
                         _This.$message.error('更新失败');
                     }
