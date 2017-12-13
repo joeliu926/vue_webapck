@@ -835,7 +835,9 @@ export default {
         fConnectDevice(){
             this.isConScreanItem = true;
             this.$nextTick(function () {
-                this.inputConCode({keyCode: 0}, -1);
+               // this.inputConCode({keyCode: 0}, -1);
+                let netInput = document.getElementById('codeid_0');
+                netInput.focus();
             })
         },
         /**
@@ -843,9 +845,9 @@ export default {
          */
         fCloseConBox(){
             this.isConScreanItem = false;
-            this.conCodeList.forEach(m => {
+         /*   this.conCodeList.forEach(m => {
                 m.val = '';
-            });
+            });*/
             this.conState = 'noconnected';
         },
         initSocket(){
@@ -880,6 +882,9 @@ export default {
                         _this.conErrorMsg = "连接失败,请刷新重试！";
                         setTimeout(function () {
                             _this.fCloseConBox();
+                            _this.conCodeList.forEach((m,index) => {
+                                    m.val = '';
+                            });
                         }, 1000);
                         break;
                     case 1001:
@@ -887,6 +892,9 @@ export default {
                         _this.conErrorMsg = "客户端不存在,请重试！";
                         setTimeout(function () {
                             _this.fCloseConBox();
+                            _this.conCodeList.forEach((m,index) => {
+                                m.val = '';
+                            });
                         }, 1000);
                         break;
                     case 1002:
@@ -894,6 +902,9 @@ export default {
                         _this.conErrorMsg = "连接会话已结束,请刷新重试！";
                         setTimeout(function () {
                             _this.fCloseConBox();
+                            _this.conCodeList.forEach((m,index) => {
+                                m.val = '';
+                            });
                         }, 1000);
                         break;
                 }
@@ -914,6 +925,12 @@ export default {
                     let netInput = document.getElementById('codeid_' + (params + 1));
                     netInput.focus();
                     netInput.value = '';
+                    this.conCodeList.forEach((m,index) => {
+                        if(index==params+1){
+                            m.val = '';
+                        }
+
+                    });
                 }
             }
         },

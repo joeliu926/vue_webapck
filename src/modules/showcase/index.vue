@@ -139,10 +139,11 @@
                     span{
                         font-size: 30px;
                         border: solid 1px #fff;
-                        color:#fff;
+                        color:#000;
                         padding: 10px 20px;
                         margin: 5px;
                         border-radius: 5px;
+                        background-color: #fff;
                     }
                 }
                 .sky {

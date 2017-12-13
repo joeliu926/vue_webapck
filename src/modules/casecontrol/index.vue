@@ -136,7 +136,6 @@
             overflow:hidden;
             display:none;
             .hold_circle {
-
                 left:25%;
                 width: 50%;
                 height: 50%;
