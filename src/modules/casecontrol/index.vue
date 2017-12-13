@@ -624,8 +624,8 @@
                 width: 472px;
                 margin-top: -300px;
                 margin-left: -231px;
+                border-radius: 10px;
                 .scan-arr{
-
                     position: absolute;
                     top:50%;
                     margin-top: -40px;
@@ -634,6 +634,10 @@
                         width: 20px;
                         height: 40px;
                     }
+                    .el-icon-arrow-left:before, .el-icon-arrow-right:before{
+                        font-size: 40px;
+                        color: rgba(0,0,0,0.7);
+                    }
                 }
                 .scan-right{
                     right: 0;
@@ -641,10 +645,10 @@
                 .scan-pic-ct{
                     height: 100%;
                     width:100%;
-                    margin: 0 auto;
                     .scan-pic{
                         height: 100%;
                         width: 100%;
+                        border-radius: 8px;
                     }
                 }
             }
@@ -721,6 +725,7 @@
                         word-break: keep-all;
                         .lit-img{
                             margin-right: 10px;
+                            margin-bottom: 5px;
                             cursor: pointer;
                         }
                         .lit-project{
@@ -765,12 +770,7 @@
 
         /**********************浏览图片 start**************************/
 
-         .scan-ct{
-             height: 500px;
-             width: 300px;
-             background-color: red;
 
-         }
         /**********************浏览图片 end***************************/
 
 

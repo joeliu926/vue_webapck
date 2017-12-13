@@ -29,6 +29,7 @@ export default {
             isScanPic:false,//是否浏览术前的照片
             scanPicIndex:0,//当前浏览的术前图片的索引
             currentScanPic:"",//当前浏览的图片
+            scanPicType:1,//浏览图片的类型，1 为术前图片，2为沟通记录图片
             oNameList:[],
             otheritems: "",
             otherresion: "",
@@ -962,9 +963,13 @@ export default {
         /**
          * 浏览术前咨询图片
          */
-        fScanConsultPic(pIndex){
+        fScanConsultPic(pIndex,pType){
             let _This=this;
             let beforePic=_This.oCustomer.beforePictures;
+            if(pType==2){
+                beforePic=_This.oCustomer.consultFileList;
+            }
+            _This.scanPicType=pType;
             _This.scanPicIndex=pIndex;
             _This.currentScanPic=beforePic[pIndex];
             _This.isScanPic=true;
@@ -976,6 +981,9 @@ export default {
         fChangeScanPic(pIndex){
             let _This=this;
             let beforePic=_This.oCustomer.beforePictures;
+            if(_This.scanPicType==2){
+                beforePic=_This.oCustomer.consultFileList;
+            }
             let bLength=beforePic.length;
             let cIndex=_This.scanPicIndex;
             if(pIndex>0){
