@@ -222,8 +222,10 @@
                        <label class="lb-date">设置面诊时间</label>
                        <el-date-picker
                                v-model="faceDiagnoseDate"
-                               type="date"
-                               placeholder="选择日期">
+                               type="datetime"
+                               placeholder="选择日期"
+                               format="yyyy-MM-dd HH:mm:ss"
+                       >
                        </el-date-picker>
 
                    </div>
@@ -348,7 +350,7 @@
                       </div>
                 </div>
                 <div class="info-item">
-                    <label class="lb-name">喜欢案例</label><div class="info-trend">
+                    <label class="lb-name">喜欢案例</label><div class="info-trend" style="word-break: normal;">
                       <label v-for="item in oCustomer.likeCases">{{item.caseName}}</label></div>
                 </div>
                 <div class="info-item">
