@@ -4,6 +4,9 @@
 </script>
 <style lang="scss">
     .consult-dashboard-ct{
+        .el-tabs--border-card{
+
+        }
         clear: both;
         width: 100%;
         box-sizing: border-box;

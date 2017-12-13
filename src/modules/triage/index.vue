@@ -8,15 +8,18 @@
 .triage-content{
     margin: 24px;
     .content-border{
+                padding: 0px 24px;
+
               .el-tabs__nav{
                 .is-active{
-                    border-top:2px solid #9083ED !important;
+
                     box-sizing: border-box;
                 }
             }
 
         .el-tabs__header{
                 background-color: #ffffff;
+                margin:0px;
                 .el-tabs__nav-wrap{
                     margin-bottom: -3px;
                 }

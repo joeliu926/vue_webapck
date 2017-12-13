@@ -2,17 +2,19 @@
 <script src="./index.js">
 
 </script>
-<style  lang="scss">
-
- .customer-block-content {
-        margin :2px;
-        border: 1px solid transparent;
+<style scope lang="scss">
+    .customer-block-content {
+        margin: 0px!important;
+        border: none !important;
         background-color: #ffffff;
+
+
         .el-tabs--border-card>.el-tabs__content {
             padding-top: 10px;
+
         }   
         .customer-block-uinfo {
-             margin: 24px;
+
              height: 32px;
              .customers-name {
                  color: #333333;
@@ -43,6 +45,7 @@
         .customer-pagination-align {
              text-align: right;
              border: none;
+            margin:20px 0;
         }
 
         .customer-content-gradient {
