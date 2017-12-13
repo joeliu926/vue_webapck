@@ -8,6 +8,9 @@
         margin :2px;
         border: 1px solid transparent;
         background-color: #ffffff;
+        .el-table .cell {
+            text-align-last: left;
+        }
         .el-tabs--border-card>.el-tabs__content {
             padding-top: 10px;
         }   
