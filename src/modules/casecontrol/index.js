@@ -550,8 +550,9 @@ export default {
             }
 
             /*结束播放提交事件*/
-            _This.code="consultingEnd";
-            _This.consultingMark=_This.flag;
+           // _This.code="consultingEnd";//fGetEventType()
+            _This.code=_This.fGetEventType();
+            _This.consultingMark=_This.activeStatus;//
             _This.dealItems=_This.consultItems;
             _This.reserveTime=postData.faceDiagnoseDate;
             _This.reserveMark=postData.faceDiagnoseRemarks;
@@ -582,6 +583,21 @@ export default {
 
                 }
             }, 'withCredentials');
+        },
+        /**
+         * 获取事件类型
+         */
+        fGetEventType(){
+            let etype=this.activeStatus;
+            let result="";
+            if(etype=="0"){
+                result="consultingCloseByWin";//成功
+            }else  if(etype=="1"){
+                result="consultingCloseByreserve";//预约下次
+            }else  if(etype=="2"){
+                result="consultingCloseByWin";//无需跟进
+            }
+            return result;
         },
         /**
          * 关闭未选择项目提示框
