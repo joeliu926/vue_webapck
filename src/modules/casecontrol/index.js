@@ -26,6 +26,9 @@ export default {
             oCurrentShowItemIndex: 0,//当前展示的案例的索引
             oSourceList:[],//客户来源列表
             isFillProject:false,//结束是否填写项目信息
+            isScanPic:false,//是否浏览术前的照片
+            scanPicIndex:0,//当前浏览的术前图片的索引
+            currentScanPic:"",//当前浏览的图片
             oNameList:[],
             otheritems: "",
             otherresion: "",
@@ -647,6 +650,7 @@ export default {
                 if(result.code==0&&result.data){
                     if(_This.routerParam.adddiag&&result.data.list.length==1&&result.data.list[0].name== _This.oCustomer.name){
                         result.data.list[0].gender =result.data.list[0].gender + "";
+                        result.data.list[0].birthday=result.data.list[0].birthday?_.date2String(new Date(parseInt(result.data.list[0].birthday)), "yyyy-MM-dd"):"";
                         _This.oCustomer=result.data.list[0];
 
                      }else {
@@ -954,6 +958,39 @@ export default {
                 }
             };
             _This.webSocket.send(JSON.stringify(oExitCode));
+        },
+        /**
+         * 浏览术前咨询图片
+         */
+        fScanConsultPic(pIndex){
+            let _This=this;
+            let beforePic=_This.oCustomer.beforePictures;
+            _This.scanPicIndex=pIndex;
+            _This.currentScanPic=beforePic[pIndex];
+            _This.isScanPic=true;
+        },
+        /**
+         * 切换术前浏览图片
+         * @param pIndex
+         */
+        fChangeScanPic(pIndex){
+            let _This=this;
+            let beforePic=_This.oCustomer.beforePictures;
+            let bLength=beforePic.length;
+            let cIndex=_This.scanPicIndex;
+            if(pIndex>0){
+                _This.scanPicIndex= (++cIndex)>=bLength?0:cIndex;
+
+            }else {
+                _This.scanPicIndex= (--cIndex)<0?(bLength-1):cIndex;
+            }
+            _This.currentScanPic=beforePic[ _This.scanPicIndex];
+        },
+        /**
+         * 关闭贴花图片窗口
+         */
+        fClosePicdialog(){
+            this.isScanPic=false;
         },
         /**
          * 计算需要展示的案例
