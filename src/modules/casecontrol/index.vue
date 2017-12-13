@@ -498,6 +498,7 @@
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: 1000;
             .dialog-ct{
                 position: absolute;
                 width: 600px;
@@ -618,6 +619,36 @@
                   text-align: center;
               }
             }
+            .scan-ct{
+                height: 600px;
+                width: 472px;
+                margin-top: -300px;
+                margin-left: -231px;
+                .scan-arr{
+
+                    position: absolute;
+                    top:50%;
+                    margin-top: -40px;
+                    cursor: pointer;
+                    .arr{
+                        width: 20px;
+                        height: 40px;
+                    }
+                }
+                .scan-right{
+                    right: 0;
+                }
+                .scan-pic-ct{
+                    height: 100%;
+                    width:100%;
+                    margin: 0 auto;
+                    .scan-pic{
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+
         }
         /**********************结束咨询对话框 end**************************/
 
@@ -728,7 +759,20 @@
             }
         }
 
+
         /**********************客户信息 end**************************/
+
+
+        /**********************浏览图片 start**************************/
+
+         .scan-ct{
+             height: 500px;
+             width: 300px;
+             background-color: red;
+
+         }
+        /**********************浏览图片 end***************************/
+
 
         /**********************common start*********************/
         .hide{
