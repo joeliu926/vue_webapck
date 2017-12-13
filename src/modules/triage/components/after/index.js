@@ -53,7 +53,7 @@ export default {
     },
     methods: { 
         ready(){
-            console.log("=============000000000000================");
+           // console.log("=============000000000000================");
              var _This = this;
              _.ajax({
                  url: '/triage/list',
@@ -65,10 +65,10 @@ export default {
                      
                  } ,
                  success: function (result) {
-                     console.log(result);
+                     //console.log(result);
 
                      if(result.code==0&&result.data){
-                         console.log(result.data);
+                        // console.log(result.data);
                          _This.aCustomerlist = result.data.list;
                          _This.count=result.data.count;  
                      }
@@ -106,10 +106,10 @@ export default {
             this.searchData();
         },
         fEdit(){
-            console.log("edit data");
+            //console.log("edit data");
         },
         fMoreUserInfo(){
-            console.log("get more user info");
+           // console.log("get more user info");
         },
         handleCurrentChange(pnum){
            console.log(pnum);

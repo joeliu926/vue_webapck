@@ -11,6 +11,10 @@
 .case-content{
      position:relative;
     .case-top{
+        background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -webkit-gradient(linear, 0 50%, 100% 50%, from(#7084f3), to(#7a71fe));
+        background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
         text-align:center;
         background-color: #7084f3;
         line-height: 60px;
@@ -176,7 +180,7 @@
                                vertical-align:middle;
                             }
                              span.left{
-                                font-size:16px;
+                                font-size:14px;
                                 font-weight:bold;
                              }
                             span.right{

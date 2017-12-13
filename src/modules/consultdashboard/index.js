@@ -18,7 +18,7 @@ export default {
         _This.fGetWaitingList();
         _This.fGetEndList();
         let loadparams =_This.$route.params;
-        console.log("loadparams-----",loadparams);
+        //console.log("loadparams-----",loadparams);
         if (loadparams && loadparams.sbsuccess) {
             _This.tabActive = "eend";
         };

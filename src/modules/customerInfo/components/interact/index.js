@@ -137,25 +137,41 @@ export default {
             this.currentCuleState =params;
         },
         getClass(params){
-            if(this.currentCuleState==params&&this.culeState>=params)
-            {
+            if(this.culeState==params){
                 return 'state-two';
             }
 
-            if(this.currentCuleState==params&&this.culeState<params)
-            {
+            if(this.culeState<params){
                 return 'state-three';
             }
 
-            if(this.currentCuleState!=params&&this.culeState>=params)
-            {
+            if(this.culeState>params){
                 return 'state-one';
             }
+        },
+        getZoom(params){
 
-            if(this.currentCuleState!=params&&this.culeState<params)
-            {
-                return 'state-three';
-            }
+            if(this.currentCuleState==params&&this.culeState>=params)
+             {
+             return 'zoom-cicle';
+             }
+
+            /* if(this.currentCuleState==params&&this.culeState<params)
+             {
+             return 'state-three';
+             }
+
+             if(this.currentCuleState!=params&&this.culeState>=params)
+             {
+             return 'state-one';
+             }
+
+             if(this.currentCuleState!=params&&this.culeState<params)
+             {
+             return 'state-three';
+             }
+
+            return 'zoom-cicle';*/
         }
     }
 }

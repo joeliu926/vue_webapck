@@ -109,8 +109,6 @@
             padding:3px 16px 3px 16px;
     }
     .case-content{
-    font-family: " 微软雅黑";
-
 
     }
     .case-title1

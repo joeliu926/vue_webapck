@@ -498,6 +498,7 @@
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: 1000;
             .dialog-ct{
                 position: absolute;
                 width: 600px;
@@ -618,6 +619,40 @@
                   text-align: center;
               }
             }
+            .scan-ct{
+                height: 600px;
+                width: 472px;
+                margin-top: -300px;
+                margin-left: -231px;
+                border-radius: 10px;
+                .scan-arr{
+                    position: absolute;
+                    top:50%;
+                    margin-top: -40px;
+                    cursor: pointer;
+                    .arr{
+                        width: 20px;
+                        height: 40px;
+                    }
+                    .el-icon-arrow-left:before, .el-icon-arrow-right:before{
+                        font-size: 40px;
+                        color: rgba(0,0,0,0.7);
+                    }
+                }
+                .scan-right{
+                    right: 0;
+                }
+                .scan-pic-ct{
+                    height: 100%;
+                    width:100%;
+                    .scan-pic{
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 8px;
+                    }
+                }
+            }
+
         }
         /**********************结束咨询对话框 end**************************/
 
@@ -690,6 +725,7 @@
                         word-break: keep-all;
                         .lit-img{
                             margin-right: 10px;
+                            margin-bottom: 5px;
                             cursor: pointer;
                         }
                         .lit-project{
@@ -728,7 +764,15 @@
             }
         }
 
+
         /**********************客户信息 end**************************/
+
+
+        /**********************浏览图片 start**************************/
+
+
+        /**********************浏览图片 end***************************/
+
 
         /**********************common start*********************/
         .hide{
