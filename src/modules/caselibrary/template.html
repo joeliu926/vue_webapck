@@ -20,7 +20,7 @@
     </div>
 <!--案例列表-->
     <div class="case-menu">
-        <div class="case-list">
+        <div class="case-list out-box-border">
             <h6 v-for="item,index in caselist" v-if="index==0" >项目：{{item.productName}}</h6>
             <div :span="8" :offset="8" style=" display:flex;align-items:center;justify-content:center;text-align: center;height: 200px" v-if="caselist.length<=0"> {{judgelength}}</div>
             <div>

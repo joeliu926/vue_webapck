@@ -43,7 +43,7 @@
         }
         .customer-block-content {
             margin: 24px;
-            border: 1px solid #eeeeee;
+            border: 1px solid #fff;
             background-color: #ffffff;
             th div {
                 font-size: 14px;

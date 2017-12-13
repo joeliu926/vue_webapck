@@ -92,7 +92,6 @@
         padding:12px 12px 0 12px;
         .case-list{
             padding: 12px;
-            border: 2px solid #eeeeee;
             border-radius: 4px;
             background: #FFF ;
             h6{
