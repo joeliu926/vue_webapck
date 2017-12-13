@@ -846,6 +846,7 @@ export default {
          */
         fCloseCustomerInfo(){
             this.isCustomerinfo = true;
+            this.isScanPic=false;
         },
         /**
          * 打开客户信息窗口

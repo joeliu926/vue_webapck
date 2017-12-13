@@ -2,5 +2,8 @@
 <script src="./index.js">
 
 </script>
-<style  lang="scss">
+<style scope lang="scss">
+    .el-table .cell {
+         text-align-last: left;
+    }
 </style>

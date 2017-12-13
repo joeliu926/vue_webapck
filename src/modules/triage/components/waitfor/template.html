@@ -47,12 +47,12 @@
                 <el-table-column
                         prop="customerName"
                         label="姓名"
-                        width="80">
+                        min-width="10%">
                 </el-table-column>
                 <el-table-column
                         prop="appointmentTime"
                         label="面诊时间"
-                        width="120">
+                        min-width="16%">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.appointmentTime|dateFilter}}</p>
                     </template>
@@ -60,7 +60,7 @@
                 <el-table-column
                         prop="phoneNum"
                         label="电话"
-                        width="180">
+                        min-width="20%">
                        <template slot-scope="scope"  style="text-align: right;">
                             <div :style="{display:[aCustomerlist[scope.$index].willShow!='1'?'':'none']}" >
                                 <span>{{scope.row.phoneNum|phoneFilter}}</span>
@@ -75,18 +75,19 @@
                 <el-table-column
                         prop="projectNames"
                         label="咨询项目"
-                        width="190">
+                        min-width="18%">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.projectNames|array2String}}</p>
                     </template>
                 </el-table-column>
                 <el-table-column
                         prop="consultName"
-                        label="网络咨询师">
+                        label="网络咨询师"
+                        min-width="18%">
 
                 </el-table-column>
 
-                <el-table-column >
+                <el-table-column min-width="18%">
 
                 </el-table-column>
             </el-table>

@@ -77,7 +77,7 @@ export default {
                 fieldValue:_This.fieldValue,
                 searchField:_This.searchField
             };
-            console.log("------postData-----",postData);
+            //console.log("------postData-----",postData);
 
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
@@ -90,7 +90,7 @@ export default {
                 data: postData,
                 success: function (result) {
 
-                    console.log("------result-----",result);
+                   // console.log("------result-----",result);
 
                     if(result.code==0&&result.data){
                         _This.aCustomerlist = result.data.list;

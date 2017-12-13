@@ -620,10 +620,11 @@
             }
             .scan-ct{
                 height: 600px;
-                width: 472px;
+                width: 338px;
                 margin-top: -300px;
-                margin-left: -231px;
+                margin-left: -169px;
                 border-radius: 10px;
+                background-color: transparent;
                 .scan-arr{
                     position: absolute;
                     top:50%;
@@ -645,7 +646,7 @@
                     height: 100%;
                     width:100%;
                     .scan-pic{
-                        height: 100%;
+                      /*  height: 100%;*/
                         width: 100%;
                         border-radius: 8px;
                     }
