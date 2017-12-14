@@ -32,11 +32,11 @@
                                   <template v-for="(oItem,oIndex) in aWaitinglist">
                                       <tr class="day-ct" v-if="oIndex>0||todayCount<=0">
                                           <td class="idate">{{oItem[0].faceDiagnoseDate|dateFilter("yyyy年MM月dd日")}}</td>
-                                          <td class="icount" colspan="6">{{oItem.length}} 人</td>
+                                          <td class="icount idate" colspan="6">{{oItem.length}} 人</td>
                                       </tr>
                                       <tr v-for="(item,ind) in oItem">
                                           <td>{{item.customerName}}</td>
-                                          <td>{{item.faceDiagnoseDate|dateFilter("yyyy-MM-dd")}}</td>
+                                          <td>{{item.faceDiagnoseDate|dateFilter}}</td>
                                           <td :style="{display:[item.show!='1'?'':'none']}">{{item.customerPhone|phoneFilter}}
                                               <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaPhone(oIndex,ind,'1')">
                                           </td>
@@ -64,7 +64,7 @@
                                     <template v-for="(item,oIndex) in aEndList">
                                         <tr class="tr-end">
                                             <td>{{item.customerName}}</td>
-                                            <td>{{item.faceDiagnoseDate|dateFilter("yyyy-MM-dd")}}</td>
+                                            <td>{{item.faceDiagnoseDate|dateFilter}}</td>
                                             <td :style="{display:[item.show!='1'?'':'none']}">{{item.customerPhone|phoneFilter}}
                                                 <img class="eye-img" v-if="item.customerPhone" src="../../common/img/i-eye-close.png" @click="fSeaEndPhone(oIndex,'1')">
                                             </td>
@@ -75,7 +75,7 @@
                                             <td>{{item.netConsultantsName}}</td>
 
                                             <td>{{item.faceDiagnoseResult|faceDiagnoseResultFilter}}</td>
-                                            <td>{{item.successProducts|productFilter}} </td>
+                                            <td>{{item.successProducts|productFilter(item.faceDiagnoseResult)}} </td>
                                             <td>{{item.faceDiagnoseRemarks}}</td>
 
                                         </tr>

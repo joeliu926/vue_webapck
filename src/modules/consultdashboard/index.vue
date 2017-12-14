@@ -91,7 +91,8 @@
                 font-size: 14px;
                 width: 100%;
                 .idate{
-
+font-weight: bold;
+                    color: #000000 !important;
                 }
                 .icount{
                     margin-left: 24px;
