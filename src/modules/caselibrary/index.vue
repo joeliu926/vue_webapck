@@ -113,7 +113,7 @@
                     margin-bottom:12px;
                     height:280px;
                     border:1px solid #eeeeee;
-                        // padding-bottom: 10px!important;
+                      
                     .item-info {
                        width:100%;
                       .item-top{
