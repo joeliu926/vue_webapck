@@ -4,6 +4,7 @@
 </script>
 <style  lang="scss">
 .customerinfo-info-content {
+    margin:0px 10px;
 
     .class-line {
         font-size: 14px;

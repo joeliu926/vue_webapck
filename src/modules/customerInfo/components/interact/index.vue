@@ -5,6 +5,7 @@
 <style lang="scss">
 
 .interact-content{
+
     @media only screen and (max-width:768px){
         .left-box  .counselor img{margin:10px 0 10px 10px ;}
         .left-box  .counselor span.name{
@@ -18,6 +19,7 @@
     }
     height:100%;
     width:100%;
+    margin:0px 8px;
     /*步骤线索*/
     .interact-link{
         height:100%;

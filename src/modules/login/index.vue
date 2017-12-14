@@ -26,12 +26,12 @@
             flex: 1 0 100px;
         .login-submit{
             width: 100%;
-            background-color: #6F61D3;
+            background-color:#9186e0 ;
             border: none ;
             color: white;
         }
         .login-submit:hover{
-            background-color: #9186e0;
+            background-color: #6F61D3 ;
             color: white;
         }
         }

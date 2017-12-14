@@ -5,11 +5,11 @@
 <style  lang="scss">
 .customer-info{
          .customers-top{
-             margin-bottom: 62px;
+             margin-bottom: 24px;
          }
         .customers-content{margin: 24px;
         .el-tabs__header{
-            margin:0px 10px;
+            margin:0px 10px 14px 10px;
             background-color:#fff;
             .is-active{ color:#333333; font-weight: bold;}
             .el-tabs__item{border-top: 3px solid #fff;}
@@ -23,9 +23,10 @@
         }
 
         .content-right{
+            padding-left: 24px!important;
             height:100%;
             .hearder-top{
-                margin-bottom:20px;
+                margin-bottom:24px;
             }
 
           /*备注*/
