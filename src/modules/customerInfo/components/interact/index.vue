@@ -3,18 +3,19 @@
 
 </script>
 <style lang="scss">
-@media only screen and (max-width:768px){
-    .left-box  .counselor img{margin:10px 0 10px 10px ;}
-    .left-box  .counselor span.name{
-        font-size:12px;
-        margin-right: 2%;
-    }               
-    .left-box .counselor span.time{
+
+.interact-content{
+    @media only screen and (max-width:768px){
+        .left-box  .counselor img{margin:10px 0 10px 10px ;}
+        .left-box  .counselor span.name{
+            font-size:12px;
+            margin-right: 2%;
+        }
+        .left-box .counselor span.time{
             margin-left:-2%;
             font-size:12px;
+        }
     }
-}
-.interact-content{
     height:100%;
     width:100%;
     /*步骤线索*/
