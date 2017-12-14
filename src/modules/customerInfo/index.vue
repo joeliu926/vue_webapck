@@ -28,7 +28,8 @@
                 margin-bottom:20px;
             }
 
-            /*备注
+          /*备注*/
+          /*
             .remarks{
                 width:100%;
                 height:100%;
@@ -64,6 +65,9 @@
                 }
 
             }
+            */
+           
+
             /*文件*/
             .update-file {
                 width:100%;
@@ -92,7 +96,7 @@
                         margin-bottom: 6px
                     }
                 }
-
+ 
             }
             .item-border {
                 padding:15px;

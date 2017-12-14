@@ -8,9 +8,9 @@
 .triage-content{
     margin: 24px;
     .content-border{
-                padding: 0px 24px;
+            padding: 0px 24px;
 
-              .el-tabs__nav{
+            .el-tabs__nav{
                 .is-active{
 
                     box-sizing: border-box;
@@ -26,9 +26,6 @@
             }
     }
 
-    // .el-tabs--border-card> .el-tabs__content {
-    //     padding-top: 10px;
-    // }
     .content-list{
         .content-left-border{
             border-radius:4px;
