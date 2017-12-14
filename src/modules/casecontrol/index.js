@@ -848,8 +848,12 @@ export default {
          * 关闭客户信息窗口
          */
         fCloseCustomerInfo(){
-            this.isCustomerinfo = true;
-            this.isScanPic=false;
+            let _This=this;
+            _This.isCustomerinfo = true;
+            _This.isScanPic=false;
+            if(_This.oShowCaseList.length<=0){
+                _This.fChooseItems({productCode:1});
+            }
         },
         /**
          * 打开客户信息窗口
