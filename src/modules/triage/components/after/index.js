@@ -20,6 +20,8 @@ export default {
             customerName: "this is a user",
             aTriagelist: [],
             willShow:0,
+            startDatePicker:this.beginDate(),
+            endDatePicker:this.processDate(),
 
         }
 
@@ -51,7 +53,28 @@ export default {
             }
         }
     },
-    methods: { 
+    methods: {
+        beginDate(){
+            let _This = this
+            return {
+                disabledDate(time){
+                    return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                }
+            }
+        },
+        //提出结束时间必须大于提出开始时间
+        processDate(){
+            let _This = this
+            return {
+                disabledDate(time){
+                    if(_This.startDate){
+                        return new Date(_This.startDate).getTime() > time.getTime()
+                    }else{
+                        return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                    }
+                }
+            }
+        },
         ready(){
            // console.log("=============000000000000================");
              var _This = this;
@@ -98,7 +121,6 @@ export default {
             this.aTriagelist = temp;
         },
 
-        pickerOptions(){},
         fDateChange(date){
             this.searchData();
         },

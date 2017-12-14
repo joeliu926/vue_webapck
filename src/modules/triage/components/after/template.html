@@ -3,30 +3,31 @@
         <div class="triage-block-uinfo">
             <el-row :gutter="20"  type="flex" justify="space-between" align="center" >
                 <el-col :span="6" type="flex" justify="space-between">
-
                 </el-col>
+
                 <el-col :span="18"  type="flex" justify="space-between" style="padding-right: 0px;">
                     <el-col :span="20" style="float: right;">
                         <div class="triage-date">
                             <el-date-picker
-                                    v-model="startDate"
                                     type="date"
-                                    @change="fDateChange"
                                     placeholder="开始日期"
+                                    v-model="startDate"
                                     size="small"
-                                    :picker-options="pickerOptions">
+                                    :picker-options="startDatePicker"
+                                    @change="fDateChange">
+
                             </el-date-picker>
                             <el-date-picker
-                                    v-model="endDate"
                                     type="date"
-                                    @change="fDateChange"
                                     placeholder="结束日期"
+                                    v-model="endDate"
                                     size="small"
-                                    :picker-options="pickerOptions">
+                                    :picker-options="endDatePicker"
+                                    @change="fDateChange">
+
                             </el-date-picker>
                         </div>
                     </el-col>
-
                 </el-col>
             </el-row>
             <el-row></el-row>

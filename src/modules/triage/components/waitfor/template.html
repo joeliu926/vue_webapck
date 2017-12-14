@@ -12,25 +12,29 @@
                     <!--         <el-col :span="1" style="padding-left:0px;float: right;">
                                  <div><img src="../../common/img/setting.png" class="customer-icon" @click="fEdit"></div>
                              </el-col>-->
-                    <el-col :span="20" style="float: right;">
-                        <div class="triage-date">
-                            <el-date-picker
-                                    v-model="startDate"
-                                    type="date"
-                                    @change="fDateChange"
-                                    placeholder="开始日期"
-                                    size="small"
-                                    :picker-options="pickerOptions">
-                            </el-date-picker>
-                            <el-date-picker
-                                    v-model="endDate"
-                                    type="date"
-                                    @change="fDateChange"
-                                    placeholder="结束日期"
-                                    size="small"
-                                    :picker-options="pickerOptions">
-                            </el-date-picker>
-                        </div>
+                    <el-col :span="24"  class="timekj" type="flex" justify="space-between" style="padding-right: 0px;">
+                        <el-col :span="20" style="float: right;">
+                            <div class="triage-date">
+                                <el-date-picker
+                                        type="date"
+                                        placeholder="开始日期"
+                                        v-model="startDate"
+                                        size="small"
+                                        :picker-options="startDatePicker"
+                                        @change="fDateChange">
+
+                                </el-date-picker>
+                                <el-date-picker
+                                        type="date"
+                                        placeholder="结束日期"
+                                        v-model="endDate"
+                                        size="small"
+                                        :picker-options="endDatePicker"
+                                        @change="fDateChange">
+
+                                </el-date-picker>
+                            </div>
+                        </el-col>
                     </el-col>
 
                 </el-col>

@@ -22,6 +22,7 @@
                     type="date"
                     @change="changedate"
                     placeholder="选择日期"
+                    :picker-options="startDatePicker"
             >
             </el-date-picker>-
             <el-date-picker
@@ -29,6 +30,7 @@
                     v-model="endDate"
                     type="date"
                     @change="changedate"
+                    :picker-options="endDatePicker"
                     placeholder="选择日期">
             </el-date-picker>
 
@@ -92,14 +94,17 @@
                     class="choose-date"
                     v-model="startDate_scene"
                     type="date"
+                    :picker-options="startDatePicker"
                     @change="changedate_scene"
                     placeholder="选择日期"
+
             >
             </el-date-picker>-
             <el-date-picker
                     class="choose-date"
                     v-model="endDate_scene"
                     type="date"
+                    :picker-options="endDatePicker"
                     @change="changedate_scene"
                     placeholder="选择日期">
             </el-date-picker>

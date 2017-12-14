@@ -15,7 +15,9 @@ export default {
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             count: 0,
-            aCustomerlist: []
+            aCustomerlist: [],
+            startDatePicker:this.beginDate(),
+            endDatePicker:this.processDate(),
         }
 
     },
@@ -41,6 +43,27 @@ export default {
         }
     },
     methods: {
+        beginDate(){
+            let _This = this
+            return {
+                disabledDate(time){
+                    return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                }
+            }
+        },
+        //提出结束时间必须大于提出开始时间
+        processDate(){
+            let _This = this
+            return {
+                disabledDate(time){
+                    if(_This.startDate){
+                        return new Date(_This.startDate).getTime() > time.getTime()
+                    }else{
+                        return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                    }
+                }
+            }
+        },
         fSearchData(e){
 
             this.searchData();
@@ -49,7 +72,7 @@ export default {
             this.fieldValue="";
             this.searchData();
         },
-        pickerOptions(){},
+        // pickerOptions(){},
         fDateChange(date){
             this.searchData();
         },

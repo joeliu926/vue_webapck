@@ -47,12 +47,12 @@
                 <el-col :span="20" style="float: right;">
                     <div class="customer-date">
                         <el-date-picker
-                                v-model="startDate"
                                 type="date"
-                                @change="fDateChange"
                                 placeholder="开始日期"
+                                v-model="startDate"
                                 size="small"
-                                :picker-options="pickerOptions">
+                                @change="fDateChange"
+                                :picker-options="startDatePicker">
                         </el-date-picker>
                         <el-date-picker
                                 v-model="endDate"
@@ -60,7 +60,7 @@
                                 @change="fDateChange"
                                 placeholder="结束日期"
                                 size="small"
-                                :picker-options="pickerOptions">
+                                :picker-options="endDatePicker">
                         </el-date-picker>
                     </div>
                 </el-col>

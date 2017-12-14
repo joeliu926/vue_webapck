@@ -20,6 +20,13 @@
                  color: #333333;
                  font-size: 16px;
              }
+             .el-col el-col-18{
+                 width:100%;
+             }
+             /*.triage-date{*/
+                 /*width:100%;*/
+                 /*text-align:right;*/
+             /*}*/
              .triage-record {
                  color: #666666;
                  font-size: 14px;
