@@ -97,7 +97,7 @@
                     background: white;
                     color: #333;
                     text-decoration:none;
-                    padding:3px 16px 3px 16px;
+                    padding:2px 20px;
                     margin-left: 0px;
                     margin-right: 40px;
                     }
@@ -106,7 +106,7 @@
             font-size:14px;
             border-radius: 25px;
             background: #9083ed;
-            padding:3px 16px 3px 16px;
+            padding:2px 20px;
     }
     .case-content{
 
