@@ -1,13 +1,13 @@
 <div>
     <div class="triage-block-content">
-        <div class="customer-block-uinfo">
+        <div class="triage-block-uinfo">
             <el-row :gutter="20"  type="flex" justify="space-between" align="center" >
                 <el-col :span="6" type="flex" justify="space-between">
 
                 </el-col>
                 <el-col :span="18"  type="flex" justify="space-between" style="padding-right: 0px;">
                     <el-col :span="20" style="float: right;">
-                        <div class="customer-date">
+                        <div class="triage-date">
                             <el-date-picker
                                     v-model="startDate"
                                     type="date"
@@ -32,9 +32,9 @@
             <el-row></el-row>
         </div>
 <!-- 未分诊表格 -->
-        <div class="customer-block-content">
+        <div class="triage-block-content">
             <el-table
-                    :data="aCustomerlist"
+                    :data="aTriagelist"
                     style="width: 100%">
                 <el-table-column
                         @click="fCustomerDetail(id)"
@@ -55,11 +55,11 @@
                         label="电话"
                         min-width="20%">
                         <template slot-scope="scope"  style="text-align: center;">
-                            <div :style="{display:[aCustomerlist[scope.$index].willShow!='1'?'':'none']}" >
+                            <div :style="{display:[aTriagelist[scope.$index].willShow!='1'?'':'none']}" >
                                 <span>{{scope.row.phoneNum|phoneFilter}}</span>
                                 <img class="eye-img" src="../../../../common/img/i-eye-close.png" v-if="phoneNum" style="margin-left:5px;" @click="openPhone(scope.$index,'1')" >
                             </div>
-                            <div :style="{display:[aCustomerlist[scope.$index].willShow=='1'?'':'none']}">
+                            <div :style="{display:[aTriagelist[scope.$index].willShow=='1'?'':'none']}">
                                 <span>{{scope.row.phoneNum}}</span>
                                 <img class="eye-img" src="../../../../common/img/i-eye-open.png" v-if="phoneNum" style="margin-left:5px;" @click="closePhone(scope.$index,'0')" >
                             </div>

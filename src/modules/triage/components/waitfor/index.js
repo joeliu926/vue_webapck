@@ -18,14 +18,14 @@ export default {
             customerBlock: "顾客",
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
-            aCustomerlist: [],
+            aTriagelist: [],
             willShow:0
         }
     },
     created() {
         this.ready();
         let _This=this;
-        _This.aCustomerlist;
+        _This.aTriagelist;
     },
     mounted(){
     },
@@ -78,9 +78,9 @@ export default {
 
                      if(result.code==0&&result.data){
                         // console.log(result.data);
-                         _This.aCustomerlist = result.data.list;
+                         _This.aTriagelist = result.data.list;
                          _This.count=result.data.count;
-                        // console.log(_This.aCustomerlist);
+                        // console.log(_This.aTriagelist);
                         // console.log(_This.count)
                      }
                  }
@@ -98,17 +98,17 @@ export default {
         // 显示和隐鲹电话号码
        openPhone(index,otype){
             // console.log(index ,otype);
-            let temp = this.aCustomerlist;
+            let temp = this.aTriagelist;
             temp[index].willShow = otype;
-            this.aCustomerlist = [];
-            this.aCustomerlist = temp;
+            this.aTriagelist = [];
+            this.aTriagelist = temp;
         },
         closePhone(index,otype){
             // console.log(index ,otype);
-            let temp = this.aCustomerlist;
+            let temp = this.aTriagelist;
             temp[index].willShow = otype;
-            this.aCustomerlist = [];
-            this.aCustomerlist = temp;
+            this.aTriagelist = [];
+            this.aTriagelist = temp;
         },
         pickerOptions(){},
         fDateChange(date){

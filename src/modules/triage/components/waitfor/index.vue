@@ -13,42 +13,42 @@
             padding-top: 10px;
 
         }   
-        .customer-block-uinfo {
-
+        .triage-block-uinfo {
+             margin: 20px 0;
              height: 32px;
-             .customers-name {
+             .triage-name {
                  color: #333333;
                  font-size: 16px;
              }
-             .customer-record {
+             .triage-record {
                  color: #666666;
                  font-size: 14px;
              }
-             .customer-icon{
+             .triage-icon{
                  cursor: pointer;
              }
              .c-icon{text-align: center;}
 
         }
 
-        .customer-user-name {
+        .triage-user-name {
              font-size: 11px;
              color: #444;
         }
 
-        .customer-user-title {
+        .triage-user-title {
              vertical-align: middle;
              height: 40px;
              width: 40px;
         }
 
-        .customer-pagination-align {
+        .triage-pagination-align {
              text-align: right;
              border: none;
-            margin:20px 0;
+             margin:20px 0;
         }
 
-        .customer-content-gradient {
+        .triage-content-gradient {
              background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
              background: -webkit-gradient(linear,0 50%,100% 50%,from(#7084f3),to(#7a71fe));
              background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
@@ -58,7 +58,7 @@
 
 
 
-         // 
+
          th div{
              font-size: 14px;
              color: #333333;
@@ -67,20 +67,20 @@
          table tr td:last-child {
              text-align: right;
          }
-         .customer-pa-icon {
+         .triage-pa-icon {
              font-size: 16px !important;
              color: #909090;
              line-height: 30px;
              cursor: pointer;
              text-align: right;
          }
-         .customer-title {
+         .triage-title {
              border-radius: 30px;;
              vertical-align: middle;
              height: 40px;
              width: 40px;
          }
-         .customer-date {
+         .triage-date {
              /*float: right;*/
              text-align: right;
          }

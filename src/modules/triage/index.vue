@@ -32,7 +32,7 @@
         }
     }
 
-    .customer-block-content {
+    .triage-block-content {
         margin :2px;
         border: 1px solid transparent;
         background-color: #ffffff;
@@ -44,20 +44,20 @@
     table tr td:last-child {
         text-align: right;
     }
-    .customer-pa-icon {
+    .triage-pa-icon {
         font-size: 16px !important;
         color: #909090;
         line-height: 30px;
         cursor: pointer;
         text-align: right;
     }
-    .customer-title {
+    .triage-title {
         border-radius: 30px;;
         vertical-align: middle;
         height: 40px;
         width: 40px;
     }
-    .customer-date {
+    .triage-date {
         /*float: right;*/
         text-align: right;
     }
@@ -67,30 +67,30 @@
     }
     }
 
-    .customer-block-uinfo {
+    .triage-block-uinfo {
         margin: 24px;
         height: 32px;
-    .customers-name {
+    .triage-name {
         color: #333333;
         font-size: 16px;
     }
-    .customer-record {
+    .triage-record {
         color: #666666;
         font-size: 14px;
     }
-    .customer-icon{
+    .triage-icon{
         cursor: pointer;
     }
     .c-icon{text-align: center;}
 
     }
 
-    .customer-user-name {
+    .triage-user-name {
         font-size: 11px;
         color: #444;
     }
 
-    .customer-user-title {
+    .triage-user-title {
         vertical-align: middle;
         height: 40px;
         width: 40px;

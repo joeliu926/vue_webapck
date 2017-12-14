@@ -3,9 +3,11 @@
 
 </script>
 <style scope lang="scss">
-
-
-    .el-table .cell {
-         text-align-last: left;
+    triage-block-content{
+        .el-table .cell {
+            text-align-last: left;
+        }
     }
+
+
 </style>
