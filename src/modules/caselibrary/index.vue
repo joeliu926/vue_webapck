@@ -18,13 +18,13 @@
         text-align:center;
         background-color: #7084f3;
         line-height: 60px;
-        height: 136px;
+        height: 134px;
         color: white;
         box-sizing: border-box;
         .case-top-demo{
             box-sizing:border-box;
             width:60px;
-            margin-top:24px;
+            margin-top:22px;
             margin-left: 33.3%;
             height:112px;
             font-size:14px;
