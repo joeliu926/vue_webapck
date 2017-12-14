@@ -10,7 +10,8 @@ export default {
             selectedVal:'首页',
             menusList:[],
             userImage:'',
-            allowBack:false
+            allowBack:false,
+            defaultPic:require("../../common/img/icon-customer.png"),
 
         };
     },
