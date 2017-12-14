@@ -49,7 +49,7 @@
                           }
                 .case-left a{
                           display: inline-block;
-                          line-height: 50px;
+                          line-height: 60px;
                           height:60px;
                           width:100%;
                           font-size: 14px;
@@ -98,7 +98,7 @@
                     color: #333;
                     text-decoration:none;
                     padding:3px 16px 3px 16px;
-                    margin-left: 40px;
+                    margin-left: 0px;
                     margin-right: 40px;
                     }
         .changecol:hover{
