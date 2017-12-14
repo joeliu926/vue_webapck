@@ -70,7 +70,7 @@ export default {
                      if(result.code==0&&result.data){
                         // console.log(result.data);
                          _This.aCustomerlist = result.data.list;
-                         _This.count=result.data.count;  
+                         _This.count=result.data.count;
                      }
                  }
              }, 'withCredentials');

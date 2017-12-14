@@ -26,6 +26,7 @@
             height:100%;
             .hearder-top{
                 margin-bottom:20px;
+                border: none;
             }
 
           /*备注*/

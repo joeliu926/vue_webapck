@@ -2,7 +2,7 @@
 <script src="./index.js">
 
 </script>
-<style scope lang="scss">
+<style lang="scss">
 
 
 .triage-content{
@@ -96,7 +96,8 @@
         width: 40px;
     }
 
-    .customer-pagination-align {
+    .triage-pagination-align {
+        margin-bottom: 20px;
         text-align: right;
         border: none;
     }
