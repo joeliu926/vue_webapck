@@ -9,8 +9,9 @@
          }
         .customers-content{margin: 24px;
         .el-tabs__header{
+            margin:0px 10px;
             background-color:#fff;
-            .is-active{border-top: 3px solid #8162e0 !important; color:#333333; font-weight: bold;}
+            .is-active{ color:#333333; font-weight: bold;}
             .el-tabs__item{border-top: 3px solid #fff;}
 
         }
@@ -18,7 +19,6 @@
             .content-left-border{
                 border-radius:4px;
                 background: #fff;
-                border: 1px solid transparent;
             }
         }
 
@@ -28,7 +28,8 @@
                 margin-bottom:20px;
             }
 
-            /*备注
+          /*备注*/
+          /*
             .remarks{
                 width:100%;
                 height:100%;
@@ -64,6 +65,9 @@
                 }
 
             }
+            */
+           
+
             /*文件*/
             .update-file {
                 width:100%;
@@ -92,12 +96,11 @@
                         margin-bottom: 6px
                     }
                 }
-
+ 
             }
             .item-border {
-                border: 1px solid #eaeaea;
                 padding:15px;
-                border-radius: 5px;
+                border-radius: 4px;
                 /*margin:0 0 20px 0;*/ 
             }
             .show-all{

@@ -12,9 +12,15 @@
         box-sizing: border-box;
         padding: 24px;
         .consult-content {
+            .el-tabs__header{
+                background-color: #ffffff;
+                margin:0px 12px;
+                .el-tabs__nav-wrap{
+                    margin-bottom: -3px;
+                }
+            }
             .el-tabs__nav{
                 .is-active{
-                    border-top:2px solid #9083ED !important;
                     box-sizing: border-box;
                 }
             }
