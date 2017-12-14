@@ -80,12 +80,12 @@
             <el-table-column
                     prop="id"
                     label="编号"
-                    width="80">
+                    min-width="10%">
             </el-table-column>
             <el-table-column
                     prop="customerName"
                     label="名称"
-                    width="190">
+                    min-width="16%">
                 <template slot-scope="scope" style="">
                     <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
                 </template>
@@ -93,7 +93,7 @@
             <el-table-column
                     prop="createTime"
                     label="登记时间"
-                    width="200">
+                    min-width="20%">
                 <template slot-scope="scope" style="text-align: right;">
                     <p>{{scope.row.createTime|dateFilter}}</p>
                 </template>
@@ -101,17 +101,18 @@
             <el-table-column
                     prop="phoneNum"
                     label="电话"
-                    width="190">
+                    min-width="18%">
                 <template slot-scope="scope" style="text-align: right;">
                     <p>{{scope.row.phoneNum|phoneFilter}}</p>
                 </template>
             </el-table-column>
             <el-table-column
                 prop="wechatNum"
-                label="微信">
+                label="微信"
+                min-width="18%">
         </el-table-column>
 
-            <el-table-column label="">
+            <el-table-column label="" min-width="18%">
                 <template slot-scope="scope"  style="">
                     <i class="el-icon-pa-ellipsis-v customer-pa-icon" @click="fMoreUserInfo" title="More"></i>
                 </template>
