@@ -548,7 +548,10 @@ export default {
                 _This.$message.error('面诊时间必填');
                 return false;
             }
-
+            if(postData.flag=="2"&&postData.faceDiagnoseRemarks.length<=0){
+                _This.$message.error('放弃面诊原因必填');
+                return false;
+            }
             /*结束播放提交事件*/
            // _This.code="consultingEnd";//fGetEventType()
             _This.code=_This.fGetEventType();
