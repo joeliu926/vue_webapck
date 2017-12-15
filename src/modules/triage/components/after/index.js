@@ -27,8 +27,8 @@ export default {
 
     },
     created() {
-        this.ready();
-        // this.searchData();
+        // this.ready();
+        this.searchData();
     },
     mounted(){
 
@@ -85,28 +85,60 @@ export default {
                 }
             }
         },
-        ready(){
-           // console.log("=============000000000000================");
-             var _This = this;
-             _.ajax({
-                 url: '/triage/list',
-                 method: "POST",
-                 data: {
-                     pageNo:_This.pageNo,
-                     pageSize:_This.pageSize,
-                     status:1,
-                     
-                 } ,
-                 success: function (result) {
-                     //console.log(result);
+        // ready(){
+        //    // console.log("=============000000000000================");
+        //      var _This = this;
+        //      _.ajax({
+        //          url: '/triage/list',
+        //          method: "POST",
+        //          data: {
+        //              pageNo:_This.pageNo,
+        //              pageSize:_This.pageSize,
+        //              status:1,
+        //
+        //          } ,
+        //          success: function (result) {
+        //              //console.log(result);
+        //              if(result.code==0&&result.data){
+        //                 console.log(result.data);
+        //                  _This.aTriagelist = result.data.list;
+        //                  _This.count=result.data.count;
+        //              }
+        //          }
+        //      }, 'withCredentials');
+        // },
+        searchData(){
+            var _This = this;
+            var postData={
+                pageNo: _This.pageNo,
+                pageSize:_This.pageSize,
+                status:1,
+                // startDate: _This.startDate,
+                // endDate: _This.endDate,
+                 fieldValue:_This.fieldValue,
+                 searchField:_This.searchField
+            };
 
-                     if(result.code==0&&result.data){
-                        // console.log(result.data);
-                         _This.aTriagelist = result.data.list;
-                         _This.count=result.data.count;
-                     }
-                 }
-             }, 'withCredentials');
+            postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
+            postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
+            // postData.startDate=_This.startDate==""?"": _.date2String(_This.startDate,"yyyy-MM-dd ");
+            // postData.endDate=_This.endDate?"": _.date2String(_This.endDate,"yyyy-MM-dd ");
+            console.log("++++++++++++++++++++++",_This.startDate,_This.endDate,postData);
+            if(_This.fieldValue==""){
+                postData.searchField="";
+            }
+            _.ajax({
+                url: '/triage/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if(result.code==0&&result.data){
+                        console.log("============================",result.data);
+                        _This.aTriagelist = result.data.list;
+                        _This.count = result.data.count;
+                    }
+                }
+            }, 'withCredentials');
         },
         fSearchData(e){
             this.searchData();
@@ -148,39 +180,7 @@ export default {
             this.pageNo=pnum;
             this.ready();
         },
-        searchData(){
-            var _This = this;
-            var postData={
-                pageNo: _This.pageNo,
-                pageSize:_This.pageSize,
-                status:1,
-                startDate: _This.startDate,
-                endDate: _This.endDate,
-               /* fieldValue:_This.fieldValue,
-                searchField:_This.searchField*/
-            };
 
-             postData.startDate=_This.startDate==""?"": _.date2String(_This.startDate,"yyyy-MM-dd ");
-             postData.endDate=_This.endDate?"": _.date2String(_This.endDate,"yyyy-MM-dd ");
-            console.log("++++++++++++++++++++++",_This.startDate,_This.endDate,postData);
-            // postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
-            // postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
-            if(_This.fieldValue==""){
-                postData.searchField="";
-            }
-            _.ajax({
-                url: '/triage/list',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    if(result.code==0&&result.data){
-                        console.log("============================",result.data);
-                        _This.aTriagelist = result.data.list;
-                        _This.count = result.data.count;
-                    }
-                }
-            }, 'withCredentials');
-        },
         fCustomerDetail(uid){
             if(!uid){
                 return false;

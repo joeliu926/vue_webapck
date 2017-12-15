@@ -63,32 +63,34 @@ export default {
     },
     methods: {
         //
-        ready(){
-           // console.log("=============000000000000================");
-
-             var _This = this;
-             _.ajax({
-                 url: '/triage/list',
-                 method: "POST",
-                 data: {
-                     pageNo:_This.pageNo,
-                     pageSize:_This.pageSize,
-                     status:0,
-                 } ,
-                 success: function (result) {
-                     //console.log(result);
-
-                     if(result.code==0&&result.data){
-                        // console.log(result.data);
-                         _This.aTriagelist = result.data.list;
-                         _This.count=result.data.count;
-                        // console.log(_This.aTriagelist);
-                        // console.log(_This.count)
-                     }
-                 }
-             }, 'withCredentials');
-
-        },
+        // ready(){
+        //    // console.log("=============000000000000================");
+        //
+        //      var _This = this;
+        //      _.ajax({
+        //          url: '/triage/list',
+        //          method: "POST",
+        //          data: {
+        //              pageNo:_This.pageNo,
+        //              pageSize:_This.pageSize,
+        //              status:0,
+        //              startDate:"",
+        //              endDate:"",
+        //          } ,
+        //          success: function (result) {
+        //              //console.log(result);
+        //
+        //              if(result.code==0&&result.data){
+        //                 // console.log(result.data);
+        //                  _This.aTriagelist = result.data.list;
+        //                  _This.count=result.data.count;
+        //                 // console.log(_This.aTriagelist);
+        //                 // console.log(_This.count)
+        //              }
+        //          }
+        //      }, 'withCredentials');
+        //
+        // },
         fSearchData(e){
 
             this.searchData();
@@ -165,6 +167,7 @@ export default {
             var postData={
                 pageNo: _This.pageNo,
                 pageSize:  _This.pageSize,
+                status:1,
                 /*     startDate: _This.startDate,
                  endDate: _This.endDate,*/
                 fieldValue:_This.fieldValue,
@@ -176,7 +179,7 @@ export default {
                 postData.searchField="";
             }
             _.ajax({
-                url: '/customers/customerlist',
+                url: '/triage/list',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
