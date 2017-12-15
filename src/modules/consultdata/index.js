@@ -88,9 +88,19 @@ export default {
         beginDate(){
             let _This = this
             return {
-                disabledDate(time){
-                    return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+
+                function( time){
+                    return time.getTime();
                 }
+
+
+
+                // disabledDate(time){
+                //     if(_This.startDate){
+                //         return time.getTime();
+                //     }
+                //     // return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                // }
             }
         },
         //提出结束时间必须大于提出开始时间
