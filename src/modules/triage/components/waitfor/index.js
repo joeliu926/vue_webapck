@@ -25,7 +25,7 @@ export default {
         }
     },
     created() {
-        this.ready();
+       // this.ready();
         let _This=this;
         _This.aTriagelist;
     },

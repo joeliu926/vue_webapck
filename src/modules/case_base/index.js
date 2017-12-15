@@ -31,7 +31,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('result.data',result);
+                   // console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
