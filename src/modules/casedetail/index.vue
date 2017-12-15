@@ -57,7 +57,8 @@
                         border-radius: 4px;
                         background-color: #FFF;
                         padding-left: 24px;
-                        padding-top: 20px;
+                        padding-top: 12px;
+                        padding-bottom: 12px;
                         margin-bottom: 10px;
                         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
 
@@ -329,6 +330,15 @@
                         }
 
                     }
+                    .li-img{
+                        padding: 0;
+                        width: 215px;
+                        height: 215px;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: 100%;
+
+                    }
                 }
             }
         }
@@ -343,21 +353,21 @@
             left: 0;
 
             .content-box {
-                height: 570px;
-                width: 750px;
-                position: relative;
+                height: 620px;
+                width: 640px;
+                position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%);
-                background: #FFF;
+                margin-top: -310px;
+                margin-left: -375px;
+                background: #ffffff;
                 border-radius: 15px;
-                z-index: 1001;
-
+                vertical-align: top;
                 .left-box {
-                    width: 570px;
+                    width: 437px;
                     height: 100%;
                     background: #CCC;
-                    float: left;
+                    display: inline-block;
                     border-radius: 4px 0 0 4px;
 
                     img {
@@ -371,7 +381,7 @@
                 /*图片轮播区样式*/
                 .carousel-wrap {
                     position: relative;
-                    width: 570px;
+                    width: 437px;
                     height: 100%;
                     overflow: hidden;
                     background-color: #CCC;
@@ -444,13 +454,25 @@
                 }
 
             }
+            .close {
+                position: absolute;
+                right: 4px;
+                top: 4px;
+                text-indent: 2px;
+                border: 1px solid #CCC;
+                border-radius: 50%;
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                text-algin: center;
+            }
             .right-box {
                 width: 180px;
                 height: 100%;
-                background: #f7f7f7;
-                float: left;
+              /*  background: #f7f7f7;*/
+                display: inline-block;
                 border-radius: 0 4px 4px 0;
-                position: relative;
+                vertical-align: top;
 
                 button {
                     width: 105px;
@@ -464,18 +486,7 @@
                     /*border:1px solid transparent;*/
                 }
 
-                .close {
-                    position: absolute;
-                    right: 4px;
-                    top: 4px;
-                    text-indent: 2px;
-                    border: 1px solid #CCC;
-                    border-radius: 50%;
-                    display: inline-block;
-                    width: 15px;
-                    height: 15px;
-                    text-algin: center;
-                }
+
 
                 .isclick {
                     background: #6f61d4;

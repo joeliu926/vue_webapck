@@ -535,6 +535,10 @@ export default {
                 faceDiagnoseDate: _This.faceDiagnoseDate ? _This.faceDiagnoseDate.valueOf() : "",
                 faceDiagnoseProduct: _This.consultItems.join(",")
             };
+            if(postData.id<=0){
+                _This.$message.error('未选择任何面诊客户');
+                return false;
+            };
             // console.log("postData======>", postData);
             if (postData.flag == "0" && postData.faceDiagnoseProduct.length <= 0) {
                 // _This.isFillProject=true;

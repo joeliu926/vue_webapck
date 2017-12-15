@@ -4,7 +4,7 @@
         <div class="caseinfo-top-content">
             <div class="caseinfo-outer">
                 <div class="caseinfo-inner">
-                    <h6>小姐姐的美丽日记</h6>
+                    <!--<h6>小姐姐的美丽日记</h6>-->
                     <el-row :gutter="24" type="flex" justify="center" align="center">
                         <el-col :span="3">
                             <div class="casetop-img" >
@@ -69,13 +69,13 @@
                     <!--案例封面-->
                     <el-row class="info-cover border-bottom">
                         <p>案例封面</p>
-                        <el-col :span="24" type="flex" class="cover-img clearfix">
-                            <div class="left fl">
-                                <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">
+                        <el-col :span="24" type="flex" class="cover-img clearfix" >
+                            <div class="left fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.frondFile.url+')':''] }">
+                              <!--  <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">-->
                                 <span>before</span>
                             </div>
-                            <div class="right fl">
-                                <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">
+                            <div class="right fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.backFile.url+')':''] }">
+                               <!-- <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">-->
                                 <span>after</span>
                             </div>
 
@@ -86,9 +86,9 @@
                         <el-col :span="24" type="flex" >
                             <h6>术前</h6>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files" :key="index">
-                                    <a href="javascript:;" @click="showLayer(file.name)">
-                                        <img :src="file.url" data-fileName="file.name" width="215" height="215">
+                                <li v-for="(file,index) in item.files" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}" style="">
+                                    <a href="javascript:;"  >
+                                      <!--  <img :src="file.url" data-fileName="file.name" width="215" height="215">-->
                                     </a>
                                 </li>
                             </ul>
@@ -110,10 +110,10 @@
                                 <span :class="isActive?'active':''" v-show='index==0'  @click="fromNow()" style="cursor:pointer; margin-right: 20px;" >从最早开始浏览</span>
                             </div>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files" :key="index">
-                                    <a href="javascript:;" @click="showLayer(file.name)">
+                                <li v-for="(file,index) in item.files" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}">
+                                 <!--   <a href="javascript:;" @click="showLayer(file.name)">
                                         <img :src="file.url"  width="215" height="215">
-                                    </a>
+                                    </a>-->
                                 </li>
                             </ul>
                             <p style="margin-top:10px;">{{item.description}}</p>
@@ -132,7 +132,9 @@
     <!--案例弹出层-->
     <!-- v-show="show==0?true:false;"  v-on:mouseenter="showArrBtn(0)" v-on:mouseleave="hideArrBtn(1)"  v-show="isShow!= '1' ?'false' :'true' ;"-->
     <div class="case-layer" id="Idiv" v-show='reveal' >
+
         <div class="content-box" id="mou_head">
+            <span class="close el-icon-pa-close" @click="closeLayer" ></span>
             <div class="left-box">
                 <div class="carousel-wrap" id="carousel" >
                     <img :src="zoomPhoto">
@@ -142,10 +144,9 @@
                     </div>
                 </div>
             </div>
-            <div class="right-box" >
+           <div class="right-box">
                 <el-Button :class="isclick_before=='before'?'isclick':'' " nativeType="button" size="small" @click="setPhone(0)">设置为before</el-Button>
                 <el-Button :class="isclick_after=='after'?'isclick':''" nativeType="button" size="small" @click="setPhone(1)">设置为after</el-Button>
-                <span class="close el-icon-pa-close" @click="closeLayer"></span>
             </div>
         </div>
     </div>
