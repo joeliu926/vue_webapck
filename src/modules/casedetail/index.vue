@@ -343,7 +343,7 @@
             left: 0;
 
             .content-box {
-                height: 570px;
+                height: 700px;
                 width: 750px;
                 position: relative;
                 top: 50%;
