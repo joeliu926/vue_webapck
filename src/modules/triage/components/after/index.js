@@ -76,28 +76,7 @@ export default {
                 }
             }
         },
-        // ready(){
-        //    // console.log("=============000000000000================");
-        //      var _This = this;
-        //      _.ajax({
-        //          url: '/triage/list',
-        //          method: "POST",
-        //          data: {
-        //              pageNo:_This.pageNo,
-        //              pageSize:_This.pageSize,
-        //              status:1,
-        //
-        //          } ,
-        //          success: function (result) {
-        //              //console.log(result);
-        //              if(result.code==0&&result.data){
-        //                 console.log(result.data);
-        //                  _This.aTriagelist = result.data.list;
-        //                  _This.count=result.data.count;
-        //              }
-        //          }
-        //      }, 'withCredentials');
-        // },
+
         searchData(){
             var _This = this;
             var postData={
@@ -109,7 +88,6 @@ export default {
                  fieldValue:_This.fieldValue,
                  searchField:_This.searchField
             };
-
             postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             // postData.startDate=_This.startDate==""?"": _.date2String(_This.startDate,"yyyy-MM-dd ");
@@ -123,7 +101,7 @@ export default {
                 data: postData,
                 success: function (result) {
                     if(result.code==0&&result.data){
-                        console.log("============================",result.data);
+
                         _This.aTriagelist = result.data.list;
                         _This.count = result.data.count;
                     }

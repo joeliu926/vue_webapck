@@ -25,8 +25,10 @@ export default {
         }
     },
     created() {
+
         // this.ready();
         this.searchData();
+
         let _This=this;
         _This.aTriagelist;
     },

@@ -142,7 +142,6 @@ export default {
                    // console.log("------result-----",result);
                     if(result.code==0&&result.data){
                         _This.aCustomerlist = result.data.list;
-                        console.log( result.data);
                         _This.count = result.data.count;
                     }
                 }

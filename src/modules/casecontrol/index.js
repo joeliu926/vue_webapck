@@ -601,7 +601,7 @@ export default {
             } else if (etype == "1") {
                 result = "consultingCloseByreserve";//预约下次
             } else if (etype == "2") {
-                result = "consultingCloseByWin";//无需跟进
+                result = "consultingCloseByLose";//无需跟进
             }
             return result;
         },
