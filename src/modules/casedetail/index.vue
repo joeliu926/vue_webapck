@@ -425,7 +425,7 @@
                 /*轮播图焦点按钮样式*/
 
                 .arrowbox {
-                    display: none;
+                    display: block;
                     width: 100%;
                     height: 60px;
                     position: absolute;

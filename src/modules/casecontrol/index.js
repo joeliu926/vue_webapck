@@ -774,10 +774,16 @@ export default {
          * @param cid
          */
         fUpdateCustomer(cid){
-            //this.oCustomer.name="dsfgsdfgdsfgfd";
-            //return false;
             let _This = this;
             let postData = _This.oCustomer || {};
+            if(!postData.name||postData.name.trim().length<=0){
+                _This.$message.error('客户姓名不能为空');
+                return false;
+            }
+            if(!(/^1[345789]\d{9}$/.test(postData.phoneNum))){
+                _This.$message.error('客户手机号码验证失败');
+                return false;
+            }
             postData.birthday = postData.birthday ? postData.birthday.valueOf() : "";
             postData.diagnoseId = _This.routerParam.diagid || "";
             // console.log("new save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
