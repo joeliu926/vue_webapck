@@ -37,9 +37,10 @@ export default {
 
     },
     filters:{
-        dateFilter:function (input) {
-            if(input&&input!=""){
-                return  _.date2String(new Date(input),"yyyy-MM-dd ");//hh:mm:ss
+        dateFilter: function (input, format) {
+            format = format || "yyyy-MM-dd hh:mm:ss";
+            if (input && input != "") {
+                return _.date2String(new Date(input), format);
             }
         },
         phoneFilter:function (input) {
@@ -104,6 +105,7 @@ export default {
 
                         _This.aTriagelist = result.data.list;
                         _This.count = result.data.count;
+                        // console.log( _This.aTriagelist);
                     }
                 }
             }, 'withCredentials');
