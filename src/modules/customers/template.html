@@ -87,7 +87,10 @@
                     label="名称"
                     min-width="16%">
                 <template slot-scope="scope" style="">
-                    <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)"><img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo"><img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name}}</p>
+                    <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)">
+                        <img class="customer-title" :src="scope.row.logo" v-if="scope.row.logo">
+                        <img class="customer-title" v-if="!scope.row.logo" src="../../common/img/customer_default.png"> {{scope.row.name||scope.row.wxNickname}}
+                    </p>
                 </template>
             </el-table-column>
             <el-table-column
