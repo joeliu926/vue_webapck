@@ -15,6 +15,7 @@ export default {
             title: "../../common/img/gaoji2.png",
             customerName: "this is a user",
             count: 0,
+            willShow:0,
             aCustomerlist: [],
             startDatePicker:this.beginDate(),
             endDatePicker:this.processDate(),
@@ -46,9 +47,19 @@ export default {
         beginDate(){
             let _This = this
             return {
-                disabledDate(time){
-                    return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+
+                function( time){
+                    return time.getTime();
                 }
+
+
+
+                // disabledDate(time){
+                //     if(_This.startDate){
+                //         return time.getTime();
+                //     }
+                //     // return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                // }
             }
         },
         //提出结束时间必须大于提出开始时间
@@ -64,6 +75,22 @@ export default {
                 }
             }
         },
+        // 显示和隐藏电话号码（只针对点击的当前行）
+        openPhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
+        },
+        closePhone(index,otype){
+            // console.log(index ,otype);
+            let temp = this.aCustomerlist;
+            temp[index].willShow = otype;
+            this.aCustomerlist = [];
+            this.aCustomerlist = temp;
+        },
+
         fSearchData(e){
 
             this.searchData();
@@ -117,6 +144,7 @@ export default {
 
                     if(result.code==0&&result.data){
                         _This.aCustomerlist = result.data.list;
+                        console.log( result.data);
                         _This.count = result.data.count;
                     }
                 }

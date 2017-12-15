@@ -18,20 +18,23 @@
         <div class="choose-ct">
             <el-date-picker
                     class="choose-date"
-                    v-model="startDate"
                     type="date"
-                    @change="changedate"
-                    placeholder="选择日期"
+                    placeholder="开始日期"
+                    v-model="startDate"
+                    size="small"
                     :picker-options="startDatePicker"
+                    @change="changedate"
             >
             </el-date-picker>-
             <el-date-picker
                     class="choose-date"
-                    v-model="endDate"
                     type="date"
-                    @change="changedate"
+                    placeholder="选择日期"
+                    v-model="endDate"
+                    size="small"
                     :picker-options="endDatePicker"
-                    placeholder="选择日期">
+                    @change="changedate"
+            >
             </el-date-picker>
 
                 <el-select v-model="statisticsType" style="display: none;" placeholder="请选择" class="i-select">

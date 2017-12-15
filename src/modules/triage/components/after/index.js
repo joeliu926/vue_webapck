@@ -57,9 +57,19 @@ export default {
         beginDate(){
             let _This = this
             return {
-                disabledDate(time){
-                    return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
-                }
+
+               function( time){
+                   return time.getTime();
+               }
+
+
+
+                // disabledDate(time){
+                //     if(_This.startDate){
+                //         return time.getTime();
+                //     }
+                //     // return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                // }
             }
         },
         //提出结束时间必须大于提出开始时间
@@ -142,25 +152,30 @@ export default {
             var _This = this;
             var postData={
                 pageNo: _This.pageNo,
-                pageSize:  _This.pageSize,
-                /*     startDate: _This.startDate,
-                 endDate: _This.endDate,*/
-                fieldValue:_This.fieldValue,
-                searchField:_This.searchField
+                pageSize:_This.pageSize,
+                status:1,
+                startDate: _This.startDate,
+                endDate: _This.endDate,
+               /* fieldValue:_This.fieldValue,
+                searchField:_This.searchField*/
             };
 
-            postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
-            postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
+             postData.startDate=_This.startDate==""?"": _.date2String(_This.startDate,"yyyy-MM-dd ");
+             postData.endDate=_This.endDate?"": _.date2String(_This.endDate,"yyyy-MM-dd ");
+            console.log("++++++++++++++++++++++",_This.startDate,_This.endDate,postData);
+            // postData.startDate=_This.startDate==""?"":Date.parse(_This.startDate);
+            // postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             if(_This.fieldValue==""){
                 postData.searchField="";
             }
             _.ajax({
-                url: '/customers/customerlist',
+                url: '/triage/list',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
                     if(result.code==0&&result.data){
-                        _This.aCustomerlist = result.data.list;
+                        console.log("============================",result.data);
+                        _This.aTriagelist = result.data.list;
                         _This.count = result.data.count;
                     }
                 }
