@@ -57,7 +57,8 @@
                         border-radius: 4px;
                         background-color: #FFF;
                         padding-left: 24px;
-                        padding-top: 20px;
+                        padding-top: 12px;
+                        padding-bottom: 12px;
                         margin-bottom: 10px;
                         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
 
