@@ -77,6 +77,10 @@
                     color: #999999;
                 }
             }
+            .eye-img{
+                cursor: pointer;
+                margin-left:5px;
+            }
         }
 
         .customer-block-uinfo {

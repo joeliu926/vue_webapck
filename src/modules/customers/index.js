@@ -39,7 +39,7 @@ export default {
       },
         phoneFilter:function (input) {
             if(input&&input!=""){
-                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
+                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1*****$2");
             }
         }
     },
