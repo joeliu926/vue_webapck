@@ -112,9 +112,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-
                    // console.log("------result-----",result);
-
                     if(result.code==0&&result.data){
                         _This.aCustomerlist = result.data.list;
                         _This.count = result.data.count;
