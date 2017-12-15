@@ -91,6 +91,7 @@ export default {
                             _This.photolist = _This.photolist.concat(m.files);
 
                             if(m.nodeType==1){
+
                                 _This.contentListAfter.push(m);
                             }
                         });
@@ -187,8 +188,10 @@ export default {
                 success: function (result) {
                     if(result.code==0&&result.data){
                         console.log('result',result);
+
                     }
-                    _This.reday();    
+                    _This.contentListAfter=[];
+                    _This.reday();
                 }
             }, 'withCredentials');
          
