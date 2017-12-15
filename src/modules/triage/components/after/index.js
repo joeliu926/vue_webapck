@@ -61,15 +61,6 @@ export default {
                function( time){
                    return time.getTime();
                }
-
-
-
-                // disabledDate(time){
-                //     if(_This.startDate){
-                //         return time.getTime();
-                //     }
-                //     // return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
-                // }
             }
         },
         //提出结束时间必须大于提出开始时间
@@ -123,7 +114,6 @@ export default {
             postData.endDate=_This.endDate==""?"":Date.parse(_This.endDate);
             // postData.startDate=_This.startDate==""?"": _.date2String(_This.startDate,"yyyy-MM-dd ");
             // postData.endDate=_This.endDate?"": _.date2String(_This.endDate,"yyyy-MM-dd ");
-            console.log("++++++++++++++++++++++",_This.startDate,_This.endDate,postData);
             if(_This.fieldValue==""){
                 postData.searchField="";
             }
@@ -178,7 +168,7 @@ export default {
         handleCurrentChange(pnum){
            console.log(pnum);
             this.pageNo=pnum;
-            this.ready();
+            this.searchData();
         },
 
         fCustomerDetail(uid){

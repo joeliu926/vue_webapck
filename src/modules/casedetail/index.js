@@ -190,7 +190,9 @@ export default {
                         console.log('result',result);
 
                     }
+                    //解决设置案例封面的时候出现的重复数据
                     _This.contentListAfter=[];
+                    //封面设置需要重新调用
                     _This.reday();
                 }
             }, 'withCredentials');

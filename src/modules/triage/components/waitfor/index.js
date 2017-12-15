@@ -25,7 +25,8 @@ export default {
         }
     },
     created() {
-        this.ready();
+        // this.ready();
+        this.searchData();
         let _This=this;
         _This.aTriagelist;
     },
@@ -92,7 +93,6 @@ export default {
         //
         // },
         fSearchData(e){
-
             this.searchData();
         },
         handleClick(){
@@ -117,19 +117,9 @@ export default {
         beginDate(){
             let _This = this
             return {
-
                 function( time){
                     return time.getTime();
                 }
-
-
-
-                // disabledDate(time){
-                //     if(_This.startDate){
-                //         return time.getTime();
-                //     }
-                //     // return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
-                // }
             }
         },
         //提出结束时间必须大于提出开始时间
@@ -153,21 +143,20 @@ export default {
         },
         fEdit(){
            // console.log("edit data");
-
         },
         fMoreUserInfo(){
            // console.log("get more user info");
         },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
-            this.ready();
+            this.searchData();
         },
         searchData(){
             var _This = this;
             var postData={
                 pageNo: _This.pageNo,
                 pageSize:  _This.pageSize,
-                status:1,
+                status:0,
                 /*     startDate: _This.startDate,
                  endDate: _This.endDate,*/
                 fieldValue:_This.fieldValue,
@@ -184,7 +173,8 @@ export default {
                 data: postData,
                 success: function (result) {
                     if(result.code==0&&result.data){
-                        _This.aCustomerlist = result.data.list;
+                        _This.aTriagelist = result.data.list;
+                        console.log(_This.aTriagelist);
                         _This.count = result.data.count;
                     }
                 }
