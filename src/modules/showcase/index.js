@@ -70,7 +70,8 @@ export default {
             
         }
         ws.onclose = function (e) {
-            _this.tvState = 'noconnect';
+            /*_this.tvState = 'noconnect';*/
+            _this.tvState = 'error';
         }
         ws.onerror = function() {
             _this.tvState = 'error';
