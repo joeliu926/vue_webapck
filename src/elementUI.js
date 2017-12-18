@@ -132,7 +132,8 @@ Vue.use(CarouselItem)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
 Vue.use(Cascader)
-Vue.use(ColorPicker)
+Vue.use(ColorPicker)//
+Vue.use(Loading)
 Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service

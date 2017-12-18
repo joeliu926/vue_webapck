@@ -47,7 +47,17 @@
             }
         }
 
-
+        .el-loading-mask {
+            position: absolute;
+            z-index: 10000;
+            background-color: rgba(0, 0, 0, .6);
+            margin: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transition: opacity .3s
+        }
         .control-head{
             background-color: #17182B;
             box-sizing: border-box;
