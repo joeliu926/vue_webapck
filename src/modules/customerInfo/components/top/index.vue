@@ -6,7 +6,7 @@
 
 .customerinfo-top-content{
     margin-bottom: 60px;
-    background-color:#534CE7;
+    background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
     width: 100%;
     border: none;
     height: 134px;

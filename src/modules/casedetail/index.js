@@ -84,7 +84,7 @@ export default {
                     console.log("casedetail",result);
                     if(result.code==0&&result.data){
                         _This.acaseuserlist = result.data;
-                        console.log(_This.acaseuserlist);
+                        // console.log(_This.acaseuserlist);
                         _This.contentList=result.data.contentList;
                         _This.count = result.data.count;
                         _This.contentList&& _This.contentList.forEach(m=>{
@@ -103,14 +103,16 @@ export default {
         change(index) {
             this.currentIndex = index;
         },
+        //从前的条件查询
         fromBefore(){
             var _This=this;
            _This.contentListAfter= _This.contentListAfter.sort(function(x, y){
-                console.log(y.definitionDate > x.definitionDate);
+                // console.log(y.definitionDate > x.definitionDate);
                 return y.definitionDate > x.definitionDate;
             });
             this.isActive =false;
         },
+        //最近的条件查询
         fromNow(){
             var _This=this;
             _This.isActive=true;
@@ -128,16 +130,16 @@ export default {
             };
             this.zoomPhoto=this.photolist[this.currentIndex].url;
             this.zoomPhotoName=this.photolist[this.currentIndex].name;
-            // 图片轮播的时候对应得按钮进行状态的选中
+            // 图片轮播的时候对应得按钮进行状态的选中   设为before
             if(this.zoomPhotoName==this.acaseuserlist.frondFile.name){
-                console.log(true);
+                // console.log(true);
                 this.isclick_before="before";
             }else{
                 this.isclick_before="";
             };
-             // 图片轮播的时候对应得按钮进行状态的选中  after
+             // 图片轮播的时候对应得按钮进行状态的选中  设为after
             if(this.zoomPhotoName==this.acaseuserlist.backFile.name){
-                console.log(true);
+                // console.log(true);
                 this.isclick_after="after";
             }else{
                 this.isclick_after="";
@@ -145,7 +147,6 @@ export default {
         },
         reduce(){
             let plength=this.photolist.length;
-           
             // console.log(beforeBtn);
             this.currentIndex-=1;
             if(this.currentIndex<0){
@@ -153,14 +154,14 @@ export default {
             }
             this.zoomPhoto=this.photolist[this.currentIndex].url;
             this.zoomPhotoName=this.photolist[this.currentIndex].name;
-            // 图片轮播的时候对应得按钮进行状态的选中  before
+            // 图片轮播的时候对应得按钮进行状态的选中  设为before
             if(this.zoomPhotoName==this.acaseuserlist.frondFile.name){
                 console.log(true);
                 this.isclick_before="before";
             }else{
                 this.isclick_before="";
             }
-            // 图片轮播的时候对应得按钮进行状态的选中  after
+            // 图片轮播的时候对应得按钮进行状态的选中  设为after
             if(this.zoomPhotoName==this.acaseuserlist.backFile.name){
                 console.log(true);
                 this.isclick_after="after";
@@ -171,7 +172,7 @@ export default {
         setPhone(type){
             let setObje =null;
             let uid= this.$route.params.id;
-            console.log("++++++++",uid);
+            // console.log("++++++++",uid);
             if(type==0){
                 this.isclick_before = 'before';
                 setObje = {caseid:uid,beforePic:this.zoomPhotoName,afterPic:''}
@@ -187,7 +188,7 @@ export default {
                 data: setObje ,
                 success: function (result) {
                     if(result.code==0&&result.data){
-                        console.log('result',result);
+                        // console.log('result',result);
 
                     }
                     //解决设置案例封面的时候出现的重复数据

@@ -25,10 +25,7 @@ export default {
         }
     },
     created() {
-
-        // this.ready();
         this.searchData();
-
         let _This=this;
         _This.aTriagelist;
     },
@@ -101,7 +98,7 @@ export default {
             this.fieldValue="";
             this.searchData();
         },
-        // 显示和隐鲹电话号码
+        // 显示和隐藏电话号码
        openPhone(index,otype){
             // console.log(index ,otype);
             let temp = this.aTriagelist;
@@ -176,7 +173,7 @@ export default {
                 success: function (result) {
                     if(result.code==0&&result.data){
                         _This.aTriagelist = result.data.list;
-                        console.log(_This.aTriagelist);
+                        // console.log(_This.aTriagelist);
                         _This.count = result.data.count;
                     }
                 }
