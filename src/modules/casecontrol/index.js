@@ -30,6 +30,12 @@ export default {
             scanPicIndex: 0,//当前浏览的术前图片的索引
             currentScanPic: "",//当前浏览的图片
             scanPicType: 1,//浏览图片的类型，1 为术前图片，2为沟通记录图片
+            pickerTimeOptions:{//限定预约下次面诊时间范围
+                disabledDate(time) {
+                   return time.getTime() < Date.now() - 8.64e7;
+                }
+             },
+            userUpdateCommitMask:false,
             oNameList: [],
             otheritems: "",
             otherresion: "",
@@ -778,14 +784,25 @@ export default {
          * @param cid
          */
         fUpdateCustomer(cid){
+
+
+
+
+
+
+
             let _This = this;
+            _This.userUpdateCommitMask=true;
+
             let postData = _This.oCustomer || {};
             if(!postData.name||postData.name.trim().length<=0){
                 _This.$message.error('客户姓名不能为空');
+                _This.userUpdateCommitMask=false;
                 return false;
             }
             if(!(/^1[345789]\d{9}$/.test(postData.phoneNum))){
                 _This.$message.error('客户手机号码验证失败');
+                _This.userUpdateCommitMask=false;
                 return false;
             }
             postData.birthday = postData.birthday ? postData.birthday.valueOf() : "";
@@ -818,6 +835,7 @@ export default {
                     } else {
                         _This.$message.error('更新失败');
                     }
+                    _This.userUpdateCommitMask=false;
 
                 }
             }, 'withCredentials');
@@ -1002,8 +1020,9 @@ export default {
             /*播放上报事件*/
             _This.code = "casePlay";
             _This.item = params;
-            console.log("播放项目--------》", params);
+           // console.log("播放项目--------》", params);
             _This.fEvent();
+            //console.log("-------------------------");
 
         },
         /**
@@ -1085,10 +1104,10 @@ export default {
          * @param e
          */
         fEvent(){
-            // console.log("event start--------");
+             //console.log("event start--------");
             let _This = this;
             let postData = {EventData: _This.fGetEventParam()};
-            // console.log("JSON.stringify(postData) ------>",postData);
+             //console.log("JSON.stringify(postData) post event ------>",postData);
             _.ajax({
                 url: '/event/v2',
                 method: 'POST',

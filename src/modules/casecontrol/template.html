@@ -225,6 +225,7 @@
                                type="datetime"
                                placeholder="选择日期"
                                format="yyyy-MM-dd HH:mm:ss"
+                               :picker-options="pickerTimeOptions"
                        >
                        </el-date-picker>
 
@@ -262,7 +263,9 @@
     <!--*******************客户信息 start**********************-->
     <div @click="fOpenCustomerInfo" class="customer-open"><i class="el-icon-pa-angle-double-right"></i><br/> 客户资料</span></div>
     <div :class="[!isCustomerinfo?'mask':'']"></div>
-    <div class="customer-ct b-s" :style="{left:[!isCustomerinfo?'0px':'-320px']}">
+    <div class="customer-ct b-s" :style="{left:[!isCustomerinfo?'0px':'-320px']}"  v-loading="userUpdateCommitMask"
+         element-loading-text="提交中..."
+         element-loading-spinner="el-icon-loading">
       <div class="customer-db-arr" @click="fCloseCustomerInfo"> <i class="el-icon-pa-angle-double-left"></i></div>
         <div style="position: absolute;top:40px;bottom: 0;overflow-y: scroll">
         <div class="c-ct">
