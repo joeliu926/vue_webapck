@@ -63,6 +63,9 @@
                     <p>
                         <span>{{webE.leftTrack.desc}}</span>
                     </p>
+                     <p v-if="webE.leftTrack.desc1">
+                         <span>{{webE.leftTrack.desc1}}</span>
+                     </p>
                     <p v-if="false"></p>
                 </div>
             </div>
@@ -82,6 +85,9 @@
                 <div class="custome-item-content">
                     <p>
                         {{rItem.desc}}
+                    </p>
+                    <p v-if="rItem.desc1">
+                        {{rItem.desc1}}
                     </p>
                     <p class="second">
                         <img v-for="img in rItem.imgUrls" :src="img">
@@ -109,6 +115,9 @@
                         <p>
                             {{leftDiv.desc}}
                         </p>
+                        <p v-if="leftDiv.desc1">
+                            {{leftDiv.desc1}}
+                        </p>
                         <p class="second">
                             <img  v-if="leftDiv.before&&leftDiv.before.length>0" :src="leftDiv.before">
                             <img  v-if="leftDiv.after&&leftDiv.after.length>0" :src="leftDiv.after">
@@ -132,6 +141,9 @@
                     <div class="custome-item-content">
                         <p>
                             {{rightDiv.desc}}
+                        </p>
+                        <p v-if="rightDiv.desc1">
+                            {{rightDiv.desc1}}
                         </p>
                         <p>
                             <span>预约时间：</span>

@@ -407,13 +407,13 @@
                 bottom: 192px;
                /* top:165px;*/
                 top:160px;
-                width: 102%;
+            /*    width: 102%;*/
                 border-top: 2px solid transparent;
                 .sel-items-ct{
                     background-color: #17182B;
                     padding:12px 24px 12px 0;
 
-                    overflow-y:scroll;
+                    overflow-y:hidden;
                     .sl-img-ct:hover{
                         transform: scale(1.1);
                     }
