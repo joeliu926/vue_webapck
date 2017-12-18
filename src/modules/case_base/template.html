@@ -28,7 +28,7 @@
             <p style="margin-top:20px">
                 分类索引</p>
             <div class="case-left out-box-border" style="font-size:14px">
-                <a href="javascript:;" v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
+                <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
                 <br>
             </div>
             <div id="right" class="right" style="" @scroll="onscorllevent">
@@ -38,7 +38,7 @@
                             <p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p>
                             <div style="height:12px"></div>
                             <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2">
-                                <a href="javascript:;" @click="fCaselibrary(list2.productCode)" class="changecol">
+                                <a  @click="fCaselibrary(list2.productCode)" class="changecol">
                                     <p class="p" style="font-size:14px">{{list2.productName}}</p>
                                 </a>
                             </div>

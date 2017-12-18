@@ -57,11 +57,13 @@
                             background: white;
                             color: #333;
                             text-decoration:none;
+                            cursor:pointer;
 
                             }
                 .case-left .cur{
                         background: #9083ed;
                         color: #fff;
+                        cursor:pointer;
                             }
                 .right{float:right;
                         width:87.6%;
@@ -87,7 +89,7 @@
                              margin-top:20px;
                              }
                      .case-right-col{
-                        margin-bottom: 4px;
+                      line-height: 20px;
                          }
                      .case-right-col a{
                     display: inline-block;
@@ -107,6 +109,7 @@
             border-radius: 25px;
             background: #9083ed;
             padding:2px 20px;
+            cursor:pointer;
     }
     .case-content{
 
