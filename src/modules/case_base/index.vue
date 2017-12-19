@@ -7,12 +7,10 @@
 <style lang="scss">
  .case_base{
     .case-top{
-
-            background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
-            background: -webkit-gradient(linear, 0 50%, 100% 50%, from(#7084f3), to(#7a71fe));
-            background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
-            background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
-
+        background: -moz-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -webkit-gradient(linear, 0 50%, 100% 50%, from(#7084f3), to(#7a71fe));
+        background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
+        background: -o-linear-gradient(360deg, #7084f3, #7a71fe);
         text-align:center;
         line-height: 60px;
         height: 134px;

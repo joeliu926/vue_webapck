@@ -7,6 +7,7 @@
     .nav-content{
          line-height: 60px;
          height: 60px;
+         overflow: hidden;
          color: white;
          box-sizing: border-box;
          padding: 0 30px;
