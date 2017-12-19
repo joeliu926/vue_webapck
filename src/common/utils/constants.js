@@ -3,8 +3,8 @@
  */
 module.exports ={
     pageSize: 15,
-    host:"http://localhost:8023", //"http://localhost:8023",  https://27478500.qcloud.la/node
+    host:"https://nihaomc.com/node", //"http://localhost:8023",  https://27478500.qcloud.la/node
     fileDownload:"",
     fileUpload:"",
-    wsReqUrl:"ws://localhost:8053/",//wss://nihaomc.com/websocket/",wss://27478500.qcloud.la/websocket/"
+    wsReqUrl:"wss://nihaomc.com/websocket/",//wss://nihaomc.com/websocket/",wss://27478500.qcloud.la/websocket/"
 };

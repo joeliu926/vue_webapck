@@ -12,6 +12,7 @@ export default {
             changing:true,
             caseName:'',
             conCodeDisplay:[0,0,0,0,0,0],
+            webSocketKeep:null,
             picObjF1:{class:'show-case fade-in', visible:false,code:'0',caseName:'客户案例',beforeUrl:'',afterUrl:''},
             picObjF2:{class:'show-case fade-none',visible:true,code:'0',caseName:'客户案例',beforeUrl:'',afterUrl:''}
         }
@@ -28,11 +29,15 @@ export default {
             _this.timeCount =  _.date2String(passTime,'hh:mm:ss');
         },1000);
 
-        var ws = new WebSocket(`${constant.wsReqUrl}tv`);
+        let ws = new WebSocket(`${constant.wsReqUrl}tv`);
 
         //Connection to server opened
         ws.onopen = function (e) {
         }
+
+        this.webSocketKeep= setInterval(function () {
+            ws.send(JSON.stringify({type:'keepAlive', content:{}}));
+        },30000);
 
         //dispose the message after got it
         ws.onmessage = function (e) {
@@ -78,6 +83,7 @@ export default {
         }
     },
     destroyed() {
+        window.clearInterval(this.webSocketKeep);
     },
     methods: {
         changeimages(params){

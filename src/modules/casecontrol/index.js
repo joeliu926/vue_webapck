@@ -53,6 +53,7 @@ export default {
             conCode: 0,
             conSid: '',
             webSocket: null,
+            webSocketKeep: null,
             conCodeList: [{id: 0, val: ''}, {id: 1, val: ''}, {id: 2, val: ''}, {id: 3, val: ''}, {
                 id: 4,
                 val: ''
@@ -172,7 +173,7 @@ export default {
 
     },
     destroyed() {
-
+        window.clearInterval(this.webSocketKeep);
     },
     methods: {
         fTimer(){
@@ -923,6 +924,11 @@ export default {
             this.webSocket = new WebSocket(`${constant.wsReqUrl}console`);
 
             let _this = this;
+
+
+            this.webSocketKeep= setInterval(function () {
+                _this.webSocket.send(JSON.stringify({type:'keepAlive', content:{}}));
+            },30000);
 
             this.webSocket.onmessage = function (e) {
                 let result = JSON.parse(e.data);
