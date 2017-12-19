@@ -35,6 +35,7 @@ export default {
                    return time.getTime() < Date.now() - 8.64e7;
                 }
              },
+            temOcustomerName:"",//客户临时姓名
             userUpdateCommitMask:false,
             oNameList: [],
             otheritems: "",
@@ -633,17 +634,16 @@ export default {
                 appointmentId: _This.routerParam.appointmentId,
                 customerId: _This.routerParam.customerId
             };
-            //console.log("postData======>", postData);
             _.ajax({
                 url: '/faceDiagnose/getCustomerData',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    // console.log("fGetCustomerData result--------", result);
                     if (result.code == 0 && result.data) {
                         result.data.gender = result.data.gender + "";
                         result.data.birthday = result.data.birthday ? _.date2String(new Date(parseInt(result.data.birthday)), "yyyy-MM-dd") : "";
                         _This.oCustomer = result.data;
+                        _This.temOcustomerName=_This.oCustomer.name;
                     }
                 }
             }, 'withCredentials');
@@ -652,16 +652,21 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
-
             var _This = this;
-            if (_This.oCustomer.name == "" || ename == "") {
+            _This.temOcustomerName=ename;
+    /*        if (!_This.oCustomer.name) {
+                _This.oCustomer.name=ename;
+            }*/
+            if (!_This.routerParam.adddiag) {
+                return false;
+            }
+            if (ename == "") {
                 return false;
             }
             _This.fSearchUserDpData(ename, function (result) {
-                // console.log("fGetCustomerList-------》",result);
                 if (result.code == 0 && result.data) {
                     _This.oNameList = result.data.list;
-                    _This.oCustomer.name =  ename;
+                   // _This.oCustomer.name = ename;
                 }
             });
         },
@@ -669,30 +674,27 @@ export default {
          * 选择下拉的名称
          */
         fSelectNameItem(ename){
-
             let _This = this;
             if (!_This.routerParam.adddiag) {
                 return false;
             }
-
-
-            let strIndex = ename.indexOf("(");
-            if (strIndex > 0) {
-                ename = ename.substr(0, strIndex);
-                //console.log("ename.ename--+++------",ename);
-            }
+            ename=ename.replace(/\-\d+/,"");
             _This.fSearchUserDpData(ename, function (result) {
-                //console.log("fSelectNameItem-------》",result);
                 if (result.code == 0 && result.data) {
-                    if (_This.routerParam.adddiag && result.data.list.length == 1 && result.data.list[0].name == _This.oCustomer.name) {
+                   // if (_This.routerParam.adddiag && result.data.list.length == 1 && result.data.list[0].name == _This.oCustomer.name) {
+                    if (_This.routerParam.adddiag && result.data.list.length == 1) {
+                        //console.log("get into set data");
                         result.data.list[0].gender = result.data.list[0].gender + "";
                         result.data.list[0].birthday = result.data.list[0].birthday ? _.date2String(new Date(parseInt(result.data.list[0].birthday)), "yyyy-MM-dd") : "";
                         _This.oCustomer = result.data.list[0];
 
                     } else {
                         // _This.oCustomer.name=ename;
+                        _This.oCustomer={};
+                        _This.oCustomer.gender="2";
                     }
-                    _This.oCustomer.name = ename;
+                   // _This.oCustomer.name = ename;
+                    _This.temOcustomerName=ename.replace(/\-\d+/,"");
                 }
             });
         },
@@ -784,17 +786,11 @@ export default {
          * @param cid
          */
         fUpdateCustomer(cid){
-
-
-
-
-
-
-
             let _This = this;
             _This.userUpdateCommitMask=true;
 
             let postData = _This.oCustomer || {};
+            postData.name=_This.temOcustomerName;
             if(!postData.name||postData.name.trim().length<=0){
                 _This.$message.error('客户姓名不能为空');
                 _This.userUpdateCommitMask=false;
@@ -805,8 +801,14 @@ export default {
                 _This.userUpdateCommitMask=false;
                 return false;
             }
+
+            if(typeof(postData.birthday)=="string"){
+                postData.birthday=Date.parse(postData.birthday);
+            }
+
             postData.birthday = postData.birthday ? postData.birthday.valueOf() : "";
             postData.diagnoseId = _This.routerParam.diagid || "";
+           // console.log("postData------->",postData,typeof(postData.birthday));
             // console.log("new save user info=====>", _This.oCustomer);//oCustomer ///diagnoseId
             _.ajax({
                 url: '/faceDiagnose/newFaceDiagnose',

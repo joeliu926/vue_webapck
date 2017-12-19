@@ -277,7 +277,7 @@
                     <div class="cust-input">
                         <template>
                             <el-select
-                                    v-model="oCustomer.name"
+                                    v-model="temOcustomerName"
                                     :filterable="true"
                                     :remote="true"
                                     placeholder="请输入关键词"
@@ -287,8 +287,8 @@
                                 <el-option
                                         v-for="item in oNameList"
                                         :key="item.name"
-                                        :label="item.name"
-                                        :value="item.name">
+                                        :label="item.name+'-'+item.phoneNum"
+                                        :value="item.name+'-'+item.phoneNum">
                                 </el-option>
                             </el-select>
                         </template>
