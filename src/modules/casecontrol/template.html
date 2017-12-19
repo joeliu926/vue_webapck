@@ -287,8 +287,8 @@
                                 <el-option
                                         v-for="item in oNameList"
                                         :key="item.name"
-                                        :label="item.name+'-'+item.phoneNum"
-                                        :value="item.name+'-'+item.phoneNum">
+                                        :label="item.name+'-'+(item.phoneNum||'无电话号码')"
+                                        :value="item">
                                 </el-option>
                             </el-select>
                         </template>
