@@ -36,6 +36,12 @@
         .nav-logo{
           margin-left: 30px;
         }
+        .nav-text{
+            line-height: 40px;
+            height: 40px;
+
+            vertical-align: super;
+        }
         .nav-logo:before{
             content: url("../../common/img/logo.png");
             position: relative;
