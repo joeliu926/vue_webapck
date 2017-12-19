@@ -652,7 +652,7 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
-            // console.log("-=-=-=-=进入模糊-=-=-=-",ename,this.oCustomer.name,"000000-=-=-=-");
+
             var _This = this;
             if (_This.oCustomer.name == "" || ename == "") {
                 return false;
@@ -661,7 +661,7 @@ export default {
                 // console.log("fGetCustomerList-------》",result);
                 if (result.code == 0 && result.data) {
                     _This.oNameList = result.data.list;
-                    _This.oCustomer.name = ename;
+                    _This.oCustomer.name =  ename;
                 }
             });
         },
@@ -669,7 +669,7 @@ export default {
          * 选择下拉的名称
          */
         fSelectNameItem(ename){
-            // console.log("-=-=-=-=-=-choose=-=rrrr-=-=-=-=-=-=-",ename);
+
             let _This = this;
             if (!_This.routerParam.adddiag) {
                 return false;

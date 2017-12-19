@@ -417,7 +417,7 @@
                 bottom: 192px;
                /* top:165px;*/
                 top:160px;
-            /*    width: 102%;*/
+                width: 100%;
                 border-top: 2px solid transparent;
                 .sel-items-ct{
                     background-color: #17182B;
