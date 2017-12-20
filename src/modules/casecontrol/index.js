@@ -654,10 +654,6 @@ export default {
          */
         fGetCustomerList(ename){
             var _This = this;
-            _This.temOcustomerName=ename;
-    /*        if (!_This.oCustomer.name) {
-                _This.oCustomer.name=ename;
-            }*/
             if (!_This.routerParam.adddiag) {
                 return false;
             }
@@ -668,6 +664,7 @@ export default {
                 if (result.code == 0 && result.data) {
                     _This.oNameList = result.data.list;
                    // _This.oCustomer.name = ename;
+                    _This.temOcustomerName=ename;
                 }
             });
         },
@@ -679,34 +676,38 @@ export default {
             if (!_This.routerParam.adddiag) {
                 return false;
             }
-            ename=ename.replace(/\-\d+/,"");
+            if(typeof(ename)=="object"){
+                _This.oCustomer=ename;
+                _This.oCustomer.gender = ename.gender + "";
+                _This.oCustomer.birthday = ename.birthday ? _.date2String(new Date(parseInt(ename.birthday)), "yyyy-MM-dd"):"";
+                _This.temOcustomerName=ename.name;
+                return false;
+            }
             _This.fSearchUserDpData(ename, function (result) {
                 if (result.code == 0 && result.data) {
-                   // if (_This.routerParam.adddiag && result.data.list.length == 1 && result.data.list[0].name == _This.oCustomer.name) {
-                    if (_This.routerParam.adddiag && result.data.list.length == 1) {
-                        //console.log("get into set data");
-                        result.data.list[0].gender = result.data.list[0].gender + "";
-                        result.data.list[0].birthday = result.data.list[0].birthday ? _.date2String(new Date(parseInt(result.data.list[0].birthday)), "yyyy-MM-dd") : "";
-                        _This.oCustomer = result.data.list[0];
-
+                    if (result.data.list.length>0) {
+                      //  _This.temOcustomerName=aEname[0];
                     } else {
-                        // _This.oCustomer.name=ename;
                         _This.oCustomer={};
                         _This.oCustomer.gender="2";
                     }
-                   // _This.oCustomer.name = ename;
-                    _This.temOcustomerName=ename.replace(/\-\d+/,"");
+                    _This.temOcustomerName=ename.split("-")[0];
                 }
             });
         },
         fSearchUserDpData(ename, callback){
+            let oPData={};
+            let aEname=ename.split("-");
+            oPData.fieldValue=/\d{8,11}/.test(aEname[1])?aEname[1]:aEname[0];
+            oPData.searchField=/\d{8,11}/.test(aEname[1])?"phoneNum":"name";
+
             var postData = {
                 startDate: "",
                 endDate: "",
                 pageNo: 1,
                 pageSize: 6,
-                fieldValue: ename,
-                searchField: "name"
+                fieldValue: oPData.fieldValue,
+                searchField: oPData.searchField
             };
             _.ajax({
                 url: '/customers/customerlist',
