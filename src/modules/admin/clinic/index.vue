@@ -5,7 +5,19 @@
 
 <style lang="scss">
     .admin-clinic {
-        .admin-rbox{height: 100%; width: 82%;display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;}
-        .admin-lbox{height: 100%; width:18%; display: inline-block;padding:12px;box-sizing: border-box;}
+        .fram-box{
+            height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
+        }
+        .admin-lbox{  width:17%;  }
+        .admin-rbox{width: 82%;
+            .out-box-border{
+                width: 100%;
+                .map-ct{
+                    width: 100%;
+                    height: 400px;
+                }
+            }
+        }
+
     }
 </style>

@@ -4,13 +4,13 @@
 </script>
 
 <style lang="scss">
-    .nav-content{
+    .nav-admin-content{
          line-height: 60px;
          height: 60px;
          overflow: hidden;
          color: white;
          box-sizing: border-box;
-         padding: 0 30px;
+         padding: 0 0 0 10px;
         .el-col:first-child{
             text-align: left;
         }
@@ -52,22 +52,32 @@
         .nav-select-list{
             cursor: pointer;
         }
-    }
-
-
-
-    .nav-user-img{
-        height: 40px;
-        width: 40px;
-        border-radius: 30px;
-    }
-    .nav-img-content{
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
-        float: right;
-        position: relative;
-        top:10px;
+        .nav-user-img{
+            height: 40px;
+            width: 40px;
+            border-radius: 30px;
+        }
+        .nav-img-content{
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            float: right;
+            position: relative;
+            top:10px;
+        }
+        .nav-back-img{
+            height: 60px;
+            width: 60px;
+            box-sizing: border-box;
+            float: right;
+            vertical-align: middle;
+            margin-left: 20px;
+            padding: 17px;
+            cursor: pointer;
+        }
+        .nav-back-img:hover{
+            background:#524DA7;
+        }
     }
     .nav-content-gradient{
         background: -moz-linear-gradient(left, #4962D4 0%, #4F3CCA 100%);

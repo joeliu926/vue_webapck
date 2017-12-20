@@ -91,7 +91,10 @@ export default {
                         _This.$router.push("/login");
                     }
                 }, 'withCredentials');
+            }else if(cmd=="backmanage"){
+                _This.$router.push("/admin/clinic");
             }
+
 
         },
         setDefaultRoute(){
