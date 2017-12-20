@@ -1,9 +1,10 @@
 <template src="./template.html"></template>
 <script src="./index.js">
+
 </script>
 
 <style lang="scss">
-    .admin-clinic {
+    .admin-clinic-edit {
         .b-d{
             border: 1px solid red;
         }
@@ -23,6 +24,14 @@
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
+                height: 20px;
+                .s-title-l{
+                    float: left;
+                }
+                .s-title-r{
+                float: right;
+                    color: red;
+                }
             }
             .clinic-record{
                 .record-text-ct{
@@ -44,13 +53,16 @@
                 }
             }
             .clinic-info-ct{
-               .item-title{
-                   text-align: right;
-                   padding: 12px;
-               }
+                .item-title{
+                    text-align: right;
+                    padding: 12px;
+                }
                 .item-value{
                     text-align: left;
                     padding: 12px;
+                }
+                .clinic-txt{
+                    width: 250px;
                 }
             }
             .out-box-border{

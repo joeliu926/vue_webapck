@@ -25,6 +25,7 @@ aComponent.forEach(function (item,index) {
     oComponent[item]= r => require.ensure([], () => r(require('../modules/'+item+'/index.vue')), item);
 });*/
 var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/index.vue')), 'case_base');
+var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
 var admin_nav = r => require.ensure([], () => r(require('../modules/admin/nav/index.vue')), 'case_base');
 var admin_tree = r => require.ensure([], () => r(require('../modules/admin/tree/index.vue')), 'case_base');
 
@@ -138,13 +139,20 @@ var routerConfig = {
                 default:test,
                 nav:nav
             }
-        }
-        ,
+        },
         {
             name:'/admin/clinic',
             path: '/admin/clinic',
             components:{
                 default:admin_clinic,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/clinic/edit',
+            path: '/admin/clinic/edit',
+            components:{
+                default:edit_clinic,
                 nav:admin_nav
             }
         }

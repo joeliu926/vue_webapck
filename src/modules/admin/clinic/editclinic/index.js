@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 
-import tree from '../tree/index.vue';
+import tree from '../../tree/index.vue';
 
 export default {
     components: {
@@ -23,7 +23,7 @@ export default {
         var map = new BMap.Map("map-content");
         var point = new BMap.Point(116.331398,39.897445);
         map.centerAndZoom(point,12);
-      //  map.centerAndZoom("北京",12);
+        //  map.centerAndZoom("北京",12);
         function myFun(result){
             var cityName = result.name;
             console.log("result----------->",result.center);
@@ -46,7 +46,7 @@ export default {
             return document.getElementById(id);
         }
 
-                     // 初始化地图,设置城市和地图级别。
+        // 初始化地图,设置城市和地图级别。
 
         var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
             {"input" : "suggestId"
@@ -103,8 +103,13 @@ export default {
     methods: {
         fEditClinic(){
             console.log("edit clinic-----");
-            this.$router.push("/admin/clinic/edit");
         },
+        fEditCancel(){
+            this.$router.push("/admin/clinic");
+        },
+        fEditSave(){
+            this.$router.push("/admin/clinic");
+        }
     },
     watch: {
 

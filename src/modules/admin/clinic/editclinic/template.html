@@ -1,4 +1,4 @@
-<div class="admin-clinic">
+<div class="admin-clinic-edit">
     <div class="fram-box admin-lbox">
         <tree></tree>
     </div>
@@ -6,34 +6,33 @@
         <div class="clinic-record">
             <div class="record-text-ct">
                 <div>
-                    <span class="sel-title">诊所档案</span>
+                    <span class="sel-title">诊所档案编辑</span>
                 </div>
                 <p class="org-name">云像美疗机构</p>
             </div>
             <div class="clinic-edit-ct">
-                <el-button @click="fEditClinic">编辑</el-button>
+                <el-button @click="fEditSave">保存</el-button>
+                <el-button @click="fEditCancel">取消</el-button>
             </div>
         </div>
-
-
-        <div class="segment-title f-14">一般信息</div>
+        <div class="segment-title f-14"><span class="s-title-l">一般信息</span> <span class="s-title-r">*必填</span></div>
         <div class="clinic-info-ct">
             <el-row>
                 <el-col :span="12" style="text-align: left;">
-                    <el-col :span="12" class="item-title f-14">
-                        <span class="">诊所名</span>
-                    </el-col>
-                    <el-col :span="12" class="item-value f-14">
-                        <span class="">哈罗美云诊所</span>
-                    </el-col>
+                        <el-col :span="12" class="item-title f-14">
+                            <span class="">诊所名</span>
+                        </el-col>
+                        <el-col :span="12" class="item-value f-14">
+                            <el-input class="clinic-txt" value="哈罗美云诊所"></el-input>
+                        </el-col>
                 </el-col>
                 <el-col :span="12">
-                    <el-col :span="12" class="item-title f-14">
-                        <span class="">资质</span>
-                    </el-col>
-                    <el-col :span="12" class="item-value f-14">
-                        <span class="">哈罗美云诊所</span>
-                    </el-col>
+                        <el-col :span="12" class="item-title f-14">
+                            <span class="">资质</span>
+                        </el-col>
+                        <el-col :span="12" class="item-value f-14">
+                            <el-input class="clinic-txt" value="资质"></el-input>
+                        </el-col>
                 </el-col>
             </el-row>
             <el-row>
@@ -42,7 +41,8 @@
                         <span class="">电话</span>
                     </el-col>
                     <el-col :span="12" class="item-value f-14">
-                        <span class="">15650788555</span>
+                        <el-input class="clinic-txt" value="15650788555"></el-input>
+
                     </el-col>
                 </el-col>
                 <el-col :span="12">
@@ -50,7 +50,7 @@
                         <span class="">营业时间</span>
                     </el-col>
                     <el-col :span="12" class="item-value f-14">
-                        <span class="">上午08:00-下午18:00</span>
+                        <el-input class="clinic-txt" value="上午08:00-下午18:00"></el-input>
                     </el-col>
                 </el-col>
             </el-row>
@@ -63,14 +63,13 @@
                     </el-col>
                     <el-col :span="12" class="item-value f-14">
                         <div class="">
-                            <img src="../../../common/img/shuhou.png"/>
+                            <img src="../../../../common/img/shuhou.png"/>
                         </div>
                     </el-col>
                 </el-col>
             </el-row>
         </div>
-
-        <div class="segment-title f-14">地址</div>
+        <div class="segment-title f-14"><span class="s-title-l">地址</span> <span class="s-title-r">*必填</span></div>
         <div class="clinic-info-ct">
             <el-row>
                 <el-col :span="12">
@@ -78,15 +77,16 @@
                         <span class="">地址</span>
                     </el-col>
                     <el-col :span="12" class="item-value f-14">
-                        <span class="">北京市兆维工业园C2-2</span>
+                        <div id="r-result"><input type="text" id="suggestId" size="20" value="百度" style="width:250px;"/></div>
+                        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:250px;height:auto;display: none;"></div>
                     </el-col>
                 </el-col>
             </el-row>
+
+
         </div>
-        <div class="out-box-border" style="" >
-            <div id="map-content" class="map-ct"></div>
-            <div id="r-result">请输入:<input type="text" id="suggestId" size="20" value="百度" style="width:250px;"/></div>
-            <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
-        </div>
+    <div class="out-box-border" >
+        <div id="map-content" class="map-ct"></div>
+    </div>
     </div>
 </div>
