@@ -70,12 +70,12 @@
                     <el-row class="info-cover border-bottom">
                         <p>案例封面</p>
                         <el-col :span="24" type="flex" class="cover-img clearfix" >
-                            <div class="left fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.frondFile.url+')':''] }">
-                              <!--  <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">-->
+                            <div v-if="acaseuserlist.frondFile.url" class="left fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.frondFile.url+')':''] }">
+                                 <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">
                                 <span>before</span>
                             </div>
-                            <div class="right fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.backFile.url+')':''] }">
-                               <!-- <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">-->
+                            <div v-if="acaseuserlist.frondFile.url" class="right fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.backFile.url+')':''] }">
+                                 <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">
                                 <span>after</span>
                             </div>
 
