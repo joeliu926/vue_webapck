@@ -37,8 +37,8 @@ var backcaselist = r => require.ensure([], () => r(require('../modules/admin/bac
 var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaseadd/index.vue')), 'backcaseadd');
 var backcaseedit = r => require.ensure([], () => r(require('../modules/admin/backcaseedit/index.vue')), 'backcaseedit');
 
-
-
+var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
+var admin_rolelist = r => require.ensure([], () => r(require('../modules/admin/rolelist/index.vue')), 'admin_rolelist');
 
 var routerConfig = {
     linkActiveClass: 'active',
@@ -221,7 +221,24 @@ var routerConfig = {
                 default:backcaseedit,
                 nav:admin_nav
             }
+        }, {
+            name:'/admin/rolelist',
+            path: '/admin/rolelist',
+            components:{
+                default:admin_rolelist,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/userlist',
+            path: '/admin/userlist',
+            components:{
+                default:admin_userlist,
+                nav:admin_nav
+            }
         }
+
+
+
     ]
 }
 
@@ -229,8 +246,6 @@ var router = new VueRouter(routerConfig);
 
 router.beforeEach((to, from, next)=>{
     let path=to.path;
-
-    console.log('path',path);
     if(path=='/showcase'){
         next();
         return;
