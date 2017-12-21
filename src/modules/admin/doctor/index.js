@@ -9,6 +9,7 @@ export default {
     data () {
         return {
             doctorlist:'医生列表',
+            aDoctorlist:[],
         };
     },
     created() {
@@ -21,7 +22,8 @@ export default {
 
     },
     methods: {
-        goback(){
+        fCreateDoctor(){
+            this.$router.push("/admin/doctor/edit");
         },
         gohome(){
             this.$router.push("/");

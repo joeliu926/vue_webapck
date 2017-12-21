@@ -5,11 +5,38 @@
 
 <style lang="scss">
     .doctor-content{
+        .f-14{
+            font-size: 14px;
+            color: #999999;
+        }
+        .f-16{
+            font-size: 16px;
+            color: #333333;
+        }
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
         .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;}
+        .admin-rbox{width: 82%;
+            .doctor-record{
+                .record-text-ct{
+                    padding: 24px 0;
+                    .sel-title{
+
+                    }
+                    .org-name{
+                        margin-top: 10px;
+                    }
+                }
+                .doctor-edit-ct{
+                    text-align: right;
+                    padding: 24px;
+                }
+            }
+            .doctor-list-content{
+
+            }
+        }
     }
 
 </style>
