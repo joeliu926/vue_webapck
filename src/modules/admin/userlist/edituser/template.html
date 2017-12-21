@@ -1,0 +1,105 @@
+<div class="doctor-edit-content">
+    <div class="fram-box admin-lbox">
+        <tree></tree>
+    </div><div class="fram-box admin-rbox">
+    <div class="out-box-border" style="padding: 12px;">
+        <div class="doctor-record">
+            <div class="record-text-ct">
+                <div>
+                    <span class="sel-title">用户创建</span>
+                </div>
+            </div>
+            <div class="doctor-edit-ct">
+                <el-button @click="fEditSave">保存</el-button>
+                <el-button @click="fEditSave">保存并新建</el-button>
+                <el-button @click="fEditCancel">取消</el-button>
+            </div>
+        </div>
+        <div class="segment-title f-14">
+            <span class="s-title-l">一般信息</span>
+            <span class="s-title-r">*必填信息</span>
+        </div>
+        <div class="doctor-info-ct">
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
+                    <el-input class="row-item-value" value="诊所"></el-input>
+                </div>
+            </div>
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 别名</span>
+                    <el-input class="row-item-value" value="诊所"></el-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="segment-title f-14">
+            <span class="s-title-l">联系方式</span>
+            <span class="s-title-r">*必填信息</span>
+        </div>
+        <div class="doctor-info-ct">
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 手机</span>
+                    <el-input class="row-item-value" value="手机"></el-input>
+                </div>
+            </div>
+
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 微信</span>
+                    <el-input class="row-item-value" value="手机"></el-input>
+                </div>
+            </div>
+
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 微信绑定码</span>
+                    <el-input class="row-item-value" value="手机"></el-input>
+                </div>
+            </div>
+
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14"><i class="i-must">*</i>头像</span>
+                    <img src="../../../../common/img/shuhou.png"/>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="segment-title f-14"><span class="s-title-l">工作信息</span> <span class="s-title-r">*必填信息</span></div>
+        <div class="doctor-info-ct">
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 角色</span>
+                    <div style="display: inline-block;    max-width: 350px; " >
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 用户名</span>
+                    <el-input class="row-item-value" value="职称"></el-input>
+                </div>
+            </div>
+
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 重置密码</span>
+                    <el-button @click="resetPassword">重置</el-button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>

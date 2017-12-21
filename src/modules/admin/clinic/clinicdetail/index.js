@@ -9,19 +9,22 @@ export default {
         tree
     },
     data () {
-        return {
-            majorBusiness:"",
-            oMajorBusinessList:[],
-            oProductCode:[],
-            oSelectMajorItems:[],
-            inauguralState:"",
-            oClinicRank:["诊所","门诊部","整形外科医院","一级民营医院","二级医院","三级甲等医院"],
-            clinicRank:""
-
-        };
+        return {};
     },
     created() {
+        let postData = {
+            faceId:""
+        };
+        _.ajax({
+            url: '/clinic/test',
+            method: 'POST',
+            data: postData,
+            success: function (result) {
+                console.log("test--------", result);
 
+
+            }
+        }, 'withCredentials');
     },
     mounted(){
         let currentCity="";
@@ -108,65 +111,8 @@ export default {
     },
     methods: {
         fEditClinic(){
-            console.log("edit clinic-----");
-        },
-        fEditCancel(){
-            this.$router.push("/admin/clinic/detail");
-        },
-        fEditSave(){
-            this.$router.push("/admin/clinic/detail");
-        },
-        /**
-         * 选择主营项目
-         */
-        fSelectMajorItem(eCode){
-            let _This = this;
-            if(_This.oProductCode.indexOf(eCode)>=0){
-                return false;
-            }
-            _This.oMajorBusinessList.forEach(item => {
-                    if (item.productCode == eCode) {
-                        let productItem = {
-                            productCode: item.productCode,
-                            productName: item.productName
-                        };
-                        _This.oProductCode.push(eCode);
-                        _This.oSelectMajorItems.push(productItem);
-                    }
-            });
-        },
-        /**
-         * 查询主营项目
-         */
-        fGetMajorList(ename){
-            console.log("search auto ====>",ename);
-            if (ename.trim() == "") {
-                return false;
-            }
-            let _This = this;
-            let postData = {
-                productName: ename
-            };
-            _.ajax({
-                url: '/product/searchList',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    if (result.code == 0 && result.data) {
-                        _This.oMajorBusinessList = result.data;
-                    }
-                }
-            }, 'withCredentials');
-        },
-        fRemoveMajor(eCode){
-            let _This = this;
-            let lindex=_This.oProductCode.indexOf(eCode);
-            _This.oProductCode.splice(lindex,1);
-            _This.oSelectMajorItems.splice(lindex,1);
-
+            this.$router.push("/admin/clinic/edit");
         }
     },
-    watch: {
-
-    }
+    watch: {}
 }

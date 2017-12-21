@@ -26,6 +26,7 @@ aComponent.forEach(function (item,index) {
 });*/
 var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/index.vue')), 'case_base');
 var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
+var detail_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/clinicdetail/index.vue')), 'detailclinic');
 var admin_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/index.vue')), 'admin_doctor');
 var edit_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/editdoctor/index.vue')), 'editdoctor');
 var detail_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/doctordetail/index.vue')), 'doctordetail');
@@ -37,8 +38,9 @@ var backcaselist = r => require.ensure([], () => r(require('../modules/admin/bac
 var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaseadd/index.vue')), 'backcaseadd');
 var backcaseupdata = r => require.ensure([], () => r(require('../modules/admin/backcaseupdata/index.vue')), 'backcaseupdata');
 
-
-
+var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
+var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
+var admin_rolelist = r => require.ensure([], () => r(require('../modules/admin/rolelist/index.vue')), 'admin_rolelist');
 
 var routerConfig = {
     linkActiveClass: 'active',
@@ -160,6 +162,22 @@ var routerConfig = {
             }
         },
         {
+            name:'/admin/clinic/edit',
+            path: '/admin/clinic/edit',
+            components:{
+                default:edit_clinic,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/clinic/detail',
+            path: '/admin/clinic/detail',
+            components:{
+                default:detail_clinic,
+                nav:admin_nav
+            }
+        },
+        {
             name:'/admin/doctor',
             path: '/admin/doctor',
             components:{
@@ -180,14 +198,6 @@ var routerConfig = {
             path: '/admin/doctor/detail',
             components:{
                 default:detail_doctor,
-                nav:admin_nav
-            }
-        },
-        {
-            name:'/admin/clinic/edit',
-            path: '/admin/clinic/edit',
-            components:{
-                default:edit_clinic,
                 nav:admin_nav
             }
         },
@@ -221,7 +231,31 @@ var routerConfig = {
                 default:backcaseupdata,
                 nav:admin_nav
             }
+        }, {
+            name:'/admin/rolelist',
+            path: '/admin/rolelist',
+            components:{
+                default:admin_rolelist,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/userlist',
+            path: '/admin/userlist',
+            components:{
+                default:admin_userlist,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/userlist/edit',
+            path: '/admin/userlist/edit',
+            components:{
+                default:admin_userlist_edit,
+                nav:admin_nav
+            }
         }
+
+
+
     ]
 }
 
@@ -229,8 +263,6 @@ var router = new VueRouter(routerConfig);
 
 router.beforeEach((to, from, next)=>{
     let path=to.path;
-
-    console.log('path',path);
     if(path=='/showcase'){
         next();
         return;

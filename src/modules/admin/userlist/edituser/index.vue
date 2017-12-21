@@ -21,8 +21,8 @@
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:15%;  }
+        .admin-rbox{width: 85%;
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
@@ -69,18 +69,10 @@
                         width: 500px;
                         .row-item-title{
                             display: inline-block;
-                            width: 80px;
+                            width: 100px;
                         }
                         .row-item-value{
                             width: 200px;
-                        }
-                        .i-close-p{
-                            position: absolute;top: -5px;right: -5px;
-                            border-radius: 15px;
-                            cursor: pointer;
-                        }
-                        .el-icon-pa-close:before{
-                            color: #cc0000;
                         }
                         .goodat{
                             display: inline-block;
@@ -89,7 +81,6 @@
                             padding:3px 10px;
                             border-radius: 4px;
                             color: #ffffff;
-                            position: relative;
                         }
                     }
                 }

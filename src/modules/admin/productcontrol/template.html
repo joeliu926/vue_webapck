@@ -3,10 +3,10 @@
         <tree></tree>
     </div>
     <div class="fram-box admin-rbox">
-        <!--<div class="content" style="">
+        <div class="content" style="">
             <div class="search">
                 <p style="margin-top:20px">
-                    分类索引</p>
+                    项目选择</p>
                 <div class="case-left out-box-border" style="font-size:14px">
                     <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
                     <br>
@@ -18,7 +18,7 @@
                                 <p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p>
                                 <div style="height:12px"></div>
                                 <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2">
-                                    <a  @click="fCaselibrary(list2.productCode)" class="changecol">
+                                    <a  @click="forshow(list2)"  :class="getClass(list2)">
                                         <p class="p" style="font-size:14px">{{list2.productName}}</p>
                                     </a>
                                 </div>
@@ -27,10 +27,12 @@
                     </div>
                 </div>
             </div>
-        </div>-->
-        <div v-for="(list1,index) in tasks1" >
-            <a  @click="fortask2(list1.id)"  :class="{cur:list1.show==1}" >{{list1.text}}<br/></a>
         </div>
+
+        <!--<div v-for="m in tasks1" >
+            <a   @click="forshow(m)"  :class="getClass(m)" >{{m.id+m.text}}<br/></a>
+
+        </div>-->
 
     </div>
 </div>

@@ -1,0 +1,51 @@
+<div class="rolelist-content">
+    <div class="fram-box admin-lbox">
+        <tree></tree>
+    </div><div class="fram-box admin-rbox ">
+        <div class="out-box-border" style="padding: 12px;">
+            <div class="rolelist-record">
+                <div class="record-text-ct">
+                    <div>
+                        <span class="sel-title f-16">全部角色</span>
+                    </div>
+                    <p class="org-name f-14">在此页面上，您可以查看全部角色</p>
+                </div>
+            </div>
+
+            <div class="rolelist-list-content">
+                <el-table
+                        :data="Rolelist"
+                        style="width: 100%"
+                        :default-sort = "{prop: 'date', order: 'descending'}"
+                >
+                    <el-table-column
+                            prop="id"
+                            label="名称"
+                            min-width="20%">
+                    </el-table-column>
+                    <el-table-column
+                            prop="id"
+                            label="权限"
+                            min-width="50%">
+                    </el-table-column>
+                    <el-table-column
+                            prop="id"
+                            label="状态"
+                            min-width="20%">
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div class="rolelist-pagination-align">
+                <el-pagination
+                        @current-change="handleCurrentChange"
+                        layout="prev, pager, next"
+                        :page-size="pageSize"
+                        :total="count">
+                </el-pagination>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

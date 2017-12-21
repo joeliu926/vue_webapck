@@ -27,14 +27,14 @@ export default {
                 children: [{
                     id:'admin_user_user',
                     label: '用户',
-                    linkUrl:'',
-                    hightline:true,
-                    needinit:true
+                    linkUrl:'/admin/userlist',
+                    hightline:false,
+                    needinit:false
 
                 },{
                     id:'admin_user_role',
                     label: '角色',
-                    linkUrl:'',
+                    linkUrl:'/admin/rolelist',
                     hightline:false,
                     needinit:false
 
@@ -49,28 +49,28 @@ export default {
                 children: [{
                     id:'admin_clinic_info',
                     label: '诊所信息',
-                    linkUrl:'',
+                    linkUrl:'/admin/clinic/detail',
                     hightline:false,
                     needinit:false
 
                 }, {
                     id:'admin_clinic_prod',
                     label: '项目',
-                    linkUrl:'',
+                    linkUrl:'/admin/productcontrol',
                     hightline:false,
                     needinit:false
 
                 }, {
                     id:'admin_clinic_doctor',
                     label: '医生',
-                    linkUrl:'',
+                    linkUrl:'/admin/doctor',
                     hightline:false,
                     needinit:false
 
                 }, {
                     id:'admin_clinic_case',
                     label: '案例',
-                    linkUrl:'',
+                    linkUrl:'/admin/backcaselist',
                     hightline:false,
                     needinit:false
                 }]
@@ -108,10 +108,16 @@ export default {
         };
     },
     created() {
+        this.treeData.forEach(m=>{
+            m.children&&m.children.forEach(ms=>{
+                if(ms.linkUrl == this.$router.history.current.fullPath){
+                    ms.hightline =true;
+                }
+            })
+        });
 
     },
     mounted(){
-        //document.querySelector('#admin_user_role').parentNode.className += ' el-tree-hight';
     },
     destroyed() {
 
@@ -121,6 +127,7 @@ export default {
             this.removeAllHightLine();
             let tickPoint =data.id.split('_');
             if(tickPoint.length>2){
+                this.$router.push(data.linkUrl);
                 data.hightline =true;
             }
         },
@@ -138,7 +145,6 @@ export default {
                 </span>
                 </span>
                 );
-
             }else{
                 if(node.data.needinit)
                 {
@@ -165,13 +171,12 @@ export default {
         setHightline(params){
             this.$nextTick(function () {
                 document.querySelector('#'+params).parentNode.className = 'el-tree-node__content el-tree-hight';
-            })
-
+            });
         },
         removeHightline(params){
             this.$nextTick(function () {
                 document.querySelector('#'+params).parentNode.className = 'el-tree-node__content';
-            })
+            });
         },
         removeAllHightLine(params){
             this.treeData.forEach(m=>{

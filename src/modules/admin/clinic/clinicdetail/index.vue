@@ -4,11 +4,9 @@
 </script>
 
 <style lang="scss">
-    .doctor-edit-content{
-        .b-d{border: 1px solid red;}
-        .i-must{
-            color: #ff0000;
-            padding: 5px;
+    .detail-clinic {
+        .b-d{
+            border: 1px solid red;
         }
         .f-14{
             font-size: 14px;
@@ -21,21 +19,13 @@
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:17%;}
+        .admin-rbox{width: 80%;
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
-                height: 20px;
-                .s-title-l{
-                    float: left;
-                }
-                .s-title-r{
-                    float: right;
-                    color: red;
-                }
             }
-            .doctor-record{
+            .clinic-record{
                 .record-text-ct{
                     padding: 24px 0;
                     border-bottom: 1px solid #eaeaea;
@@ -49,7 +39,7 @@
                         margin-top: 10px;
                     }
                 }
-                .doctor-edit-ct{
+                .clinic-edit-ct{
                     text-align: center;
                     padding: 24px;
                     .el-button:hover{
@@ -59,42 +49,31 @@
                     }
                 }
             }
-            .doctor-info-ct{
-
+            .clinic-info-ct{
                 padding: 20px 0;
                 .row-ct{
                     padding: 10px;
                     .row-item{
-                        margin: 0 20%;
-                        width: 500px;
+                        display: inline-block;
+                        width: 400px;
                         .row-item-title{
                             display: inline-block;
                             width: 80px;
+
                         }
                         .row-item-value{
                             width: 200px;
                         }
-                        .i-close-p{
-                            position: absolute;top: -5px;right: -5px;
-                            border-radius: 15px;
-                            cursor: pointer;
-                        }
-                        .el-icon-pa-close:before{
-                            color: #cc0000;
-                        }
-                        .goodat{
-                            display: inline-block;
-                            margin-right: 10px;
-                            background: #9287EB;
-                            padding:3px 10px;
-                            border-radius: 4px;
-                            color: #ffffff;
-                            position: relative;
-                        }
                     }
+                }
+            }
+            .out-box-border{
+                width: 100%;
+                .map-ct{
+                    width: 100%;
+                    height: 400px;
                 }
             }
         }
     }
-
 </style>
