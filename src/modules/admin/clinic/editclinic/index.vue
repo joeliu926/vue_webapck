@@ -54,6 +54,11 @@
                 .clinic-edit-ct{
                     text-align: center;
                     padding: 24px;
+                    .el-button:hover{
+                        background-color: #9083ED;
+                        color: #ffffff;
+                        border: 1px solid #9083ED;
+                    }
                 }
             }
             .clinic-info-ct{
@@ -70,6 +75,14 @@
                         }
                         .row-item-value{
                             width: 200px;
+                        }
+                        .up-logo{
+                            width: 80px;
+                            height: 80px;
+                        }
+                        .format-ct{
+                            display: inline-block;
+                            vertical-align: bottom;
                         }
                     }
                 }

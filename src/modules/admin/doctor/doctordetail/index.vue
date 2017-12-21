@@ -5,6 +5,14 @@
 
 <style lang="scss">
     .doctor-detail-content{
+        .f-14{
+            font-size: 14px;
+            color: #999999;
+        }
+        .f-16{
+            font-size: 16px;
+            color: #333333;
+        }
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
@@ -39,6 +47,11 @@
                 .doctor-edit-ct{
                     text-align: center;
                     padding: 24px;
+                    .el-button:hover{
+                        background-color: #9083ED;
+                        color: #ffffff;
+                        border: 1px solid #9083ED;
+                    }
                 }
             }
             .doctor-info-ct{
@@ -56,7 +69,12 @@
                             width: 200px;
                         }
                         .goodat{
-
+                            display: inline-block;
+                            margin-right: 10px;
+                            background: #9287EB;
+                            padding:3px 10px;
+                            border-radius: 4px;
+                            color: #ffffff;
                         }
                     }
                 }

@@ -25,7 +25,14 @@
             </div>
             <div class="row-item" >
                 <span class="row-item-title f-14"><i class="i-must">*</i>资质</span>
-                <el-input class="row-item-value"  value="诊所资质"></el-input>
+                <el-select v-model="inauguralState" placeholder="请选择">
+                    <el-option
+                            v-for="item in oInaugural"
+                            :key="item.key"
+                            :label="item.key"
+                            :value="item.key">
+                    </el-option>
+                </el-select>
             </div>
         </div>
             <div class="row-ct">
@@ -41,7 +48,12 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14"><i class="i-must">*</i>Logo</span>
-                    <img src="../../../../common/img/shuhou.png"/>
+                    <img class="up-logo" src="../../../../common/img/shuhou.png"/>
+                    <div class="format-ct" style="">
+                        <div class="f-14">格式:jpg、jpeg、png、bmp</div>
+                        <div class="f-14">大小：5M以内</div>
+                    </div>
+
 
                 </div>
             </div>

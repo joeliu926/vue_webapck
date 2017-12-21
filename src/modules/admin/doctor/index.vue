@@ -31,10 +31,20 @@
                 .doctor-edit-ct{
                     text-align: right;
                     padding: 24px;
+                    .el-button:hover{
+                        background-color: #9083ED;
+                        color: #ffffff;
+                        border: 1px solid #9083ED;
+                    }
                 }
             }
             .doctor-list-content{
 
+            }
+            .doctor-pagination-align {
+                text-align: right;
+                border: none;
+                margin-top: 5px;
             }
         }
     }

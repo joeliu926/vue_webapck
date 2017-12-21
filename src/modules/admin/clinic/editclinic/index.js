@@ -10,7 +10,8 @@ export default {
     },
     data () {
         return {
-
+            inauguralState:"",
+            oInaugural:[{key:"一级资质"},{key:"二级资质"}]
 
         };
     },
