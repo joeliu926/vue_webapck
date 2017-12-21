@@ -9,14 +9,22 @@ export default {
         tree
     },
     data () {
-        return {
-            inauguralState:"",
-            oInaugural:[{key:"一级资质"},{key:"二级资质"}]
-
-        };
+        return {};
     },
     created() {
+        let postData = {
+            faceId:""
+        };
+        _.ajax({
+            url: '/clinic/test',
+            method: 'POST',
+            data: postData,
+            success: function (result) {
+                console.log("test--------", result);
 
+
+            }
+        }, 'withCredentials');
     },
     mounted(){
         let currentCity="";
@@ -103,16 +111,8 @@ export default {
     },
     methods: {
         fEditClinic(){
-            console.log("edit clinic-----");
-        },
-        fEditCancel(){
-            this.$router.push("/admin/clinic/detail");
-        },
-        fEditSave(){
-            this.$router.push("/admin/clinic/detail");
+            this.$router.push("/admin/clinic/edit");
         }
     },
-    watch: {
-
-    }
+    watch: {}
 }

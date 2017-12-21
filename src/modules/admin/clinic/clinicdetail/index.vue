@@ -4,7 +4,7 @@
 </script>
 
 <style lang="scss">
-    .admin-clinic-edit {
+    .detail-clinic {
         .b-d{
             border: 1px solid red;
         }
@@ -16,26 +16,14 @@
             font-size: 16px;
             color: #333333;
         }
-        .i-must{
-            color: #ff0000;
-            padding: 5px;
-        }
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:17%;}
+        .admin-rbox{width: 80%;
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
-                height: 20px;
-                .s-title-l{
-                    float: left;
-                }
-                .s-title-r{
-                float: right;
-                    color: red;
-                }
             }
             .clinic-record{
                 .record-text-ct{
@@ -67,7 +55,7 @@
                     padding: 10px;
                     .row-item{
                         display: inline-block;
-                        width: 300px;
+                        width: 400px;
                         .row-item-title{
                             display: inline-block;
                             width: 80px;
@@ -75,23 +63,6 @@
                         }
                         .row-item-value{
                             width: 200px;
-                        }
-
-                    }
-                    .logo-ct{
-                        width: 500px;
-                        position: relative;
-                      /*  background: url("../../../../common/img/i-add.png") no-repeat;*/
-
-                        .up-logo{
-                            width: 80px;
-                            height: 80px;
-                            margin-right: 8px;
-                            cursor: pointer;
-                        }
-                        .format-ct{
-                            display: inline-block;
-                            vertical-align: bottom;
                         }
                     }
                 }
@@ -104,6 +75,5 @@
                 }
             }
         }
-
     }
 </style>

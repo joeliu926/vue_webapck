@@ -92,7 +92,7 @@ export default {
                     }
                 }, 'withCredentials');
             }else if(cmd=="backmanage"){
-                _This.$router.push("/admin/clinic");
+                _This.$router.push("/admin/clinic/detail");
             }
 
 
