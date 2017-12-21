@@ -80,6 +80,9 @@
                     }
                     .logo-ct{
                         width: 500px;
+                        position: relative;
+                      /*  background: url("../../../../common/img/i-add.png") no-repeat;*/
+
                         .up-logo{
                             width: 80px;
                             height: 80px;

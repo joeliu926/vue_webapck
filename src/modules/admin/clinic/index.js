@@ -12,7 +12,19 @@ export default {
         return {};
     },
     created() {
+        let postData = {
+            faceId:""
+        };
+        _.ajax({
+            url: '/clinic/test',
+            method: 'POST',
+            data: postData,
+            success: function (result) {
+                console.log("test--------", result);
 
+
+            }
+        }, 'withCredentials');
     },
     mounted(){
         let currentCity="";
