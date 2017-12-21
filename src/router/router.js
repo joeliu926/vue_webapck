@@ -28,7 +28,7 @@ var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/cli
 var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
 var admin_nav = r => require.ensure([], () => r(require('../modules/admin/nav/index.vue')), 'case_base');
 var admin_tree = r => require.ensure([], () => r(require('../modules/admin/tree/index.vue')), 'case_base');
-
+var admin_productcontrol = r => require.ensure([], () => r(require('../modules/admin/productcontrol/index.vue')), 'productcontrol');
 var routerConfig = {
     linkActiveClass: 'active',
     routes: [
@@ -154,6 +154,14 @@ var routerConfig = {
             components:{
                 default:edit_clinic,
                 nav:admin_nav
+            }
+        },
+        {
+            name: '/admin/productcontrol',
+            path: '/admin/productcontrol',
+            components: {
+                default: admin_productcontrol,
+                nav: admin_nav
             }
         }
     ]
