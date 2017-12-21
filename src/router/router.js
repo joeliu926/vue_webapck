@@ -32,6 +32,14 @@ var detail_doctor = r => require.ensure([], () => r(require('../modules/admin/do
 var admin_nav = r => require.ensure([], () => r(require('../modules/admin/nav/index.vue')), 'case_base');
 var admin_tree = r => require.ensure([], () => r(require('../modules/admin/tree/index.vue')), 'case_base');
 var admin_productcontrol = r => require.ensure([], () => r(require('../modules/admin/productcontrol/index.vue')), 'productcontrol');
+
+var backcaselist = r => require.ensure([], () => r(require('../modules/admin/backcaselist/index.vue')), 'backcaselist');
+var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaseadd/index.vue')), 'backcaseadd');
+var backcaseedit = r => require.ensure([], () => r(require('../modules/admin/backcaseedit/index.vue')), 'backcaseedit');
+
+
+
+
 var routerConfig = {
     linkActiveClass: 'active',
     routes: [
@@ -189,6 +197,29 @@ var routerConfig = {
             components: {
                 default: admin_productcontrol,
                 nav: admin_nav
+            }
+        },
+        {
+            name:'/admin/backcaselist',
+            path: '/admin/backcaselist',
+            components:{
+                default:backcaselist,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/backcaseadd',
+            path: '/admin/backcaseadd',
+            components:{
+                default:backcaseadd,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/backcaseedit',
+            path: '/admin/backcaseedit',
+            components:{
+                default:backcaseedit,
+                nav:admin_nav
             }
         }
     ]
