@@ -19,16 +19,19 @@ var caselibrary = r => require.ensure([], () => r(require('../modules/caselibrar
 var casedetail = r => require.ensure([], () => r(require('../modules/casedetail/index.vue')), 'casedetail');
 var triage = r => require.ensure([], () => r(require('../modules/triage/index.vue')), 'triage');
 var case_base = r => require.ensure([], () => r(require('../modules/case_base/index.vue')), 'case_base');
-var doctor = r => require.ensure([], () => r(require('../modules/doctor/index.vue')), 'doctor');
 /*const  aComponent=["login","nav","customers","home","test"];
 var  oComponent={};
 aComponent.forEach(function (item,index) {
     oComponent[item]= r => require.ensure([], () => r(require('../modules/'+item+'/index.vue')), item);
 });*/
 var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/index.vue')), 'case_base');
+var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
+var admin_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/index.vue')), 'admin_doctor');
+var edit_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/editdoctor/index.vue')), 'editdoctor');
+var detail_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/doctordetail/index.vue')), 'doctordetail');
 var admin_nav = r => require.ensure([], () => r(require('../modules/admin/nav/index.vue')), 'case_base');
 var admin_tree = r => require.ensure([], () => r(require('../modules/admin/tree/index.vue')), 'case_base');
-
+var admin_productcontrol = r => require.ensure([], () => r(require('../modules/admin/productcontrol/index.vue')), 'productcontrol');
 var routerConfig = {
     linkActiveClass: 'active',
     routes: [
@@ -133,28 +136,59 @@ var routerConfig = {
             }
         },
         {
-            name:'/doctor',
-            path: '/doctor',
-            components:{
-                default: doctor,
-                nav:nav
-            }
-        },
-        {
             name:'/test',
             path: '/test',
             components:{
                 default:test,
                 nav:nav
             }
-        }
-        ,
+        },
         {
             name:'/admin/clinic',
             path: '/admin/clinic',
             components:{
                 default:admin_clinic,
                 nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/doctor',
+            path: '/admin/doctor',
+            components:{
+                default:admin_doctor,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/doctor/edit',
+            path: '/admin/doctor/edit',
+            components:{
+                default:edit_doctor,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/doctor/detail',
+            path: '/admin/doctor/detail',
+            components:{
+                default:detail_doctor,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/clinic/edit',
+            path: '/admin/clinic/edit',
+            components:{
+                default:edit_clinic,
+                nav:admin_nav
+            }
+        },
+        {
+            name: '/admin/productcontrol',
+            path: '/admin/productcontrol',
+            components: {
+                default: admin_productcontrol,
+                nav: admin_nav
             }
         }
     ]

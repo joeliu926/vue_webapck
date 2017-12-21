@@ -1,0 +1,123 @@
+<div class="doctor-edit-content">
+    <div class="fram-box admin-lbox">
+        <tree></tree>
+    </div>
+    <div class="fram-box admin-rbox">
+        <div class="doctor-record">
+            <div class="record-text-ct">
+                <div>
+                    <span class="sel-title">医生创建</span>
+                </div>
+                <p class="org-name">新医生</p>
+            </div>
+            <div class="doctor-edit-ct">
+                <el-button @click="fEditSave">保存</el-button>
+                <el-button @click="fEditSave">保存并新建</el-button>
+                <el-button @click="fEditCancel">取消</el-button>
+            </div>
+        </div>
+        <div class="segment-title f-14"><span class="s-title-l">一般信息</span> <span class="s-title-r">*必填信息</span></div>
+        <div class="doctor-info-ct">
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
+                    <el-input class="row-item-value" value="诊所"></el-input>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 性别</span>
+                    <el-radio v-model="gender" label="1">男</el-radio>
+                    <el-radio v-model="gender" label="2">女</el-radio>
+                    <el-radio v-model="gender" label="0">未知</el-radio>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
+                    <el-input class="row-item-value" value="年龄"></el-input>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14"><i class="i-must">*</i>头像</span>
+                    <img src="../../../../common/img/shuhou.png"/>
+
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
+                    <el-input class="row-item-value" value="简介"></el-input>
+                </div>
+            </div>
+        </div>
+        <div class="segment-title f-14"><span class="s-title-l">工作信息</span> <span class="s-title-r">*必填信息</span></div>
+        <div class="doctor-info-ct">
+            <div class="row-ct" >
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 职务</span>
+                    <el-input class="row-item-value" value="职务"></el-input>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 职称</span>
+                    <el-input class="row-item-value" value="职称"></el-input>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 擅长</span>
+                    <template>
+                        <el-select
+                                v-model="inauguralState"
+                                :filterable="true"
+                                :remote="true"
+                                placeholder="请输入擅长项目"
+                                @change="fSelectGoodAtItem"
+                                :remote-method="fGetGoodAtList"
+                        >
+                            <el-option
+                                    v-for="item in oInaugural"
+                                    :key="item.key"
+                                    :label="item.key"
+                                    :value="item.key">
+                            </el-option>
+                        </el-select>
+                    </template>
+
+
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ></span>
+                    <span class="goodat f-14">擅长项目11</span>
+                    <span class="goodat f-14">擅长项目22</span>
+                    <span class="goodat f-14">擅长项目33</span>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 就职</span>
+                    <el-select v-model="inauguralState" placeholder="请选择">
+                        <el-option
+                                v-for="item in oInaugural"
+                                :key="item.key"
+                                :label="item.key"
+                                :value="item.key">
+                        </el-option>
+                    </el-select>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 从业年限</span>
+                    <el-input class="row-item-value" value="从业年限"></el-input>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
