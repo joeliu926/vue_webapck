@@ -1,10 +1,9 @@
 <template src="./template.html"></template>
 <script src="./index.js">
-
 </script>
 
-<style  lang="scss">
-    .admin-caseadd {
+<style lang="scss">
+    .admin-caseupdata {
         .fl {
             float: left;
         }
@@ -96,14 +95,12 @@
                         }
                         div.msxx{
                             color:#999;
+                            font-size: 14px;
                             padding-left:15px;
                             padding-top:16px;
-                            font-size: 12px;
                             p{
-                                font-size: 12px;
-                                color: #999999;
+                                font-size:14px;
                             }
-
                         }
                         .row-item-title{
                             display: inline-block;
@@ -210,10 +207,10 @@
         .admin-lbox {
             /*height: 100%;*/
             width: 18%;
-           /* display: inline-block;
-            padding: 12px;
-            box-sizing: border-box;
-            float: left;*/
+            /* display: inline-block;
+             padding: 12px;
+             box-sizing: border-box;
+             float: left;*/
 
         }
     }

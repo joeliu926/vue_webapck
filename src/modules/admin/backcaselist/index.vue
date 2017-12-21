@@ -4,7 +4,7 @@
 </script>
 
 <style  lang="scss">
-    .admin-clinic {
+    .admin-caselist {
         maigin-bottom:20px;
 
         .fl {
@@ -52,14 +52,14 @@
                     
                     .el-table{
                         margin-bottom:20px;
-
-                        .el-table .cell {
-                            padding:0;
-                            white-space: normal;
-                            word-break: break-all;
-                            line-height: 24px;
-                        }
                     }
+
+                }
+                .rbox-content .el-table .cell {
+                    padding:0;
+                    white-space: normal;
+                    word-break: break-all;
+                    line-height: 24px;
                 }
                 .input-box{
                         width:100%;
@@ -84,10 +84,10 @@
                             transition: all .3s
                         }
                         .selectedbox{
-                            // margin-right:30px;
+                             /*margin-right:30px;*/
                             a{
                                 display:inline-block;
-                                width:40px;
+                                width:90px;
                                 height:36px;
                                 margin-left:20px;
                                 margin-right:10px;
