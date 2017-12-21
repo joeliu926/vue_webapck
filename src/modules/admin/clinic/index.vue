@@ -27,7 +27,7 @@
             .clinic-record{
                 .record-text-ct{
                     padding: 24px 0;
-                    border-bottom: 2px solid #346187;
+                    border-bottom: 1px solid #eaeaea;
                     .sel-title{
                         font-size: 14px;
                         color: #999999;
