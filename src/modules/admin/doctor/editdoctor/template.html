@@ -27,7 +27,9 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 性别</span>
-                    <el-input class="row-item-value" value="性别"></el-input>
+                    <el-radio v-model="gender" label="1">男</el-radio>
+                    <el-radio v-model="gender" label="2">女</el-radio>
+                    <el-radio v-model="gender" label="0">未知</el-radio>
                 </div>
             </div>
             <div class="row-ct">
@@ -67,13 +69,46 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 擅长</span>
-                    <el-input class="row-item-value" value="擅长"></el-input>
+                    <template>
+                        <el-select
+                                v-model="inauguralState"
+                                :filterable="true"
+                                :remote="true"
+                                placeholder="请输入擅长项目"
+                                @change="fSelectGoodAtItem"
+                                :remote-method="fGetGoodAtList"
+                        >
+                            <el-option
+                                    v-for="item in oInaugural"
+                                    :key="item.key"
+                                    :label="item.key"
+                                    :value="item.key">
+                            </el-option>
+                        </el-select>
+                    </template>
+
+
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ></span>
+                    <span class="goodat f-14">擅长项目11</span>
+                    <span class="goodat f-14">擅长项目22</span>
+                    <span class="goodat f-14">擅长项目33</span>
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 就职</span>
-                    <el-input class="row-item-value" value="就职"></el-input>
+                    <el-select v-model="inauguralState" placeholder="请选择">
+                        <el-option
+                                v-for="item in oInaugural"
+                                :key="item.key"
+                                :label="item.key"
+                                :value="item.key">
+                        </el-option>
+                    </el-select>
                 </div>
             </div>
             <div class="row-ct">

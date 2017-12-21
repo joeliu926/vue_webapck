@@ -8,6 +8,9 @@ export default {
         tree},
     data () {
         return {
+            pageNo: 1,
+            pageSize: 15,
+            count:1,
             doctorlist:'医生列表',
             aDoctorlist:[],
         };
@@ -27,6 +30,9 @@ export default {
         },
         gohome(){
             this.$router.push("/");
+        },
+        handleCurrentChange(){
+
         }
     },
     watch: {

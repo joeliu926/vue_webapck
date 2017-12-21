@@ -41,6 +41,11 @@
                 .clinic-edit-ct{
                     text-align: center;
                     padding: 24px;
+                    .el-button:hover{
+                        background-color: #9083ED;
+                        color: #ffffff;
+                        border: 1px solid #9083ED;
+                    }
                 }
             }
             .clinic-info-ct{

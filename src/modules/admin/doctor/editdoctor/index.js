@@ -8,6 +8,9 @@ export default {
     data () {
         return {
             doctoredit:'医生编辑',
+            gender:"0",
+            inauguralState:"",
+            oInaugural:[{key:"全职"},{key:"兼职"}]
         };
     },
     created() {
@@ -30,6 +33,12 @@ export default {
         },
         fEditCancel(){
             this.$router.push("/admin/doctor");
+        },
+        fSelectGoodAtItem(item){
+this.inauguralState=item;
+        },
+        fGetGoodAtList(){
+
         }
     },
     watch: {

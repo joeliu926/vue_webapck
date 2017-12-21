@@ -52,6 +52,11 @@
                 .doctor-edit-ct{
                     text-align: center;
                     padding: 24px;
+                    .el-button:hover{
+                        background-color: #9083ED;
+                        color: #ffffff;
+                        border: 1px solid #9083ED;
+                    }
                 }
             }
             .doctor-info-ct{
@@ -68,6 +73,14 @@
                         }
                         .row-item-value{
                             width: 200px;
+                        }
+                        .goodat{
+                            display: inline-block;
+                            margin-right: 10px;
+                            background: #9287EB;
+                            padding:3px 10px;
+                            border-radius: 4px;
+                            color: #ffffff;
                         }
                     }
                 }

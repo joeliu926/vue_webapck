@@ -9,7 +9,7 @@
                     <span class="sel-title f-16">全部医生</span>
                 </div>
                 <p class="org-name f-14">在此页面上，您可以创建、查看和管理医生</p>
-                <p class="org-name f-14">记录</p>
+                <p class="org-name f-14">记录(10)</p>
             </div>
             <div class="doctor-edit-ct">
                 <el-button @click="fCreateDoctor">创建</el-button>
@@ -75,6 +75,14 @@
                     </template>
                 </el-table-column>
             </el-table>
+        </div>
+        <div class="doctor-pagination-align">
+            <el-pagination
+                    @current-change="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="count">
+            </el-pagination>
         </div>
 
 
