@@ -39,6 +39,7 @@ var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/back
 var backcaseedit = r => require.ensure([], () => r(require('../modules/admin/backcaseedit/index.vue')), 'backcaseedit');
 
 var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
+var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
 var admin_rolelist = r => require.ensure([], () => r(require('../modules/admin/rolelist/index.vue')), 'admin_rolelist');
 
 var routerConfig = {
@@ -242,6 +243,13 @@ var routerConfig = {
             path: '/admin/userlist',
             components:{
                 default:admin_userlist,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/userlist/edit',
+            path: '/admin/userlist/edit',
+            components:{
+                default:admin_userlist_edit,
                 nav:admin_nav
             }
         }

@@ -49,7 +49,7 @@ export default {
                 children: [{
                     id:'admin_clinic_info',
                     label: '诊所信息',
-                    linkUrl:'/admin/clinic',
+                    linkUrl:'/admin/clinic/detail',
                     hightline:false,
                     needinit:false
 
@@ -118,8 +118,6 @@ export default {
 
     },
     mounted(){
-        console.log('path77',this.$router);
-        //document.querySelector('#admin_user_role').parentNode.className += ' el-tree-hight';
     },
     destroyed() {
 

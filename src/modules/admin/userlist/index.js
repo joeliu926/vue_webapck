@@ -11,13 +11,10 @@ export default {
             pageNo: 1,
             pageSize: 15,
             count:1,
-            doctorlist:'医生列表',
-            aDoctorlist:[],
+            userlist:[],
         };
     },
     created() {
-        let _this = this;
-
     },
     mounted(){
     },
@@ -25,14 +22,17 @@ export default {
 
     },
     methods: {
-        fCreateDoctor(){
-            this.$router.push("/admin/doctor/edit");
-        },
-        gohome(){
-            this.$router.push("/");
+        createUser(){
+            this.$router.push("/admin/userlist/edit");
         },
         handleCurrentChange(){
 
+        },
+        searchUser(){
+
+        },
+        resetPassword(){
+            
         }
     },
     watch: {

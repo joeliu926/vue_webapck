@@ -7,7 +7,11 @@ export default {
     components: {tree},
     data () {
         return {
-            doctordetail:'医生详情',
+            doctoredit:'用户编辑',
+            gender:"0",
+            checked:true,
+            inauguralState:"",
+            oInaugural:[{key:"全职"},{key:"兼职"}]
         };
     },
     created() {
@@ -22,11 +26,20 @@ export default {
     methods: {
         goback(){
         },
-        gohome(){
-            this.$router.push("/");
+        fEditSave(){
+
         },
-        fEditDoctor(){
-this.$router.push("/admin/doctor/edit");
+        fEditCancel(){
+            this.$router.push("/admin/doctor");
+        },
+        fSelectGoodAtItem(item){
+this.inauguralState=item;
+        },
+        fGetGoodAtList(){
+
+        },
+        resetPassword(){
+            
         }
     },
     watch: {

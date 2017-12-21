@@ -16,11 +16,11 @@
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
-            .doctor-record{
+        .admin-lbox{  width:15%;  }
+        .admin-rbox{width: 85%;
+            .userlist-record{
                 .record-text-ct{
-                    padding: 24px 0;
+                    padding: 24px 0 0 0;
                     .sel-title{
 
                     }
@@ -28,9 +28,9 @@
                         margin-top: 10px;
                     }
                 }
-                .doctor-edit-ct{
+                .userlist-edit-ct{
                     text-align: right;
-                    padding: 24px;
+                    padding:0 24px 24px 24px;
                     .el-button:hover{
                         background-color: #9083ED;
                         color: #ffffff;
@@ -38,15 +38,14 @@
                     }
                 }
             }
-            .doctor-list-content{
+            .userlist-list-content{
 
             }
-            .doctor-pagination-align {
+            .userlist-pagination-align {
                 text-align: right;
                 border: none;
                 margin-top: 5px;
             }
         }
     }
-
 </style>

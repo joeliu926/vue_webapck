@@ -1,24 +1,24 @@
 <div class="userlist-content">
     <div class="fram-box admin-lbox">
         <tree></tree>
-    </div>
-    <div class="fram-box admin-rbox out-box-border">
-        <div class="doctor-record">
+    </div><div class="fram-box admin-rbox">
+    <div class="out-box-border" style="padding: 12px;">
+        <div class="userlist-record">
             <div class="record-text-ct">
                 <div>
-                    <span class="sel-title f-16">全部医生</span>
+                    <span class="sel-title f-16">全部用户</span>
                 </div>
-                <p class="org-name f-14">在此页面上，您可以创建、查看和管理医生</p>
+                <p class="org-name f-14">在此页面上，您可以创建、查看和管理用户</p>
                 <p class="org-name f-14">记录(10)</p>
             </div>
-            <div class="doctor-edit-ct">
-                <el-button @click="fCreateDoctor">创建</el-button>
+            <div class="userlist-edit-ct">
+                <el-input  style="width:200px;" value="诊所"></el-input>  <el-button @click="searchUser">搜索</el-button> <el-button @click="createUser">创建</el-button>
             </div>
         </div>
 
-        <div class="doctor-list-content">
+        <div class="userlist-list-content">
             <el-table
-                    :data="aDoctorlist"
+                    :data="userlist"
                     style="width: 100%"
                     :default-sort = "{prop: 'date', order: 'descending'}"
             >
@@ -29,17 +29,12 @@
                 </el-table-column>
                 <el-table-column
                         prop="customerName"
-                        label="职务"
+                        label="别名"
                         min-width="16%">
-                    <template slot-scope="scope" style="">
-                        <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)">
-                          gggggg
-                        </p>
-                    </template>
                 </el-table-column>
                 <el-table-column
                         prop="createTime"
-                        label="职称"
+                        label="用户名"
                         min-width="20%">
                     <template slot-scope="scope" style="text-align: right;">
                         <p>{{scope.row.createTime|dateFilter}}</p>
@@ -47,27 +42,21 @@
                 </el-table-column>
                 <el-table-column
                         prop="phoneNum"
-                        label="性别"
+                        label="最后登陆"
                         min-width="18%">
-                    <template slot-scope="scope" style="text-align: right;">
-                       <div>gggg</div>
-                    </template>
+
                 </el-table-column>
                 <el-table-column
                         prop="wechatNum"
-                        label="擅长"
-                        min-width="18%">
-                </el-table-column>
-                <el-table-column
-                        prop="wechatNum"
-                        label="就职"
+                        label="角色"
                         min-width="18%">
                 </el-table-column>
                 <el-table-column
                         prop="wechatNum"
-                        label="从业年限"
+                        label="状态"
                         min-width="18%">
                 </el-table-column>
+
 
                 <el-table-column label="操作" min-width="18%">
                     <template slot-scope="scope"  style="">
@@ -76,7 +65,7 @@
                 </el-table-column>
             </el-table>
         </div>
-        <div class="doctor-pagination-align">
+        <div class="userlist-pagination-align">
             <el-pagination
                     @current-change="handleCurrentChange"
                     layout="prev, pager, next"
@@ -86,7 +75,7 @@
         </div>
 
 
-
+</div>
     </div>
 
 </div>

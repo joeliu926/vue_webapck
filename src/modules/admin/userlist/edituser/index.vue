@@ -4,7 +4,12 @@
 </script>
 
 <style lang="scss">
-    .doctor-detail-content{
+    .doctor-edit-content{
+        .b-d{border: 1px solid red;}
+        .i-must{
+            color: #ff0000;
+            padding: 5px;
+        }
         .f-14{
             font-size: 14px;
             color: #999999;
@@ -16,8 +21,8 @@
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:15%;  }
+        .admin-rbox{width: 85%;
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
@@ -55,6 +60,7 @@
                 }
             }
             .doctor-info-ct{
+
                 padding: 20px 0;
                 .row-ct{
                     padding: 10px;
@@ -63,7 +69,7 @@
                         width: 500px;
                         .row-item-title{
                             display: inline-block;
-                            width: 80px;
+                            width: 100px;
                         }
                         .row-item-value{
                             width: 200px;

@@ -11,8 +11,8 @@ export default {
             pageNo: 1,
             pageSize: 15,
             count:1,
-            doctorlist:'医生列表',
-            aDoctorlist:[],
+            doctorlist:'角色列表',
+            Rolelist:[],
         };
     },
     created() {
