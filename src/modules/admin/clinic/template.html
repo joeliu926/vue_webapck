@@ -1,4 +1,4 @@
-<div class="admin-clinic">
+<div class="clinic-content">
     <div class="fram-box admin-lbox">
         <tree></tree>
     </div>
@@ -6,62 +6,87 @@
         <div class="clinic-record">
             <div class="record-text-ct">
                 <div>
-                    <span class="sel-title">诊所档案</span>
+                    <span class="sel-title f-16">全部诊所</span>
                 </div>
-                <p class="org-name">云像美疗机构</p>
+                <p class="org-name f-14">在此页面上，您可以创建、查看和管理诊所</p>
+                <p class="org-name f-14">记录(10)</p>
             </div>
             <div class="clinic-edit-ct">
-                <el-button @click="fEditClinic">编辑</el-button>
+                <el-button @click="fCreateDoctor">创建</el-button>
             </div>
         </div>
 
+        <div class="clinic-list-content">
+            <el-table
+                    :data="aClinicList"
+                    style="width: 100%"
+                    :default-sort = "{prop: 'date', order: 'descending'}"
+            >
+                <el-table-column
+                        prop="id"
+                        label="名称"
+                        min-width="10%">
+                </el-table-column>
+                <el-table-column
+                        prop="customerName"
+                        label="职务"
+                        min-width="16%">
+                    <template slot-scope="scope" style="">
+                        <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)">
+                            gggggg
+                        </p>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="createTime"
+                        label="职称"
+                        min-width="20%">
+                    <template slot-scope="scope" style="text-align: right;">
+                        <p>{{scope.row.createTime|dateFilter}}</p>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="phoneNum"
+                        label="性别"
+                        min-width="18%">
+                    <template slot-scope="scope" style="text-align: right;">
+                        <div>gggg</div>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="wechatNum"
+                        label="擅长"
+                        min-width="18%">
+                </el-table-column>
+                <el-table-column
+                        prop="wechatNum"
+                        label="就职"
+                        min-width="18%">
+                </el-table-column>
+                <el-table-column
+                        prop="wechatNum"
+                        label="从业年限"
+                        min-width="18%">
+                </el-table-column>
 
-        <div class="segment-title f-14">一般信息</div>
-        <div class="clinic-info-ct">
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14" > 诊所名</span>
-                    <span class="row-item-value f-14">哈罗美云诊所</span>
-                </div>
-                <div class="row-item" >
-                    <span class="row-item-title f-14">资质</span>
-                    <span class="row-item-value f-14">诊所资质</span>
-                </div>
-            </div>
-
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14" > 电话</span>
-                    <span class="row-item-value f-14">15650788555</span>
-                </div>
-                <div class="row-item" >
-                    <span class="row-item-title f-14">营业时间</span>
-                    <span class="row-item-value f-14">上午08:00-下午18:00</span>
-                </div>
-            </div>
-
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14">Logo</span>
-                    <img src="../../../common/img/shuhou.png"/>
-                </div>
-            </div>
-
+                <el-table-column label="操作" min-width="18%">
+                    <template slot-scope="scope"  style="">
+                        <i class="el-icon-pa-ellipsis-v customer-pa-icon" title="More"></i>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <div class="clinic-pagination-align">
+            <el-pagination
+                    @current-change="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="count">
+            </el-pagination>
         </div>
 
-        <div class="segment-title f-14">地址</div>
-        <div class="clinic-info-ct">
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14">详细地址</span>
-                    <span class="row-item-value f-14">北京市兆维工业园C2-2</span>
-                </div>
-            </div>
-        </div>
-        <div class="out-box-border" style="" >
-            <div id="map-content" class="map-ct"></div>
-            <input type="text" class="row-item-value el-input__inner" id="suggestId" value="北京" style="height: 36px;display: none;"/>
-            <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:250px;height:auto;display: none;"></div>
-        </div>
+
+
     </div>
+
 </div>

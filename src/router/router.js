@@ -26,6 +26,7 @@ aComponent.forEach(function (item,index) {
 });*/
 var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/index.vue')), 'case_base');
 var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
+var detail_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/clinicdetail/index.vue')), 'detailclinic');
 var admin_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/index.vue')), 'admin_doctor');
 var edit_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/editdoctor/index.vue')), 'editdoctor');
 var detail_doctor = r => require.ensure([], () => r(require('../modules/admin/doctor/doctordetail/index.vue')), 'doctordetail');
@@ -160,6 +161,22 @@ var routerConfig = {
             }
         },
         {
+            name:'/admin/clinic/edit',
+            path: '/admin/clinic/edit',
+            components:{
+                default:edit_clinic,
+                nav:admin_nav
+            }
+        },
+        {
+            name:'/admin/clinic/detail',
+            path: '/admin/clinic/detail',
+            components:{
+                default:detail_clinic,
+                nav:admin_nav
+            }
+        },
+        {
             name:'/admin/doctor',
             path: '/admin/doctor',
             components:{
@@ -180,14 +197,6 @@ var routerConfig = {
             path: '/admin/doctor/detail',
             components:{
                 default:detail_doctor,
-                nav:admin_nav
-            }
-        },
-        {
-            name:'/admin/clinic/edit',
-            path: '/admin/clinic/edit',
-            components:{
-                default:edit_clinic,
                 nav:admin_nav
             }
         },
