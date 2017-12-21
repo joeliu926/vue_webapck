@@ -44,13 +44,21 @@
                 }
             }
             .clinic-info-ct{
-               .item-title{
-                   text-align: right;
-                   padding: 12px;
-               }
-                .item-value{
-                    text-align: left;
-                    padding: 12px;
+                padding: 20px 0;
+                .row-ct{
+                    padding: 10px;
+                    .row-item{
+                        display: inline-block;
+                        width: 400px;
+                        .row-item-title{
+                            display: inline-block;
+                            width: 80px;
+
+                        }
+                        .row-item-value{
+                            width: 200px;
+                        }
+                    }
                 }
             }
             .out-box-border{

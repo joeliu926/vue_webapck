@@ -16,6 +16,10 @@
             font-size: 16px;
             color: #333333;
         }
+        .i-must{
+            color: #ff0000;
+            padding: 5px;
+        }
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
@@ -36,7 +40,7 @@
             .clinic-record{
                 .record-text-ct{
                     padding: 24px 0;
-                    border-bottom: 2px solid #346187;
+                    border-bottom: 1px solid #eaeaea;
                     .sel-title{
                         font-size: 14px;
                         color: #999999;
@@ -53,16 +57,21 @@
                 }
             }
             .clinic-info-ct{
-                .item-title{
-                    text-align: right;
-                    padding: 12px;
-                }
-                .item-value{
-                    text-align: left;
-                    padding: 12px;
-                }
-                .clinic-txt{
-                    width: 250px;
+                padding: 20px 0;
+                .row-ct{
+                    padding: 10px;
+                    .row-item{
+                        display: inline-block;
+                        width: 400px;
+                        .row-item-title{
+                            display: inline-block;
+                            width: 80px;
+
+                        }
+                        .row-item-value{
+                            width: 200px;
+                        }
+                    }
                 }
             }
             .out-box-border{
