@@ -8,8 +8,9 @@ export default {
         return {
             product: [],
             changestyle:1001,
-            msg:0,
-            task2:[{id:0,text:''},{id:0,text:''},{id:0,text:''}],
+            msg:1,
+            task2:[{id:1,text:'aaaaa'},{id:2,text:'cccccc'},{id:3,text:'eeeeeee'}],
+            task3:[],
             tasks1: [{
                 text: "Vue.js - 是一套构建用户界面的渐进式框架",
                 id:0
@@ -58,54 +59,73 @@ export default {
         };
     },
     created() {
-        //this.getdata();
-        this.forshow();
-       // this.fortask2();
+        this.getdata();
+       // this.forshow();
+        //this.fortask();
     },
     mounted(){
-    }
-    ,destroyed() {
-
     },
     methods: {
-        forshow(){
+        getClass(params){
 
-            this.tasks1.forEach((item1,index1)=>{
-                console.log("item----->",item1);
-                    item1.show=0;
-                console.log("item-----11>",item1);
-                   this.tasks2.forEach((item2,index2)=>{
-                            // console.log("item1id========>",item1.id);
-                            //  console.log("item2id========>",item2.id);
-                            if (item1.id===item2.id){
-                                item1.show=1;
-                                //  this.tasks1.push({show:1})
-                            }
-                            else{
-                                console.log("bbbbbbb",item1.id)// item1.show=1;
-                            }
-                        }
-
-                    )
+            let hascur = false;
+            for(let k=0;k< this.task3.length;k++){
+                if(this.task3[k].productCode ==params.productCode){
+                    hascur = true;
                 }
+            }
 
-            )
-            console.log("a",this.task2)
-        },
-        fortask2(listid) {
-            // console.log("",listid);
-            var a;
-            let _This=this;
+            if(hascur){
+                return 'changecol';
+            } else{
+                return 'cur1';
+            }},
+        forshow(a){
+            console.log("aaaaaaa====>",a.productCode);
+            if(this.task3.length<=0){
+                this.task3.push(a);
+            }else{
+                let hasa = false;
+                for(let k=0;k< this.task3.length;k++){
+                    /* console.log("task3[k]id====>",this.task3[k].id);
+                     console.log('task311infor', this.task3);*/
+                    if(this.task3[k].productCode==a.productCode){
+                        hasa =true;
+                        this.task3.splice(k, 1);
+                    }
 
-            _This.tasks2.forEach((item,index)=>{
-                if(listid==item.id) {
-                    console.log("qqq", item.id)
+                }//send(a.productCode,hasa)
+                if(hasa){
+
+                }else{
+                    this.task3.push(a)
                 }
+            }
 
-            })
-
+            console.log('task311', this.task3);
         },
         getdata(){
+            let _This = this;
+            let uid= _This.$route.params.id;
+
+            let postData = {
+                id: uid
+            };
+            _.ajax({
+                url: '/case_base/getdata',
+                method: 'POST',
+                data: postData,
+
+                success: function (result) {
+                    // console.log('result.data',result);
+                    if (result.code == 0 && result.data) {
+                        _This.product = result.data;
+                    }else {
+                        //_This.$router.push('/customers');
+                    }
+                }
+            }, 'withCredentials');
+        }, getdata(){
             let _This = this;
             let uid= _This.$route.params.id;
 
@@ -131,7 +151,7 @@ export default {
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
             // console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-256;
+            document.getElementById("right").scrollTop=disTop-132;
             this.changestyle=params;
 
         },
