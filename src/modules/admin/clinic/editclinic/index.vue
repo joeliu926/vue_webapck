@@ -67,7 +67,7 @@
                     padding: 10px;
                     .row-item{
                         display: inline-block;
-                        width: 400px;
+                        width: 300px;
                         .row-item-title{
                             display: inline-block;
                             width: 80px;
@@ -76,9 +76,15 @@
                         .row-item-value{
                             width: 200px;
                         }
+
+                    }
+                    .logo-ct{
+                        width: 500px;
                         .up-logo{
                             width: 80px;
                             height: 80px;
+                            margin-right: 8px;
+                            cursor: pointer;
                         }
                         .format-ct{
                             display: inline-block;
