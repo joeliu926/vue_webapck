@@ -16,27 +16,52 @@ export default {
         };
     },
     created() {
-        let _this = this;
-
+        this.getRolelist(1);
+        this.testimage();
     },
     mounted(){
     },
-    destroyed() {
-
-    },
     methods: {
-        fCreateDoctor(){
-            this.$router.push("/admin/doctor/edit");
+        handleCurrentChange(params){
+            this.getRolelist(params);
         },
-        gohome(){
-            this.$router.push("/");
-        },
-        handleCurrentChange(){
+        getRolelist(params){
+            let _this = this;
+            this.pageNo = params;
+            let _data={
+                pageNo:params,
+                pageSize:this.pageSize
+            }
+            _.ajax({
+                url: '/admin/userrole/rolelistpage',
+                method: 'POST',
+                data:_data,
+                success: function (result) {
+                    if (result.code == 0 && result.data) {
+                        _this.Rolelist = result.data.list;
+                        _this.count = result.data.count;
 
-        }
-    },
-    watch: {
-        $route(){
+                    }else {
+                        // _This.$router.push('/customers');
+                    }
+                }
+            }, 'withCredentials');
+
+
+
+        },
+        testimage(){
+            _.ajax({
+                type: 'POST',
+                urlType:'full',
+                url:   'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
+                crossDomain: true,
+                data: "",
+                success: function (data) {
+                    console.log('--------------',data);
+                }
+            });
+
         }
     }
 }

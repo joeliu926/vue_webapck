@@ -9,10 +9,10 @@
                     <span class="sel-title f-16">全部用户</span>
                 </div>
                 <p class="org-name f-14">在此页面上，您可以创建、查看和管理用户</p>
-                <p class="org-name f-14">记录(10)</p>
+                <p class="org-name f-14">记录({{count}})</p>
             </div>
             <div class="userlist-edit-ct">
-                <el-input  style="width:200px;" value="诊所"></el-input>  <el-button @click="searchUser">搜索</el-button> <el-button @click="createUser">创建</el-button>
+                <el-input  style="width:200px;"     v-model="searchKey"  value=""></el-input>  <el-button @click="searchUser">搜索</el-button> <el-button @click="createUser">创建</el-button>
             </div>
         </div>
 
@@ -23,40 +23,26 @@
                     :default-sort = "{prop: 'date', order: 'descending'}"
             >
                 <el-table-column
-                        prop="id"
+                        prop="name"
                         label="名称"
-                        min-width="10%">
-                </el-table-column>
-                <el-table-column
-                        prop="customerName"
-                        label="别名"
-                        min-width="16%">
-                </el-table-column>
-                <el-table-column
-                        prop="createTime"
-                        label="用户名"
                         min-width="20%">
-                    <template slot-scope="scope" style="text-align: right;">
-                        <p>{{scope.row.createTime|dateFilter}}</p>
-                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="phoneNum"
-                        label="最后登陆"
-                        min-width="18%">
 
+                <el-table-column
+                        prop="loginName"
+                        label="用户名"
+                        min-width="30%">
                 </el-table-column>
                 <el-table-column
                         prop="wechatNum"
                         label="角色"
-                        min-width="18%">
+                        min-width="30%">
                 </el-table-column>
                 <el-table-column
                         prop="wechatNum"
                         label="状态"
                         min-width="18%">
                 </el-table-column>
-
 
                 <el-table-column label="操作" min-width="18%">
                     <template slot-scope="scope"  style="">

@@ -163,7 +163,7 @@ var routerConfig = {
         },
         {
             name:'/admin/clinic/edit',
-            path: '/admin/clinic/edit',
+            path: '/admin/clinic/edit/:id',
             components:{
                 default:edit_clinic,
                 nav:admin_nav
