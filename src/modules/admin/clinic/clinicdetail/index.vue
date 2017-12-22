@@ -64,6 +64,10 @@
                         .row-item-value{
                             width: 200px;
                         }
+                        .up-logo{
+                            width: 100px;
+                            height: 100px;
+                        }
                     }
                 }
             }

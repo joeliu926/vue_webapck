@@ -11,8 +11,7 @@
                 <p class="org-name">云像美疗机构</p>
             </div>
             <div class="clinic-edit-ct">
-                <el-button @click="fCreateClinic">保存</el-button>
-                <el-button @click="fEditSave">保存并新建</el-button>
+                <el-button @click="fEditSave">保存</el-button>
                 <el-button @click="fEditCancel">取消</el-button>
             </div>
         </div>
@@ -80,14 +79,13 @@
             <div class="row-ct">
                 <div class="row-item logo-ct" style="">
                     <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
-                    <img class="up-logo" src="../../../../common/img/shuhou.png" style="display: none;"/>
                     <el-upload
                             class="uploader-ct"
-                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :action="imgUploadUrl"
                             :show-file-list="false"
                             :on-success="uploadLogoSuccess"
                             :before-upload="beforeUploadLogo">
-                        <img v-if="clinicLogo" :src="clinicLogo" class="up-logo">
+                        <img v-if="oClinicData.logo" :src="oClinicData.logo" class="up-logo">
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                     <div class="format-ct" style="">

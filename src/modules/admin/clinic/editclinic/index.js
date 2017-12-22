@@ -10,53 +10,49 @@ export default {
     },
     data () {
         return {
-            majorBusiness:"",
-            oMajorBusinessList:[],
-            oProductCode:[],
-            oSelectMajorItems:[],
+            majorBusiness:"",//主营业务
+            oMajorBusinessList:[],//主营业务列表
+            oProductCode:[], //项目编码集合
+            oSelectMajorItems:[], //选中的主营业务
             inauguralState:"",
             clinicLogo:"",
+            imgUploadUrl:"https://jsonplaceholder.typicode.com/posts/", //
+           // imgUploadUrl:"https://27478500.qcloud.la/uploadimg_test/attachment/upload",
             oClinicRank:["诊所","门诊部","整形外科医院","一级民营医院","二级医院","三级甲等医院"],
             clinicRank:"",
             oClinicData:{
-                "address": "1111",
-                "brief": "11",
-                "businessTime": 0,
-                "caseFileVo": [
-                    {
-                        "name": "222",
-                        "url": "22"
-                    }
-                ],
-                "cityName": "1232",
-                "clinicId": 0,
-                "coordinate": "123",
-                "countryName": "12",
-                "districtName": "123",
+                "address": "", //诊所地址
+                "brief": "", //诊所简介
+                "businessTime": "",  //营业时间
+                "cityName": "", //城市名
+                "clinicId": 0, //诊所id
+                "coordinate": "", //坐标
+                "countryName": "", //国家
+                "districtName": "", //地址
                 "id": 0,
-                "linkman": "1234",
-                "loginName": "1234",
-                "logo": "1234",
-                "name": "1234",
-                "parentTenantId": 0,
-                "phone": "1234",
-                "picture": "1234",
-                "productNames": [
+                "linkman": "", //诊所负责人
+               // "loginName": "", //当前登录用户名
+                "logo": "", //诊所logo
+                "name": "", //诊所名
+                "parentTenantId": 0, //租户ID
+                "phone": "", //电话
+               // "picture": "", //照片
+                "productNames": [ //项目
                     {
-                        "clinicId": 0,
-                        "productCode": "1",
-                        "productName": "2"
+                        "productCode": "",
+                        "productName": ""
                     }
                 ],
-                "provName": "北京",
-                "qualification": "12"
+                "provName": "北京", //省份
+                "qualification": "12" //诊所等级
             }
 
         };
     },
     created() {
-
-       // this.fCreateClinic();
+        let clinicid=this.$route.params.id;
+        console.log("clinic----",clinicid);
+       this.fGetSingleClinic();
 
     },
     mounted(){
@@ -150,7 +146,30 @@ export default {
             this.$router.push("/admin/clinic/detail");
         },
         fEditSave(){
-            this.$router.push("/admin/clinic/detail");
+            //this.$router.push("/admin/clinic/detail");
+            let _This = this;
+            _This.oClinicData.productNames=_This.oSelectMajorItems;
+            let pCreateData=JSON.stringify(_This.oClinicData);
+
+            console.log("update--pCreateData------->",_This.oClinicData);
+
+
+            // return false;
+            let postData = {
+                pData: pCreateData
+            };
+
+            _.ajax({
+                url: '/admin/clinic/update',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("update ff------->",result);
+                    if (result.code == 0 && result.data) {
+
+                    }
+                }
+            }, 'withCredentials');
         },
         /**
          * 选择主营项目
@@ -201,16 +220,24 @@ export default {
             _This.oSelectMajorItems.splice(lindex,1);
 
         },
+        /**
+         * 新建诊所
+         */
         fCreateClinic(){
             let _This = this;
+            _This.oClinicData.productNames=_This.oSelectMajorItems;
             let pCreateData=JSON.stringify(_This.oClinicData);
-            console.log("pCreateData------->",pCreateData);
+
+            console.log("pCreateData------->",_This.oClinicData);
+
+
+           // return false;
             let postData = {
                 pData: pCreateData
             };
 
             _.ajax({
-                url: '/clinic/create',
+                url: '/admin/clinic/create',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
@@ -221,8 +248,33 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /**
+         * 获取单个诊所信息
+         */
+        fGetSingleClinic(){
+            let _This=this;
+            let clinicid=_This.$route.params.id;
+            let postData = {
+                id: clinicid
+            };
+
+            _.ajax({
+                url: '/admin/clinic/get',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("get single ------->",result);
+                    if (result.code == 0 && result.data) {
+                        delete result.data.page;
+                        console.log("get dddd ------->",result.data);
+                        _This.oClinicData=result.data;
+                    }
+                }
+            }, 'withCredentials');
+        },
         uploadLogoSuccess(res,file){
-            this.clinicLogo = URL.createObjectURL(file.raw);
+            console.log(Array.prototype.slice.call(arguments));
+            this.oClinicData.logo = URL.createObjectURL(file.raw);
         },
         beforeUploadLogo(){
 

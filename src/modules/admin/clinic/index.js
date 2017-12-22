@@ -22,7 +22,7 @@ export default {
             faceId:""
         };
         _.ajax({
-            url: '/clinic/test',
+            url: '/admin/clinic/test',
             method: 'POST',
             data: postData,
             success: function (result) {
