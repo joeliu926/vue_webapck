@@ -41,6 +41,24 @@ export default {
             }
         };
     },
+    filters:{
+        phoneFilter:function (input) {
+            if(input&&input!=""){
+                return input.replace(/(\d{3})\d{4}(\d{3})/,"$1*****$2");
+            }
+        },
+        productFilter: function (input) {
+            if (!input || input == "" || typeof(input) != "object") {
+                return "";
+            }
+            let result = [];
+
+            input.forEach(item => {
+                result.push(item.productName);
+            });
+            return result.join("、");
+        },
+    },
     created() {
         let clinicid=this.$route.params.id;
         let postData = {

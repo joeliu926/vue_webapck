@@ -89,6 +89,7 @@
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                     <div class="format-ct" style="">
+                        <input type="file" @change="ajaxFileUpload">
                         <div class="f-14">格式:jpg、jpeg、png、bmp</div>
                         <div class="f-14">大小：5M以内</div>
                     </div>

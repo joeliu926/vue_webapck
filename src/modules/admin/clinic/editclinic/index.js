@@ -16,8 +16,10 @@ export default {
             oSelectMajorItems:[], //选中的主营业务
             inauguralState:"",
             clinicLogo:"",
-            imgUploadUrl:"https://jsonplaceholder.typicode.com/posts/", //
-           // imgUploadUrl:"https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+          // imgUploadUrl:"https://jsonplaceholder.typicode.com/posts/",
+          // imgUploadUrl:"https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+            imgUploadUrl:"http://localhost:8023/admin/clinic/test",
+           //imgUploadUrl:"http://140.143.185.73:8083/attachment/upload",
             oClinicRank:["诊所","门诊部","整形外科医院","一级民营医院","二级医院","三级甲等医院"],
             clinicRank:"",
             oClinicData:{
@@ -226,6 +228,7 @@ export default {
         fCreateClinic(){
             let _This = this;
             _This.oClinicData.productNames=_This.oSelectMajorItems;
+            _This.oClinicData.clinicId="";
             let pCreateData=JSON.stringify(_This.oClinicData);
 
             console.log("pCreateData------->",_This.oClinicData);
@@ -266,8 +269,11 @@ export default {
                     console.log("get single ------->",result);
                     if (result.code == 0 && result.data) {
                         delete result.data.page;
-                        console.log("get dddd ------->",result.data);
                         _This.oClinicData=result.data;
+                        _This.oSelectMajorItems=result.data.productNames;
+                        _This.oSelectMajorItems.forEach(item=>{
+                            _This.oProductCode.push(item.productCode);
+                        });
                     }
                 }
             }, 'withCredentials');
@@ -278,6 +284,37 @@ export default {
         },
         beforeUploadLogo(){
 
+        },
+        ajaxFileUpload(e){
+            let _This=this;
+
+          _This.imgUploadUrl="/admin/clinic/test";
+
+            console.log(_This.imgUploadUrl,"-----eeeeee---->",e);
+
+            var imgFile = e.target.files[0];
+
+            console.log("--------------->", window.URL.createObjectURL(imgFile));
+
+            console.log("img---->",imgFile);
+            var fdata = new FormData();
+            fdata.append('imgFile', imgFile);
+            fdata.append('user',"test");
+            _.ajax(
+                {
+                    url:_This.imgUploadUrl,
+                    type: 'POST',
+                    data: fdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+
+                         console.log("-----upload result----",result);
+                    },
+                    error:function (result) {
+                        console.log("error-- result------>",result)
+                    }
+                },'withCredentials');
         }
     },
     watch: {

@@ -35,8 +35,8 @@
                     <span class="row-item-value f-14">{{oClinicData.phone}}</span>
                 </div>
                 <div class="row-item" >
-                    <span class="row-item-title f-14">营业时间</span>
-                    <span class="row-item-value f-14">{{oClinicData.businessTime}}</span>
+                    <span class="row-item-title f-14">主营业务</span>
+                    <span class="row-item-value f-14">{{oClinicData.productNames|productFilter}}</span>
                 </div>
             </div>
 
@@ -44,6 +44,10 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14">Logo</span>
                     <img class="up-logo" :src="oClinicData.logo||defaultLogo" />
+                </div>
+                <div class="row-item" >
+                    <span class="row-item-title f-14">营业时间</span>
+                    <span class="row-item-value f-14">{{oClinicData.businessTime}}</span>
                 </div>
             </div>
 
