@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 
-import tree from '../../tree/index.vue';
+import tree from '../tree/index.vue';
 
 export default {
     components: {
@@ -45,34 +45,11 @@ export default {
 
     },
     methods: {
-        /*添加页面*/
-        setdata(){
-            let postData = {
-
-            };
-            _.ajax({
-                url: '/admin/backcase/backcaseadd',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    console.log("caseadd-------", result);
-
-
-                }
-            }, 'withCredentials');
-        },
-
-
-
-
-
-        /*日期筛选条件*/
         pickerOptions1: {
             disabledDate(time) {
                 return time.getTime() > Date.now();
             },
         },
-        /*上传图片成功*/
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
         },
@@ -88,9 +65,7 @@ export default {
             }
             return isJPG && isLt2M;
         },
-        /*保存按钮*/
         caseaddSave(){
-            this.setdata();
             console.log("edit caseaddSave");
             this.$router.push("/admin/backcaselist");
         }

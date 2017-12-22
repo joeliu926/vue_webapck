@@ -1,4 +1,4 @@
-<div class="admin-caseupdata clearfix">
+<div class="admin-caseadd clearfix">
     <div class="admin-lbox fram-box fl">
         <tree></tree>
     </div>
@@ -8,13 +8,15 @@
         <div class="case-record">
             <div class="record-text-ct">
                 <div>
-                    <span class="sel-title">案例编辑</span>
+                    <span class="sel-title">案例创建</span>
                 </div>
-                <!--<p class="org-name">新案例</p>-->
+                <p class="org-name">新案例</p>
             </div>
             <div class="case-edit-ct">
                 <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <el-button @click="updataSave">保存</el-button>
+                <el-button @click="caseaddSave">保存</el-button>
+                <el-button >保存并新建</el-button>
+                <el-button >取消</el-button>
             </div>
         </div>
 
@@ -57,9 +59,9 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗时间</span>
                     <el-date-picker
-                            v-model="value1"
-                            type="date"
-                            placeholder="选择日期">
+                        v-model="value1"
+                        type="date"
+                        placeholder="选择日期">
                     </el-date-picker>
                 </div>
             </div>
@@ -72,36 +74,27 @@
         </div>
         <div class="picture-box clearfix">
             <div class="before-box fl">
-                <div style="position:relative">
-                    <img src="../../../../common/img/shuqian.png" width="178" height="178  " alt="">
-                    <el-upload
-                            style="position: absolute; top:0; left:0; "
-                            class="avatar-uploader"
-                            action="#"
-                            :show-file-list="false"
-                            :on-success="handleAvatarSuccess"
-                            :before-upload="beforeAvatarUpload">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                </div>
-
+                <el-upload
+                        class="avatar-uploader"
+                        action="#"
+                        :show-file-list="false"
+                        :on-success="handleAvatarSuccess"
+                        :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
                 <div style="text-align: center;">术前</div>
             </div>
             <div class="after-box fl">
-                <div style="position:relative">
-                    <img src="../../../../common/img/shuqian.png" width="178" alt="">
-                    <el-upload
-                            style="position: absolute; top:0; left:0; "
-                            class="avatar-uploader"
-                            action="#"
-                            :show-file-list="false"
-                            :on-success="handleAvatarSuccess"
-                            :before-upload="beforeAvatarUpload">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                </div>
+                <el-upload
+                        class="avatar-uploader "
+                        action="#"
+                        :show-file-list="false"
+                        :on-success="handleAvatarSuccess"
+                        :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
                 <div style="text-align: center;">术后</div>
             </div>
             <div class="description fl">
@@ -122,10 +115,8 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 头像</span>
-                    <div style="position:relative;">
-                        <img src="../../../../common/img/shuhou.png" width="60" height="60" alt="">
+                    <div>
                         <el-upload
-                                style="position: absolute;top:0;left:0;"
                                 class="avatar-uploader"
                                 action="https://jsonplaceholder.typicode.com/posts/"
                                 :show-file-list="false"
@@ -136,8 +127,8 @@
                         </el-upload>
                     </div>
                     <div class="msxx">
-                        <p>格式 : jpg 、png 、jpeg 、bmp </p>
-                        <p>大小 : 5MB以内</p>
+                        <span>格式 : jpg 、png 、jpeg 、bmp </span>
+                        <span>大小 : 5MB以内</span>
                     </div>
 
                 </div>
@@ -185,14 +176,14 @@
                 </div>
             </div>
         </div>
-        <div class="row-item" >
+        <div class="row-item " >
             <span class="row-item-title f-14" ><i class="i-must">*</i> 补充求美照片</span>
-            <span class="f-14">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
-
+            <span style="font-size:14px;color:#999;">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
+            
         </div>
         <div class="addimg clearfix">
             <div  class="fl">
-                <img src="../../../../common/img/shuhou.png"/>
+                <img src="../../../common/img/shuhou.png"/>
             </div>
             <el-upload
                     class="avatar-uploader fl"
@@ -220,11 +211,13 @@
         <!-- 保存 保存和新建 取消-->
         <div class="case-record">
             <div class="segment-title">
+
             </div>
             <div class="case-edit-ct">
                 <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <!--<router-link :to="{name:'' ,query:{id:uid}">编辑</router-link>-->
-                <el-button @click="updataSave">保存</el-button>
+                <el-button @click="caseaddSave">保存</el-button>
+                <el-button >保存并新建</el-button>
+                <el-button >取消</el-button>
             </div>
         </div>
         <div class="footer-b segment-title">

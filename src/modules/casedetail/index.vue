@@ -40,7 +40,7 @@
             /*客户日记信息*/
             .caseinfo-top-content {
                 margin-bottom: 60px;
-                background: -webkit-linear-gradient(360deg, #7084f3, #7a71fe);
+                background-color: #534CE7;
                 width: 100%;
                 border: none;
                 height: 134px;
@@ -73,12 +73,12 @@
                         }
 
                         p.gender {
-                    /* margin-left: -30px;*/
+                            margin-left: -30px;
 
                         }
 
                         p.age {
-                          /*  margin-left: -60px;*/
+                            margin-left: -60px;
                         }
 
                         .color {

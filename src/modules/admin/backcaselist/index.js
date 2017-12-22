@@ -12,8 +12,7 @@ export default {
         return {
             input:'',
             input1:'',
-            tableData: [
-                {
+            tableData: [{
                 date: '2016-05-02',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1518 弄'
@@ -36,8 +35,7 @@ export default {
             pageSize:12,
             state:'',
             value:'',
-            options:[
-                {
+            options:[{
                   value: '选项1',
                   label: '张医生'
                 }, {
@@ -57,7 +55,7 @@ export default {
         };
     },
     created() {
-      this.getdata();
+
     },
     mounted(){
 
@@ -66,46 +64,6 @@ export default {
 
     },
     methods: {
-        getdata(){
-            var _This = this;
-            let   postData={
-               pageNo:1,
-               pageSize:10
-            }
-            _.ajax({
-                url: '/admin/backcase/backcaselist',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    console.log("============",result);
-                    // if(result.code==0&&result.data){
-                    //     _This.acaseuserlist = result.data;
-                    //     // console.log(_This.acaseuserlist);
-                    //     _This.contentList=result.data.contentList;
-                    //     _This.count = result.data.count;
-                    //     _This.contentList&& _This.contentList.forEach(m=>{
-                    //         _This.photolist = _This.photolist.concat(m.files);
-                    //
-                    //         if(m.nodeType==1){
-                    //
-                    //             _This.contentListAfter.push(m);
-                    //         }
-                    //     });
-                    // }
-                }
-            }, 'withCredentials');
-        },
-
-
-
-
-        delete(id){
-
-        },
-
-        search(){
-
-        },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
 

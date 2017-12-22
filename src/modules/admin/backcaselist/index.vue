@@ -6,10 +6,7 @@
 <style  lang="scss">
     .admin-caselist {
         maigin-bottom:20px;
-        .f-14{
-            font-size: 14px;
-            color: #999999;
-        }
+
         .fl {
             float: left;
         }
@@ -70,8 +67,7 @@
                         margin-bottom:12px;
                         .el-input__inner{
                             margin-left:12px;
-                            padding-right:40px;
-                            border-color: #e0e0e0 !important;
+                           border-color: #e0e0e0 !important;
                         }
                         .el-input__inner:hover {
                             border-color: #e0e0e0 !important;
@@ -80,15 +76,12 @@
                         .el-icon-search{
                             position: absolute;
                             width: 35px;
-                            height:36px;
-                            left: 190px;
-                            top: 0px;
+                            height: 100%;
+                            left: 170px;
+                            top: 10px;
                             text-align: center;
                             color: #bfcbd9;
                             transition: all .3s
-                        }
-                        .el-icon-search::before{
-                            line-height: 36px;
                         }
                         .selectedbox{
                              /*margin-right:30px;*/
@@ -105,14 +98,8 @@
                 }
 
                 .table-content{
-                    font-size: 14px;
-                    .el-table th>.cell {
-                        font-size: 14px;
-                    }
-                    div.cell{
-                        font-size:14px;
-                    }
-                }
+
+                }    
                 .rbox-pagination-align {
                     text-align: right;
                     border: none;

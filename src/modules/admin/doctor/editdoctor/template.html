@@ -25,6 +25,7 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
                     <el-input class="row-item-value" value="" v-model="oDoctor.name " placeholder="医生姓名"></el-input>
+
                 </div>
             </div>
             <div class="row-ct">
@@ -52,6 +53,7 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
                     <el-input class="row-item-value" value="" v-model="oDoctor.brief" placeholder="简介"></el-input>
+
                 </div>
             </div>
         </div>
@@ -94,7 +96,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 任职状态</span>
-                    <el-select v-model="oDoctor.jobCategory" placeholder="请选择">
+                    <el-select v-model="inauguralState" placeholder="请选择">
                         <el-option
                                 v-for="item in oInaugural"
                                 :key="item.key"
