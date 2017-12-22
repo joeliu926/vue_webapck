@@ -24,7 +24,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
-                    <el-input class="row-item-value" value="诊所"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="诊所名称"></el-input>
                 </div>
             </div>
             <div class="row-ct">
@@ -38,7 +38,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" value="年龄"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="年龄"></el-input>
                 </div>
             </div>
             <div class="row-ct">
@@ -51,7 +51,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
-                    <el-input class="row-item-value" value="简介"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="简介"></el-input>
                 </div>
             </div>
         </div>
@@ -69,39 +69,24 @@
                     <el-input class="row-item-value" value="职称"></el-input>
                 </div>
             </div>
-            <div class="row-ct">
-                <div class="row-item" >
+            <div class="row-ct" >
+                <div class="row-item" style="" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 擅长</span>
-                    <template>
-                        <el-select
-                                v-model="inauguralState"
-                                :filterable="true"
-                                :remote="true"
-                                placeholder="请输入擅长项目"
-                                @change="fSelectGoodAtItem"
-                                :remote-method="fGetGoodAtList"
-                        >
-                            <el-option
-                                    v-for="item in oInaugural"
-                                    :key="item.key"
-                                    :label="item.key"
-                                    :value="item.key">
-                            </el-option>
-                        </el-select>
-                    </template>
+                    <el-input class="row-item-value" value="" placeholder="擅长项目"></el-input>
+
                 </div>
             </div>
-            <div class="row-ct">
+            <div class="row-ct" style="display: none;">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ></span>
-                    <span class="goodat f-14">擅长项目11 </span>
-                    <span class="goodat f-14">擅长项目22</span>
-                    <span class="goodat f-14">擅长项目33</span>
+                    <span class="goodat f-14">擅长项目11<i class="el-icon-pa-close i-close-p"></i> </span>
+                    <span class="goodat f-14">擅长项目22 <i class="el-icon-pa-close i-close-p"></i></span>
+                    <span class="goodat f-14">擅长项目33 <i class="el-icon-pa-close i-close-p"></i></span>
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 就职</span>
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 任职状态</span>
                     <el-select v-model="inauguralState" placeholder="请选择">
                         <el-option
                                 v-for="item in oInaugural"
@@ -115,7 +100,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 从业年限</span>
-                    <el-input class="row-item-value" value="从业年限"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="从业年限"></el-input>
                 </div>
             </div>
         </div>

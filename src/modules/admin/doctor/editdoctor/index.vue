@@ -74,6 +74,14 @@
                         .row-item-value{
                             width: 200px;
                         }
+                        .i-close-p{
+                            position: absolute;top: -5px;right: -5px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                        }
+                        .el-icon-pa-close:before{
+                            color: #cc0000;
+                        }
                         .goodat{
                             display: inline-block;
                             margin-right: 10px;
@@ -81,6 +89,7 @@
                             padding:3px 10px;
                             border-radius: 4px;
                             color: #ffffff;
+                            position: relative;
                         }
                     }
                 }

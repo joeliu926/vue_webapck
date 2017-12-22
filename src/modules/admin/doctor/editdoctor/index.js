@@ -10,7 +10,7 @@ export default {
             doctoredit:'医生编辑',
             gender:"0",
             inauguralState:"",
-            oInaugural:[{key:"全职"},{key:"兼职"}]
+            oInaugural:[{key:"外聘专家"},{key:"坐诊医生"}]
         };
     },
     created() {

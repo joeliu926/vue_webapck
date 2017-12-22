@@ -5,6 +5,11 @@
 
 <style lang="scss">
     .admin-product {
+        .cur{
+            background: #9083ed;
+            color: #fff;
+            cursor:pointer;
+        }
         .fram-box {
             height: 100%;
             display: inline-block;
@@ -17,6 +22,7 @@
             width: 17%;
         }
         .admin-rbox{width: 82%;
+
             .content{
                 width:100%;
                 height:80%;
@@ -75,27 +81,32 @@
                         margin-top:20px;
                     }
                     .case-right-col{
-                        line-height: 20px;
+
                     }
                     .case-right-col a{
                         display: inline-block;
                         text-align: center;
                         float:left;
+                        height:px;
                         font-size: 14px;
+                        margin-bottom: 5px;
                         background: white;
                         color: #999999;
                         text-decoration:none;
-                        padding:2px 20px;
+                        padding:2px 10px;
                         margin-left: 0px;
                         margin-right: 40px;
+                        cursor:pointer;
                     }
-                    .changecol:hover{
+                    .case-right-col .changecol{
                         color: white;
+                        margin-bottom: 5px;
                         font-size:14px;
                         border-radius: 25px;
                         background: #9083ed;
-                        padding:2px 20px;
+                        padding:2px 10px;
                         cursor:pointer;
+                        height:px;
                     }
                     .case-content{
 

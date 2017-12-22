@@ -76,6 +76,31 @@
                         .row-item-value{
                             width: 200px;
                         }
+                        .major-project{
+                            word-break: keep-all;
+                            width: 480px;
+                            display:inline-block;
+                            padding-left: 84px;
+                            box-sizing: border-box;
+                            .i-close-p{
+                                position: absolute;top: -5px;right: -5px;
+                                border-radius: 15px;
+                                cursor: pointer;
+                            }
+                            .el-icon-pa-close:before{
+                                color: #cc0000;
+                            }
+                            .goodat{
+                                position: relative;
+                                display: inline-block;
+                                margin:0 8px 8px 0;
+                                background: #9287EB;
+                                padding:3px 10px;
+                                border-radius: 4px;
+                                color: #ffffff;
+                            }
+                        }
+
 
                     }
                     .logo-ct{
@@ -84,10 +109,33 @@
                       /*  background: url("../../../../common/img/i-add.png") no-repeat;*/
 
                         .up-logo{
-                            width: 80px;
-                            height: 80px;
-                            margin-right: 8px;
+                            width: 100px;
+                            height: 100px;
+                            /*margin-right: 8px;*/
+                           /* cursor: pointer;*/
+                        }
+                        .uploader-ct{
+                            display: inline-block;
+                            width: 100px;
+                        }
+                        .uploader-ct .el-upload {
+                            border: 1px dashed #d9d9d9;
+                            border-radius: 6px;
                             cursor: pointer;
+                            position: relative;
+                            overflow: hidden;
+
+                        }
+                        .uploader-ct .el-upload:hover {
+                            border-color: #409EFF;
+                        }
+                        .avatar-uploader-icon {
+                            font-size: 28px;
+                            color: #8c939d;
+                            width: 100px;
+                            height: 100px;
+                            line-height: 100px;
+                            text-align: center;
                         }
                         .format-ct{
                             display: inline-block;
@@ -98,6 +146,7 @@
             }
             .out-box-border{
                 width: 100%;
+                margin-bottom: 24px;
                 .map-ct{
                     width: 100%;
                     height: 400px;

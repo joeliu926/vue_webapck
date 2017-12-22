@@ -10,6 +10,10 @@ export default {
     },
     data () {
         return {
+            value: '',
+            value1: '',
+            imageUrl:"",
+            textarea:"",
             options: [{
                 value: '选项1',
                 label: '李医生'
@@ -28,10 +32,6 @@ export default {
                 value: '选项2',
                 label: '女'
             }],
-            value: '',
-            value1: '',
-            imageUrl:"",
-            textarea:""
 
         };
     },
@@ -39,6 +39,8 @@ export default {
 
     },
     mounted(){
+
+
 
     },
     destroyed() {
@@ -65,12 +67,10 @@ export default {
             }
             return isJPG && isLt2M;
         },
-        caseaddSave(){
-            console.log("edit caseaddSave");
+        updataSave(){
+            console.log("edit updatasave");
             this.$router.push("/admin/backcaselist");
-        }
-
-
+        },
     },
     watch: {
 
