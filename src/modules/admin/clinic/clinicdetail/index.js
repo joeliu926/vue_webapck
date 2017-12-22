@@ -20,7 +20,8 @@ export default {
             method: 'POST',
             data: postData,
             success: function (result) {
-                console.log("test--------", result);
+
+                // console.log("test--------", result);
 
 
             }

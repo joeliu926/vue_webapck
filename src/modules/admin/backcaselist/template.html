@@ -7,7 +7,7 @@
            <el-row class="rbox-top" :gutter="24" type="flex" justify="space-between" >
                 <div>
                     <p>全部案例</p>
-                    <span>在此页面上,您可以创建,查看并管理案例</span>
+                    <span class="f-14">在此页面上,您可以创建,查看并管理案例</span>
                 </div>
 
             </el-row>
@@ -21,7 +21,7 @@
                     placeholder="请输入内容"
                     v-model="input">
                     </el-input>
-                    <i class="el-icon-search"></i>
+                    <i class="el-icon-search" @click="search()"></i>
                 </div>
                 <div class="selectedbox fr clearfix">
                     <el-select  v-model="value" placeholder="按医生筛选">
@@ -32,7 +32,7 @@
                           :value="item.value">
                         </el-option>
                     </el-select>
-                    <router-link :to="{name: '/admin/backcaseadd'}"  style="color:#333; text-decoration: none;">
+                    <router-link :to="{name: '/admin/backcaselist/backcaseadd'}"  style="color:#333; text-decoration: none;">
                        + 添加案例
                     </router-link>
                 </div>
@@ -73,10 +73,10 @@
                             style="padding:0px;"
                             min-width="20%">
                        <template slot-scope="props"   >
-                            <router-link :to="{name: '/admin/backcaseupdata', params: {id: props.row.id}}" style="color:#333; margin-right:20px; display: inline-block;" >                                    修改
+                            <router-link :to="{name: '/admin/backcaselist/backcaseupdata', params: {id: props.row.id}}" style="color:#333; margin-right:20px; display: inline-block;" >                                    修改
                               <!--<el-button type="info" size="small" icon="edit">修改</el-button>-->
                             </router-link>
-                           <a href="#" style="color:#333;display: inline-block;">删除</a>
+                           <a href="#" style="color:#333;display: inline-block;" @click="delete(props.row.id)" >删除</a>
                             <!--<el-button type="danger" size="small" icon="delete" >删除</el-button>-->
                             <!-- @click="delete_data(props.row)" -->
                       </template>

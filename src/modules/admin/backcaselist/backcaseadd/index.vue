@@ -156,13 +156,18 @@
             }
             /*求美者*/
             .addimg{
+                width:500px;
                 padding:10px 20px;
-                div{
+                .imgfilebox{
+                    margin-right:10px;
+                    margin-bottom:10px;
+                }
+                headerpic{
                     margin-right:12px;
                     width:60px;
                     height:60px;
                     border-radius: 6px;
-                    background:lightblue;
+                    /*background:lightblue;*/
                     img{
                         width:100%;
                         height:100%;

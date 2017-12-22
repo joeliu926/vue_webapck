@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 
-import tree from '../tree/index.vue';
+import tree from '../../tree/index.vue';
 
 export default {
     components: {
@@ -36,7 +36,7 @@ export default {
         };
     },
     created() {
-
+        this.getdata();
     },
     mounted(){
 
@@ -47,6 +47,39 @@ export default {
 
     },
     methods: {
+        getdata(){
+            let postData = {
+
+            };
+            _.ajax({
+                url: '/admin/backcase/backcaseupdata',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("caselist--------", result);
+
+
+                }
+            }, 'withCredentials');
+        },
+
+        setdata(){
+            let postData = {
+
+            };
+            _.ajax({
+                url: '/admin/backcase/backcaselist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("caseupdata--------", result);
+
+
+                }
+            }, 'withCredentials');
+        },
+
+
         pickerOptions1: {
             disabledDate(time) {
                 return time.getTime() > Date.now();
@@ -68,7 +101,8 @@ export default {
             return isJPG && isLt2M;
         },
         updataSave(){
-            console.log("edit updatasave");
+            this.setdata();
+            console.log("add casesave");
             this.$router.push("/admin/backcaselist");
         },
     },

@@ -26,7 +26,7 @@ export default {
             this.$router.push("/");
         },
         fEditDoctor(){
-this.$router.push("/admin/doctor/edit");
+            this.$router.push("/admin/doctor/edit");
         }
     },
     watch: {

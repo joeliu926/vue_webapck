@@ -139,6 +139,7 @@ export default {
          * 查询主营项目
          */
         fGetMajorList(ename){
+
             console.log("search auto ====>",ename);
             if (ename.trim() == "") {
                 return false;
