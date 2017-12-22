@@ -11,7 +11,7 @@
                 <p class="org-name">云像美疗机构</p>
             </div>
             <div class="clinic-edit-ct">
-                <el-button @click="fEditSave">保存</el-button>
+                <el-button @click="fCreateClinic">保存</el-button>
                 <el-button @click="fEditSave">保存并新建</el-button>
                 <el-button @click="fEditCancel">取消</el-button>
             </div>
@@ -21,11 +21,11 @@
             <div class="row-ct">
             <div class="row-item" >
                 <span class="row-item-title f-14" ><i class="i-must">*</i> 诊所名</span>
-                <el-input class="row-item-value" value="" placeholder="诊所名"></el-input>
+                <el-input class="row-item-value"  v-model="oClinicData.name" placeholder="诊所名"></el-input>
             </div>
             <div class="row-item" >
                 <span class="row-item-title f-14"><i class="i-must">*</i>诊所等级</span>
-                <el-select v-model="clinicRank" placeholder="请选择">
+                <el-select v-model="oClinicData.qualification" placeholder="请选择">
                     <el-option
                             v-for="item in oClinicRank"
                             :key="item"
@@ -38,7 +38,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 电话</span>
-                    <el-input class="row-item-value" value="" placeholder="电话"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oClinicData.phone" placeholder="电话"></el-input>
                 </div>
                 <div class="row-item" >
                     <span class="row-item-title f-14"><i class="i-must">*</i>主营项目</span>
@@ -79,8 +79,17 @@
             </div>
             <div class="row-ct">
                 <div class="row-item logo-ct" style="">
-                    <span class="row-item-title f-14"><i class="i-must">*</i>Logo</span>
-                    <img class="up-logo" src="../../../../common/img/shuhou.png" style=""/>
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
+                    <img class="up-logo" src="../../../../common/img/shuhou.png" style="display: none;"/>
+                    <el-upload
+                            class="uploader-ct"
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :show-file-list="false"
+                            :on-success="uploadLogoSuccess"
+                            :before-upload="beforeUploadLogo">
+                        <img v-if="clinicLogo" :src="clinicLogo" class="up-logo">
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
                     <div class="format-ct" style="">
                         <div class="f-14">格式:jpg、jpeg、png、bmp</div>
                         <div class="f-14">大小：5M以内</div>
@@ -91,7 +100,7 @@
             <div class="row-ct">
                 <div class="row-item" style="" >
                     <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>营业时间</span>
-                    <el-input class="row-item-value"  type="textarea" :row="3" value="" placeholder="营业时间"></el-input>
+                    <el-input class="row-item-value"  type="textarea" :row="3" value="" v-model="oClinicData.businessTime" placeholder="营业时间"></el-input>
                 </div>
             </div>
         </div>
@@ -100,7 +109,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14"><i class="i-must">*</i>地址</span>
-                    <input type="text" class="row-item-value el-input__inner" placeholder="地址" id="suggestId" value="北京" />
+                    <input type="text" class="row-item-value el-input__inner" placeholder="地址" id="suggestId" value="" v-model="oClinicData.address" />
                     <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:250px;height:auto;display: none;"></div>
                 </div>
             </div>

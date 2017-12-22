@@ -15,12 +15,48 @@ export default {
             oProductCode:[],
             oSelectMajorItems:[],
             inauguralState:"",
+            clinicLogo:"",
             oClinicRank:["诊所","门诊部","整形外科医院","一级民营医院","二级医院","三级甲等医院"],
-            clinicRank:""
+            clinicRank:"",
+            oClinicData:{
+                "address": "1111",
+                "brief": "11",
+                "businessTime": 0,
+                "caseFileVo": [
+                    {
+                        "name": "222",
+                        "url": "22"
+                    }
+                ],
+                "cityName": "1232",
+                "clinicId": 0,
+                "coordinate": "123",
+                "countryName": "12",
+                "districtName": "123",
+                "id": 0,
+                "linkman": "1234",
+                "loginName": "1234",
+                "logo": "1234",
+                "name": "1234",
+                "parentTenantId": 0,
+                "phone": "1234",
+                "picture": "1234",
+                "productNames": [
+                    {
+                        "clinicId": 0,
+                        "productCode": "1",
+                        "productName": "2"
+                    }
+                ],
+                "provName": "北京",
+                "qualification": "12"
+            }
 
         };
     },
     created() {
+
+       // this.fCreateClinic();
 
     },
     mounted(){
@@ -163,6 +199,32 @@ export default {
             let lindex=_This.oProductCode.indexOf(eCode);
             _This.oProductCode.splice(lindex,1);
             _This.oSelectMajorItems.splice(lindex,1);
+
+        },
+        fCreateClinic(){
+            let _This = this;
+            let pCreateData=JSON.stringify(_This.oClinicData);
+            console.log("pCreateData------->",pCreateData);
+            let postData = {
+                pData: pCreateData
+            };
+
+            _.ajax({
+                url: '/clinic/create',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("create ff------->",result);
+                    if (result.code == 0 && result.data) {
+
+                    }
+                }
+            }, 'withCredentials');
+        },
+        uploadLogoSuccess(res,file){
+            this.clinicLogo = URL.createObjectURL(file.raw);
+        },
+        beforeUploadLogo(){
 
         }
     },
