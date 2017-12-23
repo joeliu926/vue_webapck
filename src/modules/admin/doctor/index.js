@@ -9,8 +9,8 @@ export default {
     data () {
         return {
             pageNo: 1,
-            pageSize: 15,
-            count:1,
+            pageSize: 3,
+            count:0,
             doctorlist:'医生列表',
             aDoctorlist:[],
             oDoctor:{
@@ -58,7 +58,33 @@ export default {
     },
     methods: {
         fCreateDoctor(){
-            this.$router.push("/admin/doctor/edit");
+            this.$router.push("/admin/doctor/edit/0");
+        },
+        fEidtDoctor(id){
+        	this.$router.push("/admin/doctor/edit/"+id);
+        },
+        fDeleteDoctor(item){
+        	 console.log("doctor--delete---item-----", item);
+        	if(!item.id){
+        		return false;
+        	}
+        	
+        	let _This=this;
+            let postData =item;
+            if(postData.hasOwnProperty("page")){
+            	delete postData.page;
+            }
+            _.ajax({
+                url: '/admin/doctor/delete',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("doctor--delete--------", result);
+                    if(result.code==0){
+             
+                    }
+                }
+            }, 'withCredentials');
         },
         gohome(){
             this.$router.push("/");
@@ -85,6 +111,7 @@ export default {
                     console.log("doctor--list--------", result);
                     if(result.code==0&&result.data.list.length>0){
                         _This.aDoctorlist=result.data.list;
+                        _This.count=result.data.count;
                     }
                 }
             }, 'withCredentials');

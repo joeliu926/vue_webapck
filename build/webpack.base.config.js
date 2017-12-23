@@ -29,13 +29,13 @@ constantData = constantData.replace(/wsReqUrl:\s*\S+?,/,function (word){
 
 console.log('constantData',constantData);
 
-fs.writeFileSync(constantPath, constantData, function(err){
-    if(err){
-        console.log("error! " + file);
-        console.log(err);
-    }else{
-        console.log("CONSTANT.js success! ");
-    }
+fs.writeFileSync(constantPath, constantData, function(err) {
+	if(err) {
+		console.log("error! " + file);
+		console.log(err);
+	} else {
+		console.log("CONSTANT.js success! ");
+	}
 });
 //////////////////////////////////////////////////////////////
 

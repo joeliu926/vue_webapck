@@ -39,7 +39,11 @@
                 }
             }
             .doctor-list-content{
-
+            	.cell{
+            		  font-size: 14px;
+            		   color: #999999;
+            	}
+              
             }
             .doctor-pagination-align {
                 text-align: right;

@@ -9,7 +9,7 @@
                     <span class="sel-title f-16">全部医生</span>
                 </div>
                 <p class="org-name f-14">在此页面上，您可以创建、查看和管理医生</p>
-                <p class="org-name f-14">记录(10)</p>
+                <p class="org-name f-14">记录({{count}})</p>
             </div>
             <div class="doctor-edit-ct">
                 <el-button @click="fCreateDoctor">创建</el-button>
@@ -25,15 +25,15 @@
                 <el-table-column
                         prop="name"
                         label="名称"
-                        min-width="10%">
+                        min-width="14%">
                 </el-table-column>
                 <el-table-column
                         prop="duty"
                         label="职务"
                         min-width="16%">
                     <template slot-scope="scope" style="">
-                        <p class="cursorPointer" @click="fCustomerDetail(scope.row.id)">
-                          gggggg
+                        <p class="cursorPointer f-14">
+                          {{scope.row.duty}}
                         </p>
                     </template>
                 </el-table-column>
@@ -44,8 +44,8 @@
                 </el-table-column>
                 <el-table-column
                         prop="gender"
-                        label="性别"
-                        min-width="18%">
+                        label="性别" 
+                        min-width="10%">
                     <template slot-scope="scope" style="text-align: right;">
                        <div>{{scope.row|genderFilter}}</div>
                     </template>
@@ -63,18 +63,18 @@
                 <el-table-column
                         prop="jobExperience"
                         label="从业年限"
-                        min-width="18%">
+                        min-width="14%">
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="18%">
                     <template slot-scope="scope"  style="">
-                        <a href="javascript:;">编辑</a>
-                        <a href="javascript:;">删除</a>
+                        <a href="javascript:;" @click="fEidtDoctor(scope.row.id)">编辑</a>
+                        <a href="javascript:;" @click="fDeleteDoctor(scope.row)">删除</a>
                     </template>
                 </el-table-column>
             </el-table>
         </div>
-        <div class="doctor-pagination-align">
+        <div class="doctor-pagination-align" v-if="count>0">
             <el-pagination
                     @current-change="handleCurrentChange"
                     layout="prev, pager, next"

@@ -187,7 +187,7 @@ var routerConfig = {
         },
         {
             name:'/admin/doctor/edit',
-            path: '/admin/doctor/edit',
+            path: '/admin/doctor/edit/:id',
             components:{
                 default:edit_doctor,
                 nav:admin_nav

@@ -79,17 +79,9 @@
             <div class="row-ct">
                 <div class="row-item logo-ct" style="">
                     <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
-                    <el-upload
-                            class="uploader-ct"
-                            :action="imgUploadUrl"
-                            :show-file-list="false"
-                            :on-success="uploadLogoSuccess"
-                            :before-upload="beforeUploadLogo">
-                        <img v-if="oClinicData.logo" :src="oClinicData.logo" class="up-logo">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+             <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                       <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
                     <div class="format-ct" style="">
-                        <input type="file" @change="ajaxFileUpload">
                         <div class="f-14">格式:jpg、jpeg、png、bmp</div>
                         <div class="f-14">大小：5M以内</div>
                     </div>

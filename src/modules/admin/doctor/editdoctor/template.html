@@ -11,8 +11,8 @@
                 <p class="org-name">新医生</p>
             </div>
             <div class="doctor-edit-ct">
-                <el-button @click="fEditSave">保存</el-button>
-                <el-button @click="fEditSave">保存并新建</el-button>
+                <el-button @click="fEditSave(1)">保存</el-button>
+                <el-button @click="fEditSave(0)">保存并新建</el-button>
                 <el-button @click="fEditCancel">取消</el-button>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.name " placeholder="医生姓名"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.name" placeholder="医生姓名"></el-input>
 
                 </div>
             </div>
@@ -44,9 +44,9 @@
             </div>
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14"><i class="i-must">*</i>头像</span>
-                    <img src="../../../../common/img/shuhou.png"/>
-
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
+                     <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                   <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
                 </div>
             </div>
             <div class="row-ct">
@@ -68,7 +68,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 职称</span>
-                    <el-select v-model="oDoctor.jobTitle " placeholder="请选择">
+                    <el-select v-model="selectJobTitle" placeholder="请选择">
                         <el-option
                                 v-for="item in oJobTitle"
                                 :key="item"
