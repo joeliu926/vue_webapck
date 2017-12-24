@@ -68,82 +68,11 @@ export default {
         this.fGetClinicList();
     },
     mounted(){
+    	console.log("oClinicData.address--------",this.oClinicData.address);
         let currentCity = "";
-
-        var map = new BMap.Map("map-content");
-        var point = new BMap.Point(116.331398, 39.897445);
-        map.centerAndZoom(point, 12);
-        //  map.centerAndZoom("北京",12);
-        function myFun(result) {
-            var cityName = result.name;
-            console.log("result----------->", result.center);
-            let lat = result.center.lat;
-            let lng = result.center.lng;
-            point = new BMap.Point(lng, lat);
-            map.centerAndZoom(point, 12);
-        }
-
-        var myCity = new BMap.LocalCity();
-        myCity.get(myFun);
+      //  var map = new BMap.Map("map-content");
 
 
-        // 百度地图API功能
-        function G(id) {
-            return document.getElementById(id);
-        }
-
-        // 初始化地图,设置城市和地图级别。
-
-        var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
-            {
-                "input": "suggestId"
-                , "location": map
-            });
-
-        ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
-            var str = "";
-            var _value = e.fromitem.value;
-            var value = "";
-            if (e.fromitem.index > -1) {
-                value = _value.province + _value.city + _value.district + _value.street + _value.business;
-            }
-            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-
-            value = "";
-            if (e.toitem.index > -1) {
-                _value = e.toitem.value;
-                value = _value.province + _value.city + _value.district + _value.street + _value.business;
-            }
-            str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-            G("searchResultPanel").innerHTML = str;
-        });
-
-        var myValue;
-        ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
-            var _value = e.item.value;
-            myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-            G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-
-            setPlace();
-        });
-
-        function setPlace() {
-            map.clearOverlays();    //清除地图上所有覆盖物
-            function myFun() {
-                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-
-                console.log("pp-------->", pp);
-
-                map.centerAndZoom(pp, 18);
-                map.addOverlay(new BMap.Marker(pp));    //添加标注
-            }
-
-            var local = new BMap.LocalSearch(map, { //智能搜索
-                onSearchComplete: myFun
-            });
-            console.log("myValue--------->", myValue);
-            local.search(myValue);
-        }
     },
     destroyed() {
 
@@ -152,6 +81,9 @@ export default {
         fEditClinic(){
             this.$router.push("/admin/clinic/edit/"+this.oClinicData.clinicId);
         },
+        /**
+         * 获取诊所列表信息
+         */
         fGetClinicList(){
             let _This=this;
             let postData = {
@@ -166,9 +98,14 @@ export default {
                     if(result.code==0&&result.data.list.length>0){
                         _This.oClinicData=result.data.list[0];
                     }
+                    _This.fSearchAddressByAddress();
+                    	console.log("oClinicData.address--------",_This.oClinicData.address);
                 }
             }, 'withCredentials');
         },
+        /**
+         * 获取诊所详情
+         */
         fGetClinicDetail(){
             let postData = {
                // faceId: ""
@@ -181,7 +118,32 @@ export default {
                     console.log("test--------", result);
                 }
             }, 'withCredentials');
-        }
+        },
+        fCreateMap(){
+        	 // var map = new BMap.Map("map-content");
+        },
+        /**
+         * 获取地址map
+         */
+       fSearchAddressByAddress() {
+        	let _This=this;
+        	let addressText=_This.oClinicData.address;
+       	    var map = new BMap.Map("map-content");
+       	  	  	map.enableScrollWheelZoom(); 
+		    map.enableContinuousZoom(); 
+			var localSearch = new BMap.LocalSearch(map);
+			localSearch.setSearchCompleteCallback(function(searchResult) {
+				var poi = searchResult.getPoi(0);
+				map.centerAndZoom(poi.point, 13);
+				  map.clearOverlays(); 
+				var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat)); // 创建标注，为要查询的地方对应的经纬度
+				map.addOverlay(marker);
+				var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + addressText + "</p>");
+				marker.openInfoWindow(infoWindow);
+				marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+			});
+			localSearch.search(addressText);
+		}
     },
     watch: {}
 }
