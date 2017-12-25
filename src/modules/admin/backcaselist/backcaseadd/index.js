@@ -10,7 +10,7 @@ export default {
     },
     data () {
         return {
-            options: [{
+            doctorlist: [{
                 value: '选项1',
                 label: '李医生'
             }, {
@@ -49,13 +49,16 @@ export default {
             customerGender:0,
             contentList:[],
             title:'',
+            search:"",
+            searchData:[],
+            textareas:[]
 
         };
     },
     created() {
-        // this.setdata();
+        this.getdoctorlist();
     },
-    mounted(){
+    mounted() {
 
     },
     destroyed() {
@@ -66,15 +69,16 @@ export default {
         caseaddSave(){
             console.log("----------------",this.operationDate);
             console.log(new Date(this.operationDate).valueOf());
+            console.log(this.doctorlist[0].id);
             let postData = {
                 "loginName":"admin",
                 "caseName": this.caseName,
                 "doctor": {
-                    "id": 1
+                    "id":   this.doctorlist.id,
                 },
                 "products": [
                     {
-                        "id": 1
+                        "id":this.searchData.index
                     }
                 ],
                 "operationDate":this.operationDate?new Date(this.operationDate).valueOf():"",
@@ -118,8 +122,73 @@ export default {
                 }
             }, 'withCredentials');
         },
+        remoteMethod(query) {
+            console.log(query);
+            if (query !== '') {
+                this.loading = false;
+                var _This = this;
+                let   postData={
+                    // pageNo:_This.pageNo,
+                    // pageSize:_This.pageSize,
+                    productName:query,
 
 
+                }
+                _.ajax({
+                    url: '/admin/backcase/selectcaselist',
+                    method: 'POST',
+                    data: postData,
+                    success: function (result) {
+                        console.log("============",result);
+                        if(result.code==0){
+                            let list=result.data;
+                            console.log(list);
+                            list.forEach(item => {
+                                _This.searchData.push(item.productName);
+                            });
+                           console.log(_This.searchData);
+                        }
+
+                    }
+                }, 'withCredentials');
+                // setTimeout(() => {
+                //     this.loading = false;
+                //     this.options4 = this.list.filter(item => {
+                //         return item.label.toLowerCase()
+                //                 .indexOf(query.toLowerCase()) > -1;
+                //     });
+                // }, 200);
+            } else {
+                this.options4 = [];
+            }
+        },
+
+        /*添加描述信息*/
+        addtextareas(param){
+            console.log(param);
+            this.textareas.push(param);
+            console.log(this.textareas);
+
+            this.textarea="";
+        },
+        /*获取医生列表*/
+        getdoctorlist(){
+            let _this=this;
+            let pData={
+
+            }
+            _.ajax({
+                url: '/admin/backcase/setdoctorlist',
+                method: 'POST',
+                data: pData,
+                success: function (result) {
+                    console.log("获取医生列表成功-------", result);
+                    _this.doctorlist=result.data;
+                    console.log(_this.doctorlist);
+
+                }
+            }, 'withCredentials');
+        },
 
 
 
