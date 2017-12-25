@@ -10,7 +10,7 @@ export default {
 	data() {
 		return {
 			pageNo: 1,
-			pageSize: 3,
+			pageSize: 5,
 			count: 0,
 			doctorlist: '医生列表',
 			aDoctorlist: [],

@@ -12,7 +12,7 @@
             </div>
             <div class="doctor-edit-ct">
                 <el-button @click="fEditSave(1)">保存</el-button>
-                <el-button @click="fEditSave(0)">保存并新建</el-button>
+                <el-button @click="fEditSave(0)" v-if="curId<=0">保存并新建</el-button>
                 <el-button @click="fEditCancel">取消</el-button>
             </div>
         </div>
