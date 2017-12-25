@@ -85,8 +85,10 @@
                             top: 0px;
                             text-align: center;
                             color: #bfcbd9;
-                            transition: all .3s
+                            transition: all .3s;
+                            cursor: pointer;
                         }
+
                         .el-icon-search::before{
                             line-height: 36px;
                         }
