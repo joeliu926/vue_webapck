@@ -48,7 +48,7 @@ export default {
         /*添加页面*/
         setdata(){
             let postData = {
-
+                "loginName":"admin"
             };
             // _.ajax({
             //     url: '/admin/backcase/backcaseadd',
