@@ -193,9 +193,9 @@
                         display: inline-block;
                         width:178px;
                         height:178px;
-                        border: 1px dashed #bfcbd9;
                         border-radius: 6px;
                         cursor: pointer;
+                        border: 1px dashed #bfcbd9;
                         background-position: center center;
                         background-repeat: no-repeat;
                         background-size: 100%;
@@ -249,6 +249,30 @@
                 .imgfilebox{
                     margin-right:10px;
                     margin-bottom:10px;
+                }
+                .doctor-img{
+                    display: inline-block;
+                    width:60px;
+                    height:60px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    border: 1px dashed #bfcbd9;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                }
+                .add-img{
+                    width:60px;
+                    height:60px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    border: 1px dashed #bfcbd9;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    .add-icon{
+
+                    }
                 }
                 headerpic{
                     margin-right:12px;

@@ -41,27 +41,46 @@
         </div>
         <div class="case-info-ct">
             <div class="row-ct" >
-                <div class="row-item" >
+                <div class="row-item" style="margin-bottom:20px;">
                     <span class="row-item-title f-14" v-model="doctor"><i class="i-must">*</i> 医生</span>
                     <el-select v-model="value" placeholder="请选择">
                         <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="item in doctorlist"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
                         </el-option>
                     </el-select>
                 </div>
-                <div class="row-item" >
+                <br/>
+                <div class="row-item" style="margin-bottom:20px;" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗项目</span>
-                    <el-input class="row-item-value" value="" v-model="product"></el-input>
+                    <el-select
+                            v-model="search"
+                            filterable
+                            remote
+                            reserve-keyword
+                            placeholder="请输入关键词"
+                            :remote-method="remoteMethod"
+                            >
+                        <el-option
+                                v-for="item in searchData"
+                                :key="item"
+                                selected
+                                :label="item"
+                                :value="item">
+                        </el-option>
+                    </el-select>
                 </div>
+                <br/>
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗时间</span>
                     <el-date-picker
                         v-model="operationDate"
                         type="date"
+                        width="200"
                         placeholder="选择日期">
+
                     </el-date-picker>
                 </div>
             </div>
@@ -113,7 +132,7 @@
                         <div class="f-14">格式:jpg、jpeg、png、bmp</div>
                         <div class="f-14">大小：5M以内</div>
                     </div>
-                    <div class="add-icon"></div>
+                    <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
                 </div>
             </div>
             <div class="row-ct" >
@@ -165,14 +184,25 @@
             
         </div>
         <div class="addimg clearfix">
-            <div  class="imgfilebox fl" >
+            <div  class="imgfilebox fl" :style="{backgroundImage:['url('+afterImg+')']}" v-for="" >
                 <img src="../../../../common/img/shuhou.png" width="60"/>
             </div>
+            <div class="fl" style="position:relative; width:60px; height:60px; margin-bottom:10px;">
+                <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
+                <div class="doctor-img"  @click="fChooseafImg"></div>
+            </div>
+            <!--<div class="add-img fl" :style="{backgroundImage:['url('+defaultImg+')']}" ref="uploadImg" @change="fAjaxFileUpload">-->
+                <!--<div class="add-icon"></div>-->
+            <!--</div>-->
 
         </div>
 
         <div class="addDescription">
             <p>添加一段描述</p>
+            <div class="show">
+                <p v-for="item in  textareas" v-text="item" style="width:100%; height:15px; fontsize:14px;"></p>
+            </div>
             <el-input
                     type="textarea"
                     width="40%"
@@ -181,7 +211,7 @@
                     v-model="textarea">
             </el-input>
         </div>
-        <el-button type="primary" style="margin-left:10px;">完成</el-button>
+        <el-button type="primary" style="margin-left:10px;" @click="addtextareas(textarea)">完成</el-button>
 
         <!-- 保存 保存和新建 取消-->
         <div class="case-record">

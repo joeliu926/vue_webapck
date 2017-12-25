@@ -37,9 +37,8 @@ export default {
             state:'',
             value:'',
             productName:'',
-
             doctorId:"",
-            options:[
+            doctorlist:[
                 {
                   value: '选项1',
                   label: '张医生'
@@ -81,6 +80,7 @@ export default {
     },
     created() {
       this.fSearchCaseList();
+      this.getdoctorlist();
     },
     mounted(){
 
@@ -89,14 +89,35 @@ export default {
 
     },
     methods: {
+        /**/
+        currentid(){
+            this.fSearchCaseList();
+           // console.log("this.doctorId-------", this.doctorId,item);
+        },
+        /*获取医生列表*/
+        getdoctorlist(){
+            let _this=this;
+            let pData={
+
+            }
+            _.ajax({
+                url: '/admin/backcase/setdoctorlist',
+                method: 'POST',
+                data: pData,
+                success: function (result) {
+                    console.log("获取医生列表成功-------", result);
+                    _this.doctorlist=result.data;
+                    console.log(_this.doctorlist);
+
+                }
+            }, 'withCredentials');
+        },
         fSearchCaseList(){
             var _This = this;
             let   postData={
                pageNo:_This.pageNo,
                pageSize:_This.pageSize,
-                productName:_This.productName,
-                doctorId:_This.doctorId
-
+               productName:_This.productName,
             }
             _.ajax({
                 url: '/admin/backcase/backcaselist',
