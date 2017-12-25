@@ -9,20 +9,7 @@ export default {
     data () {
         return {
             userId:'',
-            userInfo:{
-                headImgUrl:"",
-                id:0,
-                loginName:"18010120135",
-                menus:[],
-                mobile:"18010120135",
-                name:"檀兴园",
-                nickname:"",
-                permissions:[],
-                rolesEnName:[],
-                status:0,
-                tenantId:0,
-                type:"",
-                wxOpenId:""},
+            userInfo:{},
             roleList:[],
             doctoredit:'用户编辑',
             checked:true,
@@ -30,8 +17,10 @@ export default {
         };
     },
     created() {
+        this.clearData();
         this.userId = this.$route.params.id;
         this.initUser();
+        this.initRoles();
     },
     methods: {
         initUser(){
@@ -56,12 +45,11 @@ export default {
             _.ajax({
                 url: '/admin/userrole/rolelist',
                 method: 'POST',
-                //data:_data,
                 success: function (result) {
                     if (result.code == 0 && result.data) {
                         _this.roleList =result.data;
                         _this.roleList.forEach(m=>{
-                            _this.userInfo.roles.forEach(roles=>{
+                            _this.userInfo.roles&&_this.userInfo.roles.forEach(roles=>{
                                 if(roles.id==m.id){
                                     m.checked=true;
                                 }
@@ -77,6 +65,7 @@ export default {
 
         },
         resetPassword(){
+            let _this = this;
             let _data={
                 userId:this.userId
             }
@@ -116,12 +105,31 @@ export default {
                 }
             }, 'withCredentials');
         },
-        save(){
+        checkrole(params){
+
+            let refresh = this.roleList;
+            this.roleList=[];
+            refresh.forEach(m=>{
+               if(m.id ==params.id){
+                   m.checked =m.checked;
+               }
+            });
+            this.roleList =refresh;
+        },
+        save(cb){
+
+            if(!this.authData()){
+                return;
+            }
             let _this = this;
             this.userInfo.rolesEnName=this.roleList.filter(function (m) {
                 m.userId = _this.userId;
                 return m.checked ==true;
             });
+
+            if(this.userId == '_EPT'){
+                this.userInfo.id ="";
+            }
 
             let _data=_this.userInfo;
             _.ajax({
@@ -131,11 +139,9 @@ export default {
                 success: function (result) {
                     if (result.code == 0 && result.data) {
                         let rolelist  = [];
-
                         _this.userInfo.rolesEnName.forEach(rl=>{
                             rolelist.push(rl.id);
                         });
-
                         let postObje={"roles":rolelist,"userId":result.data.id};
                         _.ajax({
                             url: '/admin/userrole/updateuserrole',
@@ -144,6 +150,7 @@ export default {
                             success: function (result) {
                                 if (result.code == 0 && result.data) {
                                     _this.$message.info("保存成功");
+                                    cb&&cb();
                                 }else{
                                     _this.$message.error("保存失败");
                                 }
@@ -159,16 +166,35 @@ export default {
 
         },
         saveAndAdd(){
-
+            let _this =this;
+            this.save(function () {
+                _this.clearData();
+            });
         },
         Cancel(){
-
+            this.clearData();
+            this.$router.push("/admin/userlist");
+        },
+        clearData(){
+            this.userInfo = {
+                headImgUrl:"",
+                id:'',
+                loginName:"",
+                menus:[],
+                mobile:"",
+                name:"",
+                nickname:"",
+                permissions:[],
+                rolesEnName:[],
+                status:0,
+                tenantId:0,
+                type:"",
+                wxOpenId:""}
         },
         chooseImage(){
             this.$refs.uploadImg.click();
         },
         fAjaxFileUpload(e){
-            //console.log("upload file");
             let _This = this;
             var imgFile = e.target.files[0];
             if(imgFile.size>5*1024*1024){
@@ -193,6 +219,40 @@ export default {
                     //console.log("error-- result------>", result)
                 }
             });
+        },
+        authData(){
+            console.log('this.userInfo.name',this.userInfo.name);
+            if(/^[^ ]+$/.test(this.userInfo.name)){
+                //return true;
+            }else{
+                this.$message.error("用户名不能为空");
+                return false;
+            }
+
+            if(/1\d{10}/.test(this.userInfo.mobile)){
+                //return true;
+            }else{
+                this.$message.error("手机号不正确");
+                return false;
+
+            }
+
+            if(/^[^ ]+$/.test(this.userInfo.loginName)){
+               // return true;
+            }else{
+                this.$message.error("登陆名不能为空");
+                return false;
+            }
+            let checkArray =this.roleList.filter(function (m) {
+                return m.checked ==true;
+            });
+
+            if(checkArray.length<1){
+                this.$message.error("请选择用户角色！");
+                return false;
+            }
+
+            return true;
         }
     }
 }

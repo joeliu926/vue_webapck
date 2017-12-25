@@ -80,7 +80,7 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 角色</span>
                     <div style="display: inline-block;max-width: 350px;">
-                        <el-checkbox key="role.id" v-for="role in roleList" v-model="role.checked">{{role.name}}</el-checkbox>
+                        <el-checkbox key="role.id" v-for="role in roleList" @change="checkrole(role)" v-model="role.checked">{{role.name}}</el-checkbox>
                     </div>
                 </div>
             </div>
