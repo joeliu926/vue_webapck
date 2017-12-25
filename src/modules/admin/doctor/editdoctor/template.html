@@ -24,7 +24,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.name" placeholder="医生姓名"></el-input>
+                    <el-input class="row-item-value" value="" ref="dname" v-model="oDoctor.name" placeholder="医生姓名"></el-input>
 
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.age" placeholder="年龄"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.age" ref="age" placeholder="年龄"></el-input>
                 </div>
             </div>
             <div class="row-ct">
@@ -52,7 +52,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.brief" placeholder="简介"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.brief" ref="brief" placeholder="简介"></el-input>
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 职务</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.duty"></el-input>
+                    <el-input class="row-item-value" value="" ref="duty" v-model="oDoctor.duty"></el-input>
                 </div>
             </div>
             <div class="row-ct">
@@ -81,7 +81,7 @@
             <div class="row-ct" >
                 <div class="row-item" style="" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 擅长</span>
-                    <el-input class="row-item-value" value="" placeholder="擅长项目" v-model="oDoctor.specialty"></el-input>
+                    <el-input class="row-item-value" value=""  ref="specialty"  placeholder="擅长项目" v-model="oDoctor.specialty"></el-input>
 
                 </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 任职状态</span>
-                    <el-select v-model="inauguralState" placeholder="请选择">
+                    <el-select v-model="inauguralState" ref="inauguralState" placeholder="请选择">
                         <el-option
                                 v-for="item in oInaugural"
                                 :key="item.key"
@@ -109,7 +109,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 从业年限</span>
-                    <el-input class="row-item-value" value="" placeholder="从业年限" v-model="oDoctor.jobExperience"></el-input>
+                    <el-input class="row-item-value" value="" ref="jobExperience" placeholder="从业年限" v-model="oDoctor.jobExperience"></el-input>
                 </div>
             </div>
         </div>
