@@ -84,38 +84,126 @@
             .case-info-ct{
 
                 padding: 20px 0;
-                .row-ct{
+                .row-ct {
                     padding: 10px;
-                    .row-item{
-                        margin:0 0 20px 20px;
-                        width: 500px;
-                        div{
-                            vertical-align:middle;
-                            display: inline-block;
-
-                        }
-                        div.msxx{
-                            color:#999;
-                            padding-left:15px;
-                            padding-top:16px;
-                            font-size: 12px;
-                            p{
-                                font-size: 12px;
-                                color: #999999;
-                            }
-
-                        }
-                        .row-item-title{
+                    .row-item {
+                        display: inline-block;
+                        width: 300px;
+                        .row-item-title {
                             display: inline-block;
                             width: 80px;
                         }
-                        .row-item-value{
+                        .row-item-value {
                             width: 200px;
+                        }
+                        .major-project {
+                            word-break: keep-all;
+                            width: 480px;
+                            display: inline-block;
+                            padding-left: 84px;
+                            box-sizing: border-box;
+                            .i-close-p {
+                                position: absolute;
+                                top: -5px;
+                                right: -5px;
+                                border-radius: 15px;
+                                cursor: pointer;
+                            }
+                            .el-icon-pa-close:before {
+                                color: #cc0000;
+                            }
+                            .goodat {
+                                position: relative;
+                                display: inline-block;
+                                margin: 0 8px 8px 0;
+                                background: #9287EB;
+                                padding: 3px 10px;
+                                border-radius: 4px;
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                    .logo-ct {
+                        width: 500px;
+                        position: relative;
+                        /*  background: url("../../../../common/img/i-add.png") no-repeat;*/
+                        .up-logo {
+                            width: 100px;
+                            height: 100px;
+                            /*margin-right: 8px;*/
+                            /* cursor: pointer;*/
+                        }
+                        .uploader-ct {
+                            display: inline-block;
+                            width: 100px;
+                        }
+                        .uploader-ct .el-upload {
+                            border: 1px dashed #d9d9d9;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        .uploader-ct .el-upload:hover {
+                            border-color: #409EFF;
+                        }
+                        .avatar-uploader-icon {
+                            font-size: 28px;
+                            color: #8c939d;
+                            width: 100px;
+                            height: 100px;
+                            line-height: 100px;
+                            text-align: center;
+                        }
+                        .format-ct {
+                            display: inline-block;
+                            vertical-align: bottom;
+                            width: 250px;
+                        }
+                        .doctor-img {
+                            display: inline-block;
+                            width: 60px;
+                            height: 60px;
+                            border: 1px dashed #bfcbd9;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
                         }
                     }
                 }
             }
+            .picture-box{
+                .before-box{
+                    .doctor-img{
+                        display: inline-block;
+                        width:178px;
+                        height:178px;
+                        border: 1px dashed #bfcbd9;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: 100%;
+                    }
+                 }
+                .after-box{
+                    .doctor-img{
+                        display: inline-block;
+                        width:178px;
+                        height:178px;
+                        border: 1px dashed #bfcbd9;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: 100%;
+                    }
+                 }
 
+
+            }
 
             .avatar-uploader .el-upload {
                 /*margin:24px;*/

@@ -254,7 +254,7 @@ export default {
 			fdata.append('imgFile', imgFile);
 			fdata.append('user', "test");
 			_.ajax({
-				url: _This.imgUploadUrl,
+				url: "/backcase/uploadcasePicture",
 				type: 'POST',
 				data: fdata,
 				urlType: 'full',
