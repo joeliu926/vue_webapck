@@ -9,7 +9,7 @@
                     项目选择</p>
                 <div class="case-left out-box-border" style="font-size:14px">
                     <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}
-                        <span v-for="(list2,index) in smalllist" v-if="list.productCode==list2.productCode" style="float:right;margin-top: 10px;margin-right:10px ;">
+                        <span clss="productCount"v-for="(list2,index) in smalllist" v-if="list.productCode==list2.productCode" style="">
                         {{list2.productCount}}</span></a>
 
                 </div>

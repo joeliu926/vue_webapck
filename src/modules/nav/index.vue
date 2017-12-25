@@ -5,9 +5,16 @@
 
 <style lang="scss">
     .nav-content{
+        .el-popover {
+            width: 600px;
+            transform-origin: right center 0px;
+            z-index: 2016;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
          line-height: 60px;
          height: 60px;
-         overflow: hidden;
          color: white;
          box-sizing: border-box;
          padding: 0 30px;
@@ -49,8 +56,25 @@
             top: 5px;
             right: 10px;
         }
+        .user-img{float:right;
+        margin-top: 10px;
+        height:50px}
         .nav-select-list{
+
             cursor: pointer;
+        }
+        .alert-content{
+            line-height:24px;height:300px; width:300px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top: 70px;color: #000000;
+            .alert-top{
+                height:60px;
+                .alert-user-img{
+                    border-radius: 50%;
+                    height: 40px;
+                    width: 40px;
+                    margin-left: 10px;
+                    margin-top: 10px;
+                }
+            }
         }
     }
 

@@ -6,7 +6,7 @@
 export default {
     components: {},
     data () {
-        return {
+        return {show:false,
             selectedVal:'首页',
             menusList:[],
             userImage:'',
@@ -58,6 +58,13 @@ export default {
 
     },
     methods: {
+        changeshow(){
+            if (this.show==false){
+                this.show=true
+            }else{
+                this.show=false
+            }
+        },
         goback(){
            if(this.allowBack){
                window.history.back();

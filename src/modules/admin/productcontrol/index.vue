@@ -40,6 +40,7 @@
                         border-radius: 4px;
                     }
                     .case-left a{
+                        .productCount{float:right;margin-top: 10px;margin-right:10px ;}
                         display: inline-block;
                         line-height: 60px;
                         height:60px;
