@@ -116,6 +116,7 @@
                     {
                         font-weight:bold;
                     }
+                    .select{font-size: 14px !important;float:right;margin-right: 10px; cursor:pointer;}
                     .el-row {
                         margin-bottom: 20px;
                         &:last-child {

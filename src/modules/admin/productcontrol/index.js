@@ -31,7 +31,7 @@ export default {
             params.productList.forEach(function(item1){
                 productids.push(item1.id);
             });
-            console.log("ididididaaaaaaa====>",productids);
+          //  console.log("ididididaaaaaaa====>",productids);
             let Ids=productids;
             let uid= _This.$route.params.id;
             let hasselected=hasselect;
@@ -46,7 +46,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('select.data',result);
+                   // console.log('select.data',result);
                     if (result.code == 0 && result.data) {
                         _This.getdata();
                     }else {
@@ -86,7 +86,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log('select.data',result);
+                   // console.log('select.data',result);
                     if (result.code == 0 && result.data) {
                         _This.getdata();
                     }else {
@@ -94,8 +94,8 @@ export default {
                     }
                 }
             }, 'withCredentials');
-            console.log("ididididaaaaaaa====>", postData);
-            console.log("hasselectaaaaaaa====>",hasselect)
+           // console.log("ididididaaaaaaa====>", postData);
+            //console.log("hasselectaaaaaaa====>",hasselect)
         },
         getClass(params){
             let hascur = false;
