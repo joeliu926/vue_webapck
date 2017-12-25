@@ -6,103 +6,133 @@ export default {
     },
     data () {
         return {
+
+            smalllist:[],
             product: [],
             changestyle:1001,
-            msg:1,
+            /*msg:1,
             task2:[{id:1,text:'aaaaa'},{id:2,text:'cccccc'},{id:3,text:'eeeeeee'}],
-            task3:[],
-            tasks1: [{
-                text: "Vue.js - 是一套构建用户界面的渐进式框架",
-                id:0
-
-            },
-                {
-                    text: "Bootstrap 响应式布局",
-                    id:1
-                },
-                {
-                    text: "Webpack前端资源模块化管理和打包工具",
-                    id:2
-                },
-                {
-                    text: "Yarn 中文手册Yarn 是一个快速、可靠、安全的依赖管理工具",
-                    id:3
-                },
-                {
-                    text: "JavaScript语言精粹",
-                    id:4
-                },
-                {
-                    text: "JavaScript高级程序设计",
-                    id:5
-                }], tasks2: [{
-                text: "Vue.js - 是一套构建用户界面的渐进式框架",
-                id:0
-            },
-
-                {
-                    text: "Webpack前端资源模块化管理和打包工具",
-                    id:2
-
-                },
-                {
-                    text: "JavaScript语言精粹",
-                    id:4
-                },
-                {
-                    text: "JavaScript高级程序设计",
-                    id:5
-                }],
-
-
-
+            task3:[],*/
         };
     },
     created() {
         this.getdata();
+        this.getProductModel();
        // this.forshow();
         //this.fortask();
     },
     mounted(){
     },
     methods: {
-        getClass(params){
+        selectall(params){
+            let _This = this;
+            let   productids=[];
+            let hasselect=0;
+            params.productList.forEach(function(item1){
+                productids.push(item1.id);
+            });
+            console.log("ididididaaaaaaa====>",productids);
+            let Ids=productids;
+            let uid= _This.$route.params.id;
+            let hasselected=hasselect;
+            let postData = {
+                id: uid,
+                objValues:JSON.stringify({productIds:Ids,
+                    status:hasselected,loginName:''})
+            };
+            _.ajax({
+                url: '/admin/product/select',
+                method: 'POST',
+                data: postData,
 
-            let hascur = false;
-            for(let k=0;k< this.task3.length;k++){
-                if(this.task3[k].productCode ==params.productCode){
-                    hascur = true;
+                success: function (result) {
+                    console.log('select.data',result);
+                    if (result.code == 0 && result.data) {
+                        _This.getdata();
+                    }else {
+
+                    }
                 }
-            }
+            }, 'withCredentials');
+            this.getdata();
+        },
+        selectone(select){
 
+            let _This = this;
+            let   productids=[];
+            let hasselect=0;
+            let id=select.id;
+            this.smalllist.forEach(function(item1){
+                item1.productList.forEach(  function(item2){
+                    item2.productList.forEach( function(item3){
+                        if(item3.productCode==select.productCode) {
+                            return hasselect = 1;
+                        };
+
+                    })
+                })
+            });
+            productids.push(id);
+           let Ids=productids;
+            let uid= _This.$route.params.id;
+            let hasselected=hasselect;
+            let postData = {
+                id: uid,
+                objValues:JSON.stringify({productIds:Ids,
+                    status:hasselected,loginName:''})
+            };
+            _.ajax({
+                url: '/admin/product/select',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log('select.data',result);
+                    if (result.code == 0 && result.data) {
+                        _This.getdata();
+                    }else {
+
+                    }
+                }
+            }, 'withCredentials');
+            console.log("ididididaaaaaaa====>", postData);
+            console.log("hasselectaaaaaaa====>",hasselect)
+        },
+        getClass(params){
+            let hascur = false;
+            this.smalllist.forEach(function(item1){
+                item1.productList.forEach(  function(item2){
+                    item2.productList.forEach( function(item3){
+                        if(item3.productCode==params.productCode) {
+                            return hascur = true;
+                        }})
+                })
+            });
             if(hascur){
                 return 'changecol';
             } else{
                 return 'cur1';
             }},
-        forshow(a){
-            console.log("aaaaaaa====>",a.productCode);
-            if(this.task3.length<=0){
-                this.task3.push(a);
-            }else{
-                let hasa = false;
-                for(let k=0;k< this.task3.length;k++){
-                    /* console.log("task3[k]id====>",this.task3[k].id);
-                     console.log('task311infor', this.task3);*/
-                    if(this.task3[k].productCode==a.productCode){
-                        hasa =true;
-                        this.task3.splice(k, 1);
+        getProductModel(){
+            let _This = this;
+            let uid= _This.$route.params.id;
+
+            let postData = {
+                id: uid
+            };
+            _.ajax({
+                url: '/admin/product/getProductModel',
+                method: 'POST',
+                data: postData,
+
+                success: function (result) {
+                    console.log('getProductModel.data',result);
+                    if (result.code == 0 && result.data) {
+                        _This.product = result.data;
+                    }else {
+
                     }
-
-                }//send(a.productCode,hasa)
-                if(hasa){
-
-                }else{
-                    this.task3.push(a)
                 }
-            }
-
-            console.log('task311', this.task3);
+            }, 'withCredentials');
         },
         getdata(){
             let _This = this;
@@ -112,37 +142,16 @@ export default {
                 id: uid
             };
             _.ajax({
-                url: '/case_base/getdata',
+                url: '/admin/product/list',
                 method: 'POST',
                 data: postData,
 
                 success: function (result) {
-                    // console.log('result.data',result);
+                     console.log('list.data',result);
                     if (result.code == 0 && result.data) {
-                        _This.product = result.data;
+                        _This.smalllist = result.data;
                     }else {
-                        //_This.$router.push('/customers');
-                    }
-                }
-            }, 'withCredentials');
-        }, getdata(){
-            let _This = this;
-            let uid= _This.$route.params.id;
 
-            let postData = {
-                id: uid
-            };
-            _.ajax({
-                url: '/case_base/getdata',
-                method: 'POST',
-                data: postData,
-
-                success: function (result) {
-                    // console.log('result.data',result);
-                    if (result.code == 0 && result.data) {
-                        _This.product = result.data;
-                    }else {
-                        //_This.$router.push('/customers');
                     }
                 }
             }, 'withCredentials');
@@ -168,7 +177,7 @@ export default {
 
                 //console.log('disTop',disTop);
                 //console.log('scrolltop',scrolltop);
-                //parentCode
+
             })
         },
     }

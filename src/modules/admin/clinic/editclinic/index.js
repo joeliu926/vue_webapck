@@ -19,9 +19,7 @@ export default {
 			clinicLogo: "",
 			sAddress:"",
 			contentMap:new BMap.Map("map-content"),
-			// imgUploadUrl:"https://jsonplaceholder.typicode.com/posts/",
 			imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
-			//imgUploadUrl:"http://localhost:8023/admin/clinic/test",
 			oClinicRank: ["诊所", "门诊部", "整形外科医院", "一级民营医院", "二级医院", "三级甲等医院"],
 			clinicRank: "",
 			oClinicData: {
@@ -95,10 +93,37 @@ export default {
 			_This.oClinicData.productNames = _This.oSelectMajorItems;
 			_This.oClinicData.logo =_This.defaultImg;  //
 			//_This.oClinicData.address =_This.sAddress;
+               if(!/\S{1,}/.test(_This.oClinicData.name)){
+                   _This.$message.error("诊所名不能为空");
+                   return false;
+               }
+            if(!/^\w{2,}$/.test(_This.oClinicData.qualification)){
+                _This.$message.error("请选择诊所等级");
+                return false;
+            }
+            if(!/^\d{3,}$/.test(_This.oClinicData.phone)){
+                _This.$message.error("请输入正确的电话号码");
+                return false;
+            }
+            if(_This.oSelectMajorItems.length<=0){
+                _This.$message.error("请输入主营业务");
+                return false;
+            }
+            if(_This.defaultImg.indexOf("add-img-icon")>=0){
+                _This.$message.error("请上传诊所Logo");
+                return false;
+            }
+            if(!/\S{2,}/.test(_This.oClinicData.businessTime)){
+                _This.$message.error("请输入营业时间");
+                return false;
+            }
+            if(!/\S{2,}/.test(_This.oClinicData.address)){
+                _This.$message.error("请输入诊所地址");
+                return false;
+            }
+
+
 			let pCreateData = JSON.stringify(_This.oClinicData);
-
-			//console.log("update--pCreateData------->", _This.oClinicData);
-
 			//return false;
 			let postData = {
 				pData: pCreateData

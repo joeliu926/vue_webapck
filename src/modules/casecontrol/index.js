@@ -3,6 +3,10 @@ export default {
     components: {},
     data () {
         return {
+            uOperateSataus:{  //术前术后照片显示描述
+                before:"术前",
+                after:"术后"
+            },
             aAutoSelect: [],//模糊搜索下拉
             faceDiagnoseRemarks: "",//原因（复诊和放弃时使用）
             faceDiagnoseDate: "",//面诊时间（复诊使用）
