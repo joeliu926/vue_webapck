@@ -11,8 +11,8 @@
                 <p class="org-name">新医生</p>
             </div>
             <div class="doctor-edit-ct">
-                <el-button @click="fEditSave">保存</el-button>
-                <el-button @click="fEditSave">保存并新建</el-button>
+                <el-button @click="fEditSave(1)">保存</el-button>
+                <el-button @click="fEditSave(0)">保存并新建</el-button>
                 <el-button @click="fEditCancel">取消</el-button>
             </div>
         </div>
@@ -24,34 +24,36 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
-                    <el-input class="row-item-value" value="" placeholder="诊所名称"></el-input>
-                </div>
-            </div>
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 性别</span>
-                    <el-radio v-model="gender" label="1">男</el-radio>
-                    <el-radio v-model="gender" label="2">女</el-radio>
-                    <el-radio v-model="gender" label="0">未知</el-radio>
-                </div>
-            </div>
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" value="" placeholder="年龄"></el-input>
-                </div>
-            </div>
-            <div class="row-ct">
-                <div class="row-item" >
-                    <span class="row-item-title f-14"><i class="i-must">*</i>头像</span>
-                    <img src="../../../../common/img/shuhou.png"/>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.name" placeholder="医生姓名"></el-input>
 
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 性别</span>
+                    <el-radio v-model="oDoctor.gender" label="1">男</el-radio>
+                    <el-radio v-model="oDoctor.gender" label="2">女</el-radio>
+                    <el-radio v-model="oDoctor.gender" label="0">未知</el-radio>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.age" placeholder="年龄"></el-input>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
+                     <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                   <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
+                </div>
+            </div>
+            <div class="row-ct">
+                <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
-                    <el-input class="row-item-value" value="" placeholder="简介"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.brief" placeholder="简介"></el-input>
+
                 </div>
             </div>
         </div>
@@ -60,19 +62,26 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 职务</span>
-                    <el-input class="row-item-value" value="职务"></el-input>
+                    <el-input class="row-item-value" value="" v-model="oDoctor.duty"></el-input>
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 职称</span>
-                    <el-input class="row-item-value" value="职称"></el-input>
+                    <el-select v-model="selectJobTitle" placeholder="请选择">
+                        <el-option
+                                v-for="item in oJobTitle"
+                                :key="item"
+                                :label="item"
+                                :value="item">
+                        </el-option>
+                    </el-select>
                 </div>
             </div>
             <div class="row-ct" >
                 <div class="row-item" style="" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 擅长</span>
-                    <el-input class="row-item-value" value="" placeholder="擅长项目"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="擅长项目" v-model="oDoctor.specialty"></el-input>
 
                 </div>
             </div>
@@ -100,7 +109,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 从业年限</span>
-                    <el-input class="row-item-value" value="" placeholder="从业年限"></el-input>
+                    <el-input class="row-item-value" value="" placeholder="从业年限" v-model="oDoctor.jobExperience"></el-input>
                 </div>
             </div>
         </div>
