@@ -48,9 +48,8 @@ export default {
                         _this.count = result.data.count;
 
                         _this.userlist.forEach(m=>{
-                            m.status = m.status ==1?"正常":"";
+                            m.status = m.status ==1?"正常":"已删除";
                         });
-
                     }else {
                         // _This.$router.push('/customers');
                     }
