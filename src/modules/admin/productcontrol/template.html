@@ -2,23 +2,26 @@
     <div class="fram-box admin-lbox">
         <tree></tree>
     </div>
-    <div class="fram-box admin-rbox">
+    <div class="fram-box admin-rbox out-box-border">
         <div class="content" style="">
             <div class="search">
                 <p style="margin-top:20px">
                     项目选择</p>
                 <div class="case-left out-box-border" style="font-size:14px">
-                    <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}</a>
-                    <br>
+                    <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}
+                        <span v-for="(list2,index) in smalllist" v-if="list.productCode==list2.productCode" style="float:right;margin-top: 10px;margin-right:10px ;">
+                        {{list2.productCount}}</span></a>
+
                 </div>
                 <div id="right" class="right" style="" @scroll="onscorllevent">
                     <div :id="list0.productCode" class="case-right  out-box-border" v-for="(list0,index0) in  product " :key="index0" style="">
+
                         <div class="tab-con">
                             <el-row class="case-right-row" v-for="(list1,index1) in  list0.productList " :key="index1">
                                 <p class="case-title1" style="font-size: 14px !important;">{{list1.productName}}</p>
-                                <div style="height:12px"></div>
+                                <div style="height:12px"> <div style="height: 10px"><p class="" @click="selectall(list1)" style="font-size: 14px !important;float:right;margin-right: 10px">全选</p></div></div>
                                 <div class="case-right-col" v-for="(list2,index2) in list1.productList" :key="index2">
-                                    <a  @click="forshow(list2)"  :class="getClass(list2)">
+                                    <a  @click="selectone(list2)"  :class="getClass(list2)">
                                         <p class="p" style="font-size:14px">{{list2.productName}}</p>
                                     </a>
                                 </div>

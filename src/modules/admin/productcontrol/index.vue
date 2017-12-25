@@ -102,7 +102,7 @@
                         color: white;
                         margin-bottom: 5px;
                         font-size:14px;
-                        border-radius: 25px;
+                        border-radius: 4px;
                         background: #9083ed;
                         padding:2px 10px;
                         cursor:pointer;
