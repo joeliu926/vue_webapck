@@ -111,7 +111,7 @@ export default {
         handleIconClick(){
 
         },
-        querySearch(){
+        querySea111rch(){
 
         }
     },
