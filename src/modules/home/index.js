@@ -11,6 +11,8 @@ export default {
         let _this=this;
 
         return {
+            test:[{a:0,txt:"0"},{a:1,txt:"1"},{a:2,txt:"2"},{a:3,txt:"3"},{a:4,txt:"4"}],
+            test2:[{a:0,txt:"0"},{a:1,txt:"1"},{a:3,txt:"3"},{a:4,txt:"4"}],
             showdata:null,
         }
     },

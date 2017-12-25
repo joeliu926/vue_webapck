@@ -41,8 +41,8 @@
                 <div class="sel-img-item b-s">
                     <img class="sel-img" :src="oItem.frondFile.url">
                     <img class="sel-img" :src="oItem.backFile.url">
-                    <div class="sel-ba-cm sel-before">before</div>
-                    <div class="sel-ba-cm sel-after">after</div>
+                    <div class="sel-ba-cm sel-before">{{uOperateSataus.before}}</div>
+                    <div class="sel-ba-cm sel-after">{{uOperateSataus.after}}</div>
                     <div class="add-case add-icon" style="">
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                 <div class="sel-img-item des-img-item ">
                     <img class="sel-img des-img" :src="item.frondFile.url">
                     <img class="sel-img des-img" :src="item.backFile.url">
-                    <div class="sel-ba-cm des-ba-cm des-before">before</div>
-                    <div class="sel-ba-cm des-ba-cm sel-after des-after">after</div>
+                    <div class="sel-ba-cm des-ba-cm des-before">{{uOperateSataus.before}}</div>
+                    <div class="sel-ba-cm des-ba-cm sel-after des-after">{{uOperateSataus.after}}</div>
                     <div class="add-case des-icon" style="">
                     </div>
                 </div>
@@ -78,8 +78,8 @@
             <div class="s-img-ct b-s">
                 <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="oCurrentShowItem.frondFile.url">
                 <img class="img-s" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em;"  :src="oCurrentShowItem.backFile.url">
-                <div class="s-ba-cm s-before">before</div>
-                <div class="s-ba-cm s-after">after</div>
+                <div class="s-ba-cm s-before">{{uOperateSataus.before}}</div>
+                <div class="s-ba-cm s-after">{{uOperateSataus.after}}</div>
             </div>
         </div>
     </div>
@@ -127,8 +127,8 @@
                                 <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.frondFile.url">
                                     <img class="img-l"  :src="item.frondFile.url">
                                     <img class="img-l" :src="item.backFile.url">
-                                    <div class="s-ba-cm s-before">before</div>
-                                    <div class="s-ba-cm s-after">after</div>
+                                    <div class="s-ba-cm s-before">{{uOperateSataus.before}}</div>
+                                    <div class="s-ba-cm s-after">{{uOperateSataus.after}}</div>
                                     <div class="add-case i-video-icon" v-if="index==3" style="">
                                     </div>
                                 </div>

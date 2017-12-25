@@ -14,8 +14,8 @@
             </div>
             <div class="case-edit-ct">
                 <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <el-button @click="caseaddSave">保存</el-button>
-                <el-button >保存并新建</el-button>
+                <el-button @click="Savecase">保存</el-button>
+                <el-button @click="Savecase">保存并新建</el-button>
                 <el-button >取消</el-button>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="case-info-ct">
             <div class="row-ct" >
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 案例名称</span>
+                    <span class="row-item-title f-14" v-model="caseName" ><i class="i-must">*</i> 案例名称</span>
                     <el-input class="row-item-value" value=""></el-input>
                 </div>
             </div>
@@ -42,7 +42,7 @@
         <div class="case-info-ct">
             <div class="row-ct" >
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 医生</span>
+                    <span class="row-item-title f-14" v-model="doctor"><i class="i-must">*</i> 医生</span>
                     <el-select v-model="value" placeholder="请选择">
                         <el-option
                                 v-for="item in options"
@@ -54,12 +54,12 @@
                 </div>
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗项目</span>
-                    <el-input class="row-item-value" value=""></el-input>
+                    <el-input class="row-item-value" value="" v-model="product"></el-input>
                 </div>
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗时间</span>
                     <el-date-picker
-                        v-model="value1"
+                        v-model="operationDate"
                         type="date"
                         placeholder="选择日期">
                     </el-date-picker>
@@ -74,36 +74,20 @@
         </div>
         <div class="picture-box clearfix">
             <div class="before-box fl">
-                <div style="position:relative">
-                    <img src="../../../../common/img/shuqian.png" width="178" height="178  " alt="">
-                    <el-upload
-                            style="position: absolute; top:0; left:0; "
-                            class="avatar-uploader"
-                            action="#"
-                            :show-file-list="false"
-                            :on-success="handleAvatarSuccess"
-                            :before-upload="beforeAvatarUpload">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+                <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
+                    <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                    <input type="file" style="display: none;" ref="beforeImg" @change="beforeImgUpload">
+                    <div class="doctor-img" :style="{backgroundImage:['url('+beforeImg+')']}" @click="fChoosebfImg"></div>
                 </div>
                 <div style="text-align: center;">术前</div>
             </div>
             <div class="after-box fl">
-                <div style="position:relative">
-                    <img src="../../../../common/img/shuqian.png" width="178" height="178  " alt="">
-                    <el-upload
-                            style="position: absolute; top:0; left:0; "
-                            class="avatar-uploader"
-                            action="#"
-                            :show-file-list="false"
-                            :on-success="handleAvatarSuccess"
-                            :before-upload="beforeAvatarUpload">
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+                <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
+                    <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                    <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
+                    <div class="doctor-img" :style="{backgroundImage:['url('+afterImg+')']}" @click="fChooseafImg"></div>
                 </div>
-                <div style="text-align: center;">术后</div>
+                <div style="text-align: center;">术前</div>
             </div>
             <div class="description fl">
                 <p>尺寸 : 375 × 620px </p>
@@ -120,33 +104,21 @@
             <span class="s-title-r">*必填信息</span>
         </div>
         <div class="case-info-ct">
-            <div class="row-ct" >
-                <div class="row-item" >
-                    <!--头像-->
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 头像</span>
-                    <div class="headerpic" style="position:relative">
-                        <img src="../../../../common/img/shuqian.png" width="60" height="60" alt="">
-                        <el-upload
-                                style="position: absolute; top:0; left:0; "
-                                class="avatar-uploader"
-                                action="https://jsonplaceholder.typicode.com/posts/"
-                                :show-file-list="false"
-                                :on-success="handleAvatarSuccess"
-                                :before-upload="beforeAvatarUpload">
-                            <img v-if="imageUrl" :src="imageUrl" class="headerpic">
-                            <i v-else class="el-icon-plus avatar-uploader-icon header"></i>
-                        </el-upload>
+            <div class="row-ct">
+                <div class="row-item logo-ct" style="">
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
+                    <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                    <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
+                    <div class="format-ct" style="">
+                        <div class="f-14">格式:jpg、jpeg、png、bmp</div>
+                        <div class="f-14">大小：5M以内</div>
                     </div>
-                    <div class="msxx">
-                        <span>格式 : jpg 、png 、jpeg 、bmp </span>
-                        <span>大小 : 5MB以内</span>
-                    </div>
-
+                    <div class="add-icon"></div>
                 </div>
             </div>
             <div class="row-ct" >
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 性别</span>
+                    <span class="row-item-title f-14" v-model="customerGender" ><i class="i-must">*</i> 性别</span>
                     <el-select v-model="value" placeholder="请选择">
                         <el-option
                                 v-for="item in options11"
@@ -160,7 +132,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" value=""></el-input>
+                    <el-input class="row-item-value" v-model="customerAge"></el-input>
                 </div>
             </div>
         </div>
@@ -193,18 +165,10 @@
             
         </div>
         <div class="addimg clearfix">
-            <div  class="imgfilebox fl">
+            <div  class="imgfilebox fl" >
                 <img src="../../../../common/img/shuhou.png" width="60"/>
             </div>
-            <el-upload
-                    class="avatar-uploader fl"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :show-file-list="false"
-                    :on-success="handleAvatarSuccess"
-                    :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="headerpic">
-                <i v-else class="el-icon-plus avatar-uploader-icon header"></i>
-            </el-upload>
+
         </div>
 
         <div class="addDescription">
@@ -226,7 +190,7 @@
             </div>
             <div class="case-edit-ct">
                 <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <el-button @click="caseaddSave">保存</el-button>
+                <el-button @click="Savecase">保存</el-button>
                 <el-button >保存并新建</el-button>
                 <el-button >取消</el-button>
             </div>

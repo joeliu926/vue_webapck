@@ -8,6 +8,7 @@ export default {
     data () {
         return {
         	imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+        	addImg:require("../../../../common/img/add-img-icon.png"),
         	defaultImg:require("../../../../common/img/add-img-icon.png"),
             doctoredit:'医生编辑',
             gender:"0",
@@ -15,6 +16,7 @@ export default {
             oInaugural:[{key:"外聘专家"},{key:"坐诊医生"}],
             oJobTitle:["医师","主治医师","副主任医师","主任医师"],
             selectJobTitle:"",//选中的医生的职称
+            curId:0,
             oDoctor:{
                 "age": "",
                 "brief": "",
@@ -36,6 +38,7 @@ export default {
     },
     created() {
         let _This = this;
+        _This.curId=_This.$route.params.id;
         _This.fGetDoctorDetail();
 
     },
@@ -81,6 +84,53 @@ export default {
             _This.oDoctor.jobTitle=_This.selectJobTitle;
             _This.oDoctor.jobCategory=_This.inauguralState;
             _This.oDoctor.image=_This.defaultImg;
+
+            if(!/\S{1,}/.test(_This.oDoctor.name)){
+                _This.$message.error("医生名不能为空");
+                _This.$refs.dname.$refs.input.focus();
+                return false;
+            }
+            if(!/\d{1,}/.test(_This.oDoctor.age)){
+
+                _This.$message.error("请输入医生年龄");
+                _This.$refs.age.$refs.input.focus();
+                return false;
+            }
+            if(_This.defaultImg.indexOf("add-img-icon")>=0){
+                _This.$message.error("请上传医生头像");
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.oDoctor.brief)){
+                _This.$message.error("请输入医生简介");
+                _This.$refs.brief.$refs.input.focus();
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.oDoctor.duty)){
+                _This.$message.error("请填写医生职务");
+                _This.$refs.duty.$refs.input.focus();
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.oDoctor.selectJobTitle)){
+                _This.$message.error("请选择医生职称");
+                _This.$refs.selectJobTitle.$refs.input.focus();
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.oDoctor.specialty)){
+                _This.$message.error("请填写医生擅长项目");
+                _This.$refs.specialty.$refs.input.focus();
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.inauguralState)){
+                _This.$message.error("请选择医生任职状态");
+                return false;
+            }
+            if(!/\S{1,}/.test(_This.oDoctor.jobExperience)){
+                _This.$message.error("请填写医生从业年限");
+                _This.$refs.jobExperience.$refs.input.focus();
+                return false;
+            }
+
+
             _This.oDoctor.updateTime=Date.now().valueOf();
             let postData = _This.oDoctor;
             if(postData.hasOwnProperty("page")){
@@ -109,6 +159,9 @@ export default {
                        
                        }else{
                        	 _This.oDoctor={};
+                           _This.defaultImg=_This.addImg;
+                           _This.selectJobTitle="";
+                           _This.inauguralState="";
                        }
                     }else{
                     	 _This.$message.error('操作失败');

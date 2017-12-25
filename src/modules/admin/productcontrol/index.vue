@@ -40,6 +40,7 @@
                         border-radius: 4px;
                     }
                     .case-left a{
+                        .productCount{float:right;margin-top: 10px;margin-right:10px ;}
                         display: inline-block;
                         line-height: 60px;
                         height:60px;
@@ -102,7 +103,7 @@
                         color: white;
                         margin-bottom: 5px;
                         font-size:14px;
-                        border-radius: 25px;
+                        border-radius: 4px;
                         background: #9083ed;
                         padding:2px 10px;
                         cursor:pointer;
@@ -115,6 +116,7 @@
                     {
                         font-weight:bold;
                     }
+                    .select{font-size: 14px !important;float:right;margin-right: 10px; cursor:pointer;}
                     .el-row {
                         margin-bottom: 20px;
                         &:last-child {

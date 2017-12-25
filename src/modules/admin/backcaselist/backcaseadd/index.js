@@ -28,10 +28,27 @@ export default {
                 value: '选项2',
                 label: '女'
             }],
+            imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/api/caseHeader/uploadCasePicture",
+            defaultImg: require("../../../../common/img/add-img-icon.png"), //默认上传图片
+            afterImg:require("../../../../common/img/add-img-icon.png"), //默认上传图片
+            afterName:"",
+            beforeImg:require("../../../../common/img/add-img-icon.png"), //默认上传图片
+            beforeName:"",
+            defaultName:"",
+            addpicName:"",
+            // defaultImg: "", //默认上传图片
             value: '',
             value1: '',
+            operationDate: '',
             imageUrl:"",
-            textarea:""
+            textarea:"",
+            caseName:"",
+            doctor:"",
+            product:"",
+            customerAge:'',
+            customerGender:0,
+            contentList:[],
+            title:'',
 
         };
     },
@@ -46,20 +63,60 @@ export default {
     },
     methods: {
         /*添加页面*/
-        setdata(){
+        caseaddSave(){
+            console.log("----------------",this.operationDate);
+            console.log(new Date(this.operationDate).valueOf());
             let postData = {
-                "loginName":"admin"
+                "loginName":"admin",
+                "caseName": this.caseName,
+                "doctor": {
+                    "id": 1
+                },
+                "products": [
+                    {
+                        "id": 1
+                    }
+                ],
+                "operationDate":this.operationDate?new Date(this.operationDate).valueOf():"",
+                "beforePicture": {
+                    "name": this.beforeName?this.beforeName:"",
+                },
+                "afterPicture": {
+                    "name": this.afterName?this.afterName:"",
+                },
+                "customerLogo": {
+                    "name": this.defaultName?this.defaultName:"",
+                },
+                "customerGender":this.customerGender,
+                "customerAge": 23,
+                "contentList": [
+                    {
+                        "title": this.title,
+                        "definitionDate": this.definitionDate?new Date(this.definitionDate).valueOf():"",
+                        "pictures": [
+                            {
+                                "name": this.addpicName?this.addpicName:"",
+                            }
+                        ],
+                        "description": this.textarea,
+                    }
+                ],
+
             };
-            // _.ajax({
-            //     url: '/admin/backcase/backcaseadd',
-            //     method: 'POST',
-            //     data: postData,
-            //     success: function (result) {
-            //         console.log("caseadd- 成功请求------", result);
-            //
-            //
-            //     }
-            // }, 'withCredentials');
+            console.log("++++++++++++++++++",postData);
+            let pData={
+                postData:JSON.stringify(postData)
+            }
+            _.ajax({
+                url: '/admin/backcase/backcaseadd',
+                method: 'POST',
+                data: pData,
+                success: function (result) {
+                    console.log("caseadd- 成功添加------", result);
+
+
+                }
+            }, 'withCredentials');
         },
 
 
@@ -72,28 +129,119 @@ export default {
                 return time.getTime() > Date.now();
             },
         },
-        /*上传图片成功*/
-        handleAvatarSuccess(res, file) {
-            this.imageUrl = URL.createObjectURL(file.raw);
-        },
-        beforeAvatarUpload(file) {
-            const isJPG = file.type === 'image/jpeg';
-            const isLt2M = file.size / 1024 / 1024 < 2;
 
-            if (!isJPG) {
-                this.$message.error('上传头像图片只能是 JPG 格式!');
-            }
-            if (!isLt2M) {
-                this.$message.error('上传头像图片大小不能超过 2MB!');
-            }
-            return isJPG && isLt2M;
-        },
         /*保存按钮*/
-        caseaddSave(){
-            this.setdata();
-            console.log("edit caseaddSave");
-            this.$router.push("/admin/backcaselist");
+        Savecase (){
+            this.caseaddSave();
+
+           this.$router.push("/admin/backcaselist");
+        },
+        beforeImgUpload(e){
+            let _This = this;
+            var beforeimgFile = e.target.files[0];
+            console.log("img---->", beforeimgFile);
+            if(beforeimgFile.size > 5*1024*1024) {
+                return false;
+            }
+            var fdata = new FormData();
+            fdata.append('beforeimgFile', beforeimgFile);
+            fdata.append('user', "test");
+            _.ajax({
+                url: _This.imgUploadUrl,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log("------------",result)
+                    if(result.code == 0 ) {
+                        _This.beforeImg =result.data.url;
+                        _This.beforeName =result.data.name;
+                        // console.log("+++++++++++++++",_This.defaultImg);
+                    }
+                },
+                error: function(result) {
+                    console.log("error-- result------>", result)
+                }
+            });
         }
+        ,
+        afterImgUpload(e){
+            let _This = this;
+            var afterimgFile = e.target.files[0];
+            console.log("img---->", afterimgFile);
+            if(afterimgFile.size > 5*1024*1024) {
+                return false;
+            }
+            var fdata = new FormData();
+            fdata.append('afterimgFile', afterimgFile);
+            fdata.append('user', "test");
+            _.ajax({
+                url: _This.imgUploadUrl,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log("------------",result)
+                    if(result.code == 0 ) {
+                        _This.afterImg =result.data.url;
+                        _This.afterName =result.data.name;
+                        // console.log("+++++++++++++++",_This.defaultImg);
+                    }
+                },
+                error: function(result) {
+                    console.log("error-- result------>", result)
+                }
+            });
+        }
+        ,
+        fChoosebfImg() {
+            this.$refs.beforeImg.click();
+        },
+        fChooseafImg() {
+            this.$refs.afterImg.click();
+        },
+        fChooseImg() {
+            this.$refs.uploadImg.click();
+        },
+
+        /**
+         * 异步文件上传
+         */
+        fAjaxFileUpload(e) {
+            let _This = this;
+
+            var imgFile = e.target.files[0];
+            console.log("img---->", imgFile);
+            if(imgFile.size > 5*1024*1024) {
+                return false;
+            }
+            var fdata = new FormData();
+            fdata.append('imgFile', imgFile);
+            fdata.append('user', "test");
+            _.ajax({
+                url: _This.imgUploadUrl,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log("------------",result)
+                    if(result.code == 0 ) {
+                        _This.defaultImg =result.data.url;
+                        _This.defaultname =result.data.name;
+                        // console.log("+++++++++++++++",_This.defaultImg);
+                    }
+                },
+                error: function(result) {
+                    console.log("error-- result------>", result)
+                }
+            });
+        },
 
 
     },
