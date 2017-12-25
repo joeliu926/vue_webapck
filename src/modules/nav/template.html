@@ -1,6 +1,6 @@
 <div class="nav-content nav-content-gradient">
-    <el-row>
-        <el-col :span="6">
+    <el-row >
+        <el-col :span="6" style="height:60px " >
             <el-col :span="4" :style="{display:[allowBack?'':'none']}"><i @click="goback()"  class="nav-select-list el-icon-arrow-left nav-back-icon"></i></el-col>
             <el-col :span="4"><i @click="gohome()" class="nav-select-list el-icon-pa-home nav-home-icon"></i></el-col>
             <el-col :span="16"><span class="nav-logo"></span><span class="nav-text">哈罗美云</span></el-col>
@@ -16,15 +16,35 @@
             </el-dropdown>
         </el-col>
         <el-col :span="6">
-            <el-dropdown trigger="click" class="nav-img-content" @command="fLoginOut">
+            <div @click="changeshow()" class="user-img nav-select-list">
+                <img :src="userImage||defaultPic"  class="nav-user-img">
+            </div>
+            <div class="alert-content out-box-border" v-show="show" >
+                <el-row class="alert-top">
+                    <el-col :span="5"><img :src="userImage||defaultPic"  class="alert-user-img"></el-col>
+                    <el-col :span="19"> <span class="customer-user-name"style="  ;float:left;margin-top: 4px">
+                            <p class=""style="font-size: 14px;text-align: left">大伟</p>
+                            <p class=""style="font-size: 12px"> 条记录，按照登记时间排序</p>
+                        </span></el-col>
+
+                </el-row>
+                <el-row style="height: 40px">
+                    <el-col style="font-size:14px;color:#56a7ff" :offset="5" :span="19">设置</el-col>
+                </el-row>
+                <el-row style="background-color: #dfe6ec;padding-left: 20px">用户名</el-row>
+                <el-row style="padding-left: 20px">大伟</el-row>
+                <el-row style="background-color: #dfe6ec;padding-left: 20px">操作</el-row>
+
+            </div>
+            <!--<el-dropdown trigger="click" class="nav-img-content" @command="fLoginOut">
             <div class="nav-select-list">
                 <img :src="userImage||defaultPic"  class="nav-user-img">
             </div>
                 <el-dropdown-menu slot="dropdown" >
-                    <el-dropdown-item command="backmanage">系统后台</el-dropdown-item>
-                    <el-dropdown-item command="loginout">退出</el-dropdown-item>
+                    <div command="backmanage">系统后台</div>
+                    <div command="loginout">退出</div>
                 </el-dropdown-menu>
-            </el-dropdown>
+            </el-dropdown>-->
         </el-col>
     </el-row>
 </div>

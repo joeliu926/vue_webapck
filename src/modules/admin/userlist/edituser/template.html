@@ -10,9 +10,9 @@
                 </div>
             </div>
             <div class="doctor-edit-ct">
-                <el-button @click="fEditSave">保存</el-button>
-                <el-button @click="fEditSave">保存并新建</el-button>
-                <el-button @click="fEditCancel">取消</el-button>
+                <el-button @click="save">保存</el-button>
+                <el-button @click="saveAndAdd">保存并新建</el-button>
+                <el-button @click="Cancel">取消</el-button>
             </div>
         </div>
         <div class="segment-title f-14">
@@ -23,13 +23,13 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 名称</span>
-                    <el-input class="row-item-value" value="诊所"></el-input>
+                    <el-input v-model="userInfo.name" class="row-item-value"></el-input>
                 </div>
             </div>
             <div class="row-ct" >
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 别名</span>
-                    <el-input class="row-item-value" value="诊所"></el-input>
+                    <span class="row-item-title f-14" ><i class="i-must"> </i> 别名</span>
+                    <el-input v-model="userInfo.nickname"  class="row-item-value"></el-input>
                 </div>
             </div>
         </div>
@@ -42,29 +42,33 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 手机</span>
-                    <el-input class="row-item-value" value="手机"></el-input>
+                    <el-input  v-model="userInfo.mobile"  class="row-item-value" ></el-input>
                 </div>
             </div>
 
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 微信</span>
-                    <el-input class="row-item-value" value="手机"></el-input>
+                    <span class="row-item-title f-14" ><i class="i-must"> </i> 微信</span>
+                    <el-input v-model="userInfo.wxAccount"  class="row-item-value"  ></el-input>
                 </div>
             </div>
 
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 微信绑定码</span>
-                    <el-input class="row-item-value" value="手机"></el-input>
+                    <span class="row-item-title f-14" ><i class="i-must"> </i> 微信绑定码</span>
+                    <span >{{userInfo.userCode}}</span>
+                    <el-button @click="unbind">解绑</el-button>
                 </div>
             </div>
 
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14"><i class="i-must">*</i>头像</span>
-                    <img src="../../../../common/img/shuhou.png"/>
-
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must"> </i>头像</span>
+                    <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                    <div v-if="userInfo.headImgUrl" class="user-img" :style="{backgroundImage:['url('+userInfo.headImgUrl+')']}" @click="chooseImage"></div>
+                    <div v-if="!userInfo.headImgUrl" class="user-img"   @click="chooseImage">
+                        <img style="width: 100%;height: 100%;" src="../../../../common/img/add-img-icon.png">
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,26 +79,21 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 角色</span>
-                    <div style="display: inline-block;    max-width: 350px; " >
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
-                        <el-checkbox v-model="checked">备选项</el-checkbox>
+                    <div style="display: inline-block;max-width: 350px;">
+                        <el-checkbox key="role.id" v-for="role in roleList" v-model="role.checked">{{role.name}}</el-checkbox>
                     </div>
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 用户名</span>
-                    <el-input class="row-item-value" value="职称"></el-input>
+                    <el-input  v-model="userInfo.loginName" class="row-item-value"  ></el-input>
                 </div>
             </div>
 
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 重置密码</span>
+                    <span class="row-item-title f-14" ><i class="i-must"> </i> 重置密码</span>
                     <el-button @click="resetPassword">重置</el-button>
                 </div>
             </div>

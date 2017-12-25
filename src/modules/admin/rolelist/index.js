@@ -39,6 +39,12 @@ export default {
                 success: function (result) {
                     if (result.code == 0 && result.data) {
                         _this.Rolelist = result.data.list;
+
+                        _this.Rolelist.forEach(m=>{
+                            m.status = m.status ==1?"正常":"已删除";
+                            m.createDate =_.date2String(new Date(m.createDate),"yyyy-MM-dd hh:mm:ss");
+                        });
+
                         _this.count = result.data.count;
 
                     }else {
@@ -46,20 +52,19 @@ export default {
                     }
                 }
             }, 'withCredentials');
-
-
-
         },
         testimage(){
             _.ajax({
                 type: 'POST',
                 urlType:'full',
-                url:   'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
-                crossDomain: true,
+                url:'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
+                //contentType: "application/json;charset=utf-8",
+                //crossDomain: true,
                 data: "",
                 success: function (data) {
                     console.log('--------------',data);
-                }
+                },
+                //dataType: 'jsonp'
             });
 
         }

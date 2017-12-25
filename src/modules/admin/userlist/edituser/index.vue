@@ -65,6 +65,17 @@
                 .row-ct{
                     padding: 10px;
                     .row-item{
+                        .user-img{
+                            display: inline-block;
+                            width: 140px;
+                            height: 140px;
+                            border: 1px dashed #bfcbd9;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                        }
                         margin: 0 20%;
                         width: 500px;
                         .row-item-title{

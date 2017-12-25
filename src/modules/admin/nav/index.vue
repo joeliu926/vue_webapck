@@ -40,7 +40,7 @@
         .nav-text{
             line-height: 40px;
             height: 40px;
-
+            font-size: 16px;
             vertical-align: super;
         }
         .nav-logo:before{

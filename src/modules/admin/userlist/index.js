@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         createUser(){
-            this.$router.push("/admin/userlist/edit");
+            this.$router.push("/admin/userlist/edit/_EPT");
         },
         handleCurrentChange(params){
             this.getRolelist(params);
@@ -48,11 +48,8 @@ export default {
                         _this.count = result.data.count;
 
                         _this.userlist.forEach(m=>{
-                            m.status = m.status ==1?"正常":"";
+                            m.status = m.status ==1?"正常":"已删除";
                         });
-
-                    }else {
-                        // _This.$router.push('/customers');
                     }
                 }
             }, 'withCredentials');
@@ -62,6 +59,27 @@ export default {
         },
         resetPassword(){
 
+        },
+        userEdit(params){
+            this.$router.push("/admin/userlist/edit/" + params);
+        },
+        userDelete(params){
+            let _this = this;
+            let _data={
+                userId:params
+            }
+            _.ajax({
+                url: '/admin/userrole/deleteuser',
+                method: 'POST',
+                data:_data,
+                success: function (result) {
+                    if (result.code == 0 && result.data) {
+                        _this.getRolelist(1);
+                    }else{
+                        _this.$message.error("删除失败");
+                    }
+                }
+            }, 'withCredentials');
         }
     }
 }

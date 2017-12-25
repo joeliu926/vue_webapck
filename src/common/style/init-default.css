@@ -4,7 +4,7 @@ fieldset,input,textarea,p,blockquote,th,td {
     margin:0;
     padding:0;
     font-family:'Helvetica Neue','Hiragino Sans GB',stheiti,'Microsoft Yahei','微软雅黑',tahoma,sans-serif;
-    font-size: 16px;
+    font-size: 14px;
 }
 table {
     border-collapse:collapse;

@@ -8,6 +8,7 @@ export default {
     data () {
         return {
         	imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+        	addImg:require("../../../../common/img/add-img-icon.png"),
         	defaultImg:require("../../../../common/img/add-img-icon.png"),
             doctoredit:'医生编辑',
             gender:"0",
@@ -15,6 +16,7 @@ export default {
             oInaugural:[{key:"外聘专家"},{key:"坐诊医生"}],
             oJobTitle:["医师","主治医师","副主任医师","主任医师"],
             selectJobTitle:"",//选中的医生的职称
+            curId:0,
             oDoctor:{
                 "age": "",
                 "brief": "",
@@ -36,6 +38,7 @@ export default {
     },
     created() {
         let _This = this;
+        _This.curId=_This.$route.params.id;
         _This.fGetDoctorDetail();
 
     },
@@ -156,6 +159,9 @@ export default {
                        
                        }else{
                        	 _This.oDoctor={};
+                           _This.defaultImg=_This.addImg;
+                           _This.selectJobTitle="";
+                           _This.inauguralState="";
                        }
                     }else{
                     	 _This.$message.error('操作失败');

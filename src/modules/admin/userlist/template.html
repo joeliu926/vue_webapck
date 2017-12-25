@@ -12,7 +12,7 @@
                 <p class="org-name f-14">记录({{count}})</p>
             </div>
             <div class="userlist-edit-ct">
-                <el-input  style="width:200px;"     v-model="searchKey"  value=""></el-input>  <el-button @click="searchUser">搜索</el-button> <el-button @click="createUser">创建</el-button>
+                <el-input  style="width:200px;" v-model="searchKey"  placeholder="输入用户名称"  value=""></el-input>  <el-button @click="searchUser">搜索</el-button> <el-button @click="createUser">创建</el-button>
             </div>
         </div>
 
@@ -34,19 +34,23 @@
                         min-width="30%">
                 </el-table-column>
                 <el-table-column
-                        prop="wechatNum"
+                        prop="rolesEnName"
                         label="角色"
                         min-width="30%">
+                        <template slot-scope="scope">
+                            <span v-for="rols in scope.row.rolesEnName">{{rols.name}}、</span>
+                        </template>
                 </el-table-column>
                 <el-table-column
-                        prop="wechatNum"
+                        prop="status"
                         label="状态"
                         min-width="18%">
                 </el-table-column>
 
                 <el-table-column label="操作" min-width="18%">
                     <template slot-scope="scope"  style="">
-                        <i class="el-icon-pa-ellipsis-v customer-pa-icon" title="More"></i>
+                        <a href="javascript:;" @click="userEdit(scope.row.id)">编辑</a>
+                        <a href="javascript:;" @click="userDelete(scope.row.id)">删除</a>
                     </template>
                 </el-table-column>
             </el-table>

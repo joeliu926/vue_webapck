@@ -247,7 +247,7 @@ var routerConfig = {
             }
         }, {
             name:'/admin/userlist/edit',
-            path: '/admin/userlist/edit',
+            path: '/admin/userlist/edit/:id',
             components:{
                 default:admin_userlist_edit,
                 nav:admin_nav
