@@ -35,8 +35,8 @@ var admin_tree = r => require.ensure([], () => r(require('../modules/admin/tree/
 var admin_productcontrol = r => require.ensure([], () => r(require('../modules/admin/productcontrol/index.vue')), 'productcontrol');
 
 var backcaselist = r => require.ensure([], () => r(require('../modules/admin/backcaselist/index.vue')), 'backcaselist');
-var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaseadd/index.vue')), 'backcaseadd');
-var backcaseupdata = r => require.ensure([], () => r(require('../modules/admin/backcaseupdata/index.vue')), 'backcaseupdata');
+var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaselist/backcaseadd/index.vue')), 'backcaseadd');
+var backcaseupdata = r => require.ensure([], () => r(require('../modules/admin/backcaselist/backcaseupdata/index.vue')), 'backcaseupdata');
 
 var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
 var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
@@ -218,15 +218,15 @@ var routerConfig = {
             }
         },
         {
-            name:'/admin/backcaseadd',
-            path: '/admin/backcaseadd',
+            name:'/admin/backcaselist/backcaseadd',
+            path: '/admin/backcaselist/backcaseadd',
             components:{
                 default:backcaseadd,
                 nav:admin_nav
             }
         }, {
-            name:'/admin/backcaseupdata',
-            path: '/admin/backcaseupdata',
+            name:'/admin/backcaselist/backcaseupdata',
+            path: '/admin/backcaselist/backcaseupdata',
             components:{
                 default:backcaseupdata,
                 nav:admin_nav

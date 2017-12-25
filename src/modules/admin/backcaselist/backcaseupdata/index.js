@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 
-import tree from '../tree/index.vue';
+import tree from '../../tree/index.vue';
 
 export default {
     components: {
@@ -10,6 +10,10 @@ export default {
     },
     data () {
         return {
+            value: '',
+            value1: '',
+            imageUrl:"",
+            textarea:"",
             options: [{
                 value: '选项1',
                 label: '李医生'
@@ -28,23 +32,54 @@ export default {
                 value: '选项2',
                 label: '女'
             }],
-            value: '',
-            value1: '',
-            imageUrl:"",
-            textarea:""
 
         };
     },
     created() {
-
+        this.getdata();
     },
     mounted(){
+
+
 
     },
     destroyed() {
 
     },
     methods: {
+        getdata(){
+            let postData = {
+
+            };
+            _.ajax({
+                url: '/admin/backcase/backcaseupdata',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("caselist--------", result);
+
+
+                }
+            }, 'withCredentials');
+        },
+
+        setdata(){
+            let postData = {
+
+            };
+            _.ajax({
+                url: '/admin/backcase/backcaselist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("caseupdata--------", result);
+
+
+                }
+            }, 'withCredentials');
+        },
+
+
         pickerOptions1: {
             disabledDate(time) {
                 return time.getTime() > Date.now();
@@ -65,12 +100,11 @@ export default {
             }
             return isJPG && isLt2M;
         },
-        caseaddSave(){
-            console.log("edit caseaddSave");
+        updataSave(){
+            this.setdata();
+            console.log("add casesave");
             this.$router.push("/admin/backcaselist");
-        }
-
-
+        },
     },
     watch: {
 

@@ -12,7 +12,8 @@ export default {
         return {
             input:'',
             input1:'',
-            tableData: [{
+            tableData: [
+                {
                 date: '2016-05-02',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1518 弄'
@@ -35,7 +36,12 @@ export default {
             pageSize:12,
             state:'',
             value:'',
-            options:[{
+            productName:'',
+            loginName:"",
+
+            doctorId:0,
+            options:[
+                {
                   value: '选项1',
                   label: '张医生'
                 }, {
@@ -55,7 +61,7 @@ export default {
         };
     },
     created() {
-
+      this.getdata();
     },
     mounted(){
 
@@ -64,6 +70,37 @@ export default {
 
     },
     methods: {
+        getdata(){
+            var _This = this;
+            let   postData={
+               pageNo:1,
+               pageSize:10,
+                productName:"",
+                loginName:"",
+                doctorId:1
+
+            }
+            _.ajax({
+                url: '/admin/backcase/backcaselist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("============",result);
+
+                }
+            }, 'withCredentials');
+        },
+
+
+
+
+        delete(id){
+
+        },
+
+        search(){
+
+        },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
 

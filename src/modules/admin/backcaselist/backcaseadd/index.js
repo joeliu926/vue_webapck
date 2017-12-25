@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 
-import tree from '../tree/index.vue';
+import tree from '../../tree/index.vue';
 
 export default {
     components: {
@@ -10,10 +10,6 @@ export default {
     },
     data () {
         return {
-            value: '',
-            value1: '',
-            imageUrl:"",
-            textarea:"",
             options: [{
                 value: '选项1',
                 label: '李医生'
@@ -32,26 +28,51 @@ export default {
                 value: '选项2',
                 label: '女'
             }],
+            value: '',
+            value1: '',
+            imageUrl:"",
+            textarea:""
 
         };
     },
     created() {
-
+        // this.setdata();
     },
     mounted(){
-
-
 
     },
     destroyed() {
 
     },
     methods: {
+        /*添加页面*/
+        setdata(){
+            let postData = {
+
+            };
+            // _.ajax({
+            //     url: '/admin/backcase/backcaseadd',
+            //     method: 'POST',
+            //     data: postData,
+            //     success: function (result) {
+            //         console.log("caseadd- 成功请求------", result);
+            //
+            //
+            //     }
+            // }, 'withCredentials');
+        },
+
+
+
+
+
+        /*日期筛选条件*/
         pickerOptions1: {
             disabledDate(time) {
                 return time.getTime() > Date.now();
             },
         },
+        /*上传图片成功*/
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
         },
@@ -67,10 +88,14 @@ export default {
             }
             return isJPG && isLt2M;
         },
-        updataSave(){
-            console.log("edit updatasave");
+        /*保存按钮*/
+        caseaddSave(){
+            this.setdata();
+            console.log("edit caseaddSave");
             this.$router.push("/admin/backcaselist");
-        },
+        }
+
+
     },
     watch: {
 
