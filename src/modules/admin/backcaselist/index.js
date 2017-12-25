@@ -66,6 +66,9 @@ export default {
     methods: {
         handleCurrentChange(pnum){
             this.pageNo=pnum;
+            this.aaa="sfdgdsfg";
+
+
 
         },
         handleIconClick(){

@@ -68,7 +68,7 @@ export default {
         this.fGetClinicList();
     },
     mounted(){
-    	console.log("oClinicData.address--------",this.oClinicData.address);
+    	//console.log("oClinicData.address--------",this.oClinicData.address);
         let currentCity = "";
       //  var map = new BMap.Map("map-content");
 
@@ -94,12 +94,12 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("list--------", result);
+                   // console.log("list--------", result);
                     if(result.code==0&&result.data.list.length>0){
                         _This.oClinicData=result.data.list[0];
                     }
                     _This.fSearchAddressByAddress();
-                    	console.log("oClinicData.address--------",_This.oClinicData.address);
+                    	//console.log("oClinicData.address--------",_This.oClinicData.address);
                 }
             }, 'withCredentials');
         },
@@ -129,7 +129,7 @@ export default {
         	let _This=this;
         	let addressText=_This.oClinicData.address;
        	    var map = new BMap.Map("map-content");
-       	  	  	map.enableScrollWheelZoom(); 
+       	  	  	//map.enableScrollWheelZoom();
 		    map.enableContinuousZoom(); 
 			var localSearch = new BMap.LocalSearch(map);
 			localSearch.setSearchCompleteCallback(function(searchResult) {

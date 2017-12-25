@@ -64,7 +64,7 @@ export default {
 			this.$router.push("/admin/doctor/edit/" + id);
 		},
 		fDeleteDoctor(item) {
-			console.log("doctor--delete---item-----", item);
+			//console.log("doctor--delete---item-----", item);
 			if(!item.id) {
 				return false;
 			}
@@ -79,7 +79,7 @@ export default {
 				method: 'POST',
 				data: postData,
 				success: function(result) {
-					console.log("doctor--delete--------", result);
+					//console.log("doctor--delete--------", result);
 					if(result.code == 0) {
 						_This.$message({
 							message: '删除成功',
@@ -123,7 +123,7 @@ export default {
 				method: 'POST',
 				data: postData,
 				success: function(result) {
-					console.log("doctor--list--------", result);
+					//console.log("doctor--list--------", result);
 					if(result.code == 0 && result.data.list.length > 0) {
 						_This.aDoctorlist = result.data.list;
 						_This.count = result.data.count;
