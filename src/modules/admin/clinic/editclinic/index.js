@@ -62,7 +62,7 @@ export default {
 		let _This=this;
 		_This.contentMap=new BMap.Map("map-content");
 		  var map =_This.contentMap;// new BMap.Map("map-content");
-		  	map.enableScrollWheelZoom(); 
+		  	//map.enableScrollWheelZoom();
 		    map.enableContinuousZoom(); 
 		var autoDrop = new BMap.Autocomplete( //建立一个自动完成的对象
 			{
@@ -73,6 +73,7 @@ export default {
 			var currentSelect = e.item.value;
 			var selectValue = currentSelect.province + currentSelect.city + currentSelect.district + currentSelect.street + currentSelect.business;
 			//_This.$refs.dropaddress.innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + selectValue;
+            //console.log("selectValue------>",selectValue);
             _This.oClinicData.address=selectValue;
             _This.fSearchAddressByAddress(18);
 		});
@@ -83,7 +84,7 @@ export default {
 	},
 	methods: {
 		fEditClinic() {
-			console.log("edit clinic-----");
+			//console.log("edit clinic-----");
 		},
 		fEditCancel() {
 			this.$router.push("/admin/clinic/detail");
@@ -93,7 +94,7 @@ export default {
 			let _This = this;
 			_This.oClinicData.productNames = _This.oSelectMajorItems;
 			_This.oClinicData.logo =_This.defaultImg;  //
-			_This.oClinicData.address =_This.sAddress; 
+			//_This.oClinicData.address =_This.sAddress;
 			let pCreateData = JSON.stringify(_This.oClinicData);
 
 			//console.log("update--pCreateData------->", _This.oClinicData);
@@ -108,10 +109,19 @@ export default {
 				method: 'POST',
 				data: postData,
 				success: function(result) {
-					console.log("update ff------->", result);
+					//console.log("update ff------->", result);
 					if(result.code == 0 && result.data) {
+                        _This.$message({message: '更新成功',
+                            type: 'success'
+                        });
 
-					}
+                        setTimeout(function () {
+                            _This.$router.push("/admin/clinic/detail");
+                        },3000)
+
+					}else{
+					    _This.$message.error("更新失败");
+                    }
 				}
 			}, 'withCredentials');
 		},
@@ -292,7 +302,7 @@ export default {
 				//console.log("res22-------->", res);
 				let addComp = res.addressComponents;
 				//console.log(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-			   _This.oClinicData.address=res.address;
+			   //_This.oClinicData.address=res.address;
 			  	_This.oClinicData.countryName="中国";
 				_This.oClinicData.provName=addComp.province;
 				_This.oClinicData.cityName=addComp.city;

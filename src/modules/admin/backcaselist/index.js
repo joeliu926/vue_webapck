@@ -103,6 +103,9 @@ export default {
         },
         handleCurrentChange(pnum){
             this.pageNo=pnum;
+            this.aaa="sfdgdsfg";
+
+
 
         },
         handleIconClick(){

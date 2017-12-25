@@ -53,7 +53,7 @@ export default {
         fGetDoctorDetail(){
         	let _This=this;
         	let doctorId=_This.$route.params.id;
-        	console.log("doctor id----",doctorId);
+        	//console.log("doctor id----",doctorId);
             let postData = {
                id:doctorId
             };
@@ -62,7 +62,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("test--------", result);
+                   // console.log("test--------", result);
                     if(result.code==0&&typeof(result.data)=="object"){
                     	 _This.oDoctor=result.data;
                     	 _This.selectJobTitle=_This.oDoctor.jobTitle;   	
@@ -70,7 +70,7 @@ export default {
                         if(_This.oDoctor.image){
                         	_This.defaultImg=_This.oDoctor.image;
                         }
-                    	 console.log("test--------", _This.oDoctor);
+                    	// console.log("test--------", _This.oDoctor);
                     }
                 }
             }, 'withCredentials');    
@@ -91,13 +91,13 @@ export default {
             if(doctorId>0){
             	 purl="/admin/doctor/update";
             }
-            console.log("postData------->",postData);
+            //console.log("postData------->",postData);
             _.ajax({
                 url: purl,
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("doctor--create--------", result);
+                   // console.log("doctor--create--------", result);
                     if(result.code==0&&result.data){
                     	_This.$message({message: '添加成功',
                             type: 'success'
@@ -129,10 +129,10 @@ this.inauguralState=item;
          this.$refs.uploadImg.click();
         },
         fAjaxFileUpload(e){
-        	console.log("upload file");
+        	//console.log("upload file");
         			let _This = this;
 			var imgFile = e.target.files[0];
-			console.log("img---->", imgFile.size,imgFile.name);
+			//console.log("img---->", imgFile.size,imgFile.name);
 			if(imgFile.size>5*1024*1024){
 				return false;
 			}
