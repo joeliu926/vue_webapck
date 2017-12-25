@@ -46,20 +46,19 @@ export default {
                     }
                 }
             }, 'withCredentials');
-
-
-
         },
         testimage(){
             _.ajax({
                 type: 'POST',
                 urlType:'full',
-                url:   'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
-                crossDomain: true,
+                url:'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
+                //contentType: "application/json;charset=utf-8",
+                //crossDomain: true,
                 data: "",
                 success: function (data) {
                     console.log('--------------',data);
-                }
+                },
+                //dataType: 'jsonp'
             });
 
         }

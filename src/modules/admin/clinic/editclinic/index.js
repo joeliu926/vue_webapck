@@ -17,8 +17,8 @@ export default {
             inauguralState:"",
             clinicLogo:"",
           // imgUploadUrl:"https://jsonplaceholder.typicode.com/posts/",
-          // imgUploadUrl:"https://27478500.qcloud.la/uploadimg_test/attachment/upload",
-            imgUploadUrl:"http://localhost:8023/admin/clinic/test",
+           imgUploadUrl:"https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+           // imgUploadUrl:"http://localhost:8023/admin/clinic/test",
            //imgUploadUrl:"http://140.143.185.73:8083/attachment/upload",
             oClinicRank:["诊所","门诊部","整形外科医院","一级民营医院","二级医院","三级甲等医院"],
             clinicRank:"",
@@ -52,6 +52,18 @@ export default {
         };
     },
     created() {
+
+        _.ajax({
+            type: 'POST',
+            urlType:'full',
+            url:   'https://27478500.qcloud.la/uploadimg_test/attachment/upload',//https://27478500.qcloud.la/uploadimg_test/attachment/upload',
+            crossDomain: true,
+            data: "",
+            success: function (data) {
+                console.log('--------------',data);
+            }
+        });
+
         let clinicid=this.$route.params.id;
         console.log("clinic----",clinicid);
        this.fGetSingleClinic();
@@ -288,7 +300,7 @@ export default {
         ajaxFileUpload(e){
             let _This=this;
 
-          _This.imgUploadUrl="/admin/clinic/test";
+         // _This.imgUploadUrl="/admin/clinic/test";
 
             console.log(_This.imgUploadUrl,"-----eeeeee---->",e);
 
@@ -300,7 +312,7 @@ export default {
             var fdata = new FormData();
             fdata.append('imgFile', imgFile);
             fdata.append('user',"test");
-            _.ajax(
+           /* _.ajax(
                 {
                     url:_This.imgUploadUrl,
                     type: 'POST',
@@ -314,7 +326,8 @@ export default {
                     error:function (result) {
                         console.log("error-- result------>",result)
                     }
-                },'withCredentials');
+                },'withCredentials');*/
+
         }
     },
     watch: {
