@@ -19,11 +19,8 @@ var caselibrary = r => require.ensure([], () => r(require('../modules/caselibrar
 var casedetail = r => require.ensure([], () => r(require('../modules/casedetail/index.vue')), 'casedetail');
 var triage = r => require.ensure([], () => r(require('../modules/triage/index.vue')), 'triage');
 var case_base = r => require.ensure([], () => r(require('../modules/case_base/index.vue')), 'case_base');
-/*const  aComponent=["login","nav","customers","home","test"];
-var  oComponent={};
-aComponent.forEach(function (item,index) {
-    oComponent[item]= r => require.ensure([], () => r(require('../modules/'+item+'/index.vue')), item);
-});*/
+
+
 var admin_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/index.vue')), 'case_base');
 var edit_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/editclinic/index.vue')), 'editclinic');
 var detail_clinic = r => require.ensure([], () => r(require('../modules/admin/clinic/clinicdetail/index.vue')), 'detailclinic');
@@ -36,7 +33,6 @@ var admin_productcontrol = r => require.ensure([], () => r(require('../modules/a
 
 var backcaselist = r => require.ensure([], () => r(require('../modules/admin/backcaselist/index.vue')), 'backcaselist');
 var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaselist/backcaseadd/index.vue')), 'backcaseadd');
-var backcaseupdata = r => require.ensure([], () => r(require('../modules/admin/backcaselist/backcaseupdata/index.vue')), 'backcaseupdata');
 
 var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
 var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
@@ -219,16 +215,9 @@ var routerConfig = {
         },
         {
             name:'/admin/backcaselist/backcaseadd',
-            path: '/admin/backcaselist/backcaseadd',
+            path: '/admin/backcaselist/backcaseadd/:id',
             components:{
                 default:backcaseadd,
-                nav:admin_nav
-            }
-        }, {
-            name:'/admin/backcaselist/backcaseupdata',
-            path: '/admin/backcaselist/backcaseupdata',
-            components:{
-                default:backcaseupdata,
                 nav:admin_nav
             }
         }, {
