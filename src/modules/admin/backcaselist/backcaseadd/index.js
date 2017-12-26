@@ -90,7 +90,6 @@ export default {
     },
     created() {
         this.caseId = this.$route.params.id;
-
         if(this.caseId!='_EPT'){
             this.initData();
         }
@@ -138,6 +137,8 @@ export default {
                 }, 'withCredentials');
             }
             else{
+
+                delete this.caseDetail.clinic;
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
@@ -170,8 +171,10 @@ export default {
          */
         fSelectProductItem(item){
             let _This=this;
-             if(_This.oProductCode.indexOf(item.id)<0){
+             if(_This.oProductCode.indexOf(item.id)<0)
+             {
                  _This.oProductCode.push(item.id);
+                 delete item.page;
                  _This.caseDetail.products.push(item);
              }
         },
