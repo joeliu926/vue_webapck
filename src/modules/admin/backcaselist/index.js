@@ -98,7 +98,16 @@ export default {
                 }
             }, 'withCredentials');
         },
-
+        fDelData(caseid){
+            let _This=this;
+            this.$confirm('确认删吗?', '提示', {
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                _This.fCaseDelete(caseid);
+            });
+        },
 
         /**
          * 案例删除

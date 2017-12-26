@@ -63,6 +63,16 @@ export default {
 		fEidtDoctor(id) {
 			this.$router.push("/admin/doctor/edit/" + id);
 		},
+		fDelData(item){
+		    let _This=this;
+            this.$confirm('确认删吗?', '提示', {
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                _This.fDeleteDoctor(item);
+            });
+        },
 		fDeleteDoctor(item) {
 			//console.log("doctor--delete---item-----", item);
 			if(!item.id) {
