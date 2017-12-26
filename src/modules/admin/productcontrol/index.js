@@ -94,8 +94,6 @@ export default {
                     }
                 }
             }, 'withCredentials');
-           // console.log("ididididaaaaaaa====>", postData);
-            //console.log("hasselectaaaaaaa====>",hasselect)
         },
         getClass(params){
             let hascur = false;
@@ -125,7 +123,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('getProductModel.data',result);
+                    //console.log('getProductModel.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
@@ -147,7 +145,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                     console.log('list.data',result);
+                    // console.log('list.data',result);
                     if (result.code == 0 && result.data) {
                         _This.smalllist = result.data;
                     }else {
@@ -174,10 +172,6 @@ export default {
                 if(disTop<scrolltop+350&&disTop>scrolltop-350){
                     this.changestyle=  m.productCode;
                 }
-
-                //console.log('disTop',disTop);
-                //console.log('scrolltop',scrolltop);
-
             })
         },
     }

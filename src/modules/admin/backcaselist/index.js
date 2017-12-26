@@ -105,10 +105,8 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("获取医生列表成功-------", result);
+                   // console.log("获取医生列表成功-------", result);
                     _this.doctorlist=result.data;
-                    console.log(_this.doctorlist);
-
                 }
             }, 'withCredentials');
         },

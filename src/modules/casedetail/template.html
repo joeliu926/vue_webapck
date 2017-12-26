@@ -8,7 +8,7 @@
                     <el-row :gutter="24" type="flex" justify="center" align="center">
                         <el-col :span="3">
                             <div class="casetop-img" >
-                                <img :src="acaseuserlist.customerLogo" width="88" height="88" >
+                                <img :src="acaseuserlist.customerLogo.url" width="88" height="88" >
                               </div>
                         </el-col>
                         <el-col :span="21" justify="space-between" align="" class="border-padding">
@@ -70,25 +70,31 @@
                     <el-row class="info-cover border-bottom">
                         <p>案例封面</p>
                         <el-col :span="24" type="flex" class="cover-img clearfix" >
-                            <div v-if="acaseuserlist.frondFile.url" class="left fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.frondFile.url+')':''] }">
-                                 <img :src="acaseuserlist.frondFile?acaseuserlist.frondFile.url:''" width="140" height="140" alt="">
-                                <span>before</span>
+                            <div v-if="acaseuserlist.beforePicture.url" class="left fl li-img" :style="{backgroundImage:[acaseuserlist.beforePicture?'url('+acaseuserlist.beforePicture.url+')':''] }">
+                                 <img :src="acaseuserlist.beforePicture?acaseuserlist.beforePicture.url:''" width="140" height="140" alt="">
+                                <span>术前</span>
                             </div>
-                            <div v-if="acaseuserlist.frondFile.url" class="right fl li-img" :style="{backgroundImage:[acaseuserlist.frondFile?'url('+acaseuserlist.backFile.url+')':''] }">
-                                 <img :src="acaseuserlist.backFile?acaseuserlist.backFile.url:''" width="140" height="140" alt="">
-                                <span>after</span>
+                            <div v-if="acaseuserlist.afterPicture.url" class="right fl li-img" :style="{backgroundImage:[acaseuserlist.afterPicture?'url('+acaseuserlist.afterPicture.url+')':''] }">
+                                 <img :src="acaseuserlist.afterPicture?acaseuserlist.afterPicture.url:''" width="140" height="140" alt="">
+                                <span>术后</span>
                             </div>
 
                         </el-col>
                     </el-row>
-                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item,index in contentList" :key="index" v-if=" item.nodeType == 0 ">
+
+
+
+
+
+                   <!-- <el-row class="caseinfo-before border-bottom" type="flex" v-for="item,index in contentList" :key="index" v-if="item.nodeType==0">-->
+                    <el-row class="caseinfo-before border-bottom" type="flex" v-for="item,index in contentList" :key="index" v-if="item.nodeType==44">
                         <!--术前-->
                         <el-col :span="24" type="flex" >
                             <h6>术前</h6>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}" style="">
+                                <li v-for="(file,index) in item.pictures" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}" style="">
                                     <a href="javascript:;"  >
-                                      <!--  <img :src="file.url" data-fileName="file.name" width="215" height="215">-->
+                                        <!--  <img :src="file.url" data-fileName="file.name" width="215" height="215">-->
                                     </a>
                                 </li>
                             </ul>
@@ -99,7 +105,7 @@
                         </el-col>
                     </el-row>
 
-
+                <!--    <el-row  class="info-after120 border-bottom" type="flex" v-for="(item,index)  in contentListAfter"  :key="index">-->
                     <el-row  class="info-after120 border-bottom" type="flex" v-for="(item,index)  in contentListAfter"  :key="index">
                         <!--术后120天-->
                         <el-col :span="24" type="flex">
@@ -110,10 +116,10 @@
                                 <span :class="isActive?'active':''" v-show='index==0'  @click="fromNow()" style="cursor:pointer; margin-right: 20px;" >从最早开始浏览</span>
                             </div>
                             <ul class="clearfix">
-                                <li v-for="(file,index) in item.files" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}">
-                                 <!--   <a href="javascript:;" @click="showLayer(file.name)">
-                                        <img :src="file.url"  width="215" height="215">
-                                    </a>-->
+                                <li v-for="(file,index) in item.pictures" :key="index" class="li-img" @click="showLayer(file.name)" :style="{backgroundImage:'url('+file.url+')'}">
+                                    <!--   <a href="javascript:;" @click="showLayer(file.name)">
+                                           <img :src="file.url"  width="215" height="215">
+                                       </a>-->
                                 </li>
                             </ul>
                             <p style="margin-top:10px;">{{item.description}}</p>
