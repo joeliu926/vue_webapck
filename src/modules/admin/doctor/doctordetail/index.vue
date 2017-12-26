@@ -14,10 +14,12 @@
             color: #333333;
         }
         .fram-box{
-            height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
+            height: 100%;display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:15%;  }
+        .admin-rbox{
+            width: 83%;
+            box-sizing: border-box;
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;

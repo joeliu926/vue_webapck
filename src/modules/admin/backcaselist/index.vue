@@ -27,6 +27,7 @@
             clear: both;
             overflow: hidden;
         }
+        .admin-lbox{  width:15%;  }
         .admin-rbox {
             height: 100%;
             width: 85%;

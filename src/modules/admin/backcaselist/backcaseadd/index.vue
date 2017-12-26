@@ -171,6 +171,7 @@
                             background-repeat: no-repeat;
                             background-size: 100%;
                         }
+
                     }
                 }
             }
@@ -250,16 +251,19 @@
                     margin-right:10px;
                     margin-bottom:10px;
                 }
-                .doctor-img{
+                .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
+                .dynicPic{
                     display: inline-block;
-                    width:60px;
-                    height:60px;
+                    position: relative;
+                    width:100px;
+                    height:100px;
                     border-radius: 6px;
                     cursor: pointer;
                     border: 1px dashed #bfcbd9;
                     background-position: center center;
                     background-repeat: no-repeat;
                     background-size: 100%;
+                    margin: 5px;
                 }
                 .add-img{
                     width:60px;

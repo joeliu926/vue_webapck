@@ -16,8 +16,8 @@
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
-        .admin-lbox{  width:17%;  }
-        .admin-rbox{width: 82%;
+        .admin-lbox{  width:15%;  }
+        .admin-rbox{width: 85%;
             .clinic-record{
                 .record-text-ct{
                     padding: 24px 0;
