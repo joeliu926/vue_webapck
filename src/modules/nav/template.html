@@ -16,10 +16,10 @@
             </el-dropdown>
         </el-col>
         <el-col :span="6">
-            <div @click="changeshow()" class="user-img nav-select-list">
+            <div  @mouseout="setdropdown('lazyout1')" @click="changeshow" class="user-img nav-select-list">
                 <img :src="userImage||defaultPic"  class="nav-user-img">
             </div>
-            <div class="alert-content out-box-border" v-show="show" >
+            <div @mouseover="setdropdown('over')"  @mouseout="setdropdown('out')" class="alert-content out-box-border" v-show="show" >
                 <el-row class="alert-top">
                     <el-col :span="5"><img :src="userImage||defaultPic"  class="alert-user-img"></el-col>
                     <el-col :span="19">

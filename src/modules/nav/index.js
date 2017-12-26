@@ -67,6 +67,24 @@ export default {
 
     },
     methods: {
+        setdropdown(params){
+            let _this =this;
+            switch(params){
+                case 'out':
+                    this.show=false;
+                    break;
+                case 'over':
+                    setTimeout(function () {
+                        _this.show=true;
+                    },10);
+                    break;
+                case 'lazyout':
+                    setTimeout(function () {
+                        _this.show=false;
+                    },10);
+                    break;
+            }
+        },
         changeshow(){
             if (this.show==false){
                 this.show=true
