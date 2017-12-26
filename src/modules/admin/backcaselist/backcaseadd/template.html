@@ -40,7 +40,7 @@
             <div class="row-ct" >
                 <div class="row-item" style="margin-bottom:20px;">
                     <span class="row-item-title f-14"><i class="i-must">*</i> 医生</span>
-                    <el-select v-model="caseDetail.doctor" placeholder="请选择">
+                    <el-select v-model="oSelectDoc" @change="fDoctorChange"  placeholder="请选择">
                         <el-option
                                 v-for="item in doctorlist"
                                 :key="item.id"

@@ -19,7 +19,7 @@ export default {
             oProductList: [], //诊疗项目列表1111
             oProductCode: [], //诊疗项目id集合1111
             oSelectProductItems: [], //选中的诊疗项目1111
-
+            oSelectDoc:"",
             addAfterCaseItem:{ //增加新的
                 "title": "",
                 "definitionDate": "",
@@ -103,6 +103,8 @@ export default {
                 success: function (result) {
                     if(result.code==0) {
                         _This.caseDetail = result.data||[];
+
+                        _This.oSelectDoc=_This.caseDetail.doctor&&_This.caseDetail.doctor.name;
                         _This.oProductCode=[];
                         _This.caseDetail.products&&_This.caseDetail.products.forEach(item=> {
                             _This.oProductCode.push(item.id)
@@ -124,7 +126,7 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-
+                       console.log("add case---",result);
                     }
                 }, 'withCredentials');
             }
@@ -139,7 +141,7 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-
+                        console.log("change case---",result);
                     }
                 }, 'withCredentials');
             }
@@ -198,6 +200,12 @@ export default {
                 }, 'withCredentials');
             } else {
                 this.options4 = [];
+            }
+        },
+        fDoctorChange(item){
+            if(typeof(item)=="object"){
+                this.caseDetail.doctor=item;
+                this.oSelectDoc=item.name;
             }
         },
 
