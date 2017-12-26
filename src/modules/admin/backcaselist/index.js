@@ -69,7 +69,6 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("获取医生列表成功-------", result);
                     if(result.code==0){
                         _this.doctorlist=result.data;
                     }
