@@ -94,7 +94,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   console.log("list--ddddd------", result);
+
                     if(result.code==0&&result.data!="null"){
                         _This.oClinicData=result.data.list[0];
                     }
