@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="row-ct">
+            <div v-if="userId !='_EPT'" class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 微信绑定码</span>
                     <span >{{userInfo.userCode}}</span>
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="row-ct">
+            <div v-if="userId !='_EPT'" class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 重置密码</span>
                     <el-button @click="resetPassword">重置</el-button>

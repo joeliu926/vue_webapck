@@ -48,7 +48,7 @@ export default {
                         _this.count = result.data.count;
 
                         _this.userlist.forEach(m=>{
-                            m.status = m.status ==1?"正常":"已删除";
+                            m.status = m.status ==0?"正常":"已删除";
                         });
                     }
                 }

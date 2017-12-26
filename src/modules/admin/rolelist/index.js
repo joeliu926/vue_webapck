@@ -41,7 +41,7 @@ export default {
                         _this.Rolelist = result.data.list;
 
                         _this.Rolelist.forEach(m=>{
-                            m.status = m.status ==1?"正常":"已删除";
+                            m.status = m.status ==0?"正常":"已删除";
                             m.createDate =_.date2String(new Date(m.createDate),"yyyy-MM-dd hh:mm:ss");
                         });
 

@@ -22,7 +22,7 @@
                     style="width: 100%"
                     :default-sort = "{prop: 'date', order: 'descending'}"
             >
-                <el-table-column
+                <el-table-column @click="userEdit(scope.row.id)"
                         prop="name"
                         label="名称"
                         min-width="20%">
@@ -38,7 +38,7 @@
                         label="角色"
                         min-width="30%">
                         <template slot-scope="scope">
-                            <span v-for="rols in scope.row.rolesEnName">{{rols.name}}、</span>
+                            <span v-for="rols in scope.row.rolesEnName" v-if="rols.name">{{rols.name}}、</span>
                         </template>
                 </el-table-column>
                 <el-table-column

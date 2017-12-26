@@ -33,7 +33,7 @@
 			width: 15%;
 		}
 		.admin-rbox {
-			width: 83%;
+			width: 85%;
 			.segment-title {
 				border-bottom: 1px solid #eaeaea;
 				padding: 5px 0;
@@ -163,7 +163,6 @@
 				}
 			}
 			.out-box-border {
-				width: 100%;
 				margin-bottom: 24px;
 				.map-ct {
 					width: 100%;
