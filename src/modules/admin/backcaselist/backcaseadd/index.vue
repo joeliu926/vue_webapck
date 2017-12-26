@@ -87,7 +87,7 @@
                 .row-ct {
                     padding: 10px;
                     .row-item {
-                        display: inline-block;
+                       /* display: inline-block;*/
                         width: 300px;
                         .row-item-title {
                             display: inline-block;

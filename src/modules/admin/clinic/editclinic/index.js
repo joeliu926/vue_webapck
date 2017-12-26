@@ -3,7 +3,7 @@
  */
 
 import tree from '../../tree/index.vue';
-
+import CONSTANT from '../../../../common/utils/constants.js'
 export default {
     components: {
         tree
@@ -18,8 +18,9 @@ export default {
             inauguralState: "",
             clinicLogo: "",
             sAddress:"",
-            contentMap:new BMap.Map("map-content"),
-            imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+            contentMap:new BMap.Map("map-content"), //import CONSTANT from '../../../../common/utils/constants.js'
+            imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
+            //imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
             oClinicRank: ["诊所", "门诊部", "整形外科医院", "一级民营医院", "二级医院", "三级甲等医院"],
             clinicRank: "",
             oClinicData: {

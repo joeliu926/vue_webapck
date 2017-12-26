@@ -3,11 +3,13 @@
  */
 /*import AdInput from 'adminUI/components/admin-input.vue';*/
 import tree from '../../tree/index.vue';
+import CONSTANT from '../../../../common/utils/constants.js'
 export default {
     components: {tree},
     data () {
         return {
-        	imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+        	//imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
+            imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
         	addImg:require("../../../../common/img/add-img-icon.png"),
         	defaultImg:require("../../../../common/img/add-img-icon.png"),
             doctoredit:'医生编辑',

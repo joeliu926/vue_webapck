@@ -3,39 +3,35 @@
  */
 
 import tree from '../../tree/index.vue';
-
+import CONSTANT from '../../../../common/utils/constants.js'
 export default {
     components: {
         tree
     },
     data () {
         return {
+            bydefault:require("../../../../common/img/add-img-icon.png"),
+            imgUploadUrl: CONSTANT.fileUpload+"api/caseHeader/uploadCasePicture",
             caseId:'',
             afterIndex:-1, //标记多文件选择的条目
             afterPIndex:-1,//标记多文件选择的图片
-            addAfterCaseItem:{
+            productItem:"",//单项诊疗项目 caseDetail.products111
+            oProductList: [], //诊疗项目列表1111
+            oProductCode: [], //诊疗项目id集合1111
+            oSelectProductItems: [], //选中的诊疗项目1111
+
+            addAfterCaseItem:{ //增加新的
                 "title": "",
                 "definitionDate": "",
-                "pictures": [
-                    {
-                        "name": "",
-                        "url": ""
-                    }
-                ],
+                "pictures": [],
                 "description": ""
             },
             doctorlist: [{
-                value: '选项1',
-                label: '李医生'
-            }, {
-                value: '选项2',
-                label: '张医生'
-            }, {
-                value: '选项3',
-                label: '郝医生'
+                value: '',
+                label: ''
             }],
 
-            options11:[{
+            optGender:[{ //性别下拉
                 value: 0,
                 label: '未知'
             }, {
@@ -65,9 +61,9 @@ export default {
                         "productName":""
                     }
                 ],
-                operationDate: 1513008000000,
+                operationDate: "",
                 customerGender: 1,
-                customerAge: 23,
+                customerAge: "",
                 customerLogo: {
                     "name": "",
                     "url": ""
@@ -82,16 +78,11 @@ export default {
                 },
                 contentList: [
                     {
-                        "id": 3,
-                        "title": "术后10天",
-                        "pictures": [
-                            {
-                                "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
-                                "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
-                            }
-                        ],
-                        "definitionDate": 1513008000000,
-                        "description": "手术日记描述"
+                        "id": "",
+                        "title": "",
+                        "pictures": [],
+                        "definitionDate": "",
+                        "description": ""
                     }
                 ]
             }
@@ -106,8 +97,11 @@ export default {
         this.getdoctorlist();
     },
     methods: {
+        /**
+         * 获取列表
+         */
         initData(){
-            let _this =this;
+            let _This =this;
             let pData={
                 id:this.caseId
             };
@@ -117,20 +111,11 @@ export default {
                 data: pData,
                 success: function (result) {
                     if(result.code==0) {
-                        _this.caseDetail = result.data;
-                     /*   _this.caseDetail.id = result.data.id;
-                        _this.caseDetail.caseName = result.data.caseName;
-                        _this.caseDetail.doctor = result.data.doctor;
-                        _this.caseDetail.products = result.data.products;
-                        _this.caseDetail.operationDate = result.data.operationDate;
-                        _this.caseDetail.customerAge = result.data.customerAge;
-                        _this.caseDetail.customerLogo = result.data.customerLogo;
-                        _this.caseDetail.beforePicture = result.data.beforePicture;
-                        _this.caseDetail = result.data;
-                        _this.caseDetail = result.data;
-                        _this.caseDetail = result.data;
-                        _this.caseDetail = result.data;
-                        _this.caseDetail = result.data;*/
+                        _This.caseDetail = result.data;
+                        _This.oProductCode=[];
+                        _This.caseDetail.products.forEach(item=> {
+                            _This.oProductCode.push(item.id)
+                        });
                     }
                 }
             }, 'withCredentials');
@@ -148,6 +133,7 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
+
                     }
                 }, 'withCredentials');
             }
@@ -160,12 +146,37 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
+
                     }
                 }, 'withCredentials');
             }
 
         },
-        remoteMethod(query) {
+        /**
+         * 删除诊疗项目
+         * @param item
+         */
+        fRemoveProduct(item){
+            let _This=this;
+            let index= _This.caseDetail.products.indexOf(item);
+            if(index>=0){
+                _This.oProductCode.splice(index,1);
+                _This.caseDetail.products.splice(index,1);
+            }
+        },
+        /**
+         * 选中诊疗项目
+         * @param item
+         */
+        fSelectProductItem(item){
+            let _This=this;
+             if(_This.oProductCode.indexOf(item.id)<0){
+                 _This.oProductCode.push(item.id);
+                 _This.caseDetail.products.push(item);
+             }
+        },
+        //获取诊疗项目列表
+        fAutoProduct(query) {
             if (query !== '') {
                 this.loading = false;
                 var _This = this;
@@ -179,14 +190,13 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("============",result);
                         if(result.code==0){
-                            let list=result.data;
-                            console.log(list);
-                            list.forEach(item => {
+                           // let list=result.data;
+                            _This.searchData=result.data;
+                     /*       list.forEach(item => {
                                 _This.searchData.push(item);
-                            });
-                           console.log(_This.searchData);
+                            });*/
+
                         }
 
                     }
@@ -235,7 +245,7 @@ export default {
         beforeImgUpload(e){
             let _This = this;
             var beforeimgFile = e.target.files[0];
-            console.log("img---->", beforeimgFile);
+          //  console.log("img---->", beforeimgFile);
             if(beforeimgFile.size > 5*1024*1024) {
                 return false;
             }
@@ -250,7 +260,6 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("------------",result)
                     if(result.code == 0 ) {
                         _This.caseDetail.beforePicture.url =result.data.url;
                         _This.caseDetail.beforePicture.name =result.data.name;
@@ -264,7 +273,6 @@ export default {
         afterImgUpload(e){
             let _This = this;
             var afterimgFile = e.target.files[0];
-            console.log("img---->", afterimgFile);
             if(afterimgFile.size > 5*1024*1024) {
                 return false;
             }
@@ -279,7 +287,6 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("------------",result)
                     if(result.code == 0 ) {
                         _This.afterImg =result.data.url;
                         _This.afterName =result.data.name;
@@ -346,7 +353,7 @@ export default {
         fMultImgUpload(ee){
             let _This=this;
          let index=_This.afterIndex;
-         let pindex=_This.afterPIndex;
+        // let pindex=_This.afterPIndex;
             var fdata = new FormData();
             var imgFile = ee.target.files[0];
             fdata.append('imgFile', imgFile);
@@ -360,7 +367,8 @@ export default {
                 success: function(result) {
                     let plength=_This.caseDetail.contentList[index].pictures.length;
                     if(result.code == 0 ) {
-                        _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
+                       // _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
+                        _This.caseDetail.contentList[index].pictures.push(result.data);
                     }
                 },
                 error: function(result) {
@@ -374,10 +382,14 @@ export default {
          * @param pindex
          */
         fMultChooseafImg(index,pindex){
+
+            console.log(index,"-----",pindex);
+
             let _This=this;
             _This.afterIndex=index;
-            _This.afterPIndex=pindex;
-            let itema="s"+index+pindex+"e";
+           // _This.afterPIndex=pindex;
+            //let itema="s"+index+pindex+"e";
+            let itema="s"+index+"e";
             this.$refs[itema][0].click();
         },
         fAddAfterCase(){
