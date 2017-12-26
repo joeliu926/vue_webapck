@@ -89,16 +89,16 @@ export default {
                 hightline:false,
                 needinit:false,
                 children: [{
-                    id:'admin_log_login',
+                    id:'admin_loglogin',//admin_log_login
                     label: '登陆日志',
-                    linkUrl:'',
+                    linkUrl:'/admin/log',
                     hightline:false,
                     needinit:false
 
                 }, {
-                    id:'admin_log_operate',
+                    id:'admin_logoperate',//admin_logo_perate
                     label: '操作日志',
-                    linkUrl:'',
+                    linkUrl:'/admin/operate',
                     hightline:false,
                     needinit:false
 
@@ -110,9 +110,15 @@ export default {
         this.initPropt();
         this.treeData.forEach(m=>{
             m.children&&m.children.forEach(ms=>{
-                if(ms.linkUrl == this.$router.history.current.fullPath){
+
+                console.log('ms.linkUrl',ms.linkUrl);
+                console.log('this.$router.history.current.fullPath',this.$router.history.current.fullPath);
+                if(this.$router.history.current.fullPath.indexOf(ms.linkUrl)>-1){
                     ms.hightline =true;
                 }
+                 /*if(ms.linkUrl.indexOf(this.$router.history.current.fullPath)>-1){
+                 ms.hightline =true;
+                 }*/
             })
         });
 
