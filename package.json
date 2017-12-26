@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node build/dev.js http://localhost:8023 ws://localhost:8053/",
-    "test": "node build/dist.js https://27478500.qcloud.la/node_test ws://123.207.213.50:8054/",
+    "test": "node build/dist.js https://nihaomc.com/node_test ws://140.143.184.52:8054/",
     "build": "node build/dist.js https://nihaomc.com/node wss://nihaomc.com/websocket/",
     "_test": "echo \"Error: no test specified\" && exit 1"
   },
