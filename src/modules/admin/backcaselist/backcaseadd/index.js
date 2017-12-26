@@ -94,9 +94,7 @@ export default {
                         "description": "手术日记描述"
                     }
                 ]
-            },
-            product:''
-
+            }
         };
     },
     created() {
@@ -120,6 +118,19 @@ export default {
                 success: function (result) {
                     if(result.code==0) {
                         _this.caseDetail = result.data;
+                     /*   _this.caseDetail.id = result.data.id;
+                        _this.caseDetail.caseName = result.data.caseName;
+                        _this.caseDetail.doctor = result.data.doctor;
+                        _this.caseDetail.products = result.data.products;
+                        _this.caseDetail.operationDate = result.data.operationDate;
+                        _this.caseDetail.customerAge = result.data.customerAge;
+                        _this.caseDetail.customerLogo = result.data.customerLogo;
+                        _this.caseDetail.beforePicture = result.data.beforePicture;
+                        _this.caseDetail = result.data;
+                        _this.caseDetail = result.data;
+                        _this.caseDetail = result.data;
+                        _this.caseDetail = result.data;
+                        _this.caseDetail = result.data;*/
                     }
                 }
             }, 'withCredentials');

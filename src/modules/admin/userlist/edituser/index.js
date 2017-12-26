@@ -166,6 +166,7 @@ export default {
             let _this =this;
             this.save(function () {
                 _this.clearData();
+                _this.$router.push("/admin/userlist/edit/_EPT");
             });
         },
         Cancel(){
