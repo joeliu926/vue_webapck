@@ -115,17 +115,67 @@ export default {
         },
         /*添加页面*/
         caseaddSave(){
+
+            /*验证判断*/
+            if(!/\S{1,}/.test(this.caseDetail.caseName)){
+                this.$message.error("案例名不能为空");
+                return false;
+            }
+            if(this.caseDetail.products.length==0){
+                this.$message.error("诊疗项目不能为空");
+                return false;
+            }
+            if(!/\S{1,}/.test(this.caseDetail.operationDate)){
+                 this.$message.error("诊疗时间不能为空");
+                 return false;
+             }
+            if(this.caseDetail.beforePicture.url==""){
+                this.$message.error("请上传术前照片");
+                return false;
+            }
+            if(this.caseDetail.afterPicture.url==""){
+                this.$message.error("请上传术后照片");
+                return false;
+            }
+            if(this.caseDetail.customerLogo.url==""){
+                this.$message.error("请上传求美者头像照片");
+                return false;
+            }
+            if(!this.caseDetail.customerGender){
+                this.$message.error("请选择性别");
+                return false;
+            }
+            if(!/\S{1,}/.test(this.caseDetail.customerAge)){
+                this.$message.error("年龄不能为空");
+                return false;
+            }
+            if(this.caseDetail.contentList[0].title.length==0){
+                this.$message.error("段落标题不能为空");
+                return false;
+            }
+            if(this.caseDetail.contentList[0].definitionDate.length==0){
+                this.$message.error("恢复日期不能为空");
+                return false;
+            }
+            if(this.caseDetail.contentList[0].pictures.length==0){
+                this.$message.error("补充求美者照片不能为空");
+                return false;
+            }
+
+
+
+
             let _This=this;
             if(_This.caseDetail.hasOwnProperty("page")){
                 delete _This.caseDetail.page;
             }
+
             if(this.caseId=='_EPT')
             {
                 this.caseDetail.id ='';
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
-
                 _.ajax({
                     url: '/admin/backcase/backcaseadd',
                     method: 'POST',
@@ -145,7 +195,6 @@ export default {
                 }, 'withCredentials');
             }
             else{
-
                 delete this.caseDetail.clinic;
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
@@ -210,6 +259,7 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
+                        console.log("-------",result)
                         if(result.code==0){
                            // let list=result.data;
                             _This.searchData=result.data;
@@ -269,7 +319,7 @@ export default {
         Savecase (){
             this.caseaddSave();
 
-           //this.$router.push("/admin/backcaselist");
+           this.$router.push("/admin/backcaselist");
         },
         beforeImgUpload(e){
             let _This = this;
@@ -289,9 +339,9 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
+                    // console.log("=============",result);
                     if(result.code == 0 ) {
-                        _This.caseDetail.beforePicture.url =result.data.url;
-                        _This.caseDetail.beforePicture.name =result.data.name;
+                        _This.caseDetail.beforePicture=result.data;
                     }
                 },
                 error: function(result) {
@@ -360,7 +410,7 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("------------",result)
+                    // console.log("------------",result)
                     if(result.code == 0 ) {
                         _This.caseDetail.customerLogo.url =result.data.url;
                         _This.caseDetail.customerLogo.name =result.data.name;

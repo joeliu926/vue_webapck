@@ -41,8 +41,6 @@ export default {
                 return "";
             }
             return  _.date2String(new Date(input),"yyyy年MM月dd日");
-
-
         }
     },
     created() {
@@ -50,14 +48,14 @@ export default {
       this.getdoctorlist();
     },
     mounted(){
-
     },
     destroyed() {
-
     },
     methods: {
         /**/
-        currentid(){
+        currentid(cmd){
+            console.log("dddddddd-----",cmd);
+            this.doctorId=cmd;
             this.fSearchCaseList();
            // console.log("this.doctorId-------", this.doctorId,item);
         },
@@ -65,15 +63,19 @@ export default {
         getdoctorlist(){
             let _this=this;
             let pData={
-
             }
             _.ajax({
                 url: '/admin/backcase/setdoctorlist',
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                   // console.log("获取医生列表成功-------", result);
-                    _this.doctorlist=result.data;
+                    console.log("获取医生列表成功-------", result);
+                    if(result.code==0){
+                        _this.doctorlist=result.data;
+                    }
+                    let alldata={id:"",name:"全部医生"};
+                    _this.doctorlist.unshift(alldata);
+
                 }
             }, 'withCredentials');
         },
@@ -83,6 +85,7 @@ export default {
                pageNo:_This.pageNo,
                pageSize:_This.pageSize,
                productName:_This.productName,
+                doctorId:_This.doctorId
             }
             _.ajax({
                 url: '/admin/backcase/backcaselist',

@@ -145,6 +145,7 @@
                     <el-select v-model="caseDetail.customerGender" placeholder="请选择">
                         <el-option
                                 v-for="item in optGender"
+
                                 :key="item.value"
                                 :label="item.label"
                                 :value="item.value">
@@ -155,7 +156,8 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" v-model="caseDetail.customerAge"></el-input>
+                    <el-input class="row-item-value" ref="customerAge" v-model="caseDetail.customerAge"></el-input>
+
                 </div>
             </div>
         </div>
@@ -173,7 +175,7 @@
             <div class="row-ct clearfix" >
                 <div class="row-item fl" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 段落标题</span>
-                    <el-input class="row-item-value"  v-model="afterItem.title"></el-input>
+                    <el-input class="row-item-value" ref="title" v-model="afterItem.title"></el-input>
                 </div>
                 <div class="row-item fl" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 恢复日期</span>
