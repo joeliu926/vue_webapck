@@ -29,7 +29,7 @@
         }
         .admin-rbox {
             height: 100%;
-            width: 82%;
+            width: 85%;
             display: inline-block;
             box-sizing: border-box;
             padding: 12px;
@@ -126,7 +126,7 @@
         }
         .admin-lbox {
             height: 100%;
-            width: 18%;
+            width: 15%;
             display: inline-block;
             padding: 12px;
             box-sizing: border-box;
