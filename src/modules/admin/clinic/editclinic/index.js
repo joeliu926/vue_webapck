@@ -89,10 +89,7 @@ export default {
             this.$router.push("/admin/clinic/detail");
         },
         fEditSave() {
-            //this.$router.push("/admin/clinic/detail");
-
             let _This = this;
-            console.log("_This.oClinicData----->",_This.oClinicData);
             _This.oClinicData.productNames = _This.oSelectMajorItems;
             _This.oClinicData.logo =_This.defaultImg;  //
             //_This.oClinicData.address =_This.sAddress;
@@ -214,10 +211,6 @@ export default {
             _This.oClinicData.logo =_This.defaultImg;
             _This.oClinicData.clinicId = "";
             let pCreateData = JSON.stringify(_This.oClinicData);
-
-            //console.log("pCreateData------->", _This.oClinicData);
-
-            // return false;
             let postData = {
                 pData: pCreateData
             };
@@ -249,7 +242,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function(result) {
-                    //console.log("get single ------->", result);
                     if(result.code == 0 && result.data) {
                         delete result.data.page;
                         _This.oClinicData = result.data;
@@ -274,7 +266,6 @@ export default {
         fAjaxFileUpload(e) {
             let _This = this;
             var imgFile = e.target.files[0];
-            console.log("img---->", imgFile);
             if(imgFile.size > 5*1024*1024) {
                 return false;
             }
