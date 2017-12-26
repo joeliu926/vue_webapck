@@ -19,7 +19,7 @@ export default {
             oProductList: [], //诊疗项目列表1111
             oProductCode: [], //诊疗项目id集合1111
             oSelectProductItems: [], //选中的诊疗项目1111
-
+            oSelectDoc:"",
             addAfterCaseItem:{ //增加新的
                 "title": "",
                 "definitionDate": "",
@@ -48,17 +48,13 @@ export default {
             searchData:[],
             textareas:[],
             caseDetail: {
-                id: 3,
+                id: "",
                 caseName: "",
                 doctor: {
-                    "tenantId": "",
-                    "id": 1,
-                    "name": ""
                 },
-                products: [
-                ],
+                products: [],
                 operationDate: "",
-                customerGender: 1,
+                customerGender: "",
                 customerAge: "",
                 customerLogo: {
                     "name": "",
@@ -86,7 +82,6 @@ export default {
     },
     created() {
         this.caseId = this.$route.params.id;
-
         if(this.caseId!='_EPT'){
             this.initData();
         }
@@ -107,9 +102,11 @@ export default {
                 data: pData,
                 success: function (result) {
                     if(result.code==0) {
-                        _This.caseDetail = result.data;
+                        _This.caseDetail = result.data||[];
+
+                        _This.oSelectDoc=_This.caseDetail.doctor&&_This.caseDetail.doctor.name;
                         _This.oProductCode=[];
-                        _This.caseDetail.products.forEach(item=> {
+                        _This.caseDetail.products&&_This.caseDetail.products.forEach(item=> {
                             _This.oProductCode.push(item.id)
                         });
                     }
@@ -118,6 +115,7 @@ export default {
         },
         /*添加页面*/
         caseaddSave(){
+
             /*验证判断*/
             if(!/\S{1,}/.test(this.caseDetail.caseName)){
                 this.$message.error("案例名不能为空");
@@ -166,6 +164,12 @@ export default {
 
 
 
+
+            let _This=this;
+            if(_This.caseDetail.hasOwnProperty("page")){
+                delete _This.caseDetail.page;
+            }
+
             if(this.caseId=='_EPT')
             {
                 this.caseDetail.id ='';
@@ -177,11 +181,21 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-                        console.log("==================>",result);
+                        if(result.code==0){
+                            _This.$message({message: '添加成功',
+                                type: 'success'
+                            });
+                            setTimeout(function(){
+                                _This.$router.push("/admin/backcaselist");
+                            },3000);
+                        }else {
+                            _This.$message.error("添加失败");
+                        }
                     }
                 }, 'withCredentials');
             }
             else{
+                delete this.caseDetail.clinic;
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
@@ -190,7 +204,16 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-
+                        if(result.code==0){
+                            _This.$message({message: '更新成功',
+                                type: 'success'
+                            });
+                            setTimeout(function(){
+                                _This.$router.push("/admin/backcaselist");
+                            },3000);
+                        }else {
+                            _This.$message.error("更新失败");
+                        }
                     }
                 }, 'withCredentials');
             }
@@ -214,8 +237,10 @@ export default {
          */
         fSelectProductItem(item){
             let _This=this;
-             if(_This.oProductCode.indexOf(item.id)<0){
+             if(_This.oProductCode.indexOf(item.id)<0)
+             {
                  _This.oProductCode.push(item.id);
+                 delete item.page;
                  _This.caseDetail.products.push(item);
              }
         },
@@ -248,6 +273,15 @@ export default {
                 }, 'withCredentials');
             } else {
                 this.options4 = [];
+            }
+        },
+        fDoctorChange(item){
+            if(typeof(item)=="object"){
+                if(item.hasOwnProperty("page")){
+                    delete item.page;
+                }
+                this.caseDetail.doctor=item;
+                this.oSelectDoc=item.name;
             }
         },
 

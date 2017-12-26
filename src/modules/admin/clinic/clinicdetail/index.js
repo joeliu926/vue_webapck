@@ -21,11 +21,11 @@ export default {
                 "brief": "", //诊所简介
                 "businessTime": "",  //营业时间
                 "cityName": "", //城市名
-                "clinicId": 0, //诊所id
+                "clinicId": "", //诊所id
                 "coordinate": "", //坐标
                 "countryName": "", //国家
                 "districtName": "", //地址
-                "id": 0,
+                "id": "",
                 "linkman": "", //诊所负责人
                 "logo": "", //诊所logo
                 "name": "", //诊所名
@@ -94,8 +94,8 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log("list--------", result);
-                    if(result.code==0&&result.data.list.length>0){
+                   console.log("list--ddddd------", result);
+                    if(result.code==0&&result.data!="null"){
                         _This.oClinicData=result.data.list[0];
                     }
                     _This.fSearchAddressByAddress();
@@ -115,7 +115,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("test--------", result);
+                   // console.log("test--------", result);
                 }
             }, 'withCredentials');
         },
@@ -133,6 +133,9 @@ export default {
 		    map.enableContinuousZoom(); 
 			var localSearch = new BMap.LocalSearch(map);
 			localSearch.setSearchCompleteCallback(function(searchResult) {
+			    if(!searchResult){
+			        return false;
+                }
 				var poi = searchResult.getPoi(0);
 				map.centerAndZoom(poi.point, 13);
 				  map.clearOverlays(); 
