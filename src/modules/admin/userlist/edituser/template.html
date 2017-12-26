@@ -6,7 +6,7 @@
         <div class="doctor-record">
             <div class="record-text-ct">
                 <div>
-                    <span class="sel-title">用户创建</span>
+                    <span class="sel-title">用户创建/修改</span>
                 </div>
             </div>
             <div class="doctor-edit-ct">
@@ -58,6 +58,7 @@
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 微信绑定码</span>
                     <span >{{userInfo.userCode}}</span>
                     <el-button @click="unbind">解绑</el-button>
+                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">tips: 通知当前用户使用微信公众号[云像营销云]当中回复此码，即可进微信和系统帐号的绑定。</div>
                 </div>
             </div>
 
@@ -95,6 +96,7 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 重置密码</span>
                     <el-button @click="resetPassword">重置</el-button>
+                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">tips: 密码将会自动生成为手机号后六位。</div>
                 </div>
             </div>
 
