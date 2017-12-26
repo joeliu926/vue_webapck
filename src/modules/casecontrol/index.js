@@ -26,7 +26,7 @@ export default {
             oShowCaseList: [],//选择需要演示的案例
             oShowCaseListIds: [],//选择演示的id集合
             oShowCaseTempList: [], //演示案例的临时集合*************
-            oCurrentShowItem: {frondFile: [], backFile: []},//当前展示的案例
+            oCurrentShowItem: {beforePicture: [], afterPicture: [],doctor:{}},//当前展示的案例
             oCurrentShowItemIndex: 0,//当前展示的案例的索引
             oSourceList: [],//客户来源列表
             isFillProject: false,//结束是否填写项目信息
@@ -212,7 +212,7 @@ export default {
                 }
             });
             if (!isHave) {
-                _This.oCurrentShowItem = {frondFile: [], backFile: []};
+                _This.oCurrentShowItem = {beforePicture: [], afterPicture: [],doctor:{}};
                 _This.oCurrentShowItemIndex = -1;
                 _This.playingState = 'waiting';
             }
@@ -324,7 +324,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    // console.log("product list result--------",result);
+                     //console.log("product list result-111111-------",result);
                     if (result.code == 0 && result.data) {
                         _This.oProductList = result.data;
                     }
@@ -349,7 +349,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    //console.log("fDoctorList list result--------",result);
+                   // console.log("fDoctorList list result--------",result);
                     if (result.code == 0 && result.data) {
                         _This.oDoctorList = result.data;
                     }
@@ -368,7 +368,7 @@ export default {
             let currentCode = (_This.isCurrentProject == "1" || _This.isCurrentProject == "0") ? "" : _This.isCurrentProject;
             let postData = {
                 productCode: currentCode,
-                doctorName: _This.isDocProject
+                doctorId: _This.isDocProject
             };
             //console.log("fCaseHeaderList list postData--------", postData);
             _.ajax({
@@ -386,6 +386,7 @@ export default {
                             _This.oCaseList.push(item);
                         }
                     });
+                   // console.log(" _This.oCaseList--------",  _This.oCaseList);
 
 
                 }
@@ -1013,9 +1014,11 @@ export default {
          * @param params
          */
         playCase(params){
-
             let _This = this;
             _This.oCurrentShowItem = params;
+
+           // console.log("_This.oCurrentShowItem----",_This.oCurrentShowItem);
+
             _This.fCheckPlayingItem();
             _This.fCalculateShowList();
             let caseObj = {
@@ -1023,8 +1026,8 @@ export default {
                 "content": {
                     "code": _This.conCode,
                     "caseName": _This.oCurrentShowItem.productName,
-                    "beforeUrl": _This.oCurrentShowItem.frondFile.url,
-                    "afterUrl": _This.oCurrentShowItem.backFile.url
+                    "beforeUrl": _This.oCurrentShowItem.beforePicture.url,
+                    "afterUrl": _This.oCurrentShowItem.afterPicture.url
                 }
             };
             this.webSocket.send(JSON.stringify(caseObj));
@@ -1108,7 +1111,7 @@ export default {
             _This.oShowCaseTempList = _This.oShowCaseList.slice(istart, iend);
 
             for (let i = 0; i < 3 - currIndex; i++) {
-                let oTemShowItem = {frondFile: [], backFile: []};
+                let oTemShowItem = {beforePicture: [], afterPicture: []};
                 _This.oShowCaseTempList.unshift(oTemShowItem);
             }
         },

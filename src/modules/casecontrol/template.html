@@ -20,7 +20,7 @@
                 <div class="lay-right"></div>
                 <div class="lay-items">
                     <template v-for="(docitem,index) in oDoctorList">
-                        <label class="lay-item h-item" data-docCode="14" :style="{background:[isDocProject==docitem?'#9083ED':'']}" @click="fChooseDoc(docitem)" >{{docitem}}</label>
+                        <label class="lay-item h-item" data-docCode="14" :style="{background:[isDocProject==docitem.id?'#9083ED':'']}" @click="fChooseDoc(docitem.id)" >{{docitem.name}}</label>
                     </template>
                 </div>
             </div>
@@ -39,8 +39,8 @@
         <div class="sel-items-ct b-s">
             <div class="sel-img-ct sl-img-ct b-s" v-for="(oItem,index) in oCaseList" @click="fSelectShowCase(oItem,index)">
                 <div class="sel-img-item b-s">
-                    <img class="sel-img" :src="oItem.frondFile.url">
-                    <img class="sel-img" :src="oItem.backFile.url">
+                    <img class="sel-img" :src="oItem.beforePicture.url">
+                    <img class="sel-img" :src="oItem.afterPicture.url">
                     <div class="sel-ba-cm sel-before">{{uOperateSataus.before}}</div>
                     <div class="sel-ba-cm sel-after">{{uOperateSataus.after}}</div>
                     <div class="add-case add-icon" style="">
@@ -54,8 +54,8 @@
         <div class="des-items-ct b-s">
             <div class="des-img-ct b-s" v-for="item,index in oShowCaseList" @click="fRemoveShowCase(item,index)">
                 <div class="sel-img-item des-img-item ">
-                    <img class="sel-img des-img" :src="item.frondFile.url">
-                    <img class="sel-img des-img" :src="item.backFile.url">
+                    <img class="sel-img des-img" :src="item.beforePicture.url">
+                    <img class="sel-img des-img" :src="item.afterPicture.url">
                     <div class="sel-ba-cm des-ba-cm des-before">{{uOperateSataus.before}}</div>
                     <div class="sel-ba-cm des-ba-cm sel-after des-after">{{uOperateSataus.after}}</div>
                     <div class="add-case des-icon" style="">
@@ -76,8 +76,8 @@
                 <label style="float: left;">{{dCurrentDate|dateFilter}}</label><label>{{oCurrentShowItem.productName}}</label><label style="float: right;" >{{sTimer}}</label>
             </div>
             <div class="s-img-ct b-s">
-                <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="oCurrentShowItem.frondFile.url">
-                <img class="img-s" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em;"  :src="oCurrentShowItem.backFile.url">
+                <img class="img-s" style="border-top-left-radius: 1em; border-bottom-left-radius: 1em;" :src="oCurrentShowItem.beforePicture.url">
+                <img class="img-s" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em;"  :src="oCurrentShowItem.afterPicture.url">
                 <div class="s-ba-cm s-before">{{uOperateSataus.before}}</div>
                 <div class="s-ba-cm s-after">{{uOperateSataus.after}}</div>
             </div>
@@ -100,7 +100,7 @@
                     <img class="bt-icon" src="../../common/img/i-radio.png" >医生
                 </div>
                 <div class="lay-right"></div>
-                <div class="lay-items bt-items">  <label class="lay-item f-item" >{{oCurrentShowItem.doctorName}}</label></div>
+                <div class="lay-items bt-items">  <label class="lay-item f-item" >{{oCurrentShowItem.doctor.name}}</label></div>
             </div>
             <div style="clear: both;height: 0;"></div>
             <div class="lay-row">
@@ -124,9 +124,9 @@
                       <!--  <div class="b-s img-i-ct"  v-for="item in oShowCaseList">-->
                         <div class="b-s img-i-ct"  v-for="item,index in oShowCaseTempList">
                             <div class="img-item b-s" :style="{transform:[index==3?'scale(1.1)':'']}">
-                                <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.frondFile.url">
-                                    <img class="img-l"  :src="item.frondFile.url">
-                                    <img class="img-l" :src="item.backFile.url">
+                                <div class="b-ba-img-ct" @click="playCase(item)" style="" v-if="item.beforePicture.url">
+                                    <img class="img-l"  :src="item.beforePicture.url">
+                                    <img class="img-l" :src="item.afterPicture.url">
                                     <div class="s-ba-cm s-before">{{uOperateSataus.before}}</div>
                                     <div class="s-ba-cm s-after">{{uOperateSataus.after}}</div>
                                     <div class="add-case i-video-icon" v-if="index==3" style="">

@@ -20,8 +20,8 @@ export default {
                 hospitalName:"",
                 productName:"",
                 operationDate:_.date2String(new Date(),"yyyy-MM-dd"),
-                frondFile:{},
-                backFile:{},
+                beforePicture:{},
+                afterPicture:{},
             },
             contentList:[],
             contentListAfter:[],
@@ -81,20 +81,22 @@ export default {
                 method: 'POST',
                 data: {caseid:uid},
                 success: function (result) {
-                    console.log("casedetail",result);
+                    //console.log("casedetail------------》",result);
                     if(result.code==0&&result.data){
                         _This.acaseuserlist = result.data;
                         // console.log(_This.acaseuserlist);
                         _This.contentList=result.data.contentList;
                         _This.count = result.data.count;
-                        _This.contentList&& _This.contentList.forEach(m=>{
+
+                        _This.contentListAfter=_This.contentList||[];
+                   /*     _This.contentList&& _This.contentList.forEach(m=>{
                             _This.photolist = _This.photolist.concat(m.files);
 
                             if(m.nodeType==1){
 
                                 _This.contentListAfter.push(m);
                             }
-                        });
+                        });*/
                     }
                 }
             }, 'withCredentials');

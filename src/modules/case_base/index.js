@@ -31,7 +31,7 @@ export default {
                 data: postData,
 
                 success: function (result) {
-                    console.log('result.data',result);
+                    //console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
                     }else {
@@ -58,10 +58,6 @@ export default {
                 if(disTop<scrolltop+350&&disTop>scrolltop-350){
                     this.changestyle=  m.productCode;
                 }
-
-                //console.log('disTop',disTop);
-                //console.log('scrolltop',scrolltop);
-                //parentCode
             })
         },
         fCaselibrary(uid){
