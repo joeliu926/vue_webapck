@@ -79,6 +79,8 @@ export default {
     },
     methods: {
         fEditClinic(){
+
+            //console.log("this.oClinicData.clinicId------>",this.oClinicData.clinicId);
             this.$router.push("/admin/clinic/edit/"+this.oClinicData.clinicId);
         },
         /**
@@ -95,7 +97,8 @@ export default {
                 data: postData,
                 success: function (result) {
 
-                    if(result.code==0&&result.data!="null"){
+                   // console.log(" _This.oClinicData------>", _This.oClinicData)
+                    if(result.code==0&&result.data!="null"&&result.data.list.length>0){
                         _This.oClinicData=result.data.list[0];
                     }
                     _This.fSearchAddressByAddress();

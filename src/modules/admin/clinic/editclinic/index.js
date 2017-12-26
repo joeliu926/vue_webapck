@@ -28,16 +28,16 @@ export default {
                 "brief": "", //诊所简介
                 "businessTime": "", //营业时间
                 "cityName": "", //城市名
-                "clinicId": 0, //诊所id
+                "clinicId": "", //诊所id
                 "coordinate": "", //坐标
                 "countryName": "", //国家
                 "districtName": "", //地址
-                "id": 0,
+                "id": "",
                 "linkman": "", //诊所负责人
                 // "loginName": "", //当前登录用户名
                 "logo": "", //诊所logo
                 "name": "", //诊所名
-                "parentTenantId": 0, //租户ID
+                "parentTenantId": "", //租户ID
                 "phone": "", //电话
                 // "picture": "", //照片
                 "productNames": [ //项目
@@ -47,7 +47,7 @@ export default {
                     }
                 ],
                 "provName": "北京", //省份
-                "qualification": "12" //诊所等级
+                "qualification": "" //诊所等级
             }
 
         };
