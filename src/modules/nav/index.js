@@ -12,7 +12,10 @@ export default {
             userImage:'',
             allowBack:false,
             defaultPic:require("../../common/img/icon-customer.png"),
-
+            backgroundRight:false,
+            clinicName:'',
+            userName:'',
+            name:''
         };
     },
     created() {
@@ -21,6 +24,9 @@ export default {
             url: '/user/getuserinfo',
             method: 'POST',
             success: function (res) {
+                _this.name = res.name;
+                _this.clinicName = res.clinicName?res.clinicName:'欢迎使用哈罗美云！';
+                _this.userName=res.loginName;
                 let _menus = res.menus?res.menus:[];
                 _this.userImage = res.headImgUrl;
                 _menus.forEach(m=>{
@@ -40,6 +46,9 @@ export default {
                             break;
                         case "triage":
                             _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage/list'});
+                            break;
+                        case "systembackground":
+                            _this.backgroundRight =true;
                             break;
                     }
                 });

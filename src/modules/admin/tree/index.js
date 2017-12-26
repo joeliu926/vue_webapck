@@ -17,7 +17,6 @@ export default {
                     hightline:false,
                     needinit:false,
                     color:'#3542f1'
-
                 },
             {
                 id:'admin_user',
@@ -108,6 +107,7 @@ export default {
         };
     },
     created() {
+        this.initPropt();
         this.treeData.forEach(m=>{
             m.children&&m.children.forEach(ms=>{
                 if(ms.linkUrl == this.$router.history.current.fullPath){
@@ -123,6 +123,26 @@ export default {
 
     },
     methods: {
+        initPropt(){
+            let _this = this;
+            _.ajax({
+                url: '/admin/common/prompt',
+                method: 'POST',
+                success: function(result) {
+                    _this.treeData.forEach(m=>{
+                        m.children&&m.children.forEach(ms=>{
+                            result.data.forEach(res=>{
+                                if(ms.id == res.permission.split(':')[2]){
+                                    ms.needinit =true;
+                                }
+                            })
+
+                        })
+                    });
+
+                }
+            }, 'withCredentials');
+        },
         handleNodeClick(data) {
             this.removeAllHightLine();
             let tickPoint =data.id.split('_');

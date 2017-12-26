@@ -17,12 +17,10 @@
             padding: 12px;
             vertical-align: top;
         }
-
         .admin-lbox {
-            width: 17%;
+            width: 15%;
         }
-        .admin-rbox{width: 82%;
-
+        .admin-rbox{width: 85%;
             .content{
                 width:100%;
                 height:80%;

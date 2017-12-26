@@ -57,16 +57,30 @@
             right: 10px;
         }
         .user-img{float:right;
+            margin-right: 10px;
         margin-top: 10px;
         height:50px}
         .nav-select-list{
 
             cursor: pointer;
         }
+
         .alert-content{
-            line-height:24px;height:300px; width:300px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top: 70px;color: #000000;
+            .item-title{
+                background-color: #dfe6ec;padding-left: 20px
+            }
+            .item-data{
+                padding-left: 20px;line-height: 40px;cursor: pointer;
+                color:#35373c;
+            }
+            .item-data:hover{
+                background-color: #4F3CCA;
+                color:white;
+
+            }
+            line-height:24px;height:240px; width:200px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top:55px;color: #000000;
             .alert-top{
-                height:60px;
+                height:70px;
                 .alert-user-img{
                     border-radius: 50%;
                     height: 40px;

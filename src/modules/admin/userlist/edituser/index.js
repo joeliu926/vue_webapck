@@ -59,7 +59,6 @@ export default {
                     }
                 }
             }, 'withCredentials');
-
         },
         fGetGoodAtList(){
 
@@ -162,8 +161,6 @@ export default {
                     }
                 }
             }, 'withCredentials');
-            
-
         },
         saveAndAdd(){
             let _this =this;
