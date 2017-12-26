@@ -12,24 +12,7 @@ export default {
         return {
             input:'',
             input1:'',
-            oCaseList: [
-                {
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }],
+            oCaseList: [],
             count: 0,
             total:0,
             pageNo: 1,
@@ -38,23 +21,7 @@ export default {
             value:'',
             productName:'',
             doctorId:"",
-            doctorlist:[
-                {
-                  value: '选项1',
-                  label: '张医生'
-                }, {
-                  value: '选项2',
-                  label: '李医生'
-                }, {
-                  value: '选项3',
-                  label: '王医生'
-                }, {
-                  value: '选项4',
-                  label: '龙医生'
-                }, {
-                  value: '选项5',
-                  label: '赵医生'
-                }],
+            doctorlist:[],
 
         };
     },

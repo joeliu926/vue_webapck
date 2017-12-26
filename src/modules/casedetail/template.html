@@ -13,12 +13,12 @@
                         </el-col>
                         <el-col :span="21" justify="space-between" align="" class="border-padding">
                             <el-row  type="flex" class="">
-                                <el-col :span="4">
+                                <el-col :span="1">
                                     <div>
-                                        <p class="frist">{{acaseuserlist.customerName}}</p>
+                                        <p class="age color"></p>
                                     </div>
                                 </el-col>
-                                <el-col :span="2">
+                                <el-col :span="3">
                                     <div>
                                         <p class="gender color">{{acaseuserlist.customerGender|Gender}}</p>
                                     </div>
@@ -28,18 +28,25 @@
                                         <p class="age color">{{acaseuserlist.customerAge}}</p>
                                     </div>
                                 </el-col>
+                                <el-col :span="4" >
+                                    <div>
+                                        <p class="frist">{{acaseuserlist.customerName}}</p>
+                                    </div>
+                                </el-col>
+
+
                             </el-row>
                             <el-row :gutter="24" type="flex" justify="space-between" class="border-padding">
                                 <el-col :span="6">
                                     <div>
                                         <span>医院</span>
-                                        <p>{{acaseuserlist.hospitalName}}</p>
+                                        <p>{{acaseuserlist.clinic.name}}</p>
                                     </div>
                                 </el-col>
                                 <el-col :span="6">
                                     <div>
                                         <span>医生</span>
-                                        <p>{{acaseuserlist.doctorName}}</p>
+                                        <p>{{acaseuserlist.doctor.name}}</p>
                                     </div>
                                 </el-col>
                                 <el-col :span="6">

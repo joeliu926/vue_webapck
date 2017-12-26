@@ -48,21 +48,13 @@ export default {
             searchData:[],
             textareas:[],
             caseDetail: {
-                id: 3,
+                id: "",
                 caseName: "",
                 doctor: {
-                    "tenantId": "",
-                    "id": 1,
-                    "name": ""
                 },
-                products: [
-                    {
-                        "id": 1,
-                        "productName":""
-                    }
-                ],
+                products: [],
                 operationDate: "",
-                customerGender: 1,
+                customerGender: "",
                 customerAge: "",
                 customerLogo: {
                     "name": "",
@@ -110,9 +102,9 @@ export default {
                 data: pData,
                 success: function (result) {
                     if(result.code==0) {
-                        _This.caseDetail = result.data;
+                        _This.caseDetail = result.data||[];
                         _This.oProductCode=[];
-                        _This.caseDetail.products.forEach(item=> {
+                        _This.caseDetail.products&&_This.caseDetail.products.forEach(item=> {
                             _This.oProductCode.push(item.id)
                         });
                     }
