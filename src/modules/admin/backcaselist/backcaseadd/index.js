@@ -10,6 +10,7 @@ export default {
     },
     data () {
         return {
+            caseId:'',
             afterIndex:-1, //标记多文件选择的条目
             afterPIndex:-1,//标记多文件选择的图片
             addAfterCaseItem:{
@@ -34,78 +35,52 @@ export default {
                 label: '郝医生'
             }],
 
-            options11:[ {
-                value: '选项1',
+            options11:[{
+                value: 0,
+                label: '未知'
+            }, {
+                value: 1,
                 label: '男'
             }, {
-                value: '选项2',
+                value: 2,
                 label: '女'
             }],
-            bydefault: require("../../../../common/img/add-img-icon.png"),
-            imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/api/caseHeader/uploadCasePicture",
-            defaultImg: require("../../../../common/img/add-img-icon.png"), //默认上传图片
-            afterImg:require("../../../../common/img/add-img-icon.png"), //默认上传图片
-            afterName:"",
-            beforeImg:require("../../../../common/img/add-img-icon.png"), //默认上传图片
-            beforeName:"",
-            defaultName:"",
-            addpicName:"",
-            // defaultImg: "", //默认上传图片
-            value: '',
-            value1: '',
             operationDate: '',
             imageUrl:"",
-            textarea:"",
-            caseName:"",
-            doctor:"",
-            product:"",
-            customerAge:'',
-            customerGender:0,
-            contentList:[{
-                "title": "",
-                "definitionDate": "",
-                "pictures": [
-                    {
-                        "name": "",
-                        "url": ""
-                    }
-                ],
-                "description": ""
-            }],
             title:'',
             search:"",
             searchData:[],
             textareas:[],
             caseDetail: {
-                "id": 3,
-                "caseName": "测试案例1",
-                "doctor": {
+                id: 3,
+                caseName: "",
+                doctor: {
                     "tenantId": "",
                     "id": 1,
-                    "name": "李医生"
+                    "name": ""
                 },
-                "products": [
+                products: [
                     {
                         "id": 1,
-                        "productName": " 眼部整形"
+                        "productName":""
                     }
                 ],
-                "operationDate": 1513008000000,
-                "customerGender": 1,
-                "customerAge": 23,
-                "customerLogo": {
-                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                operationDate: 1513008000000,
+                customerGender: 1,
+                customerAge: 23,
+                customerLogo: {
+                    "name": "",
+                    "url": ""
                 },
-                "beforePicture": {
-                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                beforePicture: {
+                    "name": "",
+                    "url": ""
                 },
-                "afterPicture": {
-                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                afterPicture: {
+                    "name": "",
+                    "url": ""
                 },
-                "contentList": [
+                contentList: [
                     {
                         "id": 3,
                         "title": "术后10天",
@@ -119,96 +94,74 @@ export default {
                         "description": "手术日记描述"
                     }
                 ]
-            }
+            },
+            product:''
 
         };
     },
     created() {
+        this.caseId = this.$route.params.id;
+
+        if(this.caseId!='_EPT'){
+            this.initData();
+        }
         this.getdoctorlist();
     },
-    mounted() {
-
-    },
-    destroyed() {
-
-    },
     methods: {
-        /*添加页面*/
-        caseaddSave(){
-            let _This=this;
-            let sContentList=JSON.stringify(_This.contentList);
-            let oContentList=JSON.parse(sContentList);
-            oContentList.forEach((item,index)=>{
-                let picLength=item.pictures.length;
-                if(picLength>0){
-                  item.pictures.splice((picLength-1),1);
-                }
-            });
-            console.log("----------------",this.operationDate);
-            console.log(new Date(this.operationDate).valueOf());
-            console.log(this.doctorlist[0].id);
-            let postData = {
-                "loginName":"admin",
-                "caseName": this.caseName,
-                "doctor": {
-                    "id":   this.doctorlist.id,
-                },
-                "products": [
-                    {
-                        "id":this.searchData.index
-                    }
-                ],
-                "operationDate":this.operationDate?new Date(this.operationDate).valueOf():"",
-                "beforePicture": {
-                    "name": this.beforeName?this.beforeName:"",
-                },
-                "afterPicture": {
-                    "name": this.afterName?this.afterName:"",
-                },
-                "customerLogo": {
-                    "name": this.defaultName?this.defaultName:"",
-                },
-                "customerGender":this.customerGender,
-                "customerAge": 23,
-                "contentList": [
-                    {
-                        "title": this.title,
-                        "definitionDate": this.definitionDate?new Date(this.definitionDate).valueOf():"",
-                        "pictures": [
-                            {
-                                "name": this.addpicName?this.addpicName:"",
-                            }
-                        ],
-                        "description": this.textarea,
-                    }
-                ],
-            };
-            console.log("++++++++++++++++++",postData);
+        initData(){
+            let _this =this;
             let pData={
-                postData:JSON.stringify(postData)
-            }
+                id:this.caseId
+            };
             _.ajax({
-                url: '/admin/backcase/backcaseadd',
+                url: '/admin/backcase/casedetail',
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("caseadd- 成功添加------", result);
-
-
+                    if(result.code==0) {
+                        _this.caseDetail = result.data;
+                    }
                 }
             }, 'withCredentials');
         },
+        /*添加页面*/
+        caseaddSave(){
+            if(this.caseId=='_EPT')
+            {
+                this.caseDetail.id ='';
+                let pData={
+                    postData:JSON.stringify(this.caseDetail)
+                };
+                _.ajax({
+                    url: '/admin/backcase/backcaseadd',
+                    method: 'POST',
+                    data: pData,
+                    success: function (result) {
+                    }
+                }, 'withCredentials');
+            }
+            else{
+                let pData={
+                    postData:JSON.stringify(this.caseDetail)
+                };
+                _.ajax({
+                    url: '/admin/backcase/caseupdate',
+                    method: 'POST',
+                    data: pData,
+                    success: function (result) {
+                    }
+                }, 'withCredentials');
+            }
+
+        },
         remoteMethod(query) {
-            console.log(query);
             if (query !== '') {
                 this.loading = false;
                 var _This = this;
                 let   postData={
                     // pageNo:_This.pageNo,
                     // pageSize:_This.pageSize,
-                    productName:query,
-
-
+                    productName:query
                 }
                 _.ajax({
                     url: '/admin/backcase/selectcaselist',
@@ -220,20 +173,13 @@ export default {
                             let list=result.data;
                             console.log(list);
                             list.forEach(item => {
-                                _This.searchData.push(item.productName);
+                                _This.searchData.push(item);
                             });
                            console.log(_This.searchData);
                         }
 
                     }
                 }, 'withCredentials');
-                // setTimeout(() => {
-                //     this.loading = false;
-                //     this.options4 = this.list.filter(item => {
-                //         return item.label.toLowerCase()
-                //                 .indexOf(query.toLowerCase()) > -1;
-                //     });
-                // }, 200);
             } else {
                 this.options4 = [];
             }
@@ -258,16 +204,10 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("获取医生列表成功-------", result);
                     _this.doctorlist=result.data;
-                    console.log(_this.doctorlist);
-
                 }
             }, 'withCredentials');
         },
-
-
-
         /*日期筛选条件*/
         pickerOptions1: {
             disabledDate(time) {
@@ -301,17 +241,15 @@ export default {
                 success: function(result) {
                     console.log("------------",result)
                     if(result.code == 0 ) {
-                        _This.beforeImg =result.data.url;
-                        _This.beforeName =result.data.name;
-                        // console.log("+++++++++++++++",_This.defaultImg);
+                        _This.caseDetail.beforePicture.url =result.data.url;
+                        _This.caseDetail.beforePicture.name =result.data.name;
                     }
                 },
                 error: function(result) {
                     console.log("error-- result------>", result)
                 }
             });
-        }
-        ,
+        },
         afterImgUpload(e){
             let _This = this;
             var afterimgFile = e.target.files[0];
@@ -334,6 +272,8 @@ export default {
                     if(result.code == 0 ) {
                         _This.afterImg =result.data.url;
                         _This.afterName =result.data.name;
+                        _This.caseDetail.afterPicture.url =result.data.url;
+                        _This.caseDetail.afterPicture.name =result.data.name;
                         // console.log("+++++++++++++++",_This.defaultImg);
                     }
                 },
@@ -358,9 +298,7 @@ export default {
          */
         fAjaxFileUpload(e) {
             let _This = this;
-
             var imgFile = e.target.files[0];
-            console.log("img---->", imgFile);
             if(imgFile.size > 5*1024*1024) {
                 return false;
             }
@@ -377,9 +315,8 @@ export default {
                 success: function(result) {
                     console.log("------------",result)
                     if(result.code == 0 ) {
-                        _This.defaultImg =result.data.url;
-                        _This.defaultname =result.data.name;
-                        // console.log("+++++++++++++++",_This.defaultImg);
+                        _This.caseDetail.customerLogo.url =result.data.url;
+                        _This.caseDetail.customerLogo.name =result.data.name;
                     }
                 },
                 error: function(result) {
@@ -389,7 +326,7 @@ export default {
         },
         fDeleteAfterItem(index){
             let _This=this;
-            _This.contentList.splice(index,1);
+            _This.caseDetail.contentList.splice(index,1);
         },
         /**
          * 多文件上传
@@ -410,9 +347,9 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    let plength=_This.contentList[index].pictures.length;
+                    let plength=_This.caseDetail.contentList[index].pictures.length;
                     if(result.code == 0 ) {
-                        _This.contentList[index].pictures.splice(plength-1,0,result.data);
+                        _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
                     }
                 },
                 error: function(result) {
@@ -434,19 +371,12 @@ export default {
         },
         fAddAfterCase(){
             let _This=this;
-            _This.contentList.push(_This.addAfterCaseItem);
+            _This.caseDetail.contentList.push(_This.addAfterCaseItem);
         },
         fDeletePic(ee,index,pindex){
             let _This=this;
             ee.cancelBubble = true;
-            _This.contentList[index].pictures.splice(pindex,1);
-            console.log("close pic",index);
+            _This.caseDetail.contentList[index].pictures.splice(pindex,1);
         }
-
-
-
-    },
-    watch: {
-
     }
 }

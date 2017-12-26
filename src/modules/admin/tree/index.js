@@ -111,8 +111,8 @@ export default {
         this.treeData.forEach(m=>{
             m.children&&m.children.forEach(ms=>{
 
-                console.log('ms.linkUrl',ms.linkUrl);
-                console.log('this.$router.history.current.fullPath',this.$router.history.current.fullPath);
+               // console.log('ms.linkUrl',ms.linkUrl);
+                //console.log('this.$router.history.current.fullPath',this.$router.history.current.fullPath);
                 if(this.$router.history.current.fullPath.indexOf(ms.linkUrl)>-1){
                     ms.hightline =true;
                 }

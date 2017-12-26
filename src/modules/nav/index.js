@@ -74,14 +74,14 @@ export default {
                     this.show=false;
                     break;
                 case 'over':
-                    setTimeout(function () {
+                    //setTimeout(function () {
                         _this.show=true;
-                    },10);
+                    //},10);
                     break;
                 case 'lazyout':
-                    setTimeout(function () {
+                   // setTimeout(function () {
                         _this.show=false;
-                    },10);
+                   // },10);
                     break;
             }
         },
