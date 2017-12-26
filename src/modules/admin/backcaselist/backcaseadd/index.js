@@ -51,7 +51,51 @@ export default {
             title:'',
             search:"",
             searchData:[],
-            textareas:[]
+            textareas:[],
+            caseDetail: {
+                "id": 3,
+                "caseName": "测试案例1",
+                "doctor": {
+                    "tenantId": "",
+                    "id": 1,
+                    "name": "李医生"
+                },
+                "products": [
+                    {
+                        "id": 1,
+                        "productName": " 眼部整形"
+                    }
+                ],
+                "operationDate": 1513008000000,
+                "customerGender": 1,
+                "customerAge": 23,
+                "customerLogo": {
+                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
+                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                },
+                "beforePicture": {
+                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
+                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                },
+                "afterPicture": {
+                    "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
+                    "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                },
+                "contentList": [
+                    {
+                        "id": 3,
+                        "title": "术后10天",
+                        "pictures": [
+                            {
+                                "name": "10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7",
+                                "url": "http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/3919c607-53e9-46a4-afea-57aa734e99e7"
+                            }
+                        ],
+                        "definitionDate": 1513008000000,
+                        "description": "手术日记描述"
+                    }
+                ]
+            }
 
         };
     },
