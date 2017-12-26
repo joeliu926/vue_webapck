@@ -89,7 +89,9 @@ export default {
         },
         fEditSave() {
             //this.$router.push("/admin/clinic/detail");
+
             let _This = this;
+            console.log("_This.oClinicData----->",_This.oClinicData);
             _This.oClinicData.productNames = _This.oSelectMajorItems;
             _This.oClinicData.logo =_This.defaultImg;  //
             //_This.oClinicData.address =_This.sAddress;
@@ -97,7 +99,7 @@ export default {
                 _This.$message.error("诊所名不能为空");
                 return false;
             }
-            if(!/^\w{2,}$/.test(_This.oClinicData.qualification)){
+            if(!/^\S{2,}$/.test(_This.oClinicData.qualification)){
                 _This.$message.error("请选择诊所等级");
                 return false;
             }
@@ -279,7 +281,7 @@ export default {
             fdata.append('imgFile', imgFile);
             fdata.append('user', "test");
             _.ajax({
-                url: "/backcase/uploadcasePicture",
+                url: _This.imgUploadUrl,
                 type: 'POST',
                 data: fdata,
                 urlType: 'full',
