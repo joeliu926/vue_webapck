@@ -115,18 +115,32 @@ export default {
         },
         /*添加页面*/
         caseaddSave(){
+            let _This=this;
+            if(_This.caseDetail.hasOwnProperty("page")){
+                delete _This.caseDetail.page;
+            }
             if(this.caseId=='_EPT')
             {
                 this.caseDetail.id ='';
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
+
                 _.ajax({
                     url: '/admin/backcase/backcaseadd',
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-                       console.log("add case---",result);
+                        if(result.code==0){
+                            _This.$message({message: '添加成功',
+                                type: 'success'
+                            });
+                            setTimeout(function(){
+                                _This.$router.push("/admin/backcaselist");
+                            },3000);
+                        }else {
+                            _This.$message.error("添加失败");
+                        }
                     }
                 }, 'withCredentials');
             }
@@ -141,7 +155,16 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-                        console.log("change case---",result);
+                        if(result.code==0){
+                            _This.$message({message: '更新成功',
+                                type: 'success'
+                            });
+                            setTimeout(function(){
+                                _This.$router.push("/admin/backcaselist");
+                            },3000);
+                        }else {
+                            _This.$message.error("更新失败");
+                        }
                     }
                 }, 'withCredentials');
             }
@@ -204,6 +227,9 @@ export default {
         },
         fDoctorChange(item){
             if(typeof(item)=="object"){
+                if(item.hasOwnProperty("page")){
+                    delete item.page;
+                }
                 this.caseDetail.doctor=item;
                 this.oSelectDoc=item.name;
             }
