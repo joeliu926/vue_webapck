@@ -160,20 +160,25 @@
             <span class="s-title-l">求美日记</span>
             <span class="s-title-r">*必填信息</span>
         </div>
+        <template v-for="afterItem,index in contentList">
+            <div style="border-bottom: 1px dashed #bfcbd9;padding:0 0 24px 0;margin:0 0 10px 0;">
+
+
         <div class="case-info-ct">
             <div class="row-ct clearfix" >
                 <div class="row-item fl" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 段落标题</span>
-                    <el-input class="row-item-value" value=""></el-input>
+                    <el-input class="row-item-value" value="" v-model="afterItem.title"></el-input>
                 </div>
                 <div class="row-item fl" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 恢复日期</span>
                     <el-date-picker
-                            v-model="value1"
+                            v-model="afterItem.definitionDate"
                             type="date"
                             placeholder="选择日期">
                     </el-date-picker>
                 </div>
+                <span class="" style="float: right;cursor: pointer;" @click="fDeleteAfterItem(index)">关闭</span>
             </div>
         </div>
         <div class="row-item " >
@@ -181,34 +186,41 @@
             <span style="font-size:14px;color:#999;">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
             
         </div>
-        <div class="addimg clearfix">
-            <div  class="imgfilebox fl" :style="{backgroundImage:['url('+afterImg+')']}" v-for="" >
-                <img src="../../../../common/img/shuhou.png" width="60"/>
-            </div>
-            <div class="fl" style="position:relative; width:60px; height:60px; margin-bottom:10px;">
-                <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
-                <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
-                <div class="doctor-img"  @click="fChooseafImg"></div>
-            </div>
-            <!--<div class="add-img fl" :style="{backgroundImage:['url('+defaultImg+')']}" ref="uploadImg" @change="fAjaxFileUpload">-->
-                <!--<div class="add-icon"></div>-->
-            <!--</div>-->
 
-        </div>
+            <div class="addimg clearfix">
+                <template v-for="picItem,pindex in afterItem.pictures">
+                <div class="fl">
 
-        <div class="addDescription">
-            <p>添加一段描述</p>
-            <div class="show">
-                <p v-for="item in  textareas" v-text="item" style="width:100%; height:15px; fontsize:14px;"></p>
+                    <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'" @change="fMultImgUpload">
+                    <div class="dynicPic" :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"  @click="fMultChooseafImg(index,pindex)">
+                        <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
+                             style="">
+                    </div>
+                </div>
+                </template>
             </div>
-            <el-input
-                    type="textarea"
-                    width="40%"
-                    :autosize="{ minRows: 2, maxRows: 4}"
-                    placeholder="请输入内容"
-                    v-model="textarea">
-            </el-input>
-        </div>
+            <div class="addDescription">
+                <p>添加一段描述</p>
+                <div class="show" style="display: none;">
+                    <p v-for="item in  textareas" v-text="item" style="width:100%; height:15px; fontsize:14px;"></p>
+                </div>
+                <el-input
+                        type="textarea"
+                        width="40%"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="请输入内容"
+                        v-model="afterItem.description">
+                </el-input>
+            </div>
+            </div>
+        </template>
+
+
+    <div style="text-align: center;">
+        <el-button type="primary"  @click="fAddAfterCase">添加</el-button>
+    </div>
+
+
         <el-button type="primary" style="margin-left:10px;" @click="addtextareas(textarea)">完成</el-button>
 
         <!-- 保存 保存和新建 取消-->

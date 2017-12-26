@@ -10,6 +10,19 @@ export default {
     },
     data () {
         return {
+            afterIndex:-1, //标记多文件选择的条目
+            afterPIndex:-1,//标记多文件选择的图片
+            addAfterCaseItem:{
+                "title": "",
+                "definitionDate": "",
+                "pictures": [
+                    {
+                        "name": "",
+                        "url": ""
+                    }
+                ],
+                "description": ""
+            },
             doctorlist: [{
                 value: '选项1',
                 label: '李医生'
@@ -28,6 +41,7 @@ export default {
                 value: '选项2',
                 label: '女'
             }],
+            bydefault: require("../../../../common/img/add-img-icon.png"),
             imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/api/caseHeader/uploadCasePicture",
             defaultImg: require("../../../../common/img/add-img-icon.png"), //默认上传图片
             afterImg:require("../../../../common/img/add-img-icon.png"), //默认上传图片
@@ -47,7 +61,17 @@ export default {
             product:"",
             customerAge:'',
             customerGender:0,
-            contentList:[],
+            contentList:[{
+                "title": "",
+                "definitionDate": "",
+                "pictures": [
+                    {
+                        "name": "",
+                        "url": ""
+                    }
+                ],
+                "description": ""
+            }],
             title:'',
             search:"",
             searchData:[],
@@ -111,6 +135,15 @@ export default {
     methods: {
         /*添加页面*/
         caseaddSave(){
+            let _This=this;
+            let sContentList=JSON.stringify(_This.contentList);
+            let oContentList=JSON.parse(sContentList);
+            oContentList.forEach((item,index)=>{
+                let picLength=item.pictures.length;
+                if(picLength>0){
+                  item.pictures.splice((picLength-1),1);
+                }
+            });
             console.log("----------------",this.operationDate);
             console.log(new Date(this.operationDate).valueOf());
             console.log(this.doctorlist[0].id);
@@ -149,7 +182,6 @@ export default {
                         "description": this.textarea,
                     }
                 ],
-
             };
             console.log("++++++++++++++++++",postData);
             let pData={
@@ -247,7 +279,7 @@ export default {
         Savecase (){
             this.caseaddSave();
 
-           this.$router.push("/admin/backcaselist");
+           //this.$router.push("/admin/backcaselist");
         },
         beforeImgUpload(e){
             let _This = this;
@@ -355,6 +387,62 @@ export default {
                 }
             });
         },
+        fDeleteAfterItem(index){
+            let _This=this;
+            _This.contentList.splice(index,1);
+        },
+        /**
+         * 多文件上传
+         * @param ee
+         */
+        fMultImgUpload(ee){
+            let _This=this;
+         let index=_This.afterIndex;
+         let pindex=_This.afterPIndex;
+            var fdata = new FormData();
+            var imgFile = ee.target.files[0];
+            fdata.append('imgFile', imgFile);
+            _.ajax({
+                url: _This.imgUploadUrl,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    let plength=_This.contentList[index].pictures.length;
+                    if(result.code == 0 ) {
+                        _This.contentList[index].pictures.splice(plength-1,0,result.data);
+                    }
+                },
+                error: function(result) {
+                    console.log("error-- result------>", result)
+                }
+            });
+        },
+        /**
+         * 多文件形式
+         * @param index
+         * @param pindex
+         */
+        fMultChooseafImg(index,pindex){
+            let _This=this;
+            _This.afterIndex=index;
+            _This.afterPIndex=pindex;
+            let itema="s"+index+pindex+"e";
+            this.$refs[itema][0].click();
+        },
+        fAddAfterCase(){
+            let _This=this;
+            _This.contentList.push(_This.addAfterCaseItem);
+        },
+        fDeletePic(ee,index,pindex){
+            let _This=this;
+            ee.cancelBubble = true;
+            _This.contentList[index].pictures.splice(pindex,1);
+            console.log("close pic",index);
+        }
+
 
 
     },

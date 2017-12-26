@@ -30,10 +30,10 @@
 			vertical-align: top;
 		}
 		.admin-lbox {
-			width: 17%;
+			width: 15%;
 		}
 		.admin-rbox {
-			width: 82%;
+			width: 83%;
 			.segment-title {
 				border-bottom: 1px solid #eaeaea;
 				padding: 5px 0;

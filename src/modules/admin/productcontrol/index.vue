@@ -86,7 +86,7 @@
                         display: inline-block;
                         text-align: center;
                         float:left;
-                        height:px;
+                     /*   height:px;*/
                         font-size: 14px;
                         margin-bottom: 5px;
                         background: white;
@@ -105,7 +105,7 @@
                         background: #9083ed;
                         padding:2px 10px;
                         cursor:pointer;
-                        height:px;
+                      /*  height:px;*/
                     }
                     .case-content{
 
