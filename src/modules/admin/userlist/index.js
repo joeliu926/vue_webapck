@@ -68,18 +68,31 @@ export default {
             let _data={
                 userId:params
             }
-            _.ajax({
-                url: '/admin/userrole/deleteuser',
-                method: 'POST',
-                data:_data,
-                success: function (result) {
-                    if (result.code == 0 && result.data) {
-                        _this.getRolelist(1);
-                    }else{
-                        _this.$message.error("删除失败");
+
+
+            this.$confirm('确认删吗?', '提示', {
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+
+                _.ajax({
+                    url: '/admin/userrole/deleteuser',
+                    method: 'POST',
+                    data:_data,
+                    success: function (result) {
+                        if (result.code == 0 && result.data) {
+                            _this.getRolelist(1);
+                        }else{
+                            _this.$message.error("删除失败");
+                        }
                     }
-                }
-            }, 'withCredentials');
+                }, 'withCredentials');
+            }).catch(() => {
+
+            });
+
+
         }
     }
 }
