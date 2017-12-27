@@ -135,7 +135,10 @@ export default {
                             _menus.forEach(mns=>{
                                 let menusid =mns.split(':')[2];
                                 if(menusid ==ms.id){
-                                    subMenus.children.push(ms);
+                                    if(subMenus.children.indexOf(ms)==-1){
+                                        subMenus.children.push(ms);
+                                    }
+
                                 }
                             });
                         });

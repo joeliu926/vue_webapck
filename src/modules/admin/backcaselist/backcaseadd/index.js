@@ -283,8 +283,11 @@ export default {
              {
                  _This.oProductCode.push(item.id);
                  delete item.page;
-                 _This.caseDetail.products.push(item);
+                 if(item.productName){
+                     _This.caseDetail.products.push(item);
+                 }
              }
+            this.productItem ="";
         },
         //获取诊疗项目列表
         fAutoProduct(query) {
@@ -461,6 +464,7 @@ export default {
                 success: function(result) {
                     // console.log("------------",result)
                     if(result.code == 0 ) {
+                       // _This.caseDetail.customerLogo=result.data;
                         _This.caseDetail.customerLogo.url =result.data.url;
                         _This.caseDetail.customerLogo.name =result.data.name;
                     }
