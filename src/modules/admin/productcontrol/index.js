@@ -157,7 +157,7 @@ export default {
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
             // console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-132;
+            document.getElementById("admin-rbox").scrollTop=disTop-132;
             this.changestyle=params;
 
         },

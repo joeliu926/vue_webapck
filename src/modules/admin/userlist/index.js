@@ -43,6 +43,7 @@ export default {
                 method: 'POST',
                 data:_data,
                 success: function (result) {
+                    console.log("search------------",result);
                     if (result.code == 0 && result.data) {
                         _this.userlist = result.data.list;
                         _this.count = result.data.count;
