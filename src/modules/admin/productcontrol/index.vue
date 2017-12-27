@@ -31,7 +31,7 @@
                     background:#fff;
                     .case-left{
                         position:fixed;
-                        top:100px;
+                        top:58px;
                         left:16%;
                         float:left;
                         width:11.5%;
@@ -42,8 +42,8 @@
                     .case-left a{
                         .productCount{float:right;margin-top: 10px;margin-right:10px ;}
                         display: inline-block;
-                        line-height: 40px;
-                        height:40px;
+                        line-height: 45px;
+                        height:45px;
                         width:100%;
                         font-size: 14px;
                         text-align: center;
