@@ -490,6 +490,7 @@ export default {
                 success: function(result) {
                     // console.log("------------",result)
                     if(result.code == 0 ) {
+                       // _This.caseDetail.customerLogo=result.data;
                         _This.caseDetail.customerLogo.url =result.data.url;
                         _This.caseDetail.customerLogo.name =result.data.name;
                     }
