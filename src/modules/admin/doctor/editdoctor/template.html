@@ -44,15 +44,15 @@
             </div>
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
+                    <span class="row-item-title f-14 v-a-top" ><i class="i-must">*</i>头像</span>
                      <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
                      <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
                 </div>
             </div>
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 简介</span>
-                    <el-input class="row-item-value" value="" v-model="oDoctor.brief" ref="brief" placeholder="简介"></el-input>
+                    <span class="row-item-title f-14 v-a-top" ><i class="i-must">*</i> 简介</span>
+                    <el-input class="row-item-value" type="textarea" autosize value="" v-model="oDoctor.brief" ref="brief" placeholder="简介"></el-input>
 
                 </div>
             </div>

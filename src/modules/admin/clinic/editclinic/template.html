@@ -78,7 +78,7 @@
             </div>
             <div class="row-ct">
                 <div class="row-item logo-ct" style="">
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
+                    <span class="row-item-title f-14 v-a-top" ><i class="i-must">*</i>Logo</span>
              <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
                        <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
                     <div class="format-ct" style="">
@@ -90,8 +90,8 @@
             </div>
             <div class="row-ct">
                 <div class="row-item" style="" >
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>营业时间</span>
-                    <el-input class="row-item-value"  type="textarea" :row="3" value="" v-model="oClinicData.businessTime" placeholder="营业时间"></el-input>
+                    <span class="row-item-title f-14 v-a-top"><i class="i-must">*</i>营业时间</span>
+                    <el-input class="row-item-value"  type="textarea" autosize value="" v-model="oClinicData.businessTime" placeholder="营业时间"></el-input>
                 </div>
             </div>
         </div>

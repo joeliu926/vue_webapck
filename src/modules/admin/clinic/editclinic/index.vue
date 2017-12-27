@@ -22,6 +22,9 @@
 			color: #ff0000;
 			padding: 5px;
 		}
+        .v-a-top{
+            vertical-align: top;
+        }
 		.fram-box {
 			height: 100%;
 			display: inline-block;

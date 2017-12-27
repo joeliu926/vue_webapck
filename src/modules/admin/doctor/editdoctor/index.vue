@@ -19,6 +19,9 @@
 			font-size: 16px;
 			color: #333333;
 		}
+        .v-a-top{
+            vertical-align: top;
+        }
 		.fram-box {
 			height: 100%;
 			display: inline-block;
