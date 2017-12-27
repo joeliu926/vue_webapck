@@ -205,6 +205,7 @@ export default {
             let _This = this;
             var imgFile = e.target.files[0];
             if(imgFile.size>5*1024*1024){
+                this.$message.error('图片大小不能超过5M！');
                 return false;
             }
             var fdata = new FormData();
