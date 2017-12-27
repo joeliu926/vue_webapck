@@ -121,6 +121,11 @@ export default {
                 this.$message.error("案例名不能为空");
                 return false;
             }
+            if(!this.caseDetail.doctor.id){
+                this.$message.error("医生名不能为空");
+                // this.$refs.dname.$refs.input.focus();
+                return false;
+            }
             if(this.caseDetail.products.length==0){
                 this.$message.error("诊疗项目不能为空");
                 return false;
@@ -145,7 +150,7 @@ export default {
                 this.$message.error("请选择性别");
                 return false;
             }
-            if(!/\S{1,}/.test(this.caseDetail.customerAge)){
+            if(!/\d{1,}/.test(this.caseDetail.customerAge)){
                 this.$message.error("年龄不能为空");
                 return false;
             }
@@ -161,9 +166,6 @@ export default {
                 this.$message.error("补充求美者照片不能为空");
                 return false;
             }
-
-
-
 
             let _This=this;
             if(_This.caseDetail.hasOwnProperty("page")){
@@ -181,6 +183,7 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
+                        console.log("====++++++++++++++====",result);
                         if(result.code==0){
                             _This.$message({message: '添加成功',
                                 type: 'success'
@@ -204,7 +207,9 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
+
                         if(result.code==0){
+
                             _This.$message({message: '更新成功',
                                 type: 'success'
                             });
@@ -304,6 +309,7 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
+                    console.log(_this.doctorlist);
                     _this.doctorlist=result.data;
                 }
             }, 'withCredentials');
@@ -317,9 +323,12 @@ export default {
 
         /*保存按钮*/
         Savecase (){
-            this.caseaddSave();
+           if(this.caseaddSave())
+           {
+               this.$router.push("/admin/backcaselist");
+           }
 
-           this.$router.push("/admin/backcaselist");
+
         },
         beforeImgUpload(e){
             let _This = this;

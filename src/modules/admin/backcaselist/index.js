@@ -16,13 +16,13 @@ export default {
             count: 0,
             total:0,
             pageNo: 1,
-            pageSize:3,
+            pageSize:12,
             state:'',
             value:'',
             productName:'',
             doctorId:"",
             doctorlist:[],
-
+            loginName:""
         };
     },
     filters:{
@@ -84,7 +84,8 @@ export default {
                pageNo:_This.pageNo,
                pageSize:_This.pageSize,
                productName:_This.productName,
-                doctorId:_This.doctorId
+               doctorId:_This.doctorId,
+               // loginName :_This.loginName
             }
             _.ajax({
                 url: '/admin/backcase/backcaselist',

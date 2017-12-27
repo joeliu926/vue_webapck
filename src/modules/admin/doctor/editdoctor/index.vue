@@ -77,8 +77,10 @@
 						.row-item-title {
 							display: inline-block;
 							width: 80px;
-					
 						}
+                        .year{
+                            color: #999999;
+                        }
 						.row-item-value {
 							width: 200px;
 						}

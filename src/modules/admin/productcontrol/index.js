@@ -7,12 +7,9 @@ export default {
     data () {
         return {
 
-            smalllist:[],
-            product: [],
-            changestyle:1001,
-            /*msg:1,
-            task2:[{id:1,text:'aaaaa'},{id:2,text:'cccccc'},{id:3,text:'eeeeeee'}],
-            task3:[],*/
+            smalllist:[],//已选择项目列表
+            product: [],//总的项目列表
+            changestyle:1001,//左侧样式控制
         };
     },
     created() {
@@ -24,6 +21,7 @@ export default {
     mounted(){
     },
     methods: {
+       /* 全选*/
         selectall(params){
             let _This = this;
             let   productids=[];
@@ -56,8 +54,8 @@ export default {
             }, 'withCredentials');
             this.getdata();
         },
+       /* 选择一个*/
         selectone(select){
-
             let _This = this;
             let   productids=[];
             let hasselect=0;
@@ -86,7 +84,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log('select.data',result);
                     if (result.code == 0 && result.data) {
                         _This.getdata();
                     }else {
@@ -95,6 +92,7 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /*获取选中的样式*/
         getClass(params){
             let hascur = false;
             this.smalllist.forEach(function(item1){
@@ -154,6 +152,7 @@ export default {
                 }
             }, 'withCredentials');
         },
+       /* 左侧选项控制右侧界面*/
         setscroll(params){
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
@@ -162,6 +161,7 @@ export default {
             this.changestyle=params;
 
         },
+        /*滚动替换左侧选项*/
         onscorllevent(params){
             this.product.forEach(m=>{
 
