@@ -18,6 +18,9 @@
             font-size: 16px;
             color: #333333;
         }
+        .v-a-top{
+            vertical-align: top;
+        }
         .fram-box{
             height: 100%; display: inline-block;box-sizing: border-box; padding:12px; vertical-align: top;
         }
@@ -65,6 +68,10 @@
                 .row-ct{
                     padding: 10px;
                     .row-item{
+                        .el-checkbox{
+                            margin-left: 0;
+                            margin-right: 15px;
+                        }
                         .user-img{
                             display: inline-block;
                             width: 140px;
@@ -81,6 +88,8 @@
                         .row-item-title{
                             display: inline-block;
                             width: 100px;
+                            text-align: right;
+                            padding-right: 24px;
                         }
                         .row-item-value{
                             width: 200px;

@@ -26,6 +26,13 @@ module.exports={
         }
         return false;
     },
+    isTel:function (text) { //固定号码
+      let regex=/^(0\\d{2}-\\d{8}(-\\d{1,4})?)|(0\\d{3}-\\d{7,8}(-\\d{1,4})?)$/;
+        if(regex.test(text)){
+            return true;
+        }
+        return false;
+    },
     isNum:function (text) {
         let regex=/^\d+$/;
         if(regex.test(text)){

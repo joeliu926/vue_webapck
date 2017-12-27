@@ -19,6 +19,9 @@
 			font-size: 16px;
 			color: #333333;
 		}
+        .v-a-top{
+            vertical-align: top;
+        }
 		.fram-box {
 			height: 100%;
 			display: inline-block;
@@ -77,6 +80,8 @@
 						.row-item-title {
 							display: inline-block;
 							width: 80px;
+                            text-align: right;
+                            padding-right: 12px;
 						}
                         .year{
                             color: #999999;

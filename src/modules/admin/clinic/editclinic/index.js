@@ -307,25 +307,28 @@ export default {
          */
         fSearchAddressByAddress(msize) {
             let _This=this;
-            msize=msize||12;
-            let addressText=_This.oClinicData.address||"北京";
-            var map =_This.contentMap;// new BMap.Map("map-content");
-            var localSearch = new BMap.LocalSearch(map);
-            localSearch.setSearchCompleteCallback(function(searchResult) {
-                if(!searchResult){
-                    return false;
-                }
-                var poi = searchResult.getPoi(0);
-                _This.fGetSpecificAddress(poi.point);
-                map.centerAndZoom(poi.point, msize);
-                map.clearOverlays();
-                var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat)); // 创建标注，为要查询的地方对应的经纬度
-                map.addOverlay(marker);
-                var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + addressText + "</p>");
-                marker.openInfoWindow(infoWindow);
-                marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            let addressText=_This.oClinicData.address;
+            _This.fLocationCity(addressText,function (addressText) {
+                msize=msize||12;
+                var map =_This.contentMap;// new BMap.Map("map-content");
+                var localSearch = new BMap.LocalSearch(map);
+                localSearch.setSearchCompleteCallback(function(searchResult) {
+                    if(!searchResult){
+                        return false;
+                    }
+                    var poi = searchResult.getPoi(0);
+                    _This.fGetSpecificAddress(poi.point);
+                    map.centerAndZoom(poi.point, msize);
+                    map.clearOverlays();
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat)); // 创建标注，为要查询的地方对应的经纬度
+                    map.addOverlay(marker);
+                    var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + addressText + "</p>");
+                    marker.openInfoWindow(infoWindow);
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                });
+                localSearch.search(addressText);
             });
-            localSearch.search(addressText);
+
         },
         /**
          * 根据坐标点进行地址解析
@@ -348,6 +351,21 @@ export default {
                 //console.log("_This.oClinicData222-------->", _This.oClinicData);
 
             });
+        },
+        /**
+         * 定位城市
+         */
+        fLocationCity(addText,callback){
+            if(addText){
+                callback(addText);
+            }else {
+                let map =this.contentMap;
+                var myCity = new BMap.LocalCity();
+                myCity.get(function(result){
+                    callback(result.name);
+                });
+            }
+
         }
     },
     watch: {
