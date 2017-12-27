@@ -298,8 +298,11 @@ export default {
              {
                  _This.oProductCode.push(item.id);
                  delete item.page;
-                 _This.caseDetail.products.push(item);
+                 if(item.productName){
+                     _This.caseDetail.products.push(item);
+                 }
              }
+            this.productItem ="";
         },
         //获取诊疗项目列表
         fAutoProduct(query) {
