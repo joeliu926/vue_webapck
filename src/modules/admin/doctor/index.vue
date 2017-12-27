@@ -20,7 +20,7 @@
         .admin-rbox{width: 85%;
             .doctor-record{
                 .record-text-ct{
-                    padding: 24px 0;
+                    padding: 24px 0 0 0;
                     .sel-title{
 
                     }
@@ -30,7 +30,7 @@
                 }
                 .doctor-edit-ct{
                     text-align: right;
-                    padding: 24px;
+                    padding: 0 24px 24px 0;
                     .el-button:hover{
                         background-color: #9083ED;
                         color: #ffffff;

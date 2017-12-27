@@ -161,8 +161,6 @@ export default {
 
             var  disTop=document.getElementById(distop).offsetTop;
 
-            document.getElementById("admin-rbox").scrollTop=disTop-132;
-
             document.documentElement.scrollTop=disTop-132;
             this.changestyle=params;
 

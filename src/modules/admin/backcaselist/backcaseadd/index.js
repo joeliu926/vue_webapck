@@ -186,18 +186,38 @@ export default {
                 this.$message.error("年龄不能为空");
                 return false;
             }
-            if(this.caseDetail.contentList[0].title.length==0){
+            var  authtitle=false;
+            var  authdefinitionDate=false;
+            var  authpictures=false;
+
+            this.caseDetail.contentList.forEach(m=>{
+
+                if(m.title.length==0){
+
+                    authtitle=true;
+                }
+                if(m.definitionDate.length==0){
+
+                    authdefinitionDate=true;
+                }
+                if(m.pictures.length==0){
+
+                    authpictures=true;
+                }
+            })
+            if(authtitle){
                 this.$message.error("段落标题不能为空");
                 return false;
             }
-            if(this.caseDetail.contentList[0].definitionDate.length==0){
+            if(authdefinitionDate){
                 this.$message.error("恢复日期不能为空");
                 return false;
             }
-            if(this.caseDetail.contentList[0].pictures.length==0){
+            if(authpictures){
                 this.$message.error("补充求美者照片不能为空");
                 return false;
             }
+
 
             let _This=this;
             if(_This.caseDetail.hasOwnProperty("page")){
@@ -471,6 +491,13 @@ export default {
             let _This = this;
             var imgFile = e.target.files[0];
             if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=["jpg","jpeg","png","bmp"];
+            let imgName=imgFile.name.split(".")[1].toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
                 return false;
             }
             var fdata = new FormData();

@@ -8,8 +8,9 @@ export default {
         };
     },
     created() {
+        let _This=this;
+        document.querySelector('body').onscroll = function() { _This.onscorllevent() };
         this.getdata();
-
     },
     mounted(){
 
@@ -34,6 +35,7 @@ export default {
                     //console.log('result.data',result);
                     if (result.code == 0 && result.data) {
                         _This.product = result.data;
+                        _This.changestyle= result.data[0].productCode;
                     }else {
                         //_This.$router.push('/customers');
                     }
@@ -44,7 +46,7 @@ export default {
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
            // console.log(disTop);
-            document.getElementById("right").scrollTop=disTop-256;
+            document.documentElement.scrollTop=disTop-256;
             this.changestyle=params;
 
         },
@@ -53,9 +55,9 @@ export default {
 
                 var disTop=document.getElementById(m.productCode).offsetTop;
 
-                var scrolltop = document.getElementById("right").scrollTop;
+                var scrolltop = document.documentElement.scrollTop;
 
-                if(disTop<scrolltop+350&&disTop>scrolltop-350){
+                if(disTop<scrolltop+350&&disTop>scrolltop-250){
                     this.changestyle=  m.productCode;
                 }
             })

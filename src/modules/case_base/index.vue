@@ -38,9 +38,15 @@
                 width:98%;
                 overflow: hidden;
                 background:#fff;
+            .left{position:fixed;
+                top:200px;
+                left:2%;
+                width:11.5%;
+            }
                 .case-left{
+
                         float:left;
-                        width:11.5%;
+                        width:100%;
                         margin-left: 4px;
                         margin-top:20px;
                         border-radius: 4px;
@@ -63,20 +69,20 @@
                         color: #fff;
                         cursor:pointer;
                             }
-                .right{float:right;
+              /*  .right{float:right;
                         width:87.6%;
                         padding:0;
                         height:1082px;
                         margin-top:14px;
                         overflow-y:scroll
-                    }
+                    }*/
                 .case-right{
-
-                        width:92%;
+                    float:right;
+                        width:81%;
                          margin-bottom:20px;
-                            margin-top:6px;
-                             margin-left:1.67%;
-                             margin-right:1.67%;
+                            margin-top:4px;
+                             margin-left:24px;
+                             margin-right:24px;
                           padding:20px 1.67%;
                             border-radius: 4px;
                             background:white
