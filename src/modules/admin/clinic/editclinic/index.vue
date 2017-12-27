@@ -79,10 +79,12 @@
 					padding: 10px;
 					.row-item {
 						display: inline-block;
-						width: 300px;
+						width: 360px;
 						.row-item-title {
 							display: inline-block;
-							width: 80px;
+                            width: 80px;
+                            text-align: right;
+                            padding-right: 12px;
 						}
 						.row-item-value {
 							width: 200px;

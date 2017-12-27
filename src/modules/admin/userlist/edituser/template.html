@@ -58,13 +58,13 @@
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 微信绑定码</span>
                     <span >{{userInfo.userCode}}</span>
                     <el-button @click="unbind">解绑</el-button>
-                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">tips: 通知当前用户使用微信公众号[云像营销云]当中回复此码，即可进微信和系统帐号的绑定。</div>
+                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">Tips: 通知当前用户使用微信公众号[云像营销云]当中回复此码，即可进微信和系统帐号的绑定。</div>
                 </div>
             </div>
 
             <div class="row-ct">
                 <div class="row-item" >
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must"> </i>头像</span>
+                    <span class="row-item-title f-14 v-a-top"><i class="i-must"> </i>头像</span>
                     <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
                     <div v-if="userInfo.headImgUrl" class="user-img" :style="{backgroundImage:['url('+userInfo.headImgUrl+')']}" @click="chooseImage"></div>
                     <div v-if="!userInfo.headImgUrl" class="user-img"   @click="chooseImage">
@@ -79,7 +79,7 @@
         <div class="doctor-info-ct">
             <div class="row-ct" >
                 <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 角色</span>
+                    <span class="row-item-title f-14 v-a-top" ><i class="i-must">*</i> 角色</span>
                     <div style="display: inline-block;max-width: 350px;">
                         <el-checkbox key="role.id" v-for="role in roleList" @change="checkrole(role)" v-model="role.checked">{{role.name}}</el-checkbox>
                     </div>
@@ -96,9 +96,10 @@
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must"> </i> 重置密码</span>
                     <el-button @click="resetPassword">重置</el-button>
-                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">tips: 密码将会自动生成为手机号后六位。</div>
+                    <div style="color:red;font-size: 12px; padding-left: 10px;padding-top: 10px;">Tips: 密码将会自动生成为手机号后六位。</div>
                 </div>
             </div>
+
 
         </div>
     </div>

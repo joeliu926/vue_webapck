@@ -59,6 +59,8 @@
                         .row-item-title{
                             display: inline-block;
                             width: 80px;
+                            text-align: right;
+                            padding-right: 24px;
 
                         }
                         .row-item-value{
