@@ -154,10 +154,13 @@ export default {
         },
        /* 左侧选项控制右侧界面*/
         setscroll(params){
-            var distop=""+params;
+            var distop=""+params; 
+
             var  disTop=document.getElementById(distop).offsetTop;
-            // console.log(disTop);
+
             document.getElementById("admin-rbox").scrollTop=disTop-132;
+
+            document.documentElement.scrollTop=disTop-132;
             this.changestyle=params;
 
         },
