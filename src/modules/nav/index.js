@@ -33,19 +33,37 @@ export default {
                     let menusid =m.split(':')[2];
                     switch(menusid){
                         case "home":
-                            _this.menusList.push({index:0,id:menusid,name:'首页',url:'/'});
+                            let _mehome ={index:0,id:menusid,name:'首页',url:'/'};
+                            if(_this.menusList.indexOf(_mehome)==-1){
+                                _this.menusList.push(_mehome);
+                            }
                             break;
                         case "customer":
-                            _this.menusList.push({index:1,id:menusid,name:'联系人中心',url:'/customers'});
+                            let customers ={index:0,id:menusid,name:'联系人中心',url:'/customers'};
+                            if(_this.menusList.indexOf(customers)==-1){
+                                _this.menusList.push(customers);
+                            }
                             break;
                         case "consultdashboard":
-                            _this.menusList.push({index:2,id:menusid,name:'咨询台',url:'/consultdashboard'});
+
+                            let consultdashboard ={index:0,id:menusid,name:'咨询台',url:'/consultdashboard'};
+                            if(_this.menusList.indexOf(consultdashboard)==-1){
+                                _this.menusList.push(consultdashboard);
+                            }
                             break;
                         case "kb":
-                            _this.menusList.push({index:4,id:menusid,name:'案例中心',url:'/case_base'});
+
+                            let case_base ={index:0,id:menusid,name:'案例中心',url:'/case_base'};
+                            if(_this.menusList.indexOf(case_base)==-1){
+                                _this.menusList.push(case_base);
+                            }
+
                             break;
                         case "triage":
-                            _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage/list'});
+                            let triage ={index:0,id:menusid,name:'分诊中心',url:'/triage/list'};
+                            if(_this.menusList.indexOf(triage)==-1){
+                                _this.menusList.push(triage);
+                            }
                             break;
                         case "systembackground":
                             _this.backgroundRight =true;
