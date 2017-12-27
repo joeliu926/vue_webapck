@@ -20,6 +20,7 @@ export default {
             oProductCode: [], //诊疗项目id集合1111
             oSelectProductItems: [], //选中的诊疗项目1111
             oSelectDoc:"",
+            endDatePicker:this.processDate(),
             addAfterCaseItem:{ //增加新的
                 "title": "",
                 "definitionDate": "",
@@ -47,6 +48,37 @@ export default {
             search:"",
             searchData:[],
             textareas:[],
+            caseDel:{
+                id: "",
+                caseName: "",
+                doctor: {
+                },
+                products: [],
+                operationDate: "",
+                customerGender: "",
+                customerAge: "",
+                customerLogo: {
+                    "name": "",
+                    "url": ""
+                },
+                beforePicture: {
+                    "name": "",
+                    "url": ""
+                },
+                afterPicture: {
+                    "name": "",
+                    "url": ""
+                },
+                contentList: [
+                    {
+                        "id": "",
+                        "title": "",
+                        "pictures": [],
+                        "definitionDate": "",
+                        "description": ""
+                    }
+                ]
+            },
             caseDetail: {
                 id: "",
                 caseName: "",
@@ -114,7 +146,7 @@ export default {
             }, 'withCredentials');
         },
         /*添加页面*/
-        caseaddSave(){
+        Savecase(icode){
 
             /*验证判断*/
             if(!/\S{1,}/.test(this.caseDetail.caseName)){
@@ -183,14 +215,19 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-                        console.log("====++++++++++++++====",result);
+                        // console.log("====++++++++++++++====",result);
                         if(result.code==0){
                             _This.$message({message: '添加成功',
                                 type: 'success'
                             });
-                            setTimeout(function(){
-                                _This.$router.push("/admin/backcaselist");
-                            },3000);
+                            if(icode==1){
+                                setTimeout(function(){
+                                    _This.$router.push("/admin/backcaselist");
+                                },3000);
+
+                            }else{
+                                _This.caseDetail=_This.caseDel;
+                            }
                         }else {
                             _This.$message.error("添加失败");
                         }
@@ -207,15 +244,17 @@ export default {
                     method: 'POST',
                     data: pData,
                     success: function (result) {
-
                         if(result.code==0){
-
                             _This.$message({message: '更新成功',
                                 type: 'success'
                             });
-                            setTimeout(function(){
-                                _This.$router.push("/admin/backcaselist");
-                            },3000);
+                            if(icode==1){
+                                setTimeout(function(){
+                                    _This.$router.push("/admin/backcaselist");
+                                },3000);
+                            }else{
+                                _This.caseDetail=_This.caseDel;
+                            }
                         }else {
                             _This.$message.error("更新失败");
                         }
@@ -236,6 +275,19 @@ export default {
                 _This.caseDetail.products.splice(index,1);
             }
         },
+
+        /**
+         * 诊疗时间判断
+         */
+
+        processDate(){
+            return {
+                disabledDate(time){
+                    return time.getTime() > Date.now()//诊疗时间最大值小于等于当天
+                }
+            }
+        },
+
         /**
          * 选中诊疗项目
          * @param item
@@ -322,14 +374,23 @@ export default {
         },
 
         /*保存按钮*/
-        Savecase (){
-           if(this.caseaddSave())
-           {
-               this.$router.push("/admin/backcaselist");
-           }
+        // Savecase (icode){
+        //     console.log("+++++++++++++++++hhheh++++++++++++++++")
+        //    if()
+        //
+        //    if( this.caseaddSave(icode))
+        //     {
+        //         this.$router.push("/admin/backcaselist");
+        //     }
+        //
+        //
+        // },
 
-
+        /*取消*/
+        backlist(){
+            this.$router.push("/admin/backcaselist");
         },
+        /*术前照片上传*/
         beforeImgUpload(e){
             let _This = this;
             var beforeimgFile = e.target.files[0];
@@ -358,6 +419,7 @@ export default {
                 }
             });
         },
+        /*术后照片上传*/
         afterImgUpload(e){
             let _This = this;
             var afterimgFile = e.target.files[0];
@@ -440,7 +502,7 @@ export default {
          */
         fMultImgUpload(ee){
             let _This=this;
-         let index=_This.afterIndex;
+            let index=_This.afterIndex;
         // let pindex=_This.afterPIndex;
             var fdata = new FormData();
             var imgFile = ee.target.files[0];

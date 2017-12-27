@@ -184,7 +184,7 @@ export default {
             this.$router.push("/admin/doctor");
         },
         fSelectGoodAtItem(item){
-this.inauguralState=item;
+            this.inauguralState=item;
         },
         fGetGoodAtList(){
 
