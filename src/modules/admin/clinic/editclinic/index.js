@@ -257,6 +257,9 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /**
+         * 选择诊所图片
+         */
         fChooseImg() {
             this.$refs.uploadImg.click();
         },
