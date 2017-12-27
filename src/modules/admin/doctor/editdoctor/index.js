@@ -197,9 +197,10 @@ this.inauguralState=item;
         			let _This = this;
 			var imgFile = e.target.files[0];
 			//console.log("img---->", imgFile.size,imgFile.name);
-			if(imgFile.size>5*1024*1024){
-				return false;
-			}
+            if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("上传文件超过最大限制");
+                return false;
+            }
 			
 			var fdata = new FormData();
 			fdata.append('imgFile', imgFile);

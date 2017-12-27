@@ -19,6 +19,8 @@ export default {
                 productName:"",
                 hospitalName:"",
                 productName:"",
+                clinic:{},
+                doctor:{},
                 operationDate:_.date2String(new Date(),"yyyy-MM-dd"),
                 beforePicture:{},
                 afterPicture:{},
@@ -70,6 +72,16 @@ export default {
             if(input&&input!=""){
                 return input.replace(/(\d{3})\d{4}(\d{3})/,"$1****$2");
             }
+        },
+        productFilter:function (input) {
+            if(!input){
+                return "";
+            }
+            let result=[];
+            input.forEach(item=>{
+               result.push(item.productName);
+            });
+            return result.join("、");
         }
     },
     methods: {
@@ -81,7 +93,7 @@ export default {
                 method: 'POST',
                 data: {caseid:uid},
                 success: function (result) {
-                    //console.log("casedetail------------》",result);
+                   // console.log("casedetail------------》",result);
                     if(result.code==0&&result.data){
                         _This.acaseuserlist = result.data;
                         // console.log(_This.acaseuserlist);

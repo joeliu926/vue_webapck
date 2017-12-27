@@ -27,7 +27,7 @@ module.exports={
         return false;
     },
     isTel:function (text) { //固定号码
-      let regex=/^(0\\d{2}-\\d{8}(-\\d{1,4})?)|(0\\d{3}-\\d{7,8}(-\\d{1,4})?)$/;
+      let regex=/^(((0\d{2,3})|(\(0\d{2,3}\)))(\-|)\d{8})|(\d{3,4}\-\d{3,4}\-\d{3,4})$/;
         if(regex.test(text)){
             return true;
         }

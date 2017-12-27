@@ -109,9 +109,9 @@ export default {
                 _This.$message.error("请选择诊所等级");
                 return false;
             }
-           // if(!/^\d{3,}$/.test(_This.oClinicData.phone)){ //VAREGEX
-
-            if(!VAREGEX.isMobile(_This.oClinicData.phone)){ //VAREGEX
+            let pregex=/^(((0\d{2,3})|(\(0\d{2,3}\)))(\-|)\d{8})|(\d{3,4}\-\d{3,4}\-\d{3,4})$/;
+            let phone=_This.oClinicData.phone;
+            if((!VAREGEX.isMobile(phone))&&!VAREGEX.isTel(phone)){ //VAREGEX
                 _This.$message.error("请输入正确的电话号码");
                 return false;
             }
@@ -280,6 +280,7 @@ export default {
             let _This = this;
             var imgFile = e.target.files[0];
             if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("上传文件超过最大限制");
                 return false;
             }
             var fdata = new FormData();
