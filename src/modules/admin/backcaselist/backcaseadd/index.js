@@ -158,6 +158,8 @@ export default {
                 // this.$refs.dname.$refs.input.focus();
                 return false;
             }
+
+           
             if(this.caseDetail.products.length==0){
                 this.$message.error("诊疗项目不能为空");
                 return false;
