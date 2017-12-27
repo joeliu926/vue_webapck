@@ -154,7 +154,7 @@ export default {
                 success: function(result) {
                     _this.treeData.forEach(m=>{
                         m.children&&m.children.forEach(ms=>{
-                            result.data.forEach(res=>{
+                            (typeof(result.data)=="object")&&result.data.forEach(res=>{
                                 if(ms.id == res.permission.split(':')[2]){
                                     ms.needinit =true;
                                 }

@@ -79,7 +79,8 @@ export default {
     },
     methods: {
         fEditClinic(){
-            this.$router.push("/admin/clinic/edit/"+this.oClinicData.clinicId);
+            //console.log("this.oClinicData.clinicId------>",this.oClinicData.clinicId);
+            this.$router.push("/admin/clinic/edit/"+(this.oClinicData.clinicId||0));
         },
         /**
          * 获取诊所列表信息
@@ -94,8 +95,9 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   console.log("list--ddddd------", result);
-                    if(result.code==0&&result.data!="null"){
+
+                   // console.log(" _This.oClinicData------>", _This.oClinicData)
+                    if(result.code==0&&result.data!="null"&&result.data.list.length>0){
                         _This.oClinicData=result.data.list[0];
                     }
                     _This.fSearchAddressByAddress();
@@ -137,7 +139,7 @@ export default {
 			        return false;
                 }
 				var poi = searchResult.getPoi(0);
-				map.centerAndZoom(poi.point, 13);
+				map.centerAndZoom(poi.point, 18);
 				  map.clearOverlays(); 
 				var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat)); // 创建标注，为要查询的地方对应的经纬度
 				map.addOverlay(marker);
