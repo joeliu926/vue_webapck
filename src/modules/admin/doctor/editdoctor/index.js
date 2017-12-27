@@ -192,13 +192,22 @@ export default {
         fChooseImg(){
          this.$refs.uploadImg.click();
         },
+        /**
+         * 图片文件上传
+         * @param e
+         * @returns {boolean}
+         */
         fAjaxFileUpload(e){
-        	//console.log("upload file");
-        			let _This = this;
+            let _This = this;
 			var imgFile = e.target.files[0];
-			//console.log("img---->", imgFile.size,imgFile.name);
             if(imgFile.size > 5*1024*1024) {
-                _This.$message.error("上传文件超过最大限制");
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=["jpg","jpeg","png","bmp"];
+            let imgName=imgFile.name.split(".")[1].toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
                 return false;
             }
 			

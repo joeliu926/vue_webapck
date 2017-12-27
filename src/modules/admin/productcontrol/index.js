@@ -13,6 +13,8 @@ export default {
         };
     },
     created() {
+        let _This=this;
+        document.querySelector('body').onscroll = function() { _This.onscorllevent() };
         this.getdata();
         this.getProductModel();
        // this.forshow();
@@ -21,6 +23,7 @@ export default {
     mounted(){
     },
     methods: {
+
        /* 全选*/
         selectall(params){
             let _This = this;
@@ -165,12 +168,12 @@ export default {
 
         },
         /*滚动替换左侧选项*/
-        onscorllevent(params){
+        onscorllevent(){
             this.product.forEach(m=>{
 
                 var disTop=document.getElementById(m.productCode).offsetTop;
 
-                var scrolltop = document.getElementById("right").scrollTop;
+                var scrolltop = document.documentElement.scrollTop;
 
                 if(disTop<scrolltop+350&&disTop>scrolltop-350){
                     this.changestyle=  m.productCode;
