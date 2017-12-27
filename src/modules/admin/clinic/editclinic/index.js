@@ -3,7 +3,8 @@
  */
 
 import tree from '../../tree/index.vue';
-import CONSTANT from '../../../../common/utils/constants.js'
+import CONSTANT from '../../../../common/utils/constants.js';
+import VAREGEX from '../../../../common/utils/valregex.js';
 export default {
     components: {
         tree
@@ -85,9 +86,16 @@ export default {
         fEditClinic() {
             //console.log("edit clinic-----");
         },
+        /**
+         * 编辑取消
+         */
         fEditCancel() {
             this.$router.push("/admin/clinic/detail");
         },
+        /**
+         * 编辑保存
+         * @returns {boolean}
+         */
         fEditSave() {
             let _This = this;
             _This.oClinicData.productNames = _This.oSelectMajorItems;
@@ -101,7 +109,9 @@ export default {
                 _This.$message.error("请选择诊所等级");
                 return false;
             }
-            if(!/^\d{3,}$/.test(_This.oClinicData.phone)){
+           // if(!/^\d{3,}$/.test(_This.oClinicData.phone)){ //VAREGEX
+
+            if(!VAREGEX.isMobile(_This.oClinicData.phone)){ //VAREGEX
                 _This.$message.error("请输入正确的电话号码");
                 return false;
             }
@@ -298,10 +308,13 @@ export default {
         fSearchAddressByAddress(msize) {
             let _This=this;
             msize=msize||12;
-            let addressText=_This.oClinicData.address;
+            let addressText=_This.oClinicData.address||"北京";
             var map =_This.contentMap;// new BMap.Map("map-content");
             var localSearch = new BMap.LocalSearch(map);
             localSearch.setSearchCompleteCallback(function(searchResult) {
+                if(!searchResult){
+                    return false;
+                }
                 var poi = searchResult.getPoi(0);
                 _This.fGetSpecificAddress(poi.point);
                 map.centerAndZoom(poi.point, msize);

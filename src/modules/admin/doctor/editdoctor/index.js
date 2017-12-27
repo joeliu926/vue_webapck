@@ -3,7 +3,8 @@
  */
 /*import AdInput from 'adminUI/components/admin-input.vue';*/
 import tree from '../../tree/index.vue';
-import CONSTANT from '../../../../common/utils/constants.js'
+import CONSTANT from '../../../../common/utils/constants.js';
+import VAREGEX from '../../../../common/utils/valregex.js';
 export default {
     components: {tree},
     data () {
@@ -55,6 +56,9 @@ export default {
         gohome(){
             this.$router.push("/");
         },
+        /**
+         * 获取医生详情
+         */
         fGetDoctorDetail(){
         	let _This=this;
         	let doctorId=_This.$route.params.id;
@@ -81,6 +85,11 @@ export default {
             }, 'withCredentials');    
         
         },
+        /**
+         * 编辑保存
+         * @param icode
+         * @returns {boolean}
+         */
         fEditSave(icode){
             let _This=this;
             _This.oDoctor.jobTitle=_This.selectJobTitle;

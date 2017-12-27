@@ -56,7 +56,6 @@ export default {
         },
        /* 选择一个*/
         selectone(select){
-
             let _This = this;
             let   productids=[];
             let hasselect=0;
@@ -85,7 +84,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log('select.data',result);
                     if (result.code == 0 && result.data) {
                         _This.getdata();
                     }else {
