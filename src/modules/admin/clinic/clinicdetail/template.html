@@ -43,7 +43,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14">Logo</span>
-                    <img class="up-logo" :src="oClinicData.logo||defaultLogo" />
+                    <img v-if="oClinicData.logo" class="up-logo" :src="oClinicData.logo" />
                 </div>
                 <div class="row-item" >
                     <span class="row-item-title f-14">营业时间</span>

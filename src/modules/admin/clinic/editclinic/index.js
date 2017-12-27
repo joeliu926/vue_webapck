@@ -99,7 +99,7 @@ export default {
         fEditSave() {
             let _This = this;
             _This.oClinicData.productNames = _This.oSelectMajorItems;
-            _This.oClinicData.logo =_This.defaultImg;  //
+           // _This.oClinicData.logo =_This.defaultImg;  //
             //_This.oClinicData.address =_This.sAddress;
             if(!/\S{1,}/.test(_This.oClinicData.name)){
                 _This.$message.error("诊所名不能为空");
@@ -119,10 +119,14 @@ export default {
                 _This.$message.error("请输入主营业务");
                 return false;
             }
-            if(_This.defaultImg.indexOf("add-img-icon")>=0){
+            if(!_This.oClinicData.logo){
                 _This.$message.error("请上传诊所Logo");
                 return false;
             }
+      /*      if(_This.defaultImg.indexOf("add-img-icon")>=0){
+                _This.$message.error("请上传诊所Logo");
+                return false;
+            }*/
             if(!/\S{2,}/.test(_This.oClinicData.businessTime)){
                 _This.$message.error("请输入营业时间");
                 return false;
@@ -218,7 +222,7 @@ export default {
         fCreateClinic() {
             let _This = this;
             _This.oClinicData.productNames = _This.oSelectMajorItems;
-            _This.oClinicData.logo =_This.defaultImg;
+           // _This.oClinicData.logo =_This.defaultImg;
             _This.oClinicData.clinicId = "";
             let pCreateData = JSON.stringify(_This.oClinicData);
             let postData = {
@@ -256,7 +260,7 @@ export default {
                         delete result.data.page;
                         _This.oClinicData = result.data;
                         _This.oSelectMajorItems = result.data.productNames;
-                        _This.defaultImg=_This.oClinicData.logo;
+                        //_This.defaultImg=_This.oClinicData.logo;
                         _This.sAddress=_This.oClinicData.address;
                         _This.oSelectMajorItems.forEach(item => {
                             _This.oProductCode.push(item.productCode);
@@ -295,7 +299,8 @@ export default {
                 processData: false,
                 success: function(result) {
                     if(result.code == 0 && result.data.length > 0) {
-                        _This.defaultImg = result.data[0];
+                        //_This.defaultImg = result.data[0];
+                        _This.oClinicData.logo=result.data[0];
                     }
                 },
                 error: function(result) {
