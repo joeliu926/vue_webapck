@@ -10,14 +10,14 @@ export default {
             checkedKeys:[1,2],
             treeData:
             [
-                {
+               /* {
                     id:'admin_admin',
                     label: '管理',
                     linkUrl:'',
                     hightline:false,
                     needinit:false,
                     color:'#3542f1'
-                },
+                },*/
             {
                 id:'admin_user',
                 label: '用户',
@@ -74,14 +74,14 @@ export default {
                     needinit:false
                 }]
             },
-            {
+           /* {
                 id:'admin_environ',
                 label: '环境',
                 linkUrl:'',
                 hightline:false,
                 needinit:false,
                 color:'#3542f1'
-            },
+            },*/
             {
                 id:'admin_log',
                 label: '日志',
@@ -127,7 +127,6 @@ export default {
                 method: 'POST',
                 success: function (res) {
                     let _menus = res.menus?res.menus:[];
-
                     let reduceMenus =[];
                     _this.treeData.forEach(m=>{
                         let subMenus=JSON.parse(JSON.stringify(m));
@@ -140,7 +139,9 @@ export default {
                                 }
                             });
                         });
-                        reduceMenus.push(subMenus);
+                        if(subMenus.children.length>0){
+                            reduceMenus.push(subMenus);
+                        }
                     });
                     _this.distreeData = reduceMenus;
                 }

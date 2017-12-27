@@ -257,7 +257,7 @@ export default {
 
                         _this.optionsColumn =  settingColumn;
                     }else {
-                        //_This.$router.push('/customers');
+                        _this.optionsColumn =  settingColumn;
                     }
                 }
             }, 'withCredentials');
@@ -398,7 +398,7 @@ export default {
 
                         _this.optionsColumn_scene =  settingColumn;
                     }else {
-                        //_This.$router.push('/customers');
+                        _this.optionsColumn_scene =  settingColumn;
                     }
                 }
             }, 'withCredentials');

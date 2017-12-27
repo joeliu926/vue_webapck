@@ -19,7 +19,10 @@ export default {
     created() {
         this.clearData();
         this.userId = this.$route.params.id;
-        this.initUser();
+        if(this.userId != '_EPT'){
+            this.initUser();
+        }
+
         this.initRoles();
     },
     methods: {
@@ -219,7 +222,7 @@ export default {
             });
         },
         authData(){
-            console.log('this.userInfo.name',this.userInfo.name);
+
             if(/^[^ ]+$/.test(this.userInfo.name)){
                 //return true;
             }else{

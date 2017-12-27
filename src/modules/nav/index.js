@@ -126,10 +126,8 @@ export default {
                     }
                 }, 'withCredentials');
             }else if(cmd=="backmanage"){
-                _This.$router.push("/admin/clinic/detail");
+                _This.$router.push("/admin/userlist");
             }
-
-
         },
         setDefaultRoute(){
             if(this.$route.path.indexOf('customer')>=0){

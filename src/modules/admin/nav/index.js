@@ -33,6 +33,29 @@ export default {
 
     },
     methods: {
+        auth(){
+            _.ajax({
+                url: '/user/getuserinfo',
+                method: 'POST',
+                success: function (res) {
+                    let _menus = res.menus?res.menus:[];
+
+                    let backgroundRight =false;
+                    _menus.forEach(m=>{
+                        let menusid =m.split(':')[2];
+                        switch(menusid){
+                            case "systembackground":
+                                backgroundRight =true;
+                                break;
+                        }
+                    });
+
+                    if(!backgroundRight){
+                        this.$router.push('/');
+                    }
+                }
+            },'withCredentials');
+        },
         goback(){
            if(this.allowBack){
                window.history.back();
