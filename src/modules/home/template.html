@@ -5,5 +5,12 @@
    <el-button type="text">文字按钮</el-button>
 
    <el-button type="text"  @click="sendquery">发送请求</el-button>
+   <form  enctype="application/x-www-form-urlencode" onsubmit="datatype()" >
+      name:<br>
+      <input type="text" name="data" />
+      <br>
+      <input type="submit" value="Submit" />
+
+   </form>
    <div v-for="(list1,index1) in test"><span v-for="(list2,index2) in test2" v-if="">{{list1.txt}}</span></div>
 </div>

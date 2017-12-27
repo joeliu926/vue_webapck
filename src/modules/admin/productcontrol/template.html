@@ -1,12 +1,11 @@
 <div class="admin-product">
     <div class="fram-box admin-lbox">
         <tree></tree>
-    </div><div class="fram-box admin-rbox">
-    <div class="out-box-border" style="padding: 12px;">
+    </div><div class="fram-box admin-rbox" id="admin-rbox">
+
         <div class="content" style="">
             <div class="search">
-                <p style="margin-top:20px">
-                    项目选择</p>
+
                 <div class="case-left out-box-border" style="font-size:14px">
                     <a  v-for="(list,index) in product" :key="index" @click="setscroll(list.productCode)" :class="{cur:changestyle==list.productCode}">{{list.productName}}
                         <span clss="productCount"v-for="(list2,index) in smalllist" v-if="list.productCode==list2.productCode" style="">
@@ -32,5 +31,5 @@
             </div>
         </div>
     </div>
-    </div>
+
 </div>

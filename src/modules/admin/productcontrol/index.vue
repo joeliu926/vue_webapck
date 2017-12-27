@@ -28,9 +28,11 @@
                 .search{
                     margin-left:1.67%;
                     width:98%;
-                    overflow: hidden;
                     background:#fff;
                     .case-left{
+                        position:fixed;
+                        top:100px;
+                        left:16%;
                         float:left;
                         width:11.5%;
                         margin-left: 4px;
@@ -40,8 +42,8 @@
                     .case-left a{
                         .productCount{float:right;margin-top: 10px;margin-right:10px ;}
                         display: inline-block;
-                        line-height: 60px;
-                        height:60px;
+                        line-height: 40px;
+                        height:40px;
                         width:100%;
                         font-size: 14px;
                         text-align: center;
@@ -56,19 +58,19 @@
                         color: #fff;
                         cursor:pointer;
                     }
-                    .right{float:right;
+                   /* .right{float:right;
                         width:87.6%;
                         padding:0;
-                        height:1082px;
+                        height:780px;
                         margin-top:14px;
                         overflow-y:scroll
-                    }
+                    }*/
                     .case-right{
-
-                        width:92%;
+                        float:right;
+                        width:80%;
+                        /*width:92%;*/
                         margin-bottom:20px;
                         margin-top:6px;
-                        margin-left:1.67%;
                         margin-right:1.67%;
                         padding:20px 1.67%;
                         border-radius: 4px;
