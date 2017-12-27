@@ -1,7 +1,7 @@
 <div class="admin-product">
     <div class="fram-box admin-lbox">
         <tree></tree>
-    </div><div class="fram-box admin-rbox" id="admin-rbox">
+    </div><div class="fram-box admin-rbox" id="admin-rbox" >
 
         <div class="content" style="">
             <div class="search">
@@ -12,7 +12,7 @@
                         {{list2.productCount}}</span></a>
 
                 </div>
-                <div id="right" class="right" style="" @scroll="onscorllevent">
+                <div id="right" class="right" >
                     <div :id="list0.productCode" class="case-right  out-box-border" v-for="(list0,index0) in  product " :key="index0" style="">
 
                         <div class="tab-con">
