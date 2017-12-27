@@ -108,6 +108,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
+
                 _This.fCaseDelete(caseid);
             });
         },

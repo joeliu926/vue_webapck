@@ -96,11 +96,28 @@
                         .selectedbox{
                              /*margin-right:30px;*/
                             a{
-                                display:inline-block;
-                                width:90px;
-                                height:36px;
-                                margin-left:20px;
+                                display: inline-block;
+                                /*height:34px;*/
+                                /*line-height: 34px;*/
+                                white-space: nowrap;
+                                cursor: pointer;
+                                background: #fff;
+                                border: 1px solid #c4c4c4;
+                                color: #1f2d3d;
+                                text-align: center;
+                                padding: 8px 12px;
+                                border-radius: 4px;
+                                -webkit-box-sizing: border-box;
+                                -moz-box-sizing: border-box;
+                                box-sizing: border-box;
+                                margin-bottom:4px;
+                                margin-left:45px;
                                 margin-right:10px;
+                            }
+                            a:hover{
+                                background-color: #9083ED;
+                                color:#FFF!important;
+                                border: 1px solid #9083ED;
                             }
                            
                         }    

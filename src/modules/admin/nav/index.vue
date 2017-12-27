@@ -5,12 +5,19 @@
 
 <style lang="scss">
     .nav-admin-content{
-         line-height: 60px;
-         height: 60px;
-         overflow: hidden;
-         color: white;
-         box-sizing: border-box;
-         padding: 0 0 0 10px;
+        .el-popover {
+            width: 600px;
+            transform-origin: right center 0px;
+            z-index: 2016;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+        line-height: 60px;
+        height: 60px;
+        color: white;
+        box-sizing: border-box;
+        padding: 0 30px;
         .el-col:first-child{
             text-align: left;
         }
@@ -35,7 +42,7 @@
             text-align: right;
         }
         .nav-logo{
-          margin-left: 30px;
+            margin-left: 30px;
         }
         .nav-text{
             line-height: 40px;
@@ -49,35 +56,57 @@
             top: 5px;
             right: 10px;
         }
+        .user-img{float:right;
+            margin-right: 10px;
+            margin-top: 10px;
+            height:50px}
         .nav-select-list{
+
             cursor: pointer;
+            margin-top: 10px;
         }
-        .nav-user-img{
-            height: 40px;
-            width: 40px;
-            border-radius: 30px;
+
+        .alert-content{
+            .item-title{
+                background-color: #dfe6ec;padding-left: 20px
+            }
+            .item-data{
+                padding-left: 20px;line-height: 40px;cursor: pointer;
+                color:#35373c;
+            }
+            .item-data:hover{
+                background-color: #4F3CCA;
+                color:white;
+
+            }
+            line-height:24px;height:240px; width:200px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top:55px;color: #000000;
+            .alert-top{
+                height:70px;
+                .alert-user-img{
+                    border-radius: 50%;
+                    height: 40px;
+                    width: 40px;
+                    margin-left: 10px;
+                    margin-top: 10px;
+                }
+            }
         }
-        .nav-img-content{
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
-            float: right;
-            position: relative;
-            top:10px;
-        }
-        .nav-back-img{
-            height: 60px;
-            width: 60px;
-            box-sizing: border-box;
-            float: right;
-            vertical-align: middle;
-            margin-left: 20px;
-            padding: 17px;
-            cursor: pointer;
-        }
-        .nav-back-img:hover{
-            background:#524DA7;
-        }
+    }
+
+
+
+    .nav-user-img{
+        height: 40px;
+        width: 40px;
+        border-radius: 30px;
+    }
+    .nav-img-content{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        float: right;
+        position: relative;
+        top:10px;
     }
     .nav-content-gradient{
         background: -moz-linear-gradient(left, #4962D4 0%, #4F3CCA 100%);

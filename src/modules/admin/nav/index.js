@@ -6,13 +6,16 @@
 export default {
     components: {},
     data () {
-        return {
+        return {show:false,
             selectedVal:'首页',
             menusList:[],
             userImage:'',
             allowBack:false,
             defaultPic:require("../../../common/img/icon-customer.png"),
-
+            backgroundRight:false,
+            clinicName:'',
+            userName:'',
+            name:''
         };
     },
     created() {
@@ -21,49 +24,119 @@ export default {
             url: '/user/getuserinfo',
             method: 'POST',
             success: function (res) {
+                _this.name = res.name;
+                _this.clinicName = res.clinicName?res.clinicName:'欢迎使用哈罗美云！';
+                _this.userName=res.loginName;
                 let _menus = res.menus?res.menus:[];
                 _this.userImage = res.headImgUrl;
+                _menus.forEach(m=>{
+                    let menusid =m.split(':')[2];
+                    switch(menusid){
+                        case "home":
+                            _this.menusList.push({index:0,id:menusid,name:'首页',url:'/'});
+                            break;
+                        case "customer":
+                            _this.menusList.push({index:1,id:menusid,name:'联系人中心',url:'/customers'});
+                            break;
+                        case "consultdashboard":
+                            _this.menusList.push({index:2,id:menusid,name:'咨询台',url:'/consultdashboard'});
+                            break;
+                        case "kb":
+                            _this.menusList.push({index:4,id:menusid,name:'案例中心',url:'/case_base'});
+                            break;
+                        case "triage":
+                            _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage/list'});
+                            break;
+                        case "systembackground":
+                            _this.backgroundRight =true;
+                            break;
+                    }
+                });
+                _this.menusList.sort(function (a,b) {
+                    return a.index>b.index;
+                })
             }
         },'withCredentials');
         this.auth();
 
+
     },
     mounted(){
+        this.setDefaultRoute();
     },
     destroyed() {
 
     },
     methods: {
         auth(){
-            let _this=this;
+            let _this = this;
             _.ajax({
                 url: '/user/getuserinfo',
                 method: 'POST',
                 success: function (res) {
-                    let _menus = res.menus?res.menus:[];
-                    let backgroundRight =false;
-                    _menus.forEach(m=>{
-                        let menusid =m.split(':')[2];
-                        switch(menusid){
+                    let _menus = res.menus ? res.menus : [];
+                    let backgroundRight = false;
+                    _menus.forEach(m => {
+                        let menusid = m.split(':')[2];
+                        switch (menusid) {
                             case "systembackground":
-                                backgroundRight =true;
+                                backgroundRight = true;
                                 break;
                         }
                     });
 
-                    if(!backgroundRight){
+                    if (!backgroundRight) {
                         _this.$router.push('/');
                     }
                 }
-            },'withCredentials');
+            }, 'withCredentials');
+        },
+        setdropdown(params){
+            let _this =this;
+            switch(params){
+                case 'out':
+                    this.show=false;
+                    break;
+                case 'over':
+                    //setTimeout(function () {
+                    _this.show=true;
+                    //},10);
+                    break;
+                case 'lazyout':
+                    // setTimeout(function () {
+                    _this.show=false;
+                    // },10);
+                    break;
+            }
+        },
+        changeshow(){
+            if (this.show==false){
+                this.show=true
+            }else{
+                this.show=false
+            }
         },
         goback(){
-           if(this.allowBack){
-               window.history.back();
-           }
+            if(this.allowBack){
+                window.history.back();
+            }
+            //this.$router.push("/customers");
         },
         gohome(){
             this.$router.push("/");
+        },
+        incustomers(){
+            this.$router.push("/customers");
+        },
+        intest(){
+            this.$router.push("/test");
+        },
+        inhome(){
+            this.$router.push("/home");
+        },
+        fChooseItem(cmd){
+            //this.selectedVal = cmd;
+            this.$router.push(cmd);
         },
         fLoginOut(cmd){
             let _This=this;
@@ -76,11 +149,38 @@ export default {
                         _This.$router.push("/login");
                     }
                 }, 'withCredentials');
+            }else if(cmd=="backfront"){
+                _This.$router.push("/");
+            }
+
+
+        },
+        setDefaultRoute(){
+            if(this.$route.path.indexOf('customer')>=0){
+                this.selectedVal = "联系人中心";
+            }else if(this.$route.path.indexOf('consultdashboard')>=0){
+                this.selectedVal = "咨询台";
+
+            }else if(this.$route.path.indexOf('casecontrol')>=0){
+                this.selectedVal = "咨询台";
+            }else if(this.$route.path.indexOf('case')>=0){
+                this.selectedVal = "案例中心";
+            }else if(this.$route.path.indexOf('triage')>=0){
+                this.selectedVal = "分诊中心";
+            }else {
+                this.selectedVal = "首页";
             }
         }
     },
     watch: {
         $route(){
+            this.setDefaultRoute();
+            this.allowBack=true;
+            this.menusList.forEach(item=>{
+                if(item.url==this.$route.path){
+                    this.allowBack=false;
+                }
+            });
         }
     }
 }

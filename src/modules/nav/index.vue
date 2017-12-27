@@ -40,6 +40,7 @@
             font-size: 30px !important;
             margin-right: 25px;
             text-align: right;
+            margin-top: 10px;
         }
         .nav-logo{
           margin-left: 30px;

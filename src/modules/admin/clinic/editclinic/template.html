@@ -80,7 +80,8 @@
                 <div class="row-item logo-ct" style="">
                     <span class="row-item-title f-14 v-a-top" ><i class="i-must">*</i>Logo</span>
              <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
-                       <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>
+                      <!-- <div class="doctor-img" :style="{backgroundImage:['url('+defaultImg+')']}" @click="fChooseImg"></div>-->
+                   <div class="doctor-img" :style="{backgroundImage:['url('+(oClinicData.logo||defaultImg)+')']}" @click="fChooseImg"></div>
                     <div class="format-ct" style="">
                         <div class="f-14">格式:jpg、jpeg、png、bmp</div>
                         <div class="f-14">大小：5M以内</div>

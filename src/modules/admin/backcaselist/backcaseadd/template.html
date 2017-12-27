@@ -11,9 +11,9 @@
                 </div>
             </div>
             <div class="case-edit-ct">
-                <el-button @click="Savecase">保存</el-button>
-                <el-button @click="Savecase">保存并新建</el-button>
-                <el-button >取消</el-button>
+                <el-button @click="Savecase(1)">保存</el-button>
+                <el-button @click="Savecase(0)">保存并新建</el-button>
+                <el-button @click="backlist">取消</el-button>
             </div>
         </div>
 
@@ -86,6 +86,7 @@
                         v-model="caseDetail.operationDate"
                         type="date"
                         width="200"
+                        :picker-options="endDatePicker"
                         placeholder="选择日期">
                     </el-date-picker>
                 </div>
@@ -129,7 +130,7 @@
         <div class="case-info-ct">
             <div class="row-ct">
                 <div class="row-item logo-ct" style="">
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>Logo</span>
+                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
                     <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
                     <div class="doctor-img" :style="{backgroundImage:['url('+(caseDetail.customerLogo.url||bydefault)+')']}" @click="fChooseImg"></div>
                     <div class="format-ct" style="">
@@ -237,9 +238,9 @@
             </div>
             <div class="case-edit-ct">
                 <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <el-button @click="Savecase">保存</el-button>
-                <el-button >保存并新建</el-button>
-                <el-button >取消</el-button>
+                <el-button @click="Savecase(1)">保存</el-button>
+                <el-button @click="Savecase(0)">保存并新建</el-button>
+                <el-button @click="backlist">取消</el-button>
             </div>
         </div>
         <div class="footer-b segment-title">
