@@ -2,7 +2,7 @@
  * Created by JoeLiu on 2017-9-15.
  */
 /*import AdInput from 'adminUI/components/admin-input.vue';*/
-
+"use strict";
 export default {
     components: {},
     data() {
@@ -103,32 +103,49 @@ export default {
                     needinit:false
 
                 }]
-            }]
+            }],
+            distreeData:[]
         };
     },
     created() {
         this.initPropt();
         this.treeData.forEach(m=>{
             m.children&&m.children.forEach(ms=>{
-
-               // console.log('ms.linkUrl',ms.linkUrl);
-                //console.log('this.$router.history.current.fullPath',this.$router.history.current.fullPath);
                 if(this.$router.history.current.fullPath.indexOf(ms.linkUrl)>-1){
                     ms.hightline =true;
                 }
-                 /*if(ms.linkUrl.indexOf(this.$router.history.current.fullPath)>-1){
-                 ms.hightline =true;
-                 }*/
             })
         });
-
-    },
-    mounted(){
-    },
-    destroyed() {
-
+        this.initAuth();
     },
     methods: {
+
+        initAuth(){
+            let _this = this;
+            _.ajax({
+                url: '/user/getuserinfo',
+                method: 'POST',
+                success: function (res) {
+                    let _menus = res.menus?res.menus:[];
+
+                    let reduceMenus =[];
+                    _this.treeData.forEach(m=>{
+                        let subMenus=JSON.parse(JSON.stringify(m));
+                        subMenus.children=[];
+                        m.children&&m.children.forEach(ms=>{
+                            _menus.forEach(mns=>{
+                                let menusid =mns.split(':')[2];
+                                if(menusid ==ms.id){
+                                    subMenus.children.push(ms);
+                                }
+                            });
+                        });
+                        reduceMenus.push(subMenus);
+                    });
+                    _this.distreeData = reduceMenus;
+                }
+            },'withCredentials');
+        },
         initPropt(){
             let _this = this;
             _.ajax({
@@ -142,10 +159,8 @@ export default {
                                     ms.needinit =true;
                                 }
                             })
-
                         })
                     });
-
                 }
             }, 'withCredentials');
         },
@@ -192,7 +207,6 @@ export default {
                     );
                 }
             }
-
         },
         setHightline(params){
             this.$nextTick(function () {
