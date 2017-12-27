@@ -25,6 +25,7 @@ export default {
                 _this.userImage = res.headImgUrl;
             }
         },'withCredentials');
+        this.auth();
 
     },
     mounted(){
@@ -34,12 +35,12 @@ export default {
     },
     methods: {
         auth(){
+            let _this=this;
             _.ajax({
                 url: '/user/getuserinfo',
                 method: 'POST',
                 success: function (res) {
                     let _menus = res.menus?res.menus:[];
-
                     let backgroundRight =false;
                     _menus.forEach(m=>{
                         let menusid =m.split(':')[2];
@@ -51,7 +52,7 @@ export default {
                     });
 
                     if(!backgroundRight){
-                        this.$router.push('/');
+                        _this.$router.push('/');
                     }
                 }
             },'withCredentials');

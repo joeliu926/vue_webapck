@@ -118,8 +118,7 @@ export default {
             });
             this.roleList =refresh;
         },
-        save(cb){
-
+        saveInfo(cb){
             if(!this.authData()){
                 return;
             }
@@ -165,9 +164,16 @@ export default {
                 }
             }, 'withCredentials');
         },
+        save(){
+            let _this =this;
+            this.saveInfo(function () {
+                _this.clearData();
+                _this.$router.push("/admin/userlist");
+            });
+        },
         saveAndAdd(){
             let _this =this;
-            this.save(function () {
+            this.saveInfo(function () {
                 _this.clearData();
                 _this.$router.push("/admin/userlist/edit/_EPT");
             });
