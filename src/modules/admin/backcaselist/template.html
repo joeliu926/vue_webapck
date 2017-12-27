@@ -76,17 +76,11 @@
                             min-width="20%">
                        <template slot-scope="props"   >
                             <router-link :to="{name: '/admin/backcaselist/backcaseadd', params: {id: props.row.id, loginName:'admin',
-                            } }" style="margin-right:10px; display: inline-block;" >                                    修改
-                              <!--<el-button type="info" size="small" icon="edit">修改</el-button>-->
+                            } }" style="margin-right:10px; display: inline-block;" >编辑
                             </router-link>
                            <a href="#" style="display: inline-block;" @click="fDelData(props.row.id)" >删除</a>
-
                       </template>
                     </el-table-column>
-
-                  <!--   <el-table-column min-width="18%">
-
-                    </el-table-column> -->
                 </el-table>
 
             </div>
