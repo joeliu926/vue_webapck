@@ -41,10 +41,11 @@
                 </div>
                 <div class="row-item" >
                     <span class="row-item-title f-14"><i class="i-must">*</i>主营项目</span>
-
+                    <el-input class="row-item-value" value="" v-model="oClinicData.majorBusiness" placeholder="主营项目"></el-input>
                     <template>
                         <el-select
-                                v-model="majorBusiness"
+                                style="display: none;"
+                                v-model="majorBusinessNO"
                                 :filterable="true"
                                 :remote="true"
                                 reserve-keyword
@@ -62,7 +63,7 @@
                     </template>
                 </div>
             </div>
-            <div class="row-ct">
+            <div class="row-ct" style="display: none;">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ></span>
                 </div>
