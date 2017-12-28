@@ -516,9 +516,13 @@ export default {
             let itema="s"+index+"e";
             this.$refs[itema][0].click();
         },
+        /**
+         * 添加多案例
+         */
         fAddAfterCase(){
             let _This=this;
-            _This.caseDetail.contentList.push(_This.addAfterCaseItem);
+            let temCase=JSON.stringify(_This.addAfterCaseItem);
+            _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
         fDeletePic(ee,index,pindex){
             let _This=this;
