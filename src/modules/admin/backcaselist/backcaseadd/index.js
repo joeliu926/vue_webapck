@@ -304,7 +304,6 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("-------",result)
                         if(result.code==0){
                            // let list=result.data;
                             _This.searchData=result.data;
@@ -331,10 +330,7 @@ export default {
 
         /*添加描述信息*/
         addtextareas(param){
-            console.log(param);
             this.textareas.push(param);
-            console.log(this.textareas);
-
             this.textarea="";
         },
         /*获取医生列表*/
@@ -348,7 +344,6 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log(_this.doctorlist);
                     _this.doctorlist=result.data;
                 }
             }, 'withCredentials');
@@ -514,9 +509,6 @@ export default {
          * @param pindex
          */
         fMultChooseafImg(index,pindex){
-
-            console.log(index,"-----",pindex);
-
             let _This=this;
             _This.afterIndex=index;
            // _This.afterPIndex=pindex;
