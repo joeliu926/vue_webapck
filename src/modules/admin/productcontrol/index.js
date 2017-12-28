@@ -14,16 +14,21 @@ export default {
     },
     created() {
         let _This=this;
-        document.querySelector('body').onscroll = function() { _This.onscorllevent() };
+
         this.getdata();
         this.getProductModel();
        // this.forshow();
         //this.fortask();
     },
     mounted(){
+        this.$nextTick(function () {
+            window.addEventListener("scroll", this.onscorllevent);
+        })
+    },
+    destroyed(){
+        window.removeEventListener("scroll", this.onscorllevent);
     },
     methods: {
-
        /* 全选*/
         selectall(params){
             let _This = this;
