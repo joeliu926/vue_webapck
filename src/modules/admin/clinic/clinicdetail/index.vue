@@ -61,15 +61,20 @@
                             width: 80px;
                             text-align: right;
                             padding-right: 24px;
+                            color: #333333;
 
                         }
                         .row-item-value{
                             width: 200px;
+
                         }
                         .up-logo{
                             width: 100px;
                             height: 100px;
                         }
+                    }
+                    .item-address{
+                        width: 800px;
                     }
                 }
             }

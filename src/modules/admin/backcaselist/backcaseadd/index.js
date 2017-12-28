@@ -48,37 +48,8 @@ export default {
             search:"",
             searchData:[],
             textareas:[],
-            caseDel:{
-                id: "",
-                caseName: "",
-                doctor: {
-                },
-                products: [],
-                operationDate: "",
-                customerGender: "",
-                customerAge: "",
-                customerLogo: {
-                    "name": "",
-                    "url": ""
-                },
-                beforePicture: {
-                    "name": "",
-                    "url": ""
-                },
-                afterPicture: {
-                    "name": "",
-                    "url": ""
-                },
-                contentList: [
-                    {
-                        "id": "",
-                        "title": "",
-                        "pictures": [],
-                        "definitionDate": "",
-                        "description": ""
-                    }
-                ]
-            },
+            dataString:"",
+            caseDel:this.dataString,
             caseDetail: {
                 id: "",
                 caseName: "",
@@ -113,6 +84,8 @@ export default {
         };
     },
     created() {
+        this.dataString=JSON.stringify(this.caseDetail);
+        this.caseDel=JSON.parse(this.dataString);
         this.caseId = this.$route.params.id;
         if(this.caseId!='_EPT'){
             this.initData();
@@ -121,7 +94,7 @@ export default {
     },
     methods: {
         /**
-         * 获取列表
+         * 获取项目列表详情
          */
         initData(){
             let _This =this;
@@ -145,17 +118,15 @@ export default {
                 }
             }, 'withCredentials');
         },
-        /*添加页面*/
+        /*保存按钮 和保存并新建*/
         Savecase(icode){
-
-            /*验证判断*/
+            /*验证判断必填项*/
             if(!/\S{1,}/.test(this.caseDetail.caseName)){
                 this.$message.error("案例名不能为空");
                 return false;
             }
             if(!this.caseDetail.doctor.id){
                 this.$message.error("医生名不能为空");
-                // this.$refs.dname.$refs.input.focus();
                 return false;
             }
             if(this.caseDetail.products.length==0){
@@ -186,22 +157,18 @@ export default {
                 this.$message.error("年龄不能为空");
                 return false;
             }
+
             var  authtitle=false;
             var  authdefinitionDate=false;
             var  authpictures=false;
-
             this.caseDetail.contentList.forEach(m=>{
-
                 if(m.title.length==0){
-
                     authtitle=true;
                 }
                 if(m.definitionDate.length==0){
-
                     authdefinitionDate=true;
                 }
                 if(m.pictures.length==0){
-
                     authpictures=true;
                 }
             })
@@ -281,8 +248,8 @@ export default {
                     }
                 }, 'withCredentials');
             }
-
         },
+
         /**
          * 删除诊疗项目
          * @param item
@@ -299,7 +266,6 @@ export default {
         /**
          * 诊疗时间判断
          */
-
         processDate(){
             return {
                 disabledDate(time){
@@ -307,7 +273,6 @@ export default {
                 }
             }
         },
-
         /**
          * 选中诊疗项目
          * @param item
@@ -346,13 +311,12 @@ export default {
                      /*       list.forEach(item => {
                                 _This.searchData.push(item);
                             });*/
-
                         }
 
                     }
                 }, 'withCredentials');
             } else {
-                this.options4 = [];
+                this.searchData = [];
             }
         },
         fDoctorChange(item){
@@ -396,20 +360,7 @@ export default {
             },
         },
 
-        /*保存按钮*/
-        // Savecase (icode){
-        //     console.log("+++++++++++++++++hhheh++++++++++++++++")
-        //    if()
-        //
-        //    if( this.caseaddSave(icode))
-        //     {
-        //         this.$router.push("/admin/backcaselist");
-        //     }
-        //
-        //
-        // },
-
-        /*取消*/
+        /*取消按钮*/
         backlist(){
             this.$router.push("/admin/backcaselist");
         },
