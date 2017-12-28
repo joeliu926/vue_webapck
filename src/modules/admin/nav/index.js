@@ -50,17 +50,17 @@ export default {
                 method: 'POST',
                 success: function (res) {
                     let _menus = res.menus ? res.menus : [];
-                    let backgroundRight = false;
+                   // let backgroundRight = false;
                     _menus.forEach(m => {
                         let menusid = m.split(':')[2];
                         switch (menusid) {
                             case "systembackground":
-                                backgroundRight = true;
+                                _this.backgroundRight=true;
+                               // backgroundRight = true;
                                 break;
                         }
                     });
-
-                    if (!backgroundRight) {
+                    if (!_this.backgroundRight) {
                         _this.$router.push('/');
                     }
                 }
