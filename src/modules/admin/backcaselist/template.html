@@ -8,12 +8,10 @@
                     <p>全部案例</p>
                     <span class="f-14">在此页面上,您可以创建,查看并管理案例</span>
                 </div>
-
             </el-row>
             <el-row class="rbox-content" :gutter="24" type="flex" justify="space-between" >
                 <div>记录（{{count}}）</div>
             </el-row>
-            
             <div class="input-box clearfix">
                 <div class="demo-input-suffix fl">
                    <el-input  @keyup.enter.native="fKeyDown"
@@ -34,7 +32,6 @@
                     <router-link class="btn-cre" :to="{name:'/admin/backcaselist/backcaseadd',params:{id:'_EPT'}} "  style="color:#333; text-decoration: none;">创建</router-link>
                 </div>
             </div>
-
             <!-- 案例列表-->
             <div class="table-content">
                 <el-table
@@ -79,9 +76,7 @@
                       </template>
                     </el-table-column>
                 </el-table>
-
             </div>
-
             <!--分页组件-->
             <div class="rbox-pagination-align">
                 <el-pagination

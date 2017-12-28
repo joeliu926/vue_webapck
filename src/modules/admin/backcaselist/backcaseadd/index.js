@@ -209,6 +209,7 @@ export default {
                             });
                             if(icode==1){
                                 setTimeout(function(){
+
                                     _This.$router.push("/admin/backcaselist");
                                 },3000);
 
@@ -226,6 +227,7 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
+                console.log("==========",this.caseDetail);
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -255,31 +257,24 @@ export default {
          * @param item
          */
         fRemoveProduct(item){
+
+            // console.log("============","+++++++++++++",this.oProductCode);
             let _This=this;
             let index= _This.caseDetail.products.indexOf(item);
             if(index>=0){
                 _This.oProductCode.splice(index,1);
                 _This.caseDetail.products.splice(index,1);
             }
+            // console.log(this.caseDetail.products);
         },
 
-        /**
-         * 诊疗时间判断
-         */
-        processDate(){
-            return {
-                disabledDate(time){
-                    return time.getTime() > Date.now()//诊疗时间最大值小于等于当天
-                }
-            }
-        },
         /**
          * 选中诊疗项目
          * @param item
          */
         fSelectProductItem(item){
             let _This=this;
-             if(_This.oProductCode.indexOf(item.id)<0)
+             if(_This.oProductCode.indexOf(item.id))
              {
                  _This.oProductCode.push(item.id);
                  delete item.page;
@@ -304,7 +299,6 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("-------",result)
                         if(result.code==0){
                            // let list=result.data;
                             _This.searchData=result.data;
@@ -312,11 +306,20 @@ export default {
                                 _This.searchData.push(item);
                             });*/
                         }
-
                     }
                 }, 'withCredentials');
             } else {
                 this.searchData = [];
+            }
+        },
+        /**
+         * 诊疗时间判断
+         */
+        processDate(){
+            return {
+                disabledDate(time){
+                    return time.getTime() > Date.now()//诊疗时间最大值小于等于当天
+                }
             }
         },
         fDoctorChange(item){
@@ -328,13 +331,9 @@ export default {
                 this.oSelectDoc=item.name;
             }
         },
-
         /*添加描述信息*/
         addtextareas(param){
-            console.log(param);
             this.textareas.push(param);
-            console.log(this.textareas);
-
             this.textarea="";
         },
         /*获取医生列表*/
@@ -348,7 +347,6 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log(_this.doctorlist);
                     _this.doctorlist=result.data;
                 }
             }, 'withCredentials');
@@ -477,9 +475,14 @@ export default {
                 }
             });
         },
+
+        /**
+         *删除一个段落（关闭按钮）
+         */
         fDeleteAfterItem(index){
             let _This=this;
             _This.caseDetail.contentList.splice(index,1);
+
         },
         /**
          * 多文件上传
@@ -518,9 +521,6 @@ export default {
          * @param pindex
          */
         fMultChooseafImg(index,pindex){
-
-            console.log(index,"-----",pindex);
-
             let _This=this;
             _This.afterIndex=index;
            // _This.afterPIndex=pindex;
@@ -528,11 +528,18 @@ export default {
             let itema="s"+index+"e";
             this.$refs[itema][0].click();
         },
-        /*段落添加*/
+        /**
+         * 添加多案例
+         */
         fAddAfterCase(){
             let _This=this;
-            _This.caseDetail.contentList.push(_This.addAfterCaseItem);
+            let temCase=JSON.stringify(_This.addAfterCaseItem);
+            _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
+        /**
+         *删除单个的图片
+         */
+
         fDeletePic(ee,index,pindex){
             let _This=this;
             ee.cancelBubble = true;
