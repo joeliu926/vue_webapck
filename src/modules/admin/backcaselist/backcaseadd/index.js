@@ -389,7 +389,8 @@ export default {
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M！");
+                    // console.log("error-- result------>", result)
                 }
             });
         },
@@ -420,7 +421,8 @@ export default {
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M！");
+                    // console.log("error-- result------>", result)
                 }
             });
         }
@@ -470,6 +472,7 @@ export default {
                     }
                 },
                 error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
                     console.log("error-- result------>", result)
                 }
             });
@@ -504,6 +507,7 @@ export default {
                     }
                 },
                 error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
                     console.log("error-- result------>", result)
                 }
             });

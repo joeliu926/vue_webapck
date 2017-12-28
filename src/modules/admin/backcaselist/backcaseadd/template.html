@@ -42,10 +42,10 @@
                     <span class="row-item-title f-14"><i class="i-must">*</i> 医生</span>
                     <el-select v-model="oSelectDoc" @change="fDoctorChange"  placeholder="请选择">
                         <el-option
-                                v-for="item in doctorlist"
-                                :key="item.id"
-                                :label="item.name"
-                                :value="item">
+                            v-for="item in doctorlist"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item">
                         </el-option>
                     </el-select>
                 </div>
@@ -71,15 +71,12 @@
                     </el-select>
                 </div>
                 <div class="row-item" style="width: 400px;">
-
                     <div class="major-project" style="">
                         <template v-for="item in caseDetail.products">
                             <span class="goodat f-14">{{item.productName}}<i class="el-icon-pa-close i-close-p" @click="fRemoveProduct(item)" style=""></i></span>
                         </template>
                     </div>
-
                 </div>
-
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗时间</span>
                     <el-date-picker
@@ -145,11 +142,10 @@
                     <span class="row-item-title f-14"><i class="i-must">*</i> 性别</span>
                     <el-select v-model="caseDetail.customerGender" placeholder="请选择">
                         <el-option
-                                v-for="item in optGender"
-
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                            v-for="item in optGender"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
                         </el-option>
                     </el-select>
                 </div>
