@@ -178,6 +178,12 @@ export default {
                 _this.$router.push("/admin/userlist/edit/_EPT");
             });
         },
+        changeMobile(){
+            if(this.userId == '_EPT'){
+                this.userInfo.loginName = this.userInfo.mobile;
+            }
+
+        },
         Cancel(){
             this.clearData();
             this.$router.push("/admin/userlist");

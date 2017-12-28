@@ -75,7 +75,7 @@
                 color:#35373c;
             }
             .item-data:hover{
-                background-color: #4F3CCA;
+                background-color: #9083ed;
                 color:white;
 
             }

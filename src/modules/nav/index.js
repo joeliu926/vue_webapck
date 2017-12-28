@@ -29,41 +29,37 @@ export default {
                 _this.userName=res.loginName;
                 let _menus = res.menus?res.menus:[];
                 _this.userImage = res.headImgUrl;
+
+
+                let fitlerarray  = [];
                 _menus.forEach(m=>{
                     let menusid =m.split(':')[2];
+                    if(fitlerarray.indexOf(menusid)!=-1)
+                    {
+                        return;
+                    }
+                    fitlerarray.push(menusid);
+
                     switch(menusid){
                         case "home":
                             let _mehome ={index:0,id:menusid,name:'首页',url:'/'};
-                            if(_this.menusList.indexOf(_mehome)==-1){
                                 _this.menusList.push(_mehome);
-                            }
                             break;
                         case "customer":
-                            let customers ={index:0,id:menusid,name:'联系人中心',url:'/customers'};
-                            if(_this.menusList.indexOf(customers)==-1){
+                            let customers ={index:1,id:menusid,name:'联系人中心',url:'/customers'};
                                 _this.menusList.push(customers);
-                            }
                             break;
                         case "consultdashboard":
-
-                            let consultdashboard ={index:0,id:menusid,name:'咨询台',url:'/consultdashboard'};
-                            if(_this.menusList.indexOf(consultdashboard)==-1){
+                            let consultdashboard ={index:2,id:menusid,name:'咨询台',url:'/consultdashboard'};
                                 _this.menusList.push(consultdashboard);
-                            }
                             break;
                         case "kb":
-
-                            let case_base ={index:0,id:menusid,name:'案例中心',url:'/case_base'};
-                            if(_this.menusList.indexOf(case_base)==-1){
+                            let case_base ={index:4,id:menusid,name:'案例中心',url:'/case_base'};
                                 _this.menusList.push(case_base);
-                            }
-
                             break;
                         case "triage":
-                            let triage ={index:0,id:menusid,name:'分诊中心',url:'/triage/list'};
-                            if(_this.menusList.indexOf(triage)==-1){
+                            let triage ={index:3,id:menusid,name:'分诊中心',url:'/triage/list'};
                                 _this.menusList.push(triage);
-                            }
                             break;
                         case "systembackground":
                             _this.backgroundRight =true;
@@ -72,7 +68,11 @@ export default {
                 });
                 _this.menusList.sort(function (a,b) {
                     return a.index>b.index;
-                })
+                });
+
+
+
+
             }
         },'withCredentials');
 

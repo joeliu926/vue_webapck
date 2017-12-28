@@ -28,7 +28,7 @@
                         label="权限"
                         min-width="50%">
                         <template slot-scope="scope">
-                            <span v-for="rols in scope.row.permission" v-if="rols.name">{{rols.name}}、</span>
+                            <span v-for="(rols,index) in scope.row.permission" v-if="rols.name">{{index==0?rols.name:'、'+rols.name}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column

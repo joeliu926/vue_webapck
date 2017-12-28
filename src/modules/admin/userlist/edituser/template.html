@@ -42,7 +42,7 @@
             <div class="row-ct" >
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 手机</span>
-                    <el-input  v-model="userInfo.mobile"  class="row-item-value" ></el-input>
+                    <el-input  v-model="userInfo.mobile" @change="changeMobile()"  class="row-item-value" ></el-input>
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
             <div class="row-ct">
                 <div class="row-item" >
                     <span class="row-item-title f-14" ><i class="i-must">*</i> 用户名</span>
-                    <el-input  v-model="userInfo.loginName" class="row-item-value"  ></el-input>
+                    <el-input  :disabled="userId !='_EPT'" v-model="userInfo.loginName" class="row-item-value"  ></el-input>
                 </div>
             </div>
 
