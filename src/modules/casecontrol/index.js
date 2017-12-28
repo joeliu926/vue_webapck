@@ -658,18 +658,22 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
+
             var _This = this;
-            if (!_This.routerParam.adddiag) {
-                return false;
-            }
+        /*    if (!_This.routerParam.adddiag) {
+                //console.log("1111-ename------>",ename);
+                //return false;
+            }*/
             if (ename == "") {
                 return false;
             }
+
             _This.fSearchUserDpData(ename, function (result) {
                 if (result.code == 0 && result.data) {
                     _This.oNameList = result.data.list;
                    // _This.oCustomer.name = ename;
-                    _This.temOcustomerName=ename;
+                   // _This.temOcustomerName=ename;//_This.temOcustomerName=ename.split("-")[0];
+                    _This.temOcustomerName=ename.split("-")[0];;
                 }
             });
         },
