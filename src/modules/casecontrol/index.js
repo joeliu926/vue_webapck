@@ -266,9 +266,11 @@ export default {
          * @param e
          */
         fChangeTab(e){
+
             let _This = this;
-            let dataSet = e.target.dataset;
-            _This.activeStatus = dataSet.tabtype;
+            /*let dataSet = e.target.dataset;
+            _This.activeStatus = dataSet.tabtype;*/
+            _This.activeStatus = e;
         },
         /**
          * 结束框选择项目
@@ -437,7 +439,7 @@ export default {
         fShowNextCase(param){
 
             let _This = this;
-            //console.log("next------>", _This.oShowCaseList,_This.oCurrentShowItem);
+            //console.log("next------>", _This.oCurrentShowItem);
             let caseLength = _This.oShowCaseList.length;
             if (param < 0) {
                 _This.oCurrentShowItemIndex--;

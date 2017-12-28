@@ -176,12 +176,12 @@
         <div class="dialog-ct b-s">
             <div class="end-close" @click="fCloseEnddialog"><img src="../../common/img/i-cl-close.png"> </div>
             <div class="tab-head b-s">
-                 <div class="tab-item b-s" data-tabtype="0" @click="fChangeTab">已成功
+                 <div class="tab-item b-s" data-tabtype="0" @click="fChangeTab('0')">已成功
                      <div class="tab-angle" :style="{display:[activeStatus=='0'?'':'none']}"></div>
                  </div>
-                <div class="tab-item b-s" data-tabtype="1" @click="fChangeTab">预约下次面诊
+                <div class="tab-item b-s" data-tabtype="1" @click="fChangeTab('1')">预约下次面诊
                     <div class="tab-angle" :style="{display:[activeStatus=='1'?'':'none']}"></div></div>
-                <div class="tab-item b-s" data-tabtype="2" @click="fChangeTab">无需后续跟进
+                <div class="tab-item b-s" data-tabtype="2" @click="fChangeTab('2')">无需后续跟进
                     <div class="tab-angle" :style="{display:[activeStatus=='2'?'':'none']}"></div></div>
             </div>
            <div class="tab-content">
