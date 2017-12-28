@@ -162,7 +162,7 @@ export default {
         },
        /* 左侧选项控制右侧界面*/
         setscroll(params){
-            var distop=""+params; 
+            var distop=""+params;
 
             var  disTop=document.getElementById(distop).offsetTop;
 

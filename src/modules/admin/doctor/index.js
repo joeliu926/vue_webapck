@@ -43,7 +43,7 @@ export default {
 
 		},
 		genderFilter: function(input) {
-			let result = "其他";
+			let result = "未知";
 			if(input == "1") {
 				result = "男";
 			} else if(input == "2") {

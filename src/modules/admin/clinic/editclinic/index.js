@@ -16,6 +16,7 @@ export default {
             oMajorBusinessList: [], //主营业务列表
             oProductCode: [], //项目编码集合
             oSelectMajorItems: [], //选中的主营业务
+            majorBusinessNO: "", //主营业务废弃
             inauguralState: "",
             clinicLogo: "",
             sAddress:"",
@@ -115,10 +116,14 @@ export default {
                 _This.$message.error("请输入正确的电话号码");
                 return false;
             }
-            if(_This.oSelectMajorItems.length<=0){
+            if(!/\S{1,}/.test(_This.oClinicData.majorBusiness)){
                 _This.$message.error("请输入主营业务");
                 return false;
             }
+    /*        if(_This.oSelectMajorItems.length<=0){
+                _This.$message.error("请输入主营业务");
+                return false;
+            }*/
             if(!_This.oClinicData.logo){
                 _This.$message.error("请上传诊所Logo");
                 return false;
@@ -259,8 +264,7 @@ export default {
                     if(result.code == 0 && result.data) {
                         delete result.data.page;
                         _This.oClinicData = result.data;
-                        _This.oSelectMajorItems = result.data.productNames;
-                        //_This.defaultImg=_This.oClinicData.logo;
+                        _This.oSelectMajorItems = result.data.productNames||[];
                         _This.sAddress=_This.oClinicData.address;
                         _This.oSelectMajorItems.forEach(item => {
                             _This.oProductCode.push(item.productCode);

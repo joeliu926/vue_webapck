@@ -18,6 +18,7 @@
          color: white;
          box-sizing: border-box;
          padding: 0 30px;
+         font-size:16px;
         .el-col:first-child{
             text-align: left;
         }
