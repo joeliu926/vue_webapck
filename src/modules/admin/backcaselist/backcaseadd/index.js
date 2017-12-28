@@ -227,7 +227,6 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
-                console.log("==========",this.caseDetail);
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -368,8 +367,17 @@ export default {
             var beforeimgFile = e.target.files[0];
           //  console.log("img---->", beforeimgFile);
             if(beforeimgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
                 return false;
             }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=beforeimgFile.name.substr(beforeimgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
+
             var fdata = new FormData();
             fdata.append('beforeimgFile', beforeimgFile);
             fdata.append('user', "test");
@@ -397,6 +405,13 @@ export default {
             let _This = this;
             var afterimgFile = e.target.files[0];
             if(afterimgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=afterimgFile.name.substr(afterimgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
                 return false;
             }
             var fdata = new FormData();
@@ -445,8 +460,8 @@ export default {
                 _This.$message.error("图片大小不能超过5M");
                 return false;
             }
-            let aLogoType=["jpg","jpeg","png","bmp"];
-            let imgName=imgFile.name.split(".")[1].toLocaleLowerCase();
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
             if(aLogoType.indexOf(imgName)<0){
                 _This.$message.error("上传图片格式错误");
                 return false;

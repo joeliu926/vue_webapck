@@ -288,8 +288,8 @@ export default {
             let _This = this;
             var imgFile = e.target.files[0];
 
-            let aLogoType=["jpg","jpeg","png","bmp"];
-            let imgName=imgFile.name.split(".")[1].toLocaleLowerCase();
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
             if(aLogoType.indexOf(imgName)<0){
                 _This.$message.error("上传图片格式错误");
                 return false;
