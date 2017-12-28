@@ -29,32 +29,7 @@ export default {
                 _this.userName=res.loginName;
                 let _menus = res.menus?res.menus:[];
                 _this.userImage = res.headImgUrl;
-                _menus.forEach(m=>{
-                    let menusid =m.split(':')[2];
-                    switch(menusid){
-                        case "home":
-                            _this.menusList.push({index:0,id:menusid,name:'首页',url:'/'});
-                            break;
-                        case "customer":
-                            _this.menusList.push({index:1,id:menusid,name:'联系人中心',url:'/customers'});
-                            break;
-                        case "consultdashboard":
-                            _this.menusList.push({index:2,id:menusid,name:'咨询台',url:'/consultdashboard'});
-                            break;
-                        case "kb":
-                            _this.menusList.push({index:4,id:menusid,name:'案例中心',url:'/case_base'});
-                            break;
-                        case "triage":
-                            _this.menusList.push({index:3,id:menusid,name:'分诊中心',url:'/triage/list'});
-                            break;
-                        case "systembackground":
-                            _this.backgroundRight =true;
-                            break;
-                    }
-                });
-                _this.menusList.sort(function (a,b) {
-                    return a.index>b.index;
-                })
+
             }
         },'withCredentials');
         this.auth();

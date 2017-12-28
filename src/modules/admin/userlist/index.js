@@ -23,6 +23,23 @@ export default {
     destroyed() {
 
     },
+    filters:{
+        /**
+         * 角色过滤
+         * @param input
+         * @returns {*}
+         */
+        rolesFilter:function (input) {
+            if(!input||!Array.isArray(input)){
+                return "";
+            }
+            let result=[];
+            input.forEach(item=>{
+                result.push(item.name);
+            });
+            return result.join("、");
+        }
+    },
     methods: {
         createUser(){
             this.$router.push("/admin/userlist/edit/_EPT");
