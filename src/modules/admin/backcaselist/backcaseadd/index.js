@@ -389,7 +389,7 @@ export default {
                     }
                 },
                 error: function(result) {
-                    this.$message.error("图片大小不能超过5M！");
+                    this.$message.error("图片大小不能超过5M!");
                     // console.log("error-- result------>", result)
                 }
             });
@@ -421,7 +421,7 @@ export default {
                     }
                 },
                 error: function(result) {
-                    this.$message.error("图片大小不能超过5M！");
+                    this.$message.error("图片大小不能超过5M!");
                     // console.log("error-- result------>", result)
                 }
             });
@@ -472,8 +472,8 @@ export default {
                     }
                 },
                 error: function(result) {
-                    this.$message.error("图片大小不能超过5M！");
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M!");
+                    // console.log("error-- result------>", result)
                 }
             });
         },
@@ -528,6 +528,7 @@ export default {
             let itema="s"+index+"e";
             this.$refs[itema][0].click();
         },
+        /*段落添加*/
         fAddAfterCase(){
             let _This=this;
             _This.caseDetail.contentList.push(_This.addAfterCaseItem);

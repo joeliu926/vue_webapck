@@ -191,14 +191,14 @@
         </div>
             <div class="addimg clearfix">
                 <template v-for="picItem,pindex in afterItem.pictures">
-                <div class="fl">
-                    <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'" @change="fMultImgUpload">
-                    <div class="dynicPic" :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"  @click="fMultChooseafImg(index,pindex)">
-                    <!--    <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
-                             style="">-->
-                        <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)">
+                    <div class="fl">
+                        <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'" @change="fMultImgUpload">
+                        <div class="dynicPic" :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"  @click="fMultChooseafImg(index,pindex)">
+                        <!--    <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
+                                 style="">-->
+                            <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)">
+                        </div>
                     </div>
-                </div>
                 </template>
                 <div class="fl">
                     <input type="file" style="display: none;" :ref="'s'+index+'e'" @change="fMultImgUpload($event,index)">
