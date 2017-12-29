@@ -166,7 +166,7 @@ export default {
                        if(icode==1){
                        	 setTimeout(function(){
                        	 		_This.$router.push("/admin/doctor");
-                       	 },3000);
+                       	 },2000);
                        
                        }else{
                        	 _This.oDoctor={};

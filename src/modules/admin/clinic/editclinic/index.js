@@ -161,7 +161,7 @@ export default {
 
                         setTimeout(function () {
                             _This.$router.push("/admin/clinic/detail");
-                        },3000)
+                        },2000)
 
                     }else{
                         _This.$message.error("更新失败");
