@@ -177,15 +177,22 @@
             <div class="end-close" @click="fCloseEnddialog"><img src="../../common/img/i-cl-close.png"> </div>
             <div class="tab-head b-s">
                  <div class="tab-item b-s" data-tabtype="0" @click="fChangeTab('0')">已成功
-                     <div class="tab-angle" :style="{display:[activeStatus=='0'?'':'none']}"></div>
+                    <!-- <div class="tab-angle" :style="{display:[activeStatus=='0'?'':'none']}"></div>-->
+                     <div class="tab-angle" v-if="activeStatus=='0'"></div>
                  </div>
                 <div class="tab-item b-s" data-tabtype="1" @click="fChangeTab('1')">预约下次面诊
-                    <div class="tab-angle" :style="{display:[activeStatus=='1'?'':'none']}"></div></div>
+                 <!--   <div class="tab-angle" :style="{display:[activeStatus=='1'?'':'none']}"></div>-->
+                    <div class="tab-angle" v-if="activeStatus=='1'"></div>
+
+                </div>
                 <div class="tab-item b-s" data-tabtype="2" @click="fChangeTab('2')">无需后续跟进
-                    <div class="tab-angle" :style="{display:[activeStatus=='2'?'':'none']}"></div></div>
+                   <!-- <div class="tab-angle" :style="{display:[activeStatus=='2'?'':'none']}"></div>-->
+                    <div class="tab-angle" v-if="activeStatus=='2'"></div>
+                </div>
             </div>
            <div class="tab-content">
-               <div class="tab-ct-item" :style="{display:[activeStatus=='0'?'':'none']}">
+               <!--<div class="tab-ct-item" :style="{display:[activeStatus=='0'?'':'none']}">-->
+               <div class="tab-ct-item" v-if="activeStatus=='0'">
                    <el-checkbox-group v-model="consultItems" @change="fChangeCheck">
                        <el-checkbox-button v-for="eitem in routerParam.projects" :label="eitem.projectCode" :key="eitem.projectCode">{{eitem.projectName}}</el-checkbox-button>
                    </el-checkbox-group>
@@ -217,7 +224,8 @@
                            type="error">
                    </el-alert></div>
                </div>
-               <div class="tab-ct-item" :style="{display:[activeStatus=='1'?'':'none']}">
+              <!-- <div class="tab-ct-item" :style="{display:[activeStatus=='1'?'':'none']}">-->
+               <div class="tab-ct-item" v-if="activeStatus=='1'">
                    <div class="set-date-ct">
                        <label class="lb-date">设置面诊时间</label>
                        <el-date-picker
@@ -243,7 +251,8 @@
                        </el-input>
                    </div>
                </div>
-               <div class="tab-ct-item" :style="{display:[activeStatus=='2'?'':'none']}">
+              <!-- <div class="tab-ct-item" :style="{display:[activeStatus=='2'?'':'none']}">-->
+               <div class="tab-ct-item" v-if="activeStatus=='2'">
                    <div class="search-ct">
                        <el-input class="end-reason-input"
                                placeholder="原因"
