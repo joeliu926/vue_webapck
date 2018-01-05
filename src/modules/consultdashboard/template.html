@@ -85,7 +85,7 @@
 
                             </div>
 
-                            <div class="customer-block-content customer-pagination-align">
+                            <div v-if="count" class="customer-block-content customer-pagination-align">
                                 <el-pagination
                                         @current-change="handleCurrentChange"
                                         layout="prev, pager, next"

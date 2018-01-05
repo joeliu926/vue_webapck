@@ -214,6 +214,13 @@ export default {
                 this.$message.error('图片大小不能超过5M！');
                 return false;
             }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
             var fdata = new FormData();
             fdata.append('imgFile', imgFile);
             fdata.append('user',"test");
@@ -235,28 +242,34 @@ export default {
             });
         },
         authData(){
+            this.userInfo.name= this.userInfo.name.replace(/\s/g,'');
 
-            if(/^[^ ]+$/.test(this.userInfo.name)){
-                //return true;
-            }else{
-                this.$message.error("用户名不能为空");
+            if(_.strLength(this.userInfo.name)>12||_.strLength(this.userInfo.name)==0){
+                this.$message.error("名称应为1到6个汉字或12个字符");
                 return false;
-            }
 
-            if(/1\d{10}/.test(this.userInfo.mobile)){
+            }
+            /*if(/^[^ ]{1,6}$/.test(this.userInfo.name)){
+            }else{
+                this.$message.error("名称1到6个字符");
+                return false;
+            }*/
+
+            if(/^1\d{10}$/.test(this.userInfo.mobile)){
                 //return true;
             }else{
                 this.$message.error("手机号不正确");
                 return false;
-
             }
+            this.userInfo.loginName= this.userInfo.loginName.replace(/\s/g,'');
 
-            if(/^[^ ]+$/.test(this.userInfo.loginName)){
+            if(/^\w{1,16}$/.test(this.userInfo.loginName)){
                // return true;
             }else{
-                this.$message.error("登陆名不能为空");
+                this.$message.error("用户名1到16个字符");
                 return false;
             }
+
             let checkArray =this.roleList.filter(function (m) {
                 return m.checked ==true;
             });

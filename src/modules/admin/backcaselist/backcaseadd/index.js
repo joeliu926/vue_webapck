@@ -209,6 +209,7 @@ export default {
                             });
                             if(icode==1){
                                 setTimeout(function(){
+
                                     _This.$router.push("/admin/backcaselist");
                                 },3000);
 
@@ -255,31 +256,24 @@ export default {
          * @param item
          */
         fRemoveProduct(item){
+
+            // console.log("============","+++++++++++++",this.oProductCode);
             let _This=this;
             let index= _This.caseDetail.products.indexOf(item);
             if(index>=0){
                 _This.oProductCode.splice(index,1);
                 _This.caseDetail.products.splice(index,1);
             }
+            // console.log(this.caseDetail.products);
         },
 
-        /**
-         * 诊疗时间判断
-         */
-        processDate(){
-            return {
-                disabledDate(time){
-                    return time.getTime() > Date.now()//诊疗时间最大值小于等于当天
-                }
-            }
-        },
         /**
          * 选中诊疗项目
          * @param item
          */
         fSelectProductItem(item){
             let _This=this;
-             if(_This.oProductCode.indexOf(item.id)<0)
+             if(_This.oProductCode.indexOf(item.id))
              {
                  _This.oProductCode.push(item.id);
                  delete item.page;
@@ -304,7 +298,6 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("-------",result)
                         if(result.code==0){
                            // let list=result.data;
                             _This.searchData=result.data;
@@ -312,11 +305,20 @@ export default {
                                 _This.searchData.push(item);
                             });*/
                         }
-
                     }
                 }, 'withCredentials');
             } else {
                 this.searchData = [];
+            }
+        },
+        /**
+         * 诊疗时间判断
+         */
+        processDate(){
+            return {
+                disabledDate(time){
+                    return time.getTime() > Date.now()//诊疗时间最大值小于等于当天
+                }
             }
         },
         fDoctorChange(item){
@@ -328,13 +330,9 @@ export default {
                 this.oSelectDoc=item.name;
             }
         },
-
         /*添加描述信息*/
         addtextareas(param){
-            console.log(param);
             this.textareas.push(param);
-            console.log(this.textareas);
-
             this.textarea="";
         },
         /*获取医生列表*/
@@ -348,7 +346,6 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log(_this.doctorlist);
                     _this.doctorlist=result.data;
                 }
             }, 'withCredentials');
@@ -370,8 +367,17 @@ export default {
             var beforeimgFile = e.target.files[0];
           //  console.log("img---->", beforeimgFile);
             if(beforeimgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
                 return false;
             }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=beforeimgFile.name.substr(beforeimgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
+
             var fdata = new FormData();
             fdata.append('beforeimgFile', beforeimgFile);
             fdata.append('user', "test");
@@ -389,7 +395,8 @@ export default {
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M!");
+                    // console.log("error-- result------>", result)
                 }
             });
         },
@@ -398,6 +405,13 @@ export default {
             let _This = this;
             var afterimgFile = e.target.files[0];
             if(afterimgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=afterimgFile.name.substr(afterimgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
                 return false;
             }
             var fdata = new FormData();
@@ -420,7 +434,8 @@ export default {
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M!");
+                    // console.log("error-- result------>", result)
                 }
             });
         }
@@ -445,8 +460,8 @@ export default {
                 _This.$message.error("图片大小不能超过5M");
                 return false;
             }
-            let aLogoType=["jpg","jpeg","png","bmp"];
-            let imgName=imgFile.name.split(".")[1].toLocaleLowerCase();
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
             if(aLogoType.indexOf(imgName)<0){
                 _This.$message.error("上传图片格式错误");
                 return false;
@@ -470,13 +485,19 @@ export default {
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    this.$message.error("图片大小不能超过5M!");
+                    // console.log("error-- result------>", result)
                 }
             });
         },
+
+        /**
+         *删除一个段落（关闭按钮）
+         */
         fDeleteAfterItem(index){
             let _This=this;
             _This.caseDetail.contentList.splice(index,1);
+
         },
         /**
          * 多文件上传
@@ -504,6 +525,7 @@ export default {
                     }
                 },
                 error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
                     console.log("error-- result------>", result)
                 }
             });
@@ -514,9 +536,6 @@ export default {
          * @param pindex
          */
         fMultChooseafImg(index,pindex){
-
-            console.log(index,"-----",pindex);
-
             let _This=this;
             _This.afterIndex=index;
            // _This.afterPIndex=pindex;
@@ -524,10 +543,18 @@ export default {
             let itema="s"+index+"e";
             this.$refs[itema][0].click();
         },
+        /**
+         * 添加多案例
+         */
         fAddAfterCase(){
             let _This=this;
-            _This.caseDetail.contentList.push(_This.addAfterCaseItem);
+            let temCase=JSON.stringify(_This.addAfterCaseItem);
+            _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
+        /**
+         *删除单个的图片
+         */
+
         fDeletePic(ee,index,pindex){
             let _This=this;
             ee.cancelBubble = true;

@@ -54,7 +54,6 @@ var routerConfig = {
             path: '/login',
             component:login
         },
-
         {
             name:'/customers',
             path: '/customers',

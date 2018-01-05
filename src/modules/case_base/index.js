@@ -8,15 +8,16 @@ export default {
         };
     },
     created() {
-        let _This=this;
-        document.querySelector('body').onscroll = function() { _This.onscorllevent() };
+
         this.getdata();
     },
     mounted(){
-
+        this.$nextTick(function () {
+            window.addEventListener("scroll", this.onscorllevent);
+        })
     },
     destroyed() {
-
+        window.removeEventListener("scroll", this.onscorllevent);
     }, 
     methods: {
         getdata(){

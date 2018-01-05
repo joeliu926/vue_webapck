@@ -34,8 +34,6 @@ export default {
                 let fitlerarray  = [];
                 _menus.forEach(m=>{
                     let menusid =m.split(':')[2];
-
-
                     if(fitlerarray.indexOf(menusid)!=-1)
                     {
                         return;
@@ -48,19 +46,19 @@ export default {
                                 _this.menusList.push(_mehome);
                             break;
                         case "customer":
-                            let customers ={index:0,id:menusid,name:'联系人中心',url:'/customers'};
+                            let customers ={index:1,id:menusid,name:'联系人中心',url:'/customers'};
                                 _this.menusList.push(customers);
                             break;
                         case "consultdashboard":
-                            let consultdashboard ={index:0,id:menusid,name:'咨询台',url:'/consultdashboard'};
+                            let consultdashboard ={index:2,id:menusid,name:'咨询台',url:'/consultdashboard'};
                                 _this.menusList.push(consultdashboard);
                             break;
                         case "kb":
-                            let case_base ={index:0,id:menusid,name:'案例中心',url:'/case_base'};
+                            let case_base ={index:4,id:menusid,name:'案例中心',url:'/case_base'};
                                 _this.menusList.push(case_base);
                             break;
                         case "triage":
-                            let triage ={index:0,id:menusid,name:'分诊中心',url:'/triage/list'};
+                            let triage ={index:3,id:menusid,name:'分诊中心',url:'/triage/list'};
                                 _this.menusList.push(triage);
                             break;
                         case "systembackground":
