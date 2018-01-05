@@ -45,18 +45,25 @@ export default {
         setscroll(params){
             var distop=""+params;
             var  disTop=document.getElementById(distop).offsetTop;
-           // console.log(disTop);
-            document.documentElement.scrollTop=disTop-256;
-            this.changestyle=params;
+            if(document.documentElement.scrollTop==0) {
+                document.body.scrollTop=disTop-132;
+            }else{
+                document.documentElement.scrollTop=disTop-132;
+            }
+            this.$nextTick(function () {
+                this.changestyle=params;
+            })
 
         },
         onscorllevent(params){
             this.product.forEach(m=>{
 
                 var disTop=document.getElementById(m.productCode).offsetTop;
-
-                var scrolltop = document.documentElement.scrollTop;
-
+                if(document.documentElement.scrollTop==0) {
+                    var scrolltop = document.body.scrollTop;
+                }else{
+                    var scrolltop = document.documentElement.scrollTop;
+                }
                 if(disTop<scrolltop+350&&disTop>scrolltop-250){
                     this.changestyle=  m.productCode;
                 }
