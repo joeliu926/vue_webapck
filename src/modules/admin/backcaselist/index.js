@@ -112,7 +112,6 @@ export default {
                 _This.fCaseDelete(caseid);
             });
         },
-
         /**
          * 案例删除
          * @param caseid

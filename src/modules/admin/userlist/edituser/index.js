@@ -214,6 +214,13 @@ export default {
                 this.$message.error('图片大小不能超过5M！');
                 return false;
             }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
             var fdata = new FormData();
             fdata.append('imgFile', imgFile);
             fdata.append('user',"test");

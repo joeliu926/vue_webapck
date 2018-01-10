@@ -266,9 +266,11 @@ export default {
          * @param e
          */
         fChangeTab(e){
+
             let _This = this;
-            let dataSet = e.target.dataset;
-            _This.activeStatus = dataSet.tabtype;
+            /*let dataSet = e.target.dataset;
+            _This.activeStatus = dataSet.tabtype;*/
+            _This.activeStatus = e;
         },
         /**
          * 结束框选择项目
@@ -437,7 +439,7 @@ export default {
         fShowNextCase(param){
 
             let _This = this;
-            //console.log("next------>", _This.oShowCaseList,_This.oCurrentShowItem);
+            //console.log("next------>", _This.oCurrentShowItem);
             let caseLength = _This.oShowCaseList.length;
             if (param < 0) {
                 _This.oCurrentShowItemIndex--;
@@ -658,18 +660,22 @@ export default {
          * 根据名称模糊查询客户列表
          */
         fGetCustomerList(ename){
+
             var _This = this;
-            if (!_This.routerParam.adddiag) {
-                return false;
-            }
+        /*    if (!_This.routerParam.adddiag) {
+                //console.log("1111-ename------>",ename);
+                //return false;
+            }*/
             if (ename == "") {
                 return false;
             }
+
             _This.fSearchUserDpData(ename, function (result) {
                 if (result.code == 0 && result.data) {
                     _This.oNameList = result.data.list;
                    // _This.oCustomer.name = ename;
-                    _This.temOcustomerName=ename;
+                   // _This.temOcustomerName=ename;//_This.temOcustomerName=ename.split("-")[0];
+                    _This.temOcustomerName=ename.split("-")[0];;
                 }
             });
         },

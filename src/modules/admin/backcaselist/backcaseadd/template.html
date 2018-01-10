@@ -1,251 +1,264 @@
 <div class="admin-caseadd clearfix">
     <div class="admin-lbox fram-box fl">
         <tree></tree>
-    </div><div class="admin-rbox fram-box fr" >
-    <div class="out-box-border innerbox"  style="padding: 12px;">
-        <!--案例创建头部 保存 和 取消按钮....-->
-        <div class="case-record">
-            <div class="record-text-ct">
-                <div>
-                    <span class="sel-title">案例创建/修改</span>
+    </div>
+    <div class="admin-rbox fram-box fr">
+        <div class="out-box-border innerbox" style="padding: 12px;">
+            <!--案例创建头部 保存 和 取消按钮....-->
+            <div class="case-record">
+                <div class="record-text-ct">
+                    <div>
+                        <span class="sel-title">案例创建/修改</span>
+                    </div>
+                </div>
+                <div class="case-edit-ct">
+                    <el-button @click="Savecase(1)">保存</el-button>
+                    <el-button @click="Savecase(0)">保存并新建</el-button>
+                    <el-button @click="backlist">取消</el-button>
                 </div>
             </div>
-            <div class="case-edit-ct">
-                <el-button @click="Savecase(1)">保存</el-button>
-                <el-button @click="Savecase(0)">保存并新建</el-button>
-                <el-button @click="backlist">取消</el-button>
-            </div>
-        </div>
 
-        <!-- 一般信息 -->
-        <div class="segment-title f-14">
-            <span class="s-title-l">一般信息</span>
-            <span class="s-title-r">*必填信息</span>
-        </div>
-        <div class="case-info-ct">
-            <div class="row-ct" >
-                <div class="row-item" >
-                    <span class="row-item-title f-14"  ><i class="i-must">*</i> 案例名称</span>
-                    <el-input class="row-item-value" v-model="caseDetail.caseName" ></el-input>
+            <!-- 一般信息 -->
+            <div class="segment-title f-14">
+                <span class="s-title-l">一般信息</span>
+                <span class="s-title-r">*必填信息</span>
+            </div>
+            <div class="case-info-ct">
+                <div class="row-ct">
+                    <div class="row-item">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 案例名称</span>
+                        <el-input class="row-item-value" v-model="caseDetail.caseName"></el-input>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 案例 -->
-        <div class="segment-title f-14">
-            <span class="s-title-l">案例</span>
-            <span class="s-title-r">*必填信息</span>
-        </div>
-        <div class="case-info-ct">
-            <div class="row-ct" >
-                <div class="row-item" style="margin-bottom:20px;">
-                    <span class="row-item-title f-14"><i class="i-must">*</i> 医生</span>
-                    <el-select v-model="oSelectDoc" @change="fDoctorChange"  placeholder="请选择">
-                        <el-option
-                                v-for="item in doctorlist"
-                                :key="item.id"
-                                :label="item.name"
-                                :value="item">
-                        </el-option>
-                    </el-select>
+            <!-- 案例 -->
+            <div class="segment-title f-14">
+                <span class="s-title-l">案例</span>
+                <span class="s-title-r">*必填信息</span>
+            </div>
+            <div class="case-info-ct">
+                <div class="row-ct">
+                    <div class="row-item" style="margin-bottom:20px;">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 医生</span>
+                        <el-select v-model="oSelectDoc" @change="fDoctorChange" placeholder="请选择">
+                            <el-option
+                                    v-for="item in doctorlist"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item">
+                            </el-option>
+                        </el-select>
+                    </div>
+
+                    <div class="row-item" style="margin-bottom:20px;">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 诊疗项目</span>
+                        <el-select
+                                v-model="productItem"
+                                filterable
+                                remote
+                                reserve-keyword
+                                placeholder="请输入关键词"
+                                @change="fSelectProductItem"
+                                :remote-method="fAutoProduct"
+                        >
+                            <el-option
+                                    v-for="item in searchData"
+                                    :key="item.id"
+                                    selected
+                                    :label="item.productName"
+                                    :value="item">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="row-item" style="width: 400px;">
+                        <div class="major-project" style="">
+                            <template v-for="item in caseDetail.products">
+                                <span class="goodat f-14">{{item.productName}}<i class="el-icon-pa-close i-close-p"
+                                                                                 @click="fRemoveProduct(item)"
+                                                                                 style=""></i></span>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="row-item">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 诊疗时间</span>
+                        <el-date-picker
+                                v-model="caseDetail.operationDate"
+                                type="date"
+                                width="200"
+                                :picker-options="endDatePicker"
+                                placeholder="选择日期">
+                        </el-date-picker>
+                    </div>
                 </div>
+            </div>
 
-                <div class="row-item" style="margin-bottom:20px;" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗项目</span>
-                    <el-select
-                            v-model="productItem"
-                            filterable
-                            remote
-                            reserve-keyword
-                            placeholder="请输入关键词"
-                            @change="fSelectProductItem"
-                            :remote-method="fAutoProduct"
-                            >
-                        <el-option
-                                v-for="item in searchData"
-                                :key="item.id"
-                                selected
-                                :label="item.productName"
-                                :value="item">
-                        </el-option>
-                    </el-select>
+            <!--术前/术后照的设置-->
+            <div class="segment-title f-14">
+                <span class="s-title-l">术前/术后照的设置</span>
+                <span class="s-title-r">*必填信息</span>
+            </div>
+            <div class="picture-box clearfix">
+                <div class="before-box fl">
+                    <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
+                        <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                        <input type="file" style="display: none;" ref="beforeImg" @change="beforeImgUpload">
+                        <div class="doctor-img"
+                             :style="{backgroundImage:['url('+(caseDetail.beforePicture.url||bydefault)+')']}"
+                             @click="fChoosebfImg"></div>
+                    </div>
+                    <div style="text-align: center;">术前</div>
                 </div>
-                <div class="row-item" style="width: 400px;">
+                <div class="after-box fl">
+                    <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
+                        <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                        <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
+                        <div class="doctor-img"
+                             :style="{backgroundImage:['url('+(caseDetail.afterPicture.url||bydefault)+')']}"
+                             @click="fChooseafImg"></div>
+                    </div>
+                    <div style="text-align: center;">术后</div>
+                </div>
+                <div class="description fl">
+                    <p>尺寸 : 375 × 620px </p>
+                    <p>格式 : jpg 、png 、jpeg 、bmp </p>
+                    <p>大小 : 5MB以内</p>
+                </div>
+            </div>
 
-                    <div class="major-project" style="">
-                        <template v-for="item in caseDetail.products">
-                            <span class="goodat f-14">{{item.productName}}<i class="el-icon-pa-close i-close-p" @click="fRemoveProduct(item)" style=""></i></span>
+            <!-- 求美者信息 -->
+            <div class="segment-title f-14">
+                <span class="s-title-l">求美者信息</span>
+                <span class="s-title-r">*必填信息</span>
+            </div>
+            <div class="case-info-ct">
+                <div class="row-ct">
+                    <div class="row-item logo-ct" style="">
+                        <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
+                        <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
+                        <div class="doctor-img"
+                             :style="{backgroundImage:['url('+(caseDetail.customerLogo.url||bydefault)+')']}"
+                             @click="fChooseImg"></div>
+                        <div class="format-ct" style="">
+                            <div class="f-14">格式:jpg、jpeg、png、bmp</div>
+                            <div class="f-14">大小：5M以内</div>
+                        </div>
+                        <input @change="fileChange($event)" type="file" id="upload_file" multiple
+                               style="display: none"/>
+                    </div>
+                </div>
+                <div class="row-ct">
+                    <div class="row-item">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 性别</span>
+                        <el-select v-model="caseDetail.customerGender" placeholder="请选择">
+                            <el-option
+                                    v-for="item in optGender"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </div>
+                </div>
+                <div class="row-ct">
+                    <div class="row-item">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 年龄</span>
+                        <el-input class="row-item-value" ref="customerAge" v-model="caseDetail.customerAge"></el-input>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--求美日记-->
+            <div class="segment-title f-14">
+                <span class="s-title-l">求美日记</span>
+                <span class="s-title-r">*必填信息</span>
+            </div>
+            <template v-for="afterItem,index in caseDetail.contentList">
+                <div style="border-bottom: 1px dashed #bfcbd9;padding:0 0 24px 0;margin:0 0 10px 0;">
+                    <div class="case-info-ct">
+                        <div class="row-ct clearfix">
+                            <div class="row-item fl">
+                                <span class="row-item-title f-14"><i class="i-must">*</i> 段落标题</span>
+                                <el-input class="row-item-value" ref="title" v-model="afterItem.title"></el-input>
+                            </div>
+                            <div class="row-item fl">
+                                <span class="row-item-title f-14"><i class="i-must">*</i> 恢复日期</span>
+                                <el-date-picker
+                                        v-model="afterItem.definitionDate"
+                                        type="date"
+                                        placeholder="选择日期">
+                                </el-date-picker>
+                            </div>
+                            <span class="" style="float: right;cursor: pointer;"
+                                  @click="fDeleteAfterItem(index)">关闭</span>
+                        </div>
+                    </div>
+                    <div class="row-item ">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 补充求美照片</span>
+                        <span style="font-size:14px;color:#999;">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
+                    </div>
+                    <div class="addimg clearfix">
+                        <template v-for="picItem,pindex in afterItem.pictures">
+                            <div class="fl">
+                                <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'"
+                                       @change="fMultImgUpload">
+                                <div class="dynicPic"
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
+                                     @click="fMultChooseafImg(index,pindex)">
+                                    <!--    <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
+                                             style="">-->
+                                    <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
+                                         @click="fDeletePic($event,index,pindex)">
+                                </div>
+                            </div>
                         </template>
+                        <div class="fl">
+                            <input type="file" style="display: none;" :ref="'s'+index+'e'"
+                                   @change="fMultImgUpload($event,index)">
+                            <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"
+                                 @click="fMultChooseafImg(index)">
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-                <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 诊疗时间</span>
-                    <el-date-picker
-                        v-model="caseDetail.operationDate"
-                        type="date"
-                        width="200"
-                        :picker-options="endDatePicker"
-                        placeholder="选择日期">
-                    </el-date-picker>
-                </div>
-            </div>
-        </div>
-
-        <!--术前/术后照的设置-->
-        <div class="segment-title f-14">
-            <span class="s-title-l">术前/术后照的设置</span>
-            <span class="s-title-r">*必填信息</span>
-        </div>
-        <div class="picture-box clearfix">
-            <div class="before-box fl">
-                <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
-                    <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
-                    <input type="file" style="display: none;" ref="beforeImg" @change="beforeImgUpload">
-                    <div class="doctor-img" :style="{backgroundImage:['url('+(caseDetail.beforePicture.url||bydefault)+')']}" @click="fChoosebfImg"></div>
-                </div>
-                <div style="text-align: center;">术前</div>
-            </div>
-            <div class="after-box fl">
-                <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
-                    <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
-                    <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
-                    <div class="doctor-img" :style="{backgroundImage:['url('+(caseDetail.afterPicture.url||bydefault)+')']}" @click="fChooseafImg"></div>
-                </div>
-                <div style="text-align: center;">术后</div>
-            </div>
-            <div class="description fl">
-                <p>尺寸 : 375 × 620px </p>
-                <p>格式 : jpg 、png 、jpeg 、bmp </p>
-                <p>大小 : 5MB以内</p>
-            </div>
-        </div>
-
-        <!-- 求美者信息 -->
-        <div class="segment-title f-14">
-            <span class="s-title-l">求美者信息</span>
-            <span class="s-title-r">*必填信息</span>
-        </div>
-        <div class="case-info-ct">
-            <div class="row-ct">
-                <div class="row-item logo-ct" style="">
-                    <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i>头像</span>
-                    <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
-                    <div class="doctor-img" :style="{backgroundImage:['url('+(caseDetail.customerLogo.url||bydefault)+')']}" @click="fChooseImg"></div>
-                    <div class="format-ct" style="">
-                        <div class="f-14">格式:jpg、jpeg、png、bmp</div>
-                        <div class="f-14">大小：5M以内</div>
-                    </div>
-                    <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
-                </div>
-            </div>
-            <div class="row-ct" >
-                <div class="row-item" >
-                    <span class="row-item-title f-14"><i class="i-must">*</i> 性别</span>
-                    <el-select v-model="caseDetail.customerGender" placeholder="请选择">
-                        <el-option
-                                v-for="item in optGender"
-
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
-                </div>
-            </div>
-            <div class="row-ct" >
-                <div class="row-item" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 年龄</span>
-                    <el-input class="row-item-value" ref="customerAge" v-model="caseDetail.customerAge"></el-input>
-
-                </div>
-            </div>
-        </div>
-
-        <!--求美日记-->
-        <div class="segment-title f-14">
-            <span class="s-title-l">求美日记</span>
-            <span class="s-title-r">*必填信息</span>
-        </div>
-        <template v-for="afterItem,index in caseDetail.contentList">
-            <div style="border-bottom: 1px dashed #bfcbd9;padding:0 0 24px 0;margin:0 0 10px 0;">
-
-
-        <div class="case-info-ct">
-            <div class="row-ct clearfix" >
-                <div class="row-item fl" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 段落标题</span>
-                    <el-input class="row-item-value" ref="title" v-model="afterItem.title"></el-input>
-                </div>
-                <div class="row-item fl" >
-                    <span class="row-item-title f-14" ><i class="i-must">*</i> 恢复日期</span>
-                    <el-date-picker
-                            v-model="afterItem.definitionDate"
-                            type="date"
-                            placeholder="选择日期">
-                    </el-date-picker>
-                </div>
-                <span class="" style="float: right;cursor: pointer;" @click="fDeleteAfterItem(index)">关闭</span>
-            </div>
-        </div>
-        <div class="row-item " >
-            <span class="row-item-title f-14" ><i class="i-must">*</i> 补充求美照片</span>
-            <span style="font-size:14px;color:#999;">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
-        </div>
-            <div class="addimg clearfix">
-                <template v-for="picItem,pindex in afterItem.pictures">
-                <div class="fl">
-                    <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'" @change="fMultImgUpload">
-                    <div class="dynicPic" :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"  @click="fMultChooseafImg(index,pindex)">
-                    <!--    <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
-                             style="">-->
-                        <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)">
+                    <div class="addDescription">
+                        <p>添加一段描述</p>
+                        <div class="show" style="display: none;">
+                            <p v-for="item in  textareas" v-text="item"
+                               style="width:100%; height:15px; fontsize:14px;"></p>
+                        </div>
+                        <el-input
+                                type="textarea"
+                                width="40%"
+                                :autosize="{ minRows: 2, maxRows: 4}"
+                                placeholder="请输入内容"
+                                v-model="afterItem.description">
+                        </el-input>
                     </div>
                 </div>
-                </template>
-                <div class="fl">
-                    <input type="file" style="display: none;" :ref="'s'+index+'e'" @change="fMultImgUpload($event,index)">
-                    <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"  @click="fMultChooseafImg(index)">
-                    </div>
+            </template>
+
+            <div style="text-align: center;">
+                <el-button type="primary" @click="fAddAfterCase">添加</el-button>
+            </div>
+
+            <el-button type="primary" style="margin-left:10px;display: none;" @click="addtextareas(textarea)">完成
+            </el-button>
+            <!-- 保存 保存和新建 取消-->
+            <div class="case-record">
+                <div class="segment-title">
+
+                </div>
+                <div class="case-edit-ct">
+                    <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
+                    <el-button @click="Savecase(1)">保存</el-button>
+                    <el-button @click="Savecase(0)">保存并新建</el-button>
+                    <el-button @click="backlist">取消</el-button>
                 </div>
             </div>
-            <div class="addDescription">
-                <p>添加一段描述</p>
-                <div class="show" style="display: none;">
-                    <p v-for="item in  textareas" v-text="item" style="width:100%; height:15px; fontsize:14px;"></p>
-                </div>
-                <el-input
-                        type="textarea"
-                        width="40%"
-                        :autosize="{ minRows: 2, maxRows: 4}"
-                        placeholder="请输入内容"
-                        v-model="afterItem.description">
-                </el-input>
-            </div>
-            </div>
-        </template>
+            <div class="footer-b segment-title">
 
-        <div style="text-align: center;">
-            <el-button type="primary"  @click="fAddAfterCase">添加</el-button>
-        </div>
-
-        <el-button type="primary" style="margin-left:10px;display: none;" @click="addtextareas(textarea)">完成</el-button>
-        <!-- 保存 保存和新建 取消-->
-        <div class="case-record">
-            <div class="segment-title">
-
-            </div>
-            <div class="case-edit-ct">
-                <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
-                <el-button @click="Savecase(1)">保存</el-button>
-                <el-button @click="Savecase(0)">保存并新建</el-button>
-                <el-button @click="backlist">取消</el-button>
             </div>
         </div>
-        <div class="footer-b segment-title">
-
-        </div>
-</div>
     </div>
 </div>
