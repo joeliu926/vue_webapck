@@ -6,7 +6,7 @@ export default {
     },
     data () {
         return {
-
+            
             smalllist:[],//已选择项目列表
             product: [],//总的项目列表
             changestyle:1001,//左侧样式控制
@@ -163,22 +163,26 @@ export default {
        /* 左侧选项控制右侧界面*/
         setscroll(params){
             var distop=""+params;
-
             var  disTop=document.getElementById(distop).offsetTop;
-
-            document.documentElement.scrollTop=disTop-132;
-            this.changestyle=params;
-
+            if(document.documentElement.scrollTop==0) {
+                document.body.scrollTop=disTop-132;
+            }else{
+                document.documentElement.scrollTop=disTop-132;
+            }
+           this.$nextTick(function () {
+                this.changestyle=params;
+            })
         },
         /*滚动替换左侧选项*/
         onscorllevent(){
             this.product.forEach(m=>{
-
                 var disTop=document.getElementById(m.productCode).offsetTop;
-
-                var scrolltop = document.documentElement.scrollTop;
-
-                if(disTop<scrolltop+350&&disTop>scrolltop-350){
+                if(document.documentElement.scrollTop==0) {
+                    var scrolltop = document.body.scrollTop;
+                }else{
+                    var scrolltop = document.documentElement.scrollTop;
+                }
+                if(disTop<scrolltop+250&&disTop>scrolltop-350){
                     this.changestyle=  m.productCode;
                 }
             })
