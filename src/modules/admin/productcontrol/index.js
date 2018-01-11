@@ -166,9 +166,15 @@ export default {
             var  disTop=document.getElementById(distop).offsetTop;
             if(document.documentElement.scrollTop==0) {
                 document.body.scrollTop=disTop-132;
+                document.documentElement.scrollTop=disTop-132;
             }else{
                 document.documentElement.scrollTop=disTop-132;
             }
+           /* clearTimeout(timere);
+
+            var timere = setTimeout(function () {
+                this.changestyle=params;
+            }, 10);*/
            this.$nextTick(function () {
                 this.changestyle=params;
             })
