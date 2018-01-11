@@ -95,10 +95,9 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-
-                   // console.log(" _This.oClinicData------>", _This.oClinicData)
                     if(result.code==0&&result.data!="null"&&result.data.list.length>0){
                         _This.oClinicData=result.data.list[0];
+                        _This.fGetClinicDetail();
                     }
                     _This.fSearchAddressByAddress();
                     	//console.log("oClinicData.address--------",_This.oClinicData.address);
@@ -109,15 +108,19 @@ export default {
          * 获取诊所详情
          */
         fGetClinicDetail(){
+            let _This = this;
+            let clinicid = _This.oClinicData.clinicId;
             let postData = {
-               // faceId: ""
+                id: clinicid
             };
             _.ajax({
                 url: '/admin/clinic/get',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log("test--------", result);
+                    if(result.code == 0 && result.data) {
+                        _This.oClinicData = result.data;
+                    }
                 }
             }, 'withCredentials');
         },
