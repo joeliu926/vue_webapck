@@ -10,11 +10,10 @@ function resolve(relPath) {
     return path.resolve(__dirname, relPath);
 }
 
-
 /////////////////////////modify CONSTANT file///////////////////////////
 var sBaseUrl=process.argv[2]||"http://localhost:8023";
-
 var sWsUrl=process.argv[3]||"ws://localhost:8053/";
+var sUploadUrl=process.argv[4]||"https://nihaomc.com/uploadimg_test/";
 var constantFile="../src/common/utils/constants.js";
 var constantPath=path.join(__dirname,constantFile);
 var constantData = fs.readFileSync(constantPath,'utf-8');
@@ -27,8 +26,11 @@ constantData = constantData.replace(/wsReqUrl:\s*\S+?,/,function (word){
     return 'wsReqUrl:"'+sWsUrl+'",';
 });
 
-console.log('constantData',constantData);
+constantData = constantData.replace(/fileUpload:\s*\S+?,/,function (word){
+    return 'fileUpload:"'+sUploadUrl+'",';
+});
 
+console.log('constantData',constantData);
 fs.writeFileSync(constantPath, constantData, function(err) {
 	if(err) {
 		console.log("error! " + file);
