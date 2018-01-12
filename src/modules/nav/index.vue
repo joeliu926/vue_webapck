@@ -25,6 +25,9 @@
         >.el-col:last-child{
             text-align: right;
         }
+         .clinic-name{
+             font-size: 12px;height: 20px;overflow: hidden;  text-overflow: ellipsis;white-space:nowrap;width:140px
+         }
         .el-col:nth-child(2){
             text-align: center;
         }

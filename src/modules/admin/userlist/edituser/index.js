@@ -159,7 +159,12 @@ export default {
                         }, 'withCredentials');
                     }
                     else{
-                        _this.$message.error("保存失败");
+                        if(result.code==3006){
+                            _this.$message.error("用户名已存在，请调整用户名！");
+                        }else{
+                            _this.$message.error("保存失败");
+                        }
+
                     }
                 }
             }, 'withCredentials');

@@ -51,6 +51,7 @@
             }
             .clinic-info-ct{
                 padding: 20px 0;
+                .clinic-name{display:inline-block;overflow: hidden;  text-overflow: ellipsis;white-space:nowrap;width:150px}
                 .row-ct{
                     padding: 10px;
                     .row-item{
