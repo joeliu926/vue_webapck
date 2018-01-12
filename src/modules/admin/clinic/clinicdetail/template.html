@@ -50,10 +50,25 @@
                     <span class="row-item-value f-14" style="display: inline-block;">{{oClinicData.businessTime}}</span>
                 </div>
             </div>
+            <div class="row-ct">
+                <div class="row-item" style="" >
+                    <span class="row-item-title f-14 v-a-top">门店照片</span>
+                </div>
+                <div class="addimg clearfix">
+                    <template v-for="picItem,pindex in oClinicData.fileVo">
+                        <div class="fl">
+                            <div class="dynicPic trueImg"
+                                 :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
+                                 >
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
 
         </div>
 
-        <div class="segment-title f-14">地址</div>
+        <div class="segment-title f-14" style="clear: both;">地址</div>
         <div class="clinic-info-ct">
             <div class="row-ct">
                 <div class="row-item item-address" >
