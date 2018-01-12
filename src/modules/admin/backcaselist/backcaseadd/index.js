@@ -157,7 +157,9 @@ export default {
                 this.$message.error("年龄不能为空");
                 return false;
             }
-
+            /*
+            * 段落的标题和其他的验证；
+            * */
             var  authtitle=false;
             var  authdefinitionDate=false;
             var  authpictures=false;

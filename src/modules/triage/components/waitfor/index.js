@@ -46,7 +46,7 @@ export default {
         },
         array2String:function(input){
             if(input&&input!=""){
-                return  input.join("");
+                return  input.join("、");
             }
         },
         projectFilter: function (input) {
