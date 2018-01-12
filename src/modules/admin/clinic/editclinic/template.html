@@ -96,8 +96,37 @@
                     <el-input class="row-item-value"  type="textarea" autosize value="" v-model="oClinicData.businessTime" placeholder="营业时间"></el-input>
                 </div>
             </div>
+
+            <div class="row-ct">
+                <div class="row-item" style="" >
+                    <span class="row-item-title f-14 v-a-top"><i class="i-must">*</i>门店照片</span>
+                </div>
+                <div class="addimg clearfix">
+                    <template v-for="picItem,pindex in oClinicData.fileVo">
+                        <div class="fl">
+                            <input type="file" style="display: none;" :ref="'s1'+pindex+'e'"
+                                   @change="fMultImgUpload">
+                            <div class="dynicPic trueImg"
+                                 :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
+                                 @click="fMultChooseafImg(1,pindex)">
+                                <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
+                                     @click="fDeletePic($event,1,pindex)">
+                            </div>
+                        </div>
+                    </template>
+                    <div class="fl">
+                        <input type="file" style="display: none;" :ref="'s1e'"
+                               @change="fMultImgUpload($event,'s1e')">
+                        <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"
+                             @click="fMultChooseafImg('s1e')">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <div class="segment-title f-14"><span class="s-title-l">地址</span> <span class="s-title-r">*必填</span></div>
+        <div class="segment-title f-14" style="clear: both;"><span class="s-title-l">地址</span> <span class="s-title-r">*必填</span></div>
         <div class="clinic-info-ct">
             <div class="row-ct">
                 <div class="row-item" style="width: 400px;" >

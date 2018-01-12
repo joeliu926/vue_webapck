@@ -165,6 +165,57 @@
 							background-size: 100%;
 						}
 					}
+                    /*求美者*/
+                    .addimg{
+                        width:100%;
+                        padding:10px 20px;
+                        .fl{float: left;}
+                        .imgfilebox{
+                            margin-right:10px;
+                            margin-bottom:10px;
+                        }
+                        .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
+                        .dynicPic{
+                            display: inline-block;
+                            position: relative;
+                            width:160px;
+                            height:200px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            border: 1px dashed #bfcbd9;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            margin: 5px;
+                        }
+                        .trueImg{
+                          /*  border: none;*/
+                        }
+                        .add-img{
+                            width:60px;
+                            height:60px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            border: 1px dashed #bfcbd9;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            .add-icon{
+
+                            }
+                        }
+                        headerpic{
+                            margin-right:12px;
+                            width:60px;
+                            height:60px;
+                            border-radius: 6px;
+                            /*background:lightblue;*/
+                            img{
+                                width:100%;
+                                height:100%;
+                            }
+                        }
+                    }
 				}
 			}
 			.out-box-border {

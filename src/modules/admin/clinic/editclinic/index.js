@@ -11,6 +11,7 @@ export default {
     },
     data() {
         return {
+            bydefault:require("../../../../common/img/add-img-icon.png"),
             defaultImg: require("../../../../common/img/add-img-icon.png"), //默认上传图片
             majorBusiness: "", //主营业务
             oMajorBusinessList: [], //主营业务列表
@@ -318,6 +319,59 @@ export default {
                     console.log("error-- result------>", result)
                 }
             });
+        },
+        /**
+         * 多文件上传-------新加入
+         * @param ee
+         */
+        fMultImgUpload(ee){
+            let _This=this;
+            let index=_This.afterIndex;
+            var fdata = new FormData();
+            var imgFile = ee.target.files[0];
+            fdata.append('imgFile', imgFile);
+            fdata.append('fieldFlag', 1);
+          //  http://140.143.185.73:8083/api/clinic/upload
+            _This.imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
+            _.ajax({
+                url: _This.imgUploadUrl,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    let oClinicData=_This.oClinicData;
+                    _This.oClinicData.fileVo=_This.oClinicData.fileVo||[];
+                    if(result.code == 0 ) {
+                        _This.oClinicData.fileVo.push(result.data);
+                    }
+                },
+                error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
+                    console.log("error-- result------>", result)
+                }
+            });
+        },
+        /**
+         * 多文件形式-------新加
+         * @param index
+         * @param pindex
+         */
+        fMultChooseafImg(index,pindex){
+            let _This=this;
+            _This.afterIndex=index;
+            let itema=index;
+            this.$refs[itema].click();
+        },
+        /**
+         *删除多个的图片
+         */
+        fDeletePic(ee,index,pindex){
+            let _This=this;
+            ee.cancelBubble = true;
+            let oClinicData=_This.oClinicData;
+            _This.oClinicData.fileVo.splice(pindex,1);
         },
         /**
          * 获取地址map
