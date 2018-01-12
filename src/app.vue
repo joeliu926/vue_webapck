@@ -10,9 +10,11 @@
     .content{
 
     }
-    body{ margin:0px !important;
-
+    body{
+        margin:0px !important;
     }
 
-    html{ background:#f7f7f7 !important; }
+    html{
+        background:#f7f7f7 !important;
+    }
 </style>
