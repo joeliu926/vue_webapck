@@ -100,7 +100,7 @@ export default {
                         _This.fGetClinicDetail();
                     }
                     _This.fSearchAddressByAddress();
-                    	//console.log("oClinicData.address--------",_This.oClinicData.address);
+
                 }
             }, 'withCredentials');
         },

@@ -3,8 +3,8 @@
  */
 module.exports ={
     pageSize: 15,
-    host:"https://nihaomc.com/node_dev",
+    host:"http://localhost:8023",
     fileDownload:"",
     fileUpload:"https://nihaomc.com/uploadimg_dev/",
-    wsReqUrl:"ws://140.143.184.52:8055/",
+    wsReqUrl:"ws://localhost:8055/",
 };
