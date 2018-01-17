@@ -38,6 +38,8 @@ var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/u
 var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
 var admin_rolelist = r => require.ensure([], () => r(require('../modules/admin/rolelist/index.vue')), 'admin_rolelist');
 
+var admin_post = r => require.ensure([], () => r(require('../modules/admin/post/index.vue')), 'admin_post');
+
 var routerConfig = {
     linkActiveClass: 'active',
     routes: [
@@ -238,6 +240,13 @@ var routerConfig = {
             path: '/admin/userlist/edit/:id',
             components:{
                 default:admin_userlist_edit,
+                nav:admin_nav
+            }
+        }, {
+            name:'/admin/post',
+            path: '/admin/post',
+            components:{
+                default:admin_post,
                 nav:admin_nav
             }
         }

@@ -72,6 +72,12 @@ export default {
                     linkUrl:'/admin/backcaselist',
                     hightline:false,
                     needinit:false
+                },{
+                    id:'admin_post',
+                    label: '海报',
+                    linkUrl:'/admin/post',
+                    hightline:false,
+                    needinit:true
                 }]
             },
            /* {
