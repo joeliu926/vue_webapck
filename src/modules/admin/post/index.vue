@@ -105,11 +105,16 @@
                     }
                     .format-item{ /************图片模板版式**************/
                         width: 300px;
-                        height:400px;
+                        height:410px;
                         vertical-align: top;
                         position: relative;
                         margin-right: 24px;
                         border: 1px solid #9083ED;
+                        box-sizing: border-box;
+                        .post-pic-ct{
+                            width: 300px;
+                            height:340px;
+                        }
                         .post-pic{
                             width: 100%;
                         }
@@ -118,16 +123,18 @@
                             bottom: 0;
                             position: absolute;
                             box-sizing: border-box;
-
-                            padding: 12px;
-                            height: 100px;
+                            padding: 0 12px;
+                            height: 70px;
                             .des-logo{
-                                width: 48%;
+                                height: 70px;
+                                line-height: 70px;
                                 vertical-align: middle;
                                 text-align: center;
                                 .img-logo{
-                                    height: 60px;
-                                    width: 60px;
+                                    height: 48px;
+                                    width: 48px;
+                                    vertical-align: middle;
+                                    margin-right: 12px;
                                 }
                             }
                         }
