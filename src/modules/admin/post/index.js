@@ -12,19 +12,29 @@ export default {
         let defaultl=require("../../../common/img/login_logo.png");
         return {
             defaultImg: require("../../../common/img/add-img-icon.png"), //默认上传图片
-            imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",//上传图片地址
+            imgUploadUrl:CONSTANT.fileUpload+"api/posterInfo/uploadPosterPicture",//"attachment/upload",//上传图片地址
             addPost:false,//新增海报标志
             addPostcate:false, //新增海报分类状态
             eidtPostcate:false, //编辑海报分类状态
             currentEdit:0, //当前的编辑item
-            aPostClassify:[{id:1,name:"分类一"},{id:2,name:"分类二"},{id:3,name:"分类三"}],//海报分类
-            selectClassify:2,//选中的分类
-            uploadPostImg:""//当前上传的图片
+            aPostClassify:[],//海报分类
+            aPoster:[],//海报列表
+            selectClassify:"",//选中的分类
+            uploadPostImg:{},//当前上传的图片
+            categoryId:"",//分类id
+            pageNo:1,//第几页
+            pageSize:2,//每页条数
+            currentClassifyId:"",//当前分类id
+            currentClassifyName:"",//当前分类名称
+            count:"",//总条数
         };
     },
     filters:{
     },
     created() {
+        let _This=this;
+        _This.fGetClassify();//获取分类列表
+        _This.fGetPostClassify();//获取海报列表
     },
     mounted(){
     },
@@ -32,33 +42,55 @@ export default {
 
     },
     methods: {
-        fGetClinicDetail(){
-            let _This = this;
-            let clinicid = _This.oClinicData.clinicId;
-            let postData = {
-                id: clinicid
-            };
-            _.ajax({
-                url: '/admin/clinic/get',
-                method: 'POST',
-                data: postData,
-                success: function (result) {
-                    if(result.code == 0 && result.data) {
-                        _This.oClinicData = result.data;
-                    }
-                }
-            }, 'withCredentials');
-        },
         /**
-         * 新增海报
+         * 新增海报按钮
          */
         fAddPost(){
             let _This = this;
             console.log("add post----------");
             _This.addPost=true;
-
-
+            _This.uploadPostImg={};
+            if(_This.aPostClassify.length>0){
+                _This.selectClassify=_This.aPostClassify[0].id;
+            }
         },
+        /**
+         * 新增海报确定
+         */
+        fSubAddPost(){
+            let _This = this;
+            let posterBody = _This.uploadPostImg.name;//海报体
+            let categoryId = _This.selectClassify;//分类ID
+            let formatId = _This.formatId||1; //版式ID
+            if(!categoryId){
+                _This.$message.error("请选择海报分类");
+                return false;
+            }
+            if(!posterBody){
+                _This.$message.error("请选择海报图片");
+                return false;
+            }
+            let postData = {
+                posterBody: posterBody,
+                categoryId: categoryId,
+                formatId: formatId
+            };
+            console.log("poster ---postData---",postData);
+            _.ajax({
+                url: '/admin/posterInfo/addposter',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("poster ---result---",result);
+                    if(result.code == 0 && result.data) {
+                        _This.addPost=false;
+                    }else {
+                        _This.$message.error("创建海报失败");
+                    }
+                }
+            }, 'withCredentials');
+        },
+
         /**
          * 关闭新增海报
          */
@@ -108,37 +140,38 @@ export default {
                 processData: false,
                 success: function(result) {
                     console.log("upload result-----",result);
-                    if(result.code == 0 && result.data.length > 0) {
-                       _This.uploadPostImg=result.data[0];
+                    if(result.code == 0 && result.data) {
+                       _This.uploadPostImg=result.data;
                     }
                 },
                 error: function(result) {
-                    console.log("error-- result------>", result)
+                    console.log("error-- result------>", result);
                 }
             });
         },
         /**
-         * 新增海报分类
+         * 新增海报分类按钮
          */
         fAddPostClassify(){
             let _This = this;
-            console.log("add post----------");
+            console.log("add post---11111111-------");
+            _This.currentClassifyId="";
+            _This.currentClassifyName="";
             _This.addPostcate=true;
         },
         /**
-         * 确认新增
+         * 确认新增海报分类
          */
         fAddCommit(){
+            console.log("333333------",this.fValidateEdit());
             let _This = this;
-            _This.addPostcate=false;
+            let categoryName= _This.currentClassifyName;
+            if(_This.fValidateEdit(categoryName)){
+                _This.fAddOrUpdateClassify();
+                _This.addPostcate=false;
+            }
+
             console.log("add sure----------")
-        },
-        /**
-         * 删除海报
-         */
-        fDelPost(item){
-            let _This=this;
-            console.log("delete post------>",item);
         },
         /**
          * 关闭新增
@@ -149,19 +182,54 @@ export default {
             console.log("add cancel----------")
         },
         /**
-         * 选择海报分类
-         * @param classid
+         * 添加更新分类
          */
-        fSelectClassify(classid){
+        fAddOrUpdateClassify(){
             let _This = this;
-            console.log("select classify-----",classid)
+            let categoryId = _This.currentClassifyId;
+            let categoryName = _This.currentClassifyName.trim();
+            let postData = {
+                id:categoryId,
+                categoryName:categoryName
+            };
+
+
+            _.ajax({
+                url: '/admin/postercategory/addorupdate',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("result---update---",result);
+                    if(result.code == 0 && result.data) {
+                        console.log("---categoryId---------",categoryId,!categoryId);
+                        if(!categoryId){
+                            _This.aPostClassify.push(result.data);
+                            _This.$message({message: '添加成功',
+                                type: 'success'
+                            });
+
+                        }else{
+                            _This.currentEdit=0;
+                            _This.$message({message: '更新成功',
+                                type: 'success'
+                            });
+                        }
+
+                    }
+                }
+            }, 'withCredentials');
         },
         /**
          * 编辑海报
          */
         fEditPost(item){
+
             let _This=this;
-            _This.currentEdit=item;
+            console.log("--index-----",_This.aPostClassify.indexOf(item));
+            _This.currentEdit=item.id;
+            _This.currentClassifyId=item.id;
+            _This.currentClassifyName=item.categoryName;
+            console.log("item------>",item);
         },
         /**
          * 编辑确认提交
@@ -172,9 +240,138 @@ export default {
                 _This.currentEdit=0;
                 return false;
             }
-            _This.currentEdit=item;
+            let categoryName= _This.currentClassifyName;
+            if(_This.fValidateEdit(categoryName)){
+                _This.fAddOrUpdateClassify();//更新分类
+                let iIndex=_This.aPostClassify.indexOf(item);
+                if(iIndex>=0){
+                    _This.aPostClassify[iIndex].categoryName=_This.currentClassifyName;
+                }
+            }
             console.log("edit classify-----",item)
+        },
+        /**
+         * 验证编辑添加分类信息
+         */
+        fValidateEdit(categoryName){
+            let _This=this;
+            if(categoryName==""){
+                _This.$message.error("分类名称不能为空");
+                return false;
+            }
+            let isExist=false;
+            _This.aPostClassify.forEach(function (item) {
+                if(item.categoryName==categoryName){
+                    isExist=true;
+                }
+            });
+
+            if(isExist){
+                _This.$message.error("分类名称已存在");
+                return false;
+            }
+            return true;
+        },
+        /**
+         * 获取分类列表
+         */
+        fGetClassify(){
+            let _This = this;
+            //let clinicid = _This.oClinicData.clinicId;
+            let postData = {
+            };
+            _.ajax({
+                url: '/admin/postercategory/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("category list----",result);
+                    if(result.code == 0 && result.data) {
+                        _This.aPostClassify=result.data;
+                    }
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取海报列表
+         */
+        fGetPostClassify(){
+            let _This = this;
+           // let clinicid = _This.oClinicData.clinicId;
+            let postData = {
+                categoryId: _This.categoryId||3,
+                pageNo: _This.pageNo,
+                pageSize: _This.pageSize
+
+            };
+
+            console.log("get poster list- postData--->",postData);
+            _.ajax({
+                url: '/admin/posterinfo/pagelist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("get poster list---->",result);
+                    if(result.code == 0 && result.data.list.length>0) {
+                        _This.aPoster =result.data.list;
+                        _This.count=result.data.count;
+                    }
+                }
+            }, 'withCredentials');
+        },
+
+        /**
+         * 删除海报
+         */
+        fDelPost(item){
+            let _This=this;
+            console.log("delete post------>",item);
+            this.$confirm('确认删吗?', '提示', {
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then((res) => {
+                if(res=="confirm"){
+                    console.log("fffffffffffffff",res);
+                    let postData = {
+                        id:item
+                    };
+                    _.ajax({
+                        url: '/admin/posterInfo/posterdel',
+                        method: 'POST',
+                        data: postData,
+                        success: function (result) {
+                            console.log("delete data------->",result);
+                            if(result.code==0){
+                                window.location.reload();
+                            }else {
+                                _This.$message.error("删除海报失败！");
+                            }
+
+                        }
+                    }, 'withCredentials');
+                }
+
+            });
+        },
+
+        /**
+         * 选择海报分类
+         * @param classid
+         */
+        fSelectClassify(classid){
+            let _This = this;
+            console.log("select classify-----",classid)
+        },
+        /**
+         * 切换分页
+         */
+        handleCurrentChange(nu){
+          let _This=this;
+            _This.pageNo=nu;
+            _This.fGetPostClassify();
         }
+
     },
     watch: {}
 }

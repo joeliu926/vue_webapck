@@ -108,12 +108,16 @@
                         height:410px;
                         vertical-align: top;
                         position: relative;
-                        margin-right: 24px;
+                        margin:0 24px 24px 0;
                         border: 1px solid #9083ED;
                         box-sizing: border-box;
                         .post-pic-ct{
                             width: 300px;
                             height:340px;
+                            overflow: hidden;
+                        }
+                        .post-pic-ct:hover .close-icon{
+                            display:inline ;
                         }
                         .post-pic{
                             width: 100%;
@@ -143,6 +147,7 @@
                             right:-10px;
                             top:-10px;
                             cursor: pointer;
+                            display: none;
                             .img{
                                 height: 20px;
                                 width: 20px;
@@ -152,6 +157,14 @@
                 }
             }
 
+        }
+        .poster-width{
+            width:1300px;
+            .category-pagination-align{
+                text-align: right;
+                border: none;
+                margin-top: 5px;
+            }
         }
         .mask{
             position: fixed;
