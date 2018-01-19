@@ -58,12 +58,11 @@
                 <div class="segment-item">
                     <div class="f-14 i-block s-name">海报分类</div>
                     <div class="i-block s-item-ct">
-                        <div class="i-block f-14 post-classify  classify-hover select-item">
-                            默认分类<img class="add-cate edit-icon" style="visibility: hidden;" src="../../../common/img/tv/con-ok.png">
-                        </div>
+                
                         <template v-for="cateItem,cateIndex in aPostClassify">
-                            <div class="i-block f-14 post-classify classify-hover select-item" @click="fSelectClassify(2)">
-                                <label class="cur" v-if="currentEdit!=cateItem.id">{{cateItem.categoryName}}<img class="add-cate edit-icon" @click="fEditPost(cateItem)" src="../../../common/img/edit-icon.png"></label>
+                            <div class="i-block f-14 post-classify classify-hover" :style="{color:[isCurrentClick==cateItem.id?'#9083ED':'']}" @click="fSelectClassify(cateItem.id)">
+                                <label class="cur" :style="{marginRight:[cateItem.type==1?'30px':'']}"  v-if="currentEdit!=cateItem.id">{{cateItem.categoryName}}
+                                   <img v-if="cateItem.type!=1" class="add-cate edit-icon" @click="fEditPost(cateItem)" src="../../../common/img/edit-icon.png"></label>
                                 <label v-if="currentEdit==cateItem.id"><input type="text" v-model="currentClassifyName" class="twidth" placeholder="编辑海报分类" />
                                     <span class="sure-btn cur" @click="fEditCommit(cateItem,1)">保存</span><span class="sure-btn cur" @click="fEditCommit(1)">取消</span></label>
                             </div>

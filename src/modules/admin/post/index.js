@@ -26,6 +26,7 @@ export default {
             pageSize:2,//每页条数
             currentClassifyId:"",//当前分类id
             currentClassifyName:"",//当前分类名称
+            isCurrentClick:"",//当前点击分类
             count:"",//总条数
         };
     },
@@ -98,12 +99,6 @@ export default {
             let _This = this;
             console.log("add post----------");
             _This.addPost=false;
-        },
-        /**
-         * 选择海报分类
-         */
-        fSelectClassify(cmd){
-           console.log("select classsify------>");
         },
         /**
          * 选择海报图片
@@ -315,6 +310,9 @@ export default {
                     if(result.code == 0 && result.data.list.length>0) {
                         _This.aPoster =result.data.list;
                         _This.count=result.data.count;
+                    }else{
+                        _This.aPoster =[];
+                        _This.count=0;
                     }
                 }
             }, 'withCredentials');
@@ -343,7 +341,7 @@ export default {
                         success: function (result) {
                             console.log("delete data------->",result);
                             if(result.code==0){
-                                window.location.reload();
+                               _This.fGetPostClassify();
                             }else {
                                 _This.$message.error("删除海报失败！");
                             }
@@ -361,7 +359,9 @@ export default {
          */
         fSelectClassify(classid){
             let _This = this;
-            console.log("select classify-----",classid)
+            _This.isCurrentClick=classid;
+            _This.categoryId=classid;
+            _This.fGetPostClassify();
         },
         /**
          * 切换分页
