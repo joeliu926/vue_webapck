@@ -11,6 +11,7 @@ export default {
     data () {
         let defaultl=require("../../../common/img/login_logo.png");
         return {
+        	ddddd:"http://140.143.185.73:8077/mc_files/10088/POSTER_PICTURE/f63d6aec-b2a2-4ecb-86e2-356f9e3a5fc5",
             defaultImg: require("../../../common/img/add-img-icon.png"), //默认上传图片
             imgUploadUrl:CONSTANT.fileUpload+"api/posterInfo/uploadPosterPicture",//"attachment/upload",//上传图片地址
             addPost:false,//新增海报标志
@@ -23,19 +24,21 @@ export default {
             uploadPostImg:{},//当前上传的图片
             categoryId:"",//分类id
             pageNo:1,//第几页
-            pageSize:2,//每页条数
+            pageSize:6,//每页条数
             currentClassifyId:"",//当前分类id
             currentClassifyName:"",//当前分类名称
             isCurrentClick:"",//当前点击分类
             count:"",//总条数
+            oClinicData:{},//诊所对象
         };
     },
     filters:{
     },
     created() {
         let _This=this;
+        _This.fGetClinicList();
         _This.fGetClassify();//获取分类列表
-        _This.fGetPostClassify();//获取海报列表
+       // _This.fGetPostClassify();//获取海报列表
     },
     mounted(){
     },
@@ -43,12 +46,50 @@ export default {
 
     },
     methods: {
+    	     /**
+         * 获取诊所列表信息
+         */
+        fGetClinicList(){
+            let _This=this;
+            let postData = {
+                //faceId: ""
+            };
+            _.ajax({
+                url: '/admin/clinic/list',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if(result.code==0&&result.data!="null"&&result.data.list.length>0){      	
+                        _This.oClinicData=result.data.list[0];             
+                    }
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取诊所详情
+         */
+        fGetClinicDetail(){
+            let _This = this;
+            let clinicid = _This.oClinicData.clinicId;
+            let postData = {
+                id: clinicid
+            };
+            _.ajax({
+                url: '/admin/clinic/get',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if(result.code == 0 && result.data) {
+                        _This.oClinicData = result.data;
+                    }
+                }
+            }, 'withCredentials');
+        },
         /**
          * 新增海报按钮
          */
         fAddPost(){
             let _This = this;
-            console.log("add post----------");
             _This.addPost=true;
             _This.uploadPostImg={};
             if(_This.aPostClassify.length>0){
@@ -76,13 +117,11 @@ export default {
                 categoryId: categoryId,
                 formatId: formatId
             };
-            console.log("poster ---postData---",postData);
             _.ajax({
                 url: '/admin/posterInfo/addposter',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("poster ---result---",result);
                     if(result.code == 0 && result.data) {
                         _This.addPost=false;
                     }else {
@@ -97,7 +136,6 @@ export default {
          */
         fCloseAddPost(){
             let _This = this;
-            console.log("add post----------");
             _This.addPost=false;
         },
         /**
@@ -134,7 +172,6 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("upload result-----",result);
                     if(result.code == 0 && result.data) {
                        _This.uploadPostImg=result.data;
                     }
@@ -149,7 +186,6 @@ export default {
          */
         fAddPostClassify(){
             let _This = this;
-            console.log("add post---11111111-------");
             _This.currentClassifyId="";
             _This.currentClassifyName="";
             _This.addPostcate=true;
@@ -158,15 +194,12 @@ export default {
          * 确认新增海报分类
          */
         fAddCommit(){
-            console.log("333333------",this.fValidateEdit());
             let _This = this;
             let categoryName= _This.currentClassifyName;
             if(_This.fValidateEdit(categoryName)){
                 _This.fAddOrUpdateClassify();
                 _This.addPostcate=false;
             }
-
-            console.log("add sure----------")
         },
         /**
          * 关闭新增
@@ -174,7 +207,6 @@ export default {
         fCloseAdd(){
             let _This = this;
             _This.addPostcate=false;
-            console.log("add cancel----------")
         },
         /**
          * 添加更新分类
@@ -196,7 +228,6 @@ export default {
                 success: function (result) {
                     console.log("result---update---",result);
                     if(result.code == 0 && result.data) {
-                        console.log("---categoryId---------",categoryId,!categoryId);
                         if(!categoryId){
                             _This.aPostClassify.push(result.data);
                             _This.$message({message: '添加成功',
@@ -218,13 +249,10 @@ export default {
          * 编辑海报
          */
         fEditPost(item){
-
             let _This=this;
-            console.log("--index-----",_This.aPostClassify.indexOf(item));
             _This.currentEdit=item.id;
             _This.currentClassifyId=item.id;
             _This.currentClassifyName=item.categoryName;
-            console.log("item------>",item);
         },
         /**
          * 编辑确认提交
@@ -243,7 +271,6 @@ export default {
                     _This.aPostClassify[iIndex].categoryName=_This.currentClassifyName;
                 }
             }
-            console.log("edit classify-----",item)
         },
         /**
          * 验证编辑添加分类信息
@@ -280,9 +307,9 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("category list----",result);
                     if(result.code == 0 && result.data) {
                         _This.aPostClassify=result.data;
+                       _This.fSelectClassify(result.data[0].id);
                     }
                 }
             }, 'withCredentials');
@@ -294,19 +321,16 @@ export default {
             let _This = this;
            // let clinicid = _This.oClinicData.clinicId;
             let postData = {
-                categoryId: _This.categoryId||3,
+                categoryId: _This.categoryId||"",
                 pageNo: _This.pageNo,
                 pageSize: _This.pageSize
 
             };
-
-            console.log("get poster list- postData--->",postData);
             _.ajax({
                 url: '/admin/posterinfo/pagelist',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("get poster list---->",result);
                     if(result.code == 0 && result.data.list.length>0) {
                         _This.aPoster =result.data.list;
                         _This.count=result.data.count;
@@ -330,7 +354,6 @@ export default {
                 type: 'warning'
             }).then((res) => {
                 if(res=="confirm"){
-                    console.log("fffffffffffffff",res);
                     let postData = {
                         id:item
                     };
@@ -339,7 +362,6 @@ export default {
                         method: 'POST',
                         data: postData,
                         success: function (result) {
-                            console.log("delete data------->",result);
                             if(result.code==0){
                                _This.fGetPostClassify();
                             }else {

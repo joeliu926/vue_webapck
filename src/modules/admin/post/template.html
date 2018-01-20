@@ -8,7 +8,7 @@
                     <div>
                         <span class="f-16 sel-title">全部海报</span>
                     </div>
-                    <p class="f-14 org-name">一刀美容机构</p>
+                    <p class="f-14 org-name">{{oClinicData.name}}</p>
                 </div>
             </div>
             <div class="mask" v-if="addPost">
@@ -49,7 +49,8 @@
                             <div class="post-des-ct">
                                 <div class="i-block  des-logo" style="">
                                     <img class="img-logo" src="../../../common/img/qrcode.png" />
-                                    <span class="f-14">这是一个好诊所</span>
+                                    <span class="f-14">{{oClinicData.name}}</span>
+                                    <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +91,12 @@
                                         </div>
                                     </div>
                                     <div class="post-des-ct">
-                                        <div class="i-block  des-logo" style="">
+                                        <div class="i-block des-logo" style="">
                                             <img class="img-logo" src="../../../common/img/qrcode.png" />
-                                            <span class="f-14">这是一个好诊所{{postItem.type}}</span>
+                                            <span class="f-14">{{oClinicData.name}}</span>
+                                            <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </template>
