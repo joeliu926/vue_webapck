@@ -93,7 +93,7 @@
                             width:160px;
                             height:200px;
                             border-radius: 6px;
-                          
+
                             border: 1px dashed #bfcbd9;
                             background-position: center center;
                             background-repeat: no-repeat;
