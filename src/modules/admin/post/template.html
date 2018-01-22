@@ -48,9 +48,11 @@
                             </div>
                             <div class="post-des-ct">
                                 <div class="i-block  des-logo" style="">
-                                    <img class="img-logo" src="../../../common/img/qrcode.png" />
-                                    <span class="f-14">{{oClinicData.name}}</span>
+                                    <img class="img-logo i-block" style="" src="../../../common/img/qrcode.png" />
                                     <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
+                                </div>
+                                <div class="i-block">
+                                    <span class="f-14 i-block clinic-name" style="">{{oClinicData.name}}</span>
                                 </div>
                             </div>
                         </div>
@@ -85,16 +87,18 @@
                             <template v-for="postItem,postIndex in aPoster">
                                 <div class="i-block  format-item f-choice">
                                     <div class="post-pic-ct" style="text-align: center;">
-                                        <div class="close-icon"><img class="img" @click="fDelPost(postItem.id)" src="../../../common/img/tv/con-error.png"></div>
+                                        <div v-if="postItem.type!=1" class="close-icon"><img class="img" @click="fDelPost(postItem.id)" src="../../../common/img/tv/con-error.png"></div>
                                         <div class="post-pic-ct">
                                             <img class="post-pic" :src="postItem.fileUrl" />
                                         </div>
                                     </div>
                                     <div class="post-des-ct">
-                                        <div class="i-block des-logo" style="">
-                                            <img class="img-logo" src="../../../common/img/qrcode.png" />
-                                            <span class="f-14">{{oClinicData.name}}</span>
+                                        <div class="i-block  des-logo" style="">
+                                            <img class="img-logo i-block" style="" src="../../../common/img/qrcode.png" />
                                             <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
+                                        </div>
+                                        <div class="i-block">
+                                            <span class="f-14 i-block clinic-name" style="">{{oClinicData.name}}</span>
                                         </div>
                                         
                                     </div>

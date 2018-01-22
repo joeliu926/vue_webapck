@@ -162,6 +162,12 @@
 									border-radius: 50%;
 								}
 							}
+                            .clinic-name{
+                                width: 200px;
+                                word-break: keep-all;
+                                word-wrap:break-word;
+                                vertical-align: middle;
+                            }
 						}
 						.close-icon {
 							position: absolute;
