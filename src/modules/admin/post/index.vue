@@ -4,6 +4,11 @@
 
 <style lang="scss">
 	.post-content {
+        .el-button:hover{
+            background-color: #9083ED;
+            color: #ffffff;
+            border: 1px solid #9083ED;
+        }
 		.b-d {
 			border: 1px solid red;
 		}
@@ -117,9 +122,20 @@
 						border: 1px solid #9083ED;
 						box-sizing: border-box;
 						.post-pic-ct {
-							width: 300px;
+							width: 298px;
 							height: 340px;
-							overflow: hidden;
+                             box-sizing: border-box;
+                            overflow: hidden;
+                            .poster-size{
+                                width: 100%;
+                                height: 340px;
+                                display: inline-block;
+
+                                cursor: pointer;
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                            }
 						}
 						.post-pic-ct:hover .close-icon {
 							display: inline;

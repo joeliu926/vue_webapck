@@ -88,8 +88,9 @@
                                 <div class="i-block  format-item f-choice">
                                     <div class="post-pic-ct" style="text-align: center;">
                                         <div v-if="postItem.type!=1" class="close-icon"><img class="img" @click="fDelPost(postItem.id)" src="../../../common/img/tv/con-error.png"></div>
-                                        <div class="post-pic-ct">
-                                            <img class="post-pic" :src="postItem.fileUrl" />
+                                        <div class="poster-size" :style="{backgroundImage:['url('+(postItem.fileUrl?postItem.fileUrl:'')+')']}">
+                                           <!-- <img class="post-pic" :src="postItem.fileUrl" />
+                                            <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>-->
                                         </div>
                                     </div>
                                     <div class="post-des-ct">

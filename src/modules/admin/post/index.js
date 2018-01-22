@@ -124,6 +124,7 @@ export default {
                 success: function (result) {
                     if(result.code == 0 && result.data) {
                         _This.addPost=false;
+                        _This.fSelectClassify(categoryId);
                     }else {
                         _This.$message.error("创建海报失败");
                     }
