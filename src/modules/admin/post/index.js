@@ -332,6 +332,7 @@ export default {
                 data: postData,
                 success: function (result) {
                     if(result.code == 0 && result.data.list.length>0) {
+                        console.log("aPoster list---->",result.data);
                         _This.aPoster =result.data.list;
                         _This.count=result.data.count;
                     }else{
@@ -347,7 +348,7 @@ export default {
          */
         fDelPost(item){
             let _This=this;
-            console.log("delete post------>",item);
+            //console.log("delete post------>",item);
             this.$confirm('确认删吗?', '提示', {
                 confirmButtonText: '确认',
                 cancelButtonText: '取消',
