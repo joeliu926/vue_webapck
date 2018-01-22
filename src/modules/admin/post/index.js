@@ -332,7 +332,7 @@ export default {
                 data: postData,
                 success: function (result) {
                     if(result.code == 0 && result.data.list.length>0) {
-                        console.log("aPoster list---->",result.data);
+                       // console.log("aPoster list---->",result.data);
                         _This.aPoster =result.data.list;
                         _This.count=result.data.count;
                     }else{
