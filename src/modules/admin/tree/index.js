@@ -77,7 +77,7 @@ export default {
                     label: '海报',
                     linkUrl:'/admin/post',
                     hightline:false,
-                    needinit:true
+                    needinit:false
                 }]
             },
            /* {
