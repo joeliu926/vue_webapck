@@ -6,5 +6,5 @@ module.exports ={
     host:"https://nihaomc.com/node_dev",
     fileDownload:"",
     fileUpload:"https://nihaomc.com/uploadimg_dev/",
-    wsReqUrl:"ws://140.143.184.52:8055/",
+    wsReqUrl:"wss://nihaomc.com/websocket_dev/",
 };

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node build/dev.js http://localhost:8023 ws://localhost:8055/ https://nihaomc.com/uploadimg_dev/",
-    "sdev": "node build/dist.js https://nihaomc.com/node_dev ws://140.143.184.52:8055/ https://nihaomc.com/uploadimg_dev/",
-    "test": "node build/dist.js https://nihaomc.com/node_test ws://140.143.184.52:8054/ https://nihaomc.com/uploadimg_test/",
+    "sdev": "node build/dist.js https://nihaomc.com/node_dev wss://nihaomc.com/websocket_dev/ https://nihaomc.com/uploadimg_dev/",
+    "test": "node build/dist.js https://nihaomc.com/node_test wss://nihaomc.com/websocket_test/ https://nihaomc.com/uploadimg_test/",
     "dist": "node build/dist.js https://nihaomc.com/node wss://nihaomc.com/websocket/ https://nihaomc.com/uploadimg/",
     "_test": "echo \"Error: no test specified\" && exit 1"
   },
