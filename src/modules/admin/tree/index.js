@@ -73,7 +73,7 @@ export default {
                     hightline:false,
                     needinit:false
                 },{
-                    id:'admin_post',
+                    id:'admin_clinic_post',
                     label: '海报',
                     linkUrl:'/admin/post',
                     hightline:false,
@@ -132,6 +132,7 @@ export default {
                 url: '/user/getuserinfo',
                 method: 'POST',
                 success: function (res) {
+                    //console.log("----------------",res);
                     let _menus = res.menus?res.menus:[];
                     let reduceMenus =[];
                     _this.treeData.forEach(m=>{
