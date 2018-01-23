@@ -16,7 +16,7 @@
                     <div class="end-close" @click="fCloseAddPost"><img src="../../../common/img/i-cl-close.png"> </div>
                     <div class="select-ct">
                         <label class="" >海报分类 </label>
-                        <el-select  v-model="selectClassify"  @change="fSelectClassify" placeholder="选择海报分类">
+                        <el-select  v-model="selectClassify"  @change="fSelectClassifynoalert" placeholder="选择海报分类">
                             <el-option
                                     v-for="item in aPostClassify"
                                     :key="item.id"
@@ -68,7 +68,7 @@
                             <div class="i-block f-14 post-classify classify-hover" :style="{color:[isCurrentClick==cateItem.id?'#9083ED':'']}" @click="fSelectClassify(cateItem.id)">
                                 <label class="cur" :style="{marginRight:[cateItem.type==1?'30px':'']}"  v-if="currentEdit!=cateItem.id">{{cateItem.categoryName}}
                                    <img v-if="cateItem.type!=1" class="add-cate edit-icon" @click="fEditPost(cateItem)" src="../../../common/img/edit-icon.png"></label>
-                                <label v-if="currentEdit==cateItem.id"><input type="text" v-model="currentClassifyName" class="twidth" placeholder="编辑海报分类" />
+                                <label v-if="currentEdit==cateItem.id"><input type="text" v-model="currentClassifyName" maxlength="20" class="twidth" placeholder="编辑海报分类" />
                                     <span class="sure-btn cur" @click="fEditCommit(cateItem,1)">保存</span><span class="sure-btn cur" @click="fEditCommit(1)">取消</span></label>
                             </div>
                         </template>

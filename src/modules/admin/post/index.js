@@ -349,7 +349,7 @@ export default {
         /**
          * 获取海报列表
          */
-        fGetPostClassify(){
+        fGetPostClassify(noalert){
             let _This = this;
            // let clinicid = _This.oClinicData.clinicId;
             let postData = {
@@ -369,9 +369,13 @@ export default {
                         _This.count=result.data.count;
 
                     }else{
-                        _This.aPoster =[];
-                        _This.count=0;
-                        _This.$message.error("当前分类下未创建任何海报");
+
+                            _This.aPoster =[];
+                            _This.count=0;
+                        if(!noalert){
+                            _This.$message.error("当前分类下未创建任何海报");
+                        }
+
                     }
                 }
             }, 'withCredentials');
@@ -419,6 +423,19 @@ export default {
             _This.isCurrentClick=classid;
             _This.categoryId=classid;
             _This.fGetPostClassify();
+        },
+
+        /**
+         * 选择海报分类-noalert
+         * @param classid
+         */
+        fSelectClassifynoalert(classid){
+
+            let _This = this;
+            _This.isCurrentClick=classid;
+            _This.categoryId=classid;
+            _This.fGetPostClassify('no');
+
         },
         /**
          * 切换分页
