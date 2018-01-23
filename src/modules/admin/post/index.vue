@@ -4,9 +4,18 @@
 
 <style lang="scss">
 	.post-content {
+        .el-button:hover{
+            background-color: #9083ED;
+            color: #ffffff;
+            border: 1px solid #9083ED;
+        }
 		.b-d {
 			border: 1px solid red;
 		}
+        .f-12 {
+            font-size: 12px;
+            color: #999999;
+        }
 		.f-14 {
 			font-size: 14px;
 			color: #999999;
@@ -109,17 +118,27 @@
 					}
 					.format-item {
 						/************图片模板版式**************/
-						width: 300px;
-						height: 410px;
+						width: 250px;
+						height: 342px;
 						vertical-align: top;
 						position: relative;
 						margin: 0 24px 24px 0;
-						border: 1px solid #9083ED;
+						border: 1px solid #dddddd;
 						box-sizing: border-box;
 						.post-pic-ct {
-							width: 300px;
-							height: 340px;
-							overflow: hidden;
+							width: 250px;
+							height: 283px;
+                             box-sizing: border-box;
+                            overflow: hidden;
+                            .poster-size{
+                                width: 100%;
+                                height: 283px;
+                                display: inline-block;
+                                cursor: pointer;
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                            }
 						}
 						.post-pic-ct:hover .close-icon {
 							display: inline;
@@ -133,10 +152,10 @@
 							position: absolute;
 							box-sizing: border-box;
 							padding: 0 12px;
-							height: 70px;
+							height: 60px;
 							.des-logo {
-								height: 70px;
-								line-height: 70px;
+								height: 60px;
+								line-height: 60px;
 								vertical-align: middle;
 								text-align: center;
 								position: relative;
@@ -163,7 +182,7 @@
 								}
 							}
                             .clinic-name{
-                                width: 200px;
+                                width: 150px;
                                 word-break: keep-all;
                                 word-wrap:break-word;
                                 vertical-align: middle;

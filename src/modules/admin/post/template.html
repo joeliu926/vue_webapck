@@ -37,29 +37,31 @@
             <div class="segment-ct">
                 <div class="segment-item">
                     <div class="f-14 i-block s-name">选择版式</div>
-                    <div class="i-block s-item-ct">
-                        <div class="i-block  format-item f-choice">
-                            <div class="post-pic-ct  add-post-des" style="text-align: center;">
-                                <el-button @click="fAddPost" >创建</el-button>
-                                <div class="" style="padding: 24px;">
-                                    <p >建议最大尺寸750*850</p>
-                                    <p style="padding: 12px;">支持jpg、png,图片大小5M以内</p>
+                    <template v-for="fItem,fIndex in aPosterFormat">
+                        <div class="i-block s-item-ct">
+                            <div class="i-block  format-item f-choice">
+                                <div class="post-pic-ct  add-post-des" style="text-align: center;">
+                                    <el-button @click="fAddPost(fItem.id)" >创建</el-button>
+                                    <div class="" style="padding: 24px;">
+                                        <p class="f-12" >建议最大尺寸<span class="f-14">750*850</span></p>
+                                        <p class="f-12" style="padding: 12px;">支持jpg,png,图片大小<span class="f-14">5M以内</span></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="post-des-ct">
-                                <div class="i-block  des-logo" style="">
-                                    <img class="img-logo i-block" style="" src="../../../common/img/qrcode.png" />
-                                    <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
-                                </div>
-                                <div class="i-block">
-                                    <span class="f-14 i-block clinic-name" style="">{{oClinicData.name}}</span>
+                                <div class="post-des-ct">
+                                    <div class="i-block  des-logo" style="">
+                                        <img class="img-logo i-block" style="" src="../../../common/img/qrcode.png" />
+                                        <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>
+                                    </div>
+                                    <div class="i-block">
+                                        <span class="f-14 i-block clinic-name" style="">{{oClinicData.name}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
                 <div class="segment-item">
-                    <div class="f-14 i-block s-name">海报分类</div>
+                    <div class="f-14 i-block s-name" style="vertical-align: middle;margin-bottom: 4px;">海报分类</div>
                     <div class="i-block s-item-ct">
                 
                         <template v-for="cateItem,cateIndex in aPostClassify">
@@ -72,7 +74,7 @@
                         </template>
 
                         <div class="i-block f-14 post-classify" @click="fAddPostClassify" v-if="!addPostcate">
-                            <img class="add-cate" style="" src="../../../common/img/i-beat-add.png"> 新增海报分类
+                            <el-button class="el-icon-plus"> 新增分类</el-button>
                         </div>
                         <div class="i-block f-14 post-classify" v-if="addPostcate">
                             <input type="text" class="twidth" width="" v-model="currentClassifyName" placeholder="新增海报分类" />
@@ -88,8 +90,9 @@
                                 <div class="i-block  format-item f-choice">
                                     <div class="post-pic-ct" style="text-align: center;">
                                         <div v-if="postItem.type!=1" class="close-icon"><img class="img" @click="fDelPost(postItem.id)" src="../../../common/img/tv/con-error.png"></div>
-                                        <div class="post-pic-ct">
-                                            <img class="post-pic" :src="postItem.fileUrl" />
+                                        <div class="poster-size" :style="{backgroundImage:['url('+(postItem.fileUrl?postItem.fileUrl:'')+')']}">
+                                           <!-- <img class="post-pic" :src="postItem.fileUrl" />
+                                            <div class="clinic-logo" :style="{backgroundImage:['url('+(oClinicData.logo?oClinicData.logo:ddddd)+')']}"></div>-->
                                         </div>
                                     </div>
                                     <div class="post-des-ct">

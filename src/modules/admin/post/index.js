@@ -30,12 +30,15 @@ export default {
             isCurrentClick:"",//当前点击分类
             count:"",//总条数
             oClinicData:{},//诊所对象
+            aPosterFormat:[],//版式列表
+            sCurrentFormatId:0,//当前选中的版式id
         };
     },
     filters:{
     },
     created() {
         let _This=this;
+        _This.fGetPosterformatList();//获取版式列表
         _This.fGetClinicList();
         _This.fGetClassify();//获取分类列表
        // _This.fGetPostClassify();//获取海报列表
@@ -46,7 +49,27 @@ export default {
 
     },
     methods: {
-    	     /**
+        /**
+         * 获取诊所列表信息
+         */
+        fGetPosterformatList(){
+            let _This=this;
+            let postData = {
+                pageNo:1,
+                pageSize:10
+            };
+            _.ajax({
+                url: '/admin/posterformat/pagelist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    if(result.code==0&&result.data!="null"&&result.data.list.length>0){
+                        _This.aPosterFormat=result.data.list;
+                    }
+                }
+            }, 'withCredentials');
+        },
+        /**
          * 获取诊所列表信息
          */
         fGetClinicList(){
@@ -88,8 +111,9 @@ export default {
         /**
          * 新增海报按钮
          */
-        fAddPost(){
+        fAddPost(fid){
             let _This = this;
+            _This.formatId=fid;
             _This.addPost=true;
             _This.uploadPostImg={};
             if(_This.aPostClassify.length>0){
@@ -103,7 +127,11 @@ export default {
             let _This = this;
             let posterBody = _This.uploadPostImg.name;//海报体
             let categoryId = _This.selectClassify;//分类ID
-            let formatId = _This.formatId||1; //版式ID
+            let formatId = _This.formatId; //版式ID
+            if(!formatId){
+                _This.$message.error("请选择版式");
+                return false;
+            }
             if(!categoryId){
                 _This.$message.error("请选择海报分类");
                 return false;
@@ -124,6 +152,10 @@ export default {
                 success: function (result) {
                     if(result.code == 0 && result.data) {
                         _This.addPost=false;
+                        _This.fSelectClassify(categoryId);
+                        _This.$message({message: '创建成功',
+                            type: 'success'
+                        });
                     }else {
                         _This.$message.error("创建海报失败");
                     }
@@ -335,9 +367,11 @@ export default {
                        // console.log("aPoster list---->",result.data);
                         _This.aPoster =result.data.list;
                         _This.count=result.data.count;
+
                     }else{
                         _This.aPoster =[];
                         _This.count=0;
+                        _This.$message.error("当前分类下未创建任何海报");
                     }
                 }
             }, 'withCredentials');
