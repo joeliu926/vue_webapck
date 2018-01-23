@@ -16,7 +16,7 @@
                     <div class="end-close" @click="fCloseAddPost"><img src="../../../common/img/i-cl-close.png"> </div>
                     <div class="select-ct">
                         <label class="" >海报分类 </label>
-                        <el-select  v-model="selectClassify"  @change="fSelectClassifynoalert" placeholder="选择海报分类">
+                        <el-select  v-model="selectClassify"  @change="fSelectClassify" placeholder="选择海报分类">
                             <el-option
                                     v-for="item in aPostClassify"
                                     :key="item.id"
@@ -107,6 +107,7 @@
                                     </div>
                                 </div>
                             </template>
+                            <div v-show="aPoster.length==0">当前分类下没有海报</div>
                         </div>
                         <div class="category-pagination-align" v-if="count>0">
                             <el-pagination
