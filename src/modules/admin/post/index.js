@@ -356,7 +356,6 @@ export default {
                 categoryId: _This.categoryId||"",
                 pageNo: _This.pageNo,
                 pageSize: _This.pageSize
-
             };
             _.ajax({
                 url: '/admin/posterinfo/pagelist',
