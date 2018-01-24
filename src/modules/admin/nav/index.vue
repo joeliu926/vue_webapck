@@ -27,7 +27,7 @@
         .el-col:nth-child(2){
             text-align: center;
         }
-        .clinic-name{font-size: 12px;height: 20px;overflow: hidden;  text-overflow: ellipsis;white-space:nowrap;width: 140px;}
+        .clinic-name{font-size: 12px;height: 20px;overflow: hidden;  text-overflow: ellipsis;white-space:nowrap;width: 140px;text-align: left;}
         .el-dropdown-link{
             color: white;
             font-size: 16px;
@@ -80,7 +80,7 @@
                 color:white;
 
             }
-            line-height:24px;height:240px; width:200px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top:55px;color: #000000;
+            line-height:24px;height:200px; width:200px;background-color:#fff;position:absolute;right:-20px;z-index:1;margin-top:55px;color: #000000;
             .alert-top{
                 height:70px;
                 .alert-user-img{
