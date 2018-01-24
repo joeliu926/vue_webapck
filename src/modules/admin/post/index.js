@@ -313,17 +313,23 @@ export default {
                 _This.$message.error("分类名称不能为空");
                 return false;
             }
-            let isExist=false;
-            _This.aPostClassify.forEach(function (item) {
+            let isExist=0;
+
+            let valiArray = _This.aPostClassify.filter(function (m) {
+                return _This.isCurrentClick!=m.id;
+            })
+
+            valiArray.forEach(function (item) {
                 if(item.categoryName==categoryName){
-                    isExist=true;
+                    isExist+=1;
                 }
             });
 
-            if(isExist){
+            if(isExist>0){
                 _This.$message.error("分类名称已存在");
                 return false;
             }
+
             return true;
         },
         /**

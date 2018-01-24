@@ -63,6 +63,7 @@ export default {
                             break;
                         case "systembackground":
                             _this.backgroundRight =true;
+                            _this.$router.push("/admin/userlist");
                             break;
                     }
                 });
