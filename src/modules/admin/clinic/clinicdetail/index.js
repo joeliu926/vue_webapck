@@ -65,11 +65,12 @@ export default {
             faceId: ""
         };
 
-        this.fGetClinicList();
+       // this.fGetClinicList();
     },
     mounted(){
     	//console.log("oClinicData.address--------",this.oClinicData.address);
         let currentCity = "";
+        this.fGetClinicList();
       //  var map = new BMap.Map("map-content");
 
 

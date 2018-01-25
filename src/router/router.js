@@ -33,6 +33,8 @@ var admin_productcontrol = r => require.ensure([], () => r(require('../modules/a
 
 var backcaselist = r => require.ensure([], () => r(require('../modules/admin/backcaselist/index.vue')), 'backcaselist');
 var backcaseadd = r => require.ensure([], () => r(require('../modules/admin/backcaselist/backcaseadd/index.vue')), 'backcaseadd');
+var syncdata = r => require.ensure([], () => r(require('../modules/admin/backcaselist/syncdata/index.vue')), 'syncdata');
+
 
 var admin_userlist = r => require.ensure([], () => r(require('../modules/admin/userlist/index.vue')), 'admin_userlist');
 var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/admin/userlist/edituser/index.vue')), 'admin_userlist_edit');
@@ -220,8 +222,17 @@ var routerConfig = {
             components:{
                 default:backcaseadd,
                 nav:admin_nav
-            }
-        }, {
+            }//
+        },
+        {
+            name:'/admin/backcaselist/syncdata',
+            path: '/admin/backcaselist/syncdata',
+            components:{
+                default:syncdata,
+                nav:admin_nav
+            }//syncdata
+        },
+        {
             name:'/admin/rolelist',
             path: '/admin/rolelist',
             components:{

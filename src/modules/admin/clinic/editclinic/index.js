@@ -21,7 +21,7 @@ export default {
             inauguralState: "",
             clinicLogo: "",
             sAddress:"",
-            contentMap:new BMap.Map("map-content"), //import CONSTANT from '../../../../common/utils/constants.js'
+            contentMap:{}, //import CONSTANT from '../../../../common/utils/constants.js'
             imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
             //imgUploadUrl: "https://27478500.qcloud.la/uploadimg_test/attachment/upload",
             oClinicRank: ["诊所", "门诊部", "整形外科医院", "一级民营医院", "二级医院", "三级甲等医院"],
@@ -57,23 +57,24 @@ export default {
     },
     created() {
         let clinicid = this.$route.params.id;
-        this.fGetSingleClinic();
+       // this.fGetSingleClinic();
 
     },
     mounted() {
         let _This=this;
+        _This.fGetSingleClinic();
         _This.contentMap=new BMap.Map("map-content");
-        var map =_This.contentMap;// new BMap.Map("map-content");
+        let map =_This.contentMap;// new BMap.Map("map-content");
         //map.enableScrollWheelZoom();
         map.enableContinuousZoom();
-        var autoDrop = new BMap.Autocomplete( //建立一个自动完成的对象
+        let autoDrop = new BMap.Autocomplete( //建立一个自动完成的对象
             {
                 "input": "suggestId",
                 "location": map
             });
         autoDrop.addEventListener("onconfirm", function(e) { //鼠标点击下拉列表后的事件
-            var currentSelect = e.item.value;
-            var selectValue = currentSelect.province + currentSelect.city + currentSelect.district + currentSelect.street + currentSelect.business;
+            let currentSelect = e.item.value;
+            let selectValue = currentSelect.province + currentSelect.city + currentSelect.district + currentSelect.street + currentSelect.business;
             //_This.$refs.dropaddress.innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + selectValue;
             //console.log("selectValue------>",selectValue);
             _This.oClinicData.address=selectValue;
@@ -379,9 +380,10 @@ export default {
         fSearchAddressByAddress(msize) {
             let _This=this;
             let addressText=_This.oClinicData.address;
-            _This.fLocationCity(addressText,function (addressText) {
+            let map =_This.contentMap;
+            map&&addressText&&_This.fLocationCity(addressText,function (addressText) {
                 msize=msize||12;
-                var map =_This.contentMap;// new BMap.Map("map-content");
+                //var map =_This.contentMap;//***************
                 var localSearch = new BMap.LocalSearch(map);
                 localSearch.setSearchCompleteCallback(function(searchResult) {
                     if(!searchResult){

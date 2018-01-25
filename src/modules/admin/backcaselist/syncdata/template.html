@@ -1,0 +1,34 @@
+<div class="admin-clinic-sync-data">
+    <div class="fram-box admin-lbox">
+        <tree></tree>
+    </div><div class="fram-box admin-rbox">
+    <div class="out-box-border innerbox"  style="padding: 12px;">
+        <div class="clinic-record">
+            <div class="record-text-ct">
+                <div>
+                    <span class="sel-title">同步案例</span>
+                </div>
+                <p class="org-name"></p>
+            </div>
+            <div class="clinic-edit-ct">
+            </div>
+        </div>
+        <div class="segment-title f-14"><span class="s-title-l">信息同步</span> <span class="s-title-r">*必填</span></div>
+        <div class="clinic-info-ct">
+            <div class="row-ct">
+            <div class="row-item" >
+                <span class="row-item-title f-14" ><i class="i-must">*</i>案例URL</span>
+                <el-input class="row-item-value"  v-model="targetUrl" placeholder="请输入url"></el-input>
+                <el-button @click="fSyncData">同步</el-button>
+            </div>
+        </div>
+
+
+
+
+
+        </div>
+
+    </div>
+    </div>
+</div>
