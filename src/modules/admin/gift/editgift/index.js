@@ -85,7 +85,10 @@ export default {
         },
         /* 修改好后内容  保存按钮 提交修改好的数据*/
         savegift(){
-
+            if(this.giftDetail.status==1){
+                this.$message("已下架礼品不可编辑！");
+                return false;
+            }
             /*验证判断必填项*/
             // 礼品名称验证
             var  authname=false;
@@ -162,7 +165,7 @@ export default {
                         });
                         setTimeout(function(){
                             _This.$router.push("/admin/gift");
-                        },3000);
+                        },1000);
 
 
                     }else {
@@ -223,6 +226,7 @@ export default {
          */
         fMultChooseafImg(index,pindex){
             if(this.giftDetail.status==1){
+                this.$message("已下架礼品不可编辑！");
                 return false;
             }
             var arr =this.giftDetail.giftPictures||[];
@@ -240,7 +244,9 @@ export default {
          */
         fDeletePic(ee,index,pindex){
             if(this.giftDetail.status==1){
+                this.$message("已下架礼品不可编辑！");
                 return false;
+
             }
             let _This=this;
             ee.cancelBubble = true;
