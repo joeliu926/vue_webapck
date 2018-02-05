@@ -84,9 +84,9 @@
                         <span class="row-item-title f-14"><i class="i-must">*</i> 诊疗时间</span>
                         <el-date-picker
                                 v-model="caseDetail.operationDate"
+                                :picker-options="endDatePicker"
                                 type="date"
                                 width="200"
-                                :picker-options="endDatePicker"
                                 placeholder="选择日期">
                         </el-date-picker>
                     </div>

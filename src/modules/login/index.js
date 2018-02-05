@@ -62,6 +62,7 @@ export default {
                                 password:pd
                             },                                                 
                             success: function (res) {
+                                // console.log("==========>>>>>",res);
                                 if(res.code==0) {
                                     _this.$router.push("/");
                                     console.log('99999999999')

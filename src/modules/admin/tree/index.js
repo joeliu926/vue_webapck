@@ -78,6 +78,12 @@ export default {
                     linkUrl:'/admin/post',
                     hightline:false,
                     needinit:false
+                },{
+                    id:'admin_clinic_gift',
+                    label: '礼品',
+                    linkUrl:'/admin/gift',
+                    hightline:false,
+                    needinit:false
                 }]
             },
            /* {

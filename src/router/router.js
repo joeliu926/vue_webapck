@@ -41,6 +41,10 @@ var admin_userlist_edit = r => require.ensure([], () => r(require('../modules/ad
 var admin_rolelist = r => require.ensure([], () => r(require('../modules/admin/rolelist/index.vue')), 'admin_rolelist');
 
 var admin_post = r => require.ensure([], () => r(require('../modules/admin/post/index.vue')), 'admin_post');
+var admin_gift = r => require.ensure([], () => r(require('../modules/admin/gift/index.vue')), 'admin_gift');
+var admin_addgift = r => require.ensure([], () => r(require('../modules/admin/gift/addgift/index.vue')), 'admin_addgift');
+var admin_editgift = r => require.ensure([], () => r(require('../modules/admin/gift/editgift/index.vue')), 'admin_editgift');
+
 
 var routerConfig = {
     linkActiveClass: 'active',
@@ -260,8 +264,28 @@ var routerConfig = {
                 default:admin_post,
                 nav:admin_nav
             }
-        }
-
+        },{
+            name:'/admin/gift',
+            path: '/admin/gift',
+            components:{
+                default:admin_gift,
+                nav:admin_nav
+            }
+        },{
+            name:'/admin/gift/addgift',
+            path: '/admin/gift/addgift',
+            components:{
+                default:admin_addgift,
+                nav:admin_nav
+            }
+        },{
+            name:'/admin/gift/editgift',
+            path: '/admin/gift/editgift/:id',
+            components:{
+                default:admin_editgift,
+                nav:admin_nav
+            }
+        },
 
 
     ]

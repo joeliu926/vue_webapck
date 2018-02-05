@@ -91,6 +91,10 @@ export default {
             this.initData();
         }
         this.getdoctorlist();
+        // if()
+
+
+
     },
     methods: {
         /**

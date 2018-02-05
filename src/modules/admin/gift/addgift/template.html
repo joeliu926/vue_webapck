@@ -1,0 +1,124 @@
+<div class="addgift-content clearfix">
+    <div class="admin-lbox fram-box fl">
+        <tree></tree>
+    </div>
+    <div class="admin-rbox fram-box fr">
+        <div class="out-box-border innerbox" style="padding: 12px;">
+            <!--案例创建头部 保存 和 取消按钮....-->
+            <div class="top">
+                <div class="gift-record">
+                    <div class="record-text-ct">
+                        <div style="padding-left: 0px;">
+                            <span class="sel-title" style="color:#000;">礼品创建/修改</span>
+                        </div>
+                    </div>
+                    <div class="gift-edit-ct">
+                        <el-button @click="Savegift">保存</el-button>
+                        <el-button @click="Savegift">保存并新建</el-button>
+                        <el-button @click="backlist">取消</el-button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 一般信息 -->
+            <div class="gift-info">
+                <div class="segment-title f-14">
+                    <span class="s-title-l">一般信息</span>
+                    <span class="s-title-r">* 必填信息</span>
+                </div>
+                <!--礼品名称-->
+                <div class="gift-info-ct">
+                    <div class="row-ct">
+                        <div class="row-item">
+                            <span class="row-item-title f-14" style="vertical-align: middle;"><i class="i-must">*</i> 礼品名称</span>
+                            <el-input class="row-item-value" v-model="giftDetail.name"  placeholder="请输入礼品名称" :maxlength="maxlength1"></el-input>
+                        </div>
+                    </div>
+                </div>
+                <!--礼品描述-->
+                <div class="gift-info-ct">
+                    <div class="row-ct">
+                        <div class="row-item">
+                            <span class="row-item-title f-14" style="vertical-align: top;"><i class="i-must">*</i> 礼品描述</span>
+                            <el-input
+                                    class="row-item-value"
+                                    type="textarea"
+                                    :maxlength="maxlength"
+                                    :autosize="{ minRows: 2, maxRows: 10}"
+                                    placeholder="请输入礼品描述内容"
+                                    v-model="giftDetail.des">
+                            </el-input>
+                        </div>
+                    </div>
+                </div>
+
+                <!--礼品有效期限-->
+                <div class="gift-info-ct">
+                    <div class="row-ct">
+                        <div class="row-item">
+                            <span class="row-item-title f-14" style="vertical-align: middle;"><i class="i-must">*</i> 有效期限</span>
+                            <el-date-picker
+                                    :picker-options="endDatePicker"
+                                    class="row-item-value"
+                                    v-model="giftDetail.validity"
+                                    placeholder="请选择礼品有效期限"
+                                    type="datetime">
+
+                            </el-date-picker>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--礼品图录-->
+            <div class="giftImgbox" style="margin-bottom: 20px;">
+                <div class="segment-title f-14">
+                    <span class="s-title-l">礼品图录</span>
+                    <span class="s-title-r">* 必填信息</span>
+                </div>
+
+                <div class="updataImg">
+                    <div class="addimg clearfix">
+                        <template v-for="picItem,pindex in giftDetail.giftPictures">
+                            <div class="fl">
+                                <input type="file" style="display: none;" :ref="'s1'+pindex+'e'"
+                                       @change="fMultImgUpload">
+                                <div class="dynicPic trueImg"
+                                    :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
+                                     @click="fMultChooseafImg(1,pindex)">
+                                    <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
+                                         @click="fDeletePic($event,1,pindex)">
+                                </div>
+                            </div>
+                        </template>
+                        <div class="fl">
+                            <input type="file" style="display: none;" :ref="'s1e'"
+                                   @change="fMultImgUpload($event,'s1e')">
+                            <div class="dynicPic" v-model="giftDetail.giftPictures" :style="{backgroundImage:['url('+bydefault+')']}"
+                                 @click="fMultChooseafImg('s1e')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description" style="">
+                    500 X 500px， 支持jpg、png、jpeg、bmp，图片大小5M以内
+                </div>
+            </div>
+
+            <!-- 底部  保存 保存和新建 取消-->
+            <div class="footer">
+                <div class="gift-record">
+                    <div class="gift-edit-ct">
+                        <!-- @click="fEditSave" @click="fEditSave" @click="fEditCancel" -->
+                        <el-button @click="Savegift(1)">保存</el-button>
+                        <el-button @click="Savegift(0)">保存并新建</el-button>
+                        <el-button @click="backlist">取消</el-button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

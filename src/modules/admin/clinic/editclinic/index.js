@@ -342,6 +342,7 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
+                    console.log(result.data)
                     let oClinicData=_This.oClinicData;
                     _This.oClinicData.fileVo=_This.oClinicData.fileVo||[];
                     if(result.code == 0 ) {
