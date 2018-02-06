@@ -3,7 +3,7 @@
 
 </script>
 
-<style  lang="scss">
+<style lang="scss">
     .addgift-content {
         .fl {
             float: left;
@@ -22,24 +22,26 @@
             clear: both;
             overflow: hidden;
         }
-        .b-d{border: 1px solid red;}
-        .i-must{
+        .b-d {
+            border: 1px solid red;
+        }
+        .i-must {
             color: #ff0000;
             padding: 5px;
         }
-        .f-14{
+        .f-14 {
             font-size: 14px;
             color: #999999;
         }
-        .f-16{
+        .f-16 {
             font-size: 16px;
             color: #333333;
         }
-        .fram-box{
+        .fram-box {
             height: 100%;
             display: inline-block;
             box-sizing: border-box;
-            padding:12px;
+            padding: 12px;
             vertical-align: top;
         }
         /*右侧*/
@@ -51,42 +53,42 @@
             padding: 12px;
             vertical-align: top;
             /*float: left;*/
-            .segment-title{
+            .segment-title {
                 /*border-bottom: 1px solid #eaeaea;*/
-                background:#eaeaea;
-                padding-left:10px;
+                background: #eaeaea;
+                padding-left: 10px;
                 height: 20px;
-                .s-title-l{
+                .s-title-l {
                     float: left;
                 }
-                .s-title-r{
+                .s-title-r {
                     float: right;
                     color: red;
                 }
             }
-            .gift-record{
-                .record-text-ct{
+            .gift-record {
+                .record-text-ct {
                     padding: 24px 0;
-                    border-bottom: 4px solid  #eaeaea;
-                    .sel-title{
+                    border-bottom: 4px solid #eaeaea;
+                    .sel-title {
                         font-size: 14px;
                         color: #999999;
                     }
-                    .org-name{
+                    .org-name {
                         font-size: 16px;
-                        color:#333333;
+                        color: #333333;
                         margin-top: 10px;
                     }
                 }
-                .gift-edit-ct{
+                .gift-edit-ct {
                     text-align: center;
                     padding: 24px;
                 }
             }
-            .gift-info-ct{
+            .gift-info-ct {
 
-                padding: 10px 20px  ;
-                padding-left:100px;
+                padding: 10px 20px;
+                padding-left: 100px;
                 .row-ct {
                     padding: 10px;
                     .row-item {
@@ -106,99 +108,106 @@
             }
 
             /*添加礼品图片*/
-            .giftImgbox{
+            .giftImgbox {
                 /*图片添加*/
-                .updataImg{
+                .updataImg {
                     /*礼品图片 item*/
-                    .addimg{
-                        width:100%;
-                        padding:10px 20px;
-                        .fl{float: left;}
-                        .imgfilebox{
-                            margin-right:10px;
-                            margin-bottom:10px;
+                    .addimg {
+                        width: 100%;
+                        padding: 10px 20px;
+                        .fl {
+                            float: left;
                         }
-                        .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
-                        .dynicPic{
+                        .imgfilebox {
+                            margin-right: 10px;
+                            margin-bottom: 10px;
+                        }
+                        .closeUpPic {
+                            position: absolute;
+                            width: 20px;
+                            height: 20px;
+                            right: -10px;
+                            top: -10px;
+                            z-index: 10;
+                        }
+                        .dynicPic {
                             display: inline-block;
                             position: relative;
-                            width:178px;
-                            height:178px;
+                            width: 178px;
+                            height: 178px;
                             border-radius: 6px;
                             cursor: pointer;
                             border: 1px dashed #bfcbd9;
                             background-position: center center;
                             background-repeat: no-repeat;
                             /*background-size: 100% ;*/
-                            background-size: cover ;
+                            background-size: cover;
 
                             margin: 5px;
                         }
-                        .trueImg{
+                        .trueImg {
                             /*  border: none;*/
                         }
-                        .add-img{
-                            width:60px;
-                            height:60px;
+                        .add-img {
+                            width: 60px;
+                            height: 60px;
                             border-radius: 6px;
                             cursor: pointer;
                             border: 1px dashed #bfcbd9;
                             background-position: center center;
                             background-repeat: no-repeat;
                             background-size: 100%;
-                            .add-icon{
+                            .add-icon {
 
                             }
                         }
-                        headerpic{
-                            margin-right:12px;
-                            width:60px;
-                            height:60px;
+                        headerpic {
+                            margin-right: 12px;
+                            width: 60px;
+                            height: 60px;
                             border-radius: 6px;
                             /*background:lightblue;*/
-                            img{
-                                width:100%;
-                                height:100%;
+                            img {
+                                width: 100%;
+                                height: 100%;
                             }
                         }
                     }
                     /*.dynicPic{*/
-                        /*position: relative;*/
-                        /*margin-right:24px;*/
-                        /*!*删除图标*!*/
-                        /*.closeUpPic{*/
-                            /*width:30px;*/
-                            /*height:30px;*/
-                            /*position: absolute;*/
-                            /*top:0;*/
-                            /*right:0;*/
-                        /*}*/
+                    /*position: relative;*/
+                    /*margin-right:24px;*/
+                    /*!*删除图标*!*/
+                    /*.closeUpPic{*/
+                    /*width:30px;*/
+                    /*height:30px;*/
+                    /*position: absolute;*/
+                    /*top:0;*/
+                    /*right:0;*/
+                    /*}*/
                     /*}*/
 
                 }
 
                 /*礼品图片限制大小 和图片格式描述*/
-                .description{
+                .description {
                     border-bottom: 1px solid #eaeaea;
-                    padding-bottom:30px;
+                    padding-bottom: 30px;
                     text-align: center;
                     font-size: 14px;
-                    color:#666;
-                    margin-top:20px;
+                    color: #666;
+                    margin-top: 20px;
                 }
             }
-
-
 
         }
         /*左侧*/
         .admin-lbox {
             /*height: 100%;*/
             width: 15%;
-           /* display: inline-block;
-            padding: 12px;
-            box-sizing: border-box;
-            float: left;*/
+            /* display: inline-block;
+             padding: 12px;
+             box-sizing: border-box;
+             float: left;*/
 
         }
     }

@@ -10,14 +10,16 @@
                         <span class="f-16 sel-title">全部礼品</span>
                     </div>
                     <p class="f-14 org-name">在此页面上,你可以创建、查看并管理礼品</p>
-                    <p class="f-14 org-name clearfix"><span class="fl" style="vertical-align: top;color:#000;">记录({{count}})</span><el-button type="primary" class="fr" style="vertical-align:top;" @click="addgift">创建</el-button></p>
+                    <p class="f-14 org-name clearfix"><span class="fl" style="vertical-align: top;color:#000;">记录({{count}})</span>
+                        <el-button type="primary" class="fr" style="vertical-align:top;" @click="addgift">创建</el-button>
+                    </p>
                 </div>
             </div>
             <div class="gift-listContent" style="padding:0 24px ;">
                 <el-table
                         :data="giftList"
                         style="width: 100%"
-                        :default-sort = "{prop: 'date', order: 'descending'}">
+                        :default-sort="{prop: 'date', order: 'descending'}">
                     <el-table-column
                             prop="name"
                             label="名称"
@@ -25,10 +27,14 @@
                         <template slot-scope="scope">
                             <p style="padding:10px 0;" v-model="status">
 
-                                <img :src="scope.row.giftCover.url"  @click="editgift(scope.row.status,scope.row.id)" style="width:88px;height:88px;vertical-align:middle; margin-right:10px;" v-if="scope.row.giftCover" alt="">
+                                <img :src="scope.row.giftCover.url" @click="editgift(scope.row.status,scope.row.id)"
+                                     style="width:88px;height:88px;vertical-align:middle; margin-right:10px;"
+                                     v-if="scope.row.giftCover" alt="">
 
-                                <img style="width:88px;height:88px;vertical-align:middle; margin-right:10px;" v-if="!scope.row.giftCover" @click="editgift(scope.row.id)" src="../../../common/img/customer_default.png">
-                               {{scope.row.name}}
+                                <img style="width:88px;height:88px;vertical-align:middle; margin-right:10px;"
+                                     v-if="!scope.row.giftCover" @click="editgift(scope.row.id)"
+                                     src="../../../common/img/customer_default.png">
+                                {{scope.row.name}}
                             </p>
 
                         </template>
@@ -48,14 +54,16 @@
                             min-width="10%">
                         <template slot-scope="scope" style="text-align: center!important;">
                             <!--@click="fDelData(props.row.id)" -->
-                            <a href="javascript:void(0)" v-if="scope.row.status==1" disabled style="display: inline-block; color:#666; text-decoration:none;" >已下架</a>
-                            <a href="javascript:void(0)" v-if="scope.row.status==0" style="display: inline-block;" @click="deleteitem(scope.row.id)" >下架</a>
+                            <a href="javascript:void(0)" v-if="scope.row.status==1" disabled
+                               style="display: inline-block; color:#666; text-decoration:none;">已下架</a>
+                            <a href="javascript:void(0)" v-if="scope.row.status==0" style="display: inline-block;"
+                               @click="deleteitem(scope.row.id)">下架</a>
                         </template>
                     </el-table-column>
                 </el-table>
             </div>
             <!--分页 -->
-            <div class="gift-pagination" style="text-align: right; padding:24px;" >
+            <div class="gift-pagination" style="text-align: right; padding:24px;">
                 <el-pagination
                         @current-change="handleCurrentChange"
                         layout="prev, pager, next"
