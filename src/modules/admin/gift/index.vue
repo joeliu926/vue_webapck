@@ -3,7 +3,7 @@
 </script>
 
 <style lang="scss">
-	.gift-content {
+    .gift-content {
         .fram-box {
             height: 100%;
             display: inline-block;
@@ -48,8 +48,8 @@
         }
         .admin-rbox {
             width: 85%;
-            .el-table .btn .cell{
-                text-align: center  ;
+            .el-table .btn .cell {
+                text-align: center;
             }
             .segment-title {
                 border-bottom: 1px solid #eaeaea;
@@ -57,24 +57,25 @@
             }
             .gift-record {
                 .record-text-ct {
-                    padding: 24px ;
+                    padding: 24px;
                     border-bottom: 1px solid #eaeaea;
-                    .sel-title {}
+                    .sel-title {
+                    }
                     .org-name {
                         margin-top: 10px;
                     }
                 }
             }
             /*礼品列表*/
-            .gift-listContent{
+            .gift-listContent {
                 /*width:100%;*/
                 /*marign-bottom:80px;*/
             }
             /*分页*/
-            .gift-pagination{
+            .gift-pagination {
 
             }
 
         }
-	}
+    }
 </style>

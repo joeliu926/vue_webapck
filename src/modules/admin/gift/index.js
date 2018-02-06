@@ -14,10 +14,10 @@ export default {
             // ddddd:"http://140.143.185.73:8077/mc_files/10088/POSTER_PICTURE/f63d6aec-b2a2-4ecb-86e2-356f9e3a5fc5",
             // defaultImg: require("../../../common/img/add-img-icon.png"), //默认上传图片
             // imgUploadUrl:CONSTANT.fileUpload+"api/posterInfo/uploadPosterPicture",//"attachment/upload",//上传图片地址
-            count:0,
-            pageSize:10,
-            pageNo:1,
-            status:0,
+            count: 0,
+            pageSize: 10,
+            pageNo: 1,
+            status: 0,
             giftList: [{
                 "id": 1,
                 "status": 0,
@@ -30,7 +30,7 @@ export default {
                     "name": "10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091",
                     "url": "http://140.143.185.73:8077/mc_files/10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091"
                 }
-            },{
+            }, {
                 "id": 1,
                 "status": 0,
                 "createUser": 130,
@@ -45,16 +45,16 @@ export default {
             }]
         };
     },
-    filters:{
-        dateFilter:function (input) {
-            if(!input){
+    filters: {
+        dateFilter: function (input) {
+            if (!input) {
                 return "";
             }
-            return  _.date2String(new Date(input),"yyyy年MM月dd日 hh:mm");
+            return _.date2String(new Date(input), "yyyy年MM月dd日 hh:mm");
         }
     },
     created() {
-       this.SearchGiftList();
+        this.SearchGiftList();
     },
     mounted(){
     },
@@ -65,20 +65,20 @@ export default {
         /*获取所有的礼品列表*/
         SearchGiftList(){
             var _This = this;
-            let   postData={
-                pageNo:_This.pageNo,
-                pageSize:_This.pageSize,
+            let postData = {
+                pageNo: _This.pageNo,
+                pageSize: _This.pageSize,
             }
             _.ajax({
                 url: '/admin/gift/giftlist',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("======giftlist======",result);
-                    if(result.code==0){
+                    console.log("======giftlist======", result);
+                    if (result.code == 0) {
 
-                        _This.giftList=result.data.list;
-                        _This.count=result.data.count;
+                        _This.giftList = result.data.list;
+                        _This.count = result.data.count;
                     }
 
                 }
@@ -95,18 +95,18 @@ export default {
             // if(e==1){
             //     return false;
             // }
-            if(!uid){
+            if (!uid) {
                 return false;
             }
-            this.$router.push("/admin/gift/editgift/"+uid);
+            this.$router.push("/admin/gift/editgift/" + uid);
         },
         /*下架礼品*/
         deleteitem(param){
-            let id =param;
-            console.log(id,"下架礼品");
+            let id = param;
+            console.log(id, "下架礼品");
             var _This = this;
-            let   postData={
-               id:id
+            let postData = {
+                id: id
             }
 
             _This.$confirm('确认下架该礼品吗?', '礼品下架', {
@@ -121,10 +121,10 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("======giftlist======",result);
-                        if(result.code==0){
-                            _This.giftList=result.data.list;
-                            _This.count=result.data.count;
+                        console.log("======giftlist======", result);
+                        if (result.code == 0) {
+                            _This.giftList = result.data.list;
+                            _This.count = result.data.count;
                         }
 
                     }
@@ -134,7 +134,7 @@ export default {
         },
         /*确认删除礼品*/
         fDelData(imput){
-            let _This=this;
+            let _This = this;
             this.$confirm('确认删吗?', '提示', {
                 confirmButtonText: '确认',
                 cancelButtonText: '取消',
@@ -149,7 +149,7 @@ export default {
          * 切换分页
          */
         handleCurrentChange(pnum){
-            this.pageNo=pnum;
+            this.pageNo = pnum;
             this.SearchGiftList();
         },
 

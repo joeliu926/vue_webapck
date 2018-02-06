@@ -10,15 +10,15 @@ export default {
     },
     data () {
         return {
-            bydefault:require("../../../../common/img/add-img-icon.png"),
+            bydefault: require("../../../../common/img/add-img-icon.png"),
             // imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
-            imgUploadUrl: CONSTANT.fileUpload+"api/gift/uploadGiftPicture",
-            maxlength1:12,
-            maxlength:200,
-            endDatePicker:this.processDate(),
-            Index:-1, //标记多文件选择的条目
-            giftDetail:{
-                id:0,
+            imgUploadUrl: CONSTANT.fileUpload + "api/gift/uploadGiftPicture",
+            maxlength1: 12,
+            maxlength: 200,
+            endDatePicker: this.processDate(),
+            Index: -1, //标记多文件选择的条目
+            giftDetail: {
+                id: 0,
                 name: "修改海报",
                 des: "修改海报的描述",
                 validity: 1517478909000,
@@ -30,11 +30,12 @@ export default {
         }
     },
     created() {
-        let _This=this;
-        _This.giftDetail={};
-        window.onbeforeunload = function() {
+        let _This = this;
+        _This.giftDetail = {};
+        window.onbeforeunload = function () {
             return "系统可能不会保存您所做的更改";
         }
+
     },
     methods: {
         /**
@@ -49,48 +50,48 @@ export default {
         },
         /*取消按钮*/
         backlist(){
-            this.$router.push("/admin/gift/addgift");
+            this.$router.push("/admin/gift");
         },
         /*保存按钮 和保存并新建*/
         Savegift(icode){
 
             /*验证判断必填项*/
-            // 礼品名称验证
-            var  authname=false;
-            if(!this.giftDetail.name){
-                authname=true;
+            // 礼品名称验证         !/\S{1,}/.test(!this.giftDetail.name)
+            var authname = false;
+            if (!this.giftDetail.name) {
+                authname = true;
             }
-            if(authname){
+            if (authname) {
                 this.$message.error("礼品名称不能为空");
                 return false;
             }
             //礼品描述验证
-            var  authdes=false;
-            if(!this.giftDetail.des){
-                authdes=true;
+            var authdes = false;
+            if (!this.giftDetail.des) {
+                authdes = true;
             }
-            if(authdes){
+            if (authdes) {
                 this.$message.error("礼品描述不能为空");
                 return false;
             }
             /*礼品有效期*/
-            var  authvalidity=false;
-            if(!this.giftDetail.validity){
-                authvalidity=true;
+            var authvalidity = false;
+            if (!this.giftDetail.validity) {
+                authvalidity = true;
             }
-            if(authvalidity){
+            if (authvalidity) {
                 this.$message.error("礼品有效期不能为空");
                 return false;
             }
 
             /*礼品图片最少一张 最多五张*/
-            var authPictures=false;
-            var arr =this.giftDetail.giftPictures||[];
-            if(arr.length==0){
-                authPictures=true;
+            var authPictures = false;
+            var arr = this.giftDetail.giftPictures || [];
+            if (arr.length == 0) {
+                authPictures = true;
             }
 
-            if(authPictures){
+            if (authPictures) {
                 this.$message.error("礼品图片最少上传一张");
                 return false;
             }
@@ -102,35 +103,34 @@ export default {
             //     return false;
             // }
             // 提交参数
-            let _This=this;
-            let pData={
-                postData:JSON.stringify(this.giftDetail)
+            let _This = this;
+            let pData = {
+                postData: JSON.stringify(this.giftDetail)
             };
-            console.log(pData,"55555555555");
+            console.log(pData, "55555555555");
             _.ajax({
                 url: '/admin/gift/addgift',
                 method: 'POST',
                 data: pData,
                 success: function (result) {
                     // console.log("====++++++++++++++====",result);
-                    if(result.code==0){
-                        let giftDetail=result.data;
+                    if (result.code == 0) {
+                        let giftDetail = result.data;
 
                         // console.log("giftDetail============>>>>>>",giftDetail);
-                        _This.$message({message: '添加成功',
+                        _This.$message({
+                            message: '添加成功',
                             type: 'success'
                         });
-                        if(icode==1){
-                            setTimeout(function(){
+                        if (icode == 1) {
 
-                                _This.$router.push("/admin/gift");
-                            },1000);
+                            _This.$router.push("/admin/gift");
 
-                        }else{
+                        } else {
                             _This.$router.push("/admin/gift/addgift");
-                            _This.giftDetail={};
+                            _This.giftDetail = {};
                         }
-                    }else {
+                    } else {
                         _This.$message.error("添加失败");
                     }
                 }
@@ -143,13 +143,13 @@ export default {
          * @param ee
          */
         fMultImgUpload(ee){
-            let _This=this;
-            let index=_This.afterIndex;
+            let _This = this;
+            let index = _This.afterIndex;
             var fdata = new FormData();
             var imgFile = ee.target.files[0];
             fdata.append('imgFile', imgFile);
             fdata.append('fieldFlag', 1);
-            _This.imgUploadUrl=CONSTANT.fileUpload+"api/gift/uploadGiftPicture";
+            _This.imgUploadUrl = CONSTANT.fileUpload + "api/gift/uploadGiftPicture";
             _.ajax({
                 url: _This.imgUploadUrl,
                 type: 'POST',
@@ -157,21 +157,21 @@ export default {
                 urlType: 'full',
                 contentType: false,
                 processData: false,
-                success: function(result) {
+                success: function (result) {
                     // console.log("----------------",result)
                     // let giftData=_This.giftDetail;
-                    let giftDetail=_This.giftDetail;
+                    let giftDetail = _This.giftDetail;
 
-                    let giftPictures=giftDetail.giftPictures||[];
-                    if(result.code == 0 ) {
+                    let giftPictures = giftDetail.giftPictures || [];
+                    if (result.code == 0) {
                         giftPictures.push(result.data);
                     }
-                    giftDetail.giftPictures=giftPictures;
-                    _This.giftDetail={};
-                    _This.giftDetail=giftDetail;
+                    giftDetail.giftPictures = giftPictures;
+                    _This.giftDetail = {};
+                    _This.giftDetail = giftDetail;
                     // console.log("----------------",_This.giftDetail);
                 },
-                error: function(result) {
+                error: function (result) {
                     this.$message.error("图片大小不能超过5M！");
                     console.log("error-- result------>", result)
                 }
@@ -184,30 +184,30 @@ export default {
          * @param index
          * @param pindex
          */
-        fMultChooseafImg(index,pindex){
-            var arr =this.giftDetail.giftPictures||[];
-            if( arr.length>4){
+        fMultChooseafImg(index, pindex){
+            var arr = this.giftDetail.giftPictures || [];
+            if (arr.length > 4) {
                 this.$message.error("礼品图片最多上传五张");
                 return false;
             }
-            let _This=this;
-            _This.afterIndex=index;
-            let itema=index;
+            let _This = this;
+            _This.afterIndex = index;
+            let itema = index;
             this.$refs[itema].click();
         },
         /**
          *删除多个的图片
          */
-        fDeletePic(ee,index,pindex){
+        fDeletePic(ee, index, pindex){
 
-            let _This=this;
+            let _This = this;
             ee.cancelBubble = true;
-            let giftDetail=_This.giftDetail;
-            let giftPictures=giftDetail.giftPictures||[];
-            giftPictures.splice(pindex,1);
-            giftDetail.giftPictures=giftPictures;
-            _This.giftDetail={};
-            _This.giftDetail=giftDetail;
+            let giftDetail = _This.giftDetail;
+            let giftPictures = giftDetail.giftPictures || [];
+            giftPictures.splice(pindex, 1);
+            giftDetail.giftPictures = giftPictures;
+            _This.giftDetail = {};
+            _This.giftDetail = giftDetail;
 
             // console.log("=============", _This.giftDetail.giftPictures);
         },

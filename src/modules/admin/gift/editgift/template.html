@@ -9,7 +9,7 @@
                 <div class="gift-record">
                     <div class="record-text-ct">
                         <div style="padding-left: 0px;">
-                            <span class="sel-title" style="color:#000;">礼品修改</span>
+                            <span class="sel-title" style="color:#333;font-size: 16px;">礼品修改</span>
                         </div>
                     </div>
                     <div class="gift-edit-ct">
@@ -29,7 +29,8 @@
                     <div class="row-ct">
                         <div class="row-item">
                             <span class="row-item-title f-14" style="vertical-align: middle;"><i class="i-must">*</i> 礼品名称</span>
-                            <el-input class="row-item-value" :disabled="giftDetail.status == 1 " placeholder="请输入礼品名称" :maxlength="maxlength1" v-model="giftDetail.name" ></el-input>
+                            <el-input class="row-item-value" :disabled="giftDetail.status == 1 " placeholder="请输入礼品名称"
+                                      :maxlength="maxlength1" style="white-space: pre;" v-model.trim="giftDetail.name"></el-input>
                         </div>
                     </div>
                 </div>
@@ -42,10 +43,11 @@
                                     class="row-item-value"
                                     type="textarea"
                                     :maxlength="maxlength"
+                                    style="white-space: pre;"
                                     :disabled="giftDetail.status == 1 "
                                     :autosize="{ minRows: 2, maxRows: 10}"
                                     placeholder="请输入礼品描述内容"
-                                    v-model="giftDetail.des">
+                                    v-model.trim="giftDetail.des">
                             </el-input>
                         </div>
                     </div>
@@ -59,6 +61,7 @@
                             <el-date-picker
                                     :picker-options="endDatePicker"
                                     class="row-item-value"
+                                    resize="both"
                                     :disabled="giftDetail.status == 1 "
                                     v-model="giftDetail.validity"
                                     placeholder="请选择礼品有效期限"
@@ -86,7 +89,7 @@
                                 <div class="dynicPic trueImg"
                                      :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
                                      @click="fMultChooseafImg(1,pindex)">
-                                    <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
+                                        <img class="closeUpPic" v-if="giftDetail.status===0" src="../../../../common/img/tv/con-error.png"
                                          @click="fDeletePic($event,1,pindex)">
                                 </div>
                             </div>
@@ -101,7 +104,7 @@
                     </div>
                 </div>
                 <div class="description" style="">
-                    500 X 500px， 支持jpg、png、jpeg、bmp，图片大小5M以内
+                    500px * 500px， 支持jpg、png、jpeg、bmp，图片大小5M以内
                 </div>
             </div>
 
