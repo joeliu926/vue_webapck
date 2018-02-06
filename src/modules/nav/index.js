@@ -15,7 +15,8 @@ export default {
             backgroundRight:false,
             clinicName:'',
             userName:'',
-            name:''
+            name:'',
+            isShow:false
         };
     },
     created() {

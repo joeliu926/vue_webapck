@@ -141,7 +141,9 @@ export default {
                 success: function (result) {
                    // console.log("------result-----",result);
                     if(result.code==0&&result.data){
+
                         _This.aCustomerlist = result.data.list;
+                        console.log(_This.aCustomerlist ,"++++++++++++++++++>>>>>>>>>>>>>>>");
                         _This.count = result.data.count;
                     }
                 }

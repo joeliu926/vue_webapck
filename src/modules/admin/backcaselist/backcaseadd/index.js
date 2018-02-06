@@ -91,6 +91,12 @@ export default {
             this.initData();
         }
         this.getdoctorlist();
+        window.onbeforeunload = function() {
+            return "系统可能不会保存您所做的更改";
+        }
+
+
+
     },
     methods: {
         /**
