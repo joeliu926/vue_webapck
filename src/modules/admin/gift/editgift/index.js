@@ -39,9 +39,9 @@ export default {
     },
     created() {
         this.initData();
-        window.onbeforeunload = function () {
-            return "系统可能不会保存您所做的更改";
-        }
+        // window.onbeforeunload = function () {
+        //     return "系统可能不会保存您所做的更改";
+        // }
         if(this.giftDetail.status == 1){
             this.hide=false;
         }

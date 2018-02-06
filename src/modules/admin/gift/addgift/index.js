@@ -32,9 +32,9 @@ export default {
     created() {
         let _This = this;
         _This.giftDetail = {};
-        window.onbeforeunload = function () {
-            return "系统可能不会保存您所做的更改";
-        }
+        // window.onbeforeunload = function () {
+        //     return "系统可能不会保存您所做的更改";
+        // }
 
     },
     methods: {
