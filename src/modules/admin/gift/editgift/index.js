@@ -156,7 +156,7 @@ export default {
                 method: 'POST',
                 data: pdata,
                 success: function (result) {
-                    console.log("====++++++66666666666 6666++++++++====",result);
+                    // console.log("====++++++66666666666 6666++++++++====",result);
                     if(result.code==0){
                         let giftDetail=result.data;
                         // console.log("giftDetail============>>>>>>",giftDetail);
@@ -198,8 +198,7 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("----------------",result)
-                    // let giftData=_This.giftDetail;
+                    // console.log("----------------",result)
                     let giftDetail=_This.giftDetail;
 
                     let giftPictures=giftDetail.giftPictures||[];
@@ -209,7 +208,7 @@ export default {
                     giftDetail.giftPictures=giftPictures;
                     _This.giftDetail={};
                     _This.giftDetail=giftDetail;
-                    console.log("----------------",_This.giftDetail);
+                    // console.log("----------------",_This.giftDetail);
                 },
                 error: function(result) {
                     this.$message.error("图片大小不能超过5M！");
