@@ -169,9 +169,9 @@ export default {
                             message: '添加成功',
                             type: 'success'
                         });
-                        setTimeout(function () {
-                            _This.$router.push("/admin/gift");
-                        }, 1000);
+
+                        _This.$router.push("/admin/gift");
+
 
 
                     } else {
