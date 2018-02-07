@@ -80,7 +80,9 @@ export default {
                         "description": ""
                     }
                 ]
-            }
+            },
+            savestate:true
+
         };
     },
     created() {
@@ -94,8 +96,21 @@ export default {
         window.onbeforeunload = function() {
             return "系统可能不会保存您所做的更改";
         }
+    },
+    /*浏览器后退键的提示信息 （路由导航守卫）*/
+    beforeRouteLeave (to, from , next) {
 
-
+        if(this.savestate==true){
+            const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        }
+        else{
+            next()
+        }
 
     },
     methods: {
@@ -126,6 +141,7 @@ export default {
         },
         /*保存按钮 和保存并新建*/
         Savecase(icode){
+            this.savestate=false;
             /*验证判断必填项*/
             if(!/\S{1,}/.test(this.caseDetail.caseName)){
                 this.$message.error("案例名不能为空");
@@ -235,6 +251,7 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
+
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -247,7 +264,7 @@ export default {
                             if(icode==1){
                                 setTimeout(function(){
                                     _This.$router.push("/admin/backcaselist");
-                                },3000);
+                                },1000);
                             }else{
                                 _This.caseDetail=_This.caseDel;
                             }
@@ -367,6 +384,7 @@ export default {
 
         /*取消按钮*/
         backlist(){
+            this.savestate=false;
             this.$router.push("/admin/backcaselist");
         },
         /*术前照片上传*/

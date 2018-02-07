@@ -17,16 +17,7 @@ export default {
             maxlength: 200,
             endDatePicker: this.processDate(),
             Index: -1, //标记多文件选择的条目
-            giftDetail: {
-                id: 0,
-                name: "修改海报",
-                des: "修改海报的描述",
-                validity: 1517478909000,
-                giftPictures: [{
-                    name: "10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091",
-                    url: "http://140.143.185.73:8077/mc_files/10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091"
-                }]
-            }
+            giftDetail: {}
         }
     },
     created() {
@@ -123,9 +114,15 @@ export default {
                             type: 'success'
                         });
                         if (icode == 1) {
-                            _This.$router.push("/admin/gift");
+                            setTimeout(function () {
+                                _This.$router.push("/admin/gift");
+                            }, 1000)
+
                         } else {
-                            _This.$router.push("/admin/gift/addgift");
+                            setTimeout(function () {
+                                _This.$router.push("/admin/gift/addgift");
+                            }, 1000)
+
                             _This.giftDetail = {};
                         }
                     } else {
