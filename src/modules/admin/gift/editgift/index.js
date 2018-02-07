@@ -53,7 +53,7 @@ export default {
     },
     /*浏览器后退键的提示信息 （路由导航守卫）*/
     beforeRouteLeave (to, from , next) {
-        const answer = window.confirm('您输入的内容尚未保存，确定离开此页面吗？')
+        const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
         if (answer) {
             next()
         } else {
