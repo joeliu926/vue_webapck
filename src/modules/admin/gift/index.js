@@ -50,7 +50,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("======giftlist======", result);
+                    // console.log("======giftlist======", result);
                     if (result.code == 0) {
                         _This.count = result.data.count;
                         _This.giftList = result.data.list;
@@ -99,7 +99,7 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("======giftlist======", result);
+                        // console.log("======giftlist======", result);
                         if (result.code == 0) {
                             _This.giftList = result.data.list;
                             _This.count = result.data.count;

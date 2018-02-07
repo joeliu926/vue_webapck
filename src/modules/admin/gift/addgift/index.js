@@ -17,7 +17,8 @@ export default {
             maxlength: 200,
             endDatePicker: this.processDate(),
             Index: -1, //标记多文件选择的条目
-            giftDetail: {}
+            giftDetail: {},
+            savestate:true,
         }
     },
     created() {
@@ -28,6 +29,21 @@ export default {
         // }
 
     },
+    /*浏览器后退键的提示信息 （路由导航守卫）*/
+    // beforeRouteLeave (to, from, next) {
+    //
+    //     if (this.savestate == true) {
+    //         const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
+    //         if (answer) {
+    //             next()
+    //         } else {
+    //             next(false)
+    //         }
+    //     }
+    //     else {
+    //         next()
+    //     }
+    // },
     methods: {
         /**
          * 时间限制  大于当天
@@ -41,13 +57,14 @@ export default {
         },
         /*取消按钮*/
         backlist(){
+            // this.savestate = false;
             this.$router.push("/admin/gift");
         },
         /*保存按钮 和保存并新建*/
         Savegift(icode){
-
+            // this.savestate = false;
             /*验证判断必填项*/
-            // 礼品名称验证         !/\S{1,}/.test(!this.giftDetail.name)
+            // 礼品名称验证
             var authname = false;
             if (!this.giftDetail.name) {
                 authname = true;
@@ -98,7 +115,7 @@ export default {
             let pData = {
                 postData: JSON.stringify(this.giftDetail)
             };
-            console.log(pData, "55555555555");
+            // console.log(pData, "55555555555");
             _.ajax({
                 url: '/admin/gift/addgift',
                 method: 'POST',
@@ -142,6 +159,16 @@ export default {
             let index = _This.afterIndex;
             var fdata = new FormData();
             var imgFile = ee.target.files[0];
+            if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let imgFileType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(imgFileType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
             fdata.append('imgFile', imgFile);
             fdata.append('fieldFlag', 1);
             _This.imgUploadUrl = CONSTANT.fileUpload + "api/gift/uploadGiftPicture";

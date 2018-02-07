@@ -456,7 +456,6 @@ export default {
                         _This.afterName =result.data.name;
                         _This.caseDetail.afterPicture.url =result.data.url;
                         _This.caseDetail.afterPicture.name =result.data.name;
-                        // console.log("+++++++++++++++",_This.defaultImg);
                     }
                 },
                 error: function(result) {
