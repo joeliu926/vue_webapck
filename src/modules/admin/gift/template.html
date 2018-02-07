@@ -28,13 +28,13 @@
                             <p style="padding:10px 0;" v-model="status">
 
                                 <img :src="scope.row.giftCover.url" @click="editgift(scope.row.status,scope.row.id)"
-                                     style="width:88px;height:88px;vertical-align:middle; margin-right:10px;"
+                                     style="width:88px;height:88px;vertical-align:middle; margin-right:10px;cursor: pointer;"
                                      v-if="scope.row.giftCover" alt="">
 
-                                <img style="width:88px;height:88px;vertical-align:middle; margin-right:10px;"
+                                <img style="width:88px;height:88px;vertical-align:middle; margin-right:10px;cursor: pointer;"
                                      v-if="!scope.row.giftCover" @click="editgift(scope.row.id)"
                                      src="../../../common/img/customer_default.png">
-                                {{scope.row.name}}
+                                <span style="vertical-align:middle;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{scope.row.name}}</span>
                             </p>
 
                         </template>

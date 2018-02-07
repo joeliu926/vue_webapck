@@ -181,7 +181,7 @@ export default {
                         }, 1000)
 
                     } else {
-                        _This.$message.error("添加失败");
+                        _This.$message.error("添加失败,系统异常请稍后再试！");
                     }
                 }
             }, 'withCredentials');

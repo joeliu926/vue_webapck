@@ -269,7 +269,7 @@ export default {
                                 _This.caseDetail=_This.caseDel;
                             }
                         }else {
-                            _This.$message.error("更新失败");
+                            _This.$message.error("更新失败,系统异常请稍后再试！");
                         }
                     }
                 }, 'withCredentials');

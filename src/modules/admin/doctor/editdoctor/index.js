@@ -196,7 +196,7 @@ export default {
                            _This.inauguralState="";
                        }
                     }else{
-                    	 _This.$message.error('操作失败');
+                    	 _This.$message.error('操作失败,系统异常请稍后再试！');
                     }
                 }
             }, 'withCredentials');
