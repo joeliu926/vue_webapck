@@ -13,51 +13,47 @@ export default {
             bydefault: require("../../../../common/img/add-img-icon.png"),
             // imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
             imgUploadUrl: CONSTANT.fileUpload + "api/gift/uploadGiftPicture",
-            buttonText:"",
+            buttonText: "",
             maxlength1: 12,
             textarea: "",
             maxlength: 200,
             endData: "",
-            hide:true,
+            hide: true,
             endDatePicker: this.processDate(),
             afterIndex: -1, //标记多文件选择的条目
-            giftDetail: {
-                "id": 1,
-                "loginName": "15510677520",
-                "name": "修改海报",
-                status: 0,
-                "des": "修改海报的描述",
-                "validity": 1517475957,
-                "giftPictures": [{
-                    "name": "10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091"
-                }]
-
-            },
+            giftDetail: {},
+            savestate: true,
+            state: true,
             contentHasSave: false // 记录用户是否已经保存内容
         }
     },
 
     created() {
         this.initData();
-        if(this.giftDetail.status == 1){
-            this.hide=false;
+        if (this.giftDetail.status == 1) {
+            this.hide = false;
         }
 
         /*刷新和关闭浏览器的提示信息（）*/
         window.onbeforeunload = function (e) {
 
-           return "系统可能不会保存您所做的更改。";
+            return "系统可能不会保存您所做的更改。";
         }
 
     },
     /*浏览器后退键的提示信息 （路由导航守卫）*/
-    beforeRouteLeave (to, from , next) {
-        const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
-        if (answer) {
+    beforeRouteLeave (to, from, next) {
+
+        if (this.savestate == true) {
+            const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        }
+        else {
             next()
-        } else {
-            next(false)
         }
     },
     methods: {
@@ -94,10 +90,9 @@ export default {
                 }
             }, 'withCredentials');
         },
-
-
         /*取消按钮*/
         backlist(){
+            this.savestate = false;
             this.$router.push("/admin/gift");
         },
         /* 修改好后内容  保存按钮 提交修改好的数据*/
@@ -149,7 +144,6 @@ export default {
             // if(arr.length>5){
             //     authPictures=true;
             // }
-            //
             // if(authPictures){
             //     this.$message.error("礼品图片最多上传五张");
             //     return false;
@@ -168,30 +162,29 @@ export default {
             pdata = {date: pData}
             console.log(pdata, "6666666666666666666");
             // return  false;
+            _This.savestate = false;
             _.ajax({
                 url: '/admin/gift/editgiftNew',
                 method: 'POST',
                 data: pdata,
                 success: function (result) {
                     // console.log("====++++++66666666666 6666++++++++====",result);
+
                     if (result.code == 0) {
                         let giftDetail = result.data;
-                        // console.log("giftDetail============>>>>>>",giftDetail);
                         _This.$message({
                             message: '添加成功',
                             type: 'success'
                         });
-
-                        _This.$router.push("/admin/gift");
-
-
+                        setTimeout(function () {
+                            _This.$router.push("/admin/gift");
+                        }, 1000)
 
                     } else {
                         _This.$message.error("添加失败");
                     }
                 }
             }, 'withCredentials');
-
 
         },
         /**
@@ -232,8 +225,6 @@ export default {
                 }
             });
         },
-        /**/
-
         /**
          * 多文件形式-------新加到页面
          * @param index
@@ -261,7 +252,6 @@ export default {
             if (this.giftDetail.status == 1) {
                 this.$message("已下架礼品不可编辑！");
                 return false;
-
             }
             let _This = this;
             ee.cancelBubble = true;

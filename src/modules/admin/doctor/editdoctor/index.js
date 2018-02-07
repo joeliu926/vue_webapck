@@ -20,6 +20,7 @@ export default {
             oJobTitle:["医师","主治医师","副主任医师","主任医师"],
             selectJobTitle:"",//选中的医生的职称
             curId:0,
+            savestate:true,
             oDoctor:{
                 "age": "",
                 "brief": "",
@@ -43,6 +44,25 @@ export default {
         let _This = this;
         _This.curId=_This.$route.params.id;
         _This.fGetDoctorDetail();
+        window.onbeforeunload = function() {
+            return "系统可能不会保存您所做的更改";
+        }
+
+    },
+    /*浏览器后退键的提示信息 （路由导航守卫）*/
+    beforeRouteLeave (to, from , next) {
+
+        if(this.savestate==true){
+            const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        }
+        else{
+            next()
+        }
 
     },
     mounted(){
@@ -91,6 +111,7 @@ export default {
          * @returns {boolean}
          */
         fEditSave(icode){
+            this.savestate=false;
             let _This=this;
             _This.oDoctor.jobTitle=_This.selectJobTitle;
             _This.oDoctor.jobCategory=_This.inauguralState;
@@ -166,7 +187,7 @@ export default {
                        if(icode==1){
                        	 setTimeout(function(){
                        	 		_This.$router.push("/admin/doctor");
-                       	 },2000);
+                       	 },1000);
                        
                        }else{
                        	 _This.oDoctor={};
@@ -181,6 +202,7 @@ export default {
             }, 'withCredentials');
         },
         fEditCancel(){
+            this.savestate=false;
             this.$router.push("/admin/doctor");
         },
         fSelectGoodAtItem(item){

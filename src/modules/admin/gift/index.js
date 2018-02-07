@@ -55,7 +55,7 @@ export default {
                         _This.count = result.data.count;
                         _This.giftList = result.data.list;
                         //数据排序
-                        _This.giftList = _This.giftList .sort(function(x, y){
+                        _This.giftList = _This.giftList.sort(function (x, y) {
                             return y.validity > x.validity;
                         });
                     }
@@ -69,12 +69,8 @@ export default {
         },
         /*跳转创建修改礼品页面*/
         editgift(e, uid){
-
             // console.log("e=======================>>>>>>",e);
-            /**
-             *禁止下架礼品进入详情页
-             */
-
+            // 禁止下架礼品进入详情页
             // if(e==1){
             //     return false;
             // }
@@ -98,8 +94,6 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                // return false;
-
                 _.ajax({
                     url: '/admin/gift/giftdelte',
                     method: 'POST',

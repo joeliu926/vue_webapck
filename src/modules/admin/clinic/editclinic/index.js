@@ -51,13 +51,35 @@ export default {
                 ],
                 "provName": "北京", //省份
                 "qualification": "" //诊所等级
-            }
+            },
+            savestate:true,
 
         };
     },
     created() {
         let clinicid = this.$route.params.id;
        // this.fGetSingleClinic();
+        /*刷新和关闭浏览器的提示信息（）*/
+        window.onbeforeunload = function (e) {
+
+            return "系统可能不会保存您所做的更改。";
+        }
+
+    },
+    /*浏览器后退键的提示信息 （路由导航守卫）*/
+    beforeRouteLeave (to, from , next) {
+
+        if(this.savestate==true){
+            const answer = window.confirm('您编辑的内容尚未保存，确定离开此页面吗？')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        }
+        else{
+            next()
+        }
 
     },
     mounted() {
@@ -93,6 +115,7 @@ export default {
          * 编辑取消
          */
         fEditCancel() {
+            this.savestate=false;
             this.$router.push("/admin/clinic/detail");
         },
         /**
@@ -100,6 +123,7 @@ export default {
          * @returns {boolean}
          */
         fEditSave() {
+            this.savestate=false;
             let _This = this;
             _This.oClinicData.productNames = _This.oSelectMajorItems;
            // _This.oClinicData.logo =_This.defaultImg;  //
@@ -163,7 +187,7 @@ export default {
 
                         setTimeout(function () {
                             _This.$router.push("/admin/clinic/detail");
-                        },2000)
+                        },1000)
 
                     }else{
                         _This.$message.error("更新失败");
