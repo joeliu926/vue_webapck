@@ -18,31 +18,7 @@ export default {
             pageSize: 10,
             pageNo: 1,
             status: 0,
-            giftList: [{
-                "id": 1,
-                "status": 0,
-                "createUser": 130,
-                "clinicId": 9,
-                "name": "修改海报",
-                "des": "修改海报的描述",
-                "validity": 1517476000,
-                "giftCover": {
-                    "name": "10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091"
-                }
-            }, {
-                "id": 1,
-                "status": 0,
-                "createUser": 130,
-                "clinicId": 9,
-                "name": "修改海报",
-                "des": "修改海报的描述",
-                "validity": 1517476000,
-                "giftCover": {
-                    "name": "10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091",
-                    "url": "http://140.143.185.73:8077/mc_files/10088/GIFT_PICTURE/f706cf5a-7818-4934-bfda-c3bf45b1b091"
-                }
-            }]
+            giftList: []
         };
     },
     filters: {

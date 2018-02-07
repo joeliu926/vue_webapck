@@ -123,9 +123,7 @@ export default {
                             type: 'success'
                         });
                         if (icode == 1) {
-
                             _This.$router.push("/admin/gift");
-
                         } else {
                             _This.$router.push("/admin/gift/addgift");
                             _This.giftDetail = {};
