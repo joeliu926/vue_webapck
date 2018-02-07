@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="gift-edit-ct">
-                        <el-button @click="savegift">保存</el-button>
-                        <el-button @click="backlist">取消</el-button>
+                        <el-button v-model="buttonText" @click="savegift">保存</el-button>
+                        <el-button  v-model="buttonText" @click="backlist">取消</el-button>
                     </div>
                 </div>
             </div>

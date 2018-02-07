@@ -52,9 +52,12 @@ export default {
                 success: function (result) {
                     console.log("======giftlist======", result);
                     if (result.code == 0) {
-
-                        _This.giftList = result.data.list;
                         _This.count = result.data.count;
+                        _This.giftList = result.data.list;
+                        //数据排序
+                        _This.giftList = _This.giftList .sort(function(x, y){
+                            return y.validity > x.validity;
+                        });
                     }
 
                 }
@@ -68,9 +71,14 @@ export default {
         editgift(e, uid){
 
             // console.log("e=======================>>>>>>",e);
+            /**
+             *禁止下架礼品进入详情页
+             */
+
             // if(e==1){
             //     return false;
             // }
+            //跳转到详情页
             if (!uid) {
                 return false;
             }

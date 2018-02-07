@@ -13,7 +13,7 @@ export default {
             bydefault: require("../../../../common/img/add-img-icon.png"),
             // imgUploadUrl:CONSTANT.fileUpload+"attachment/upload",
             imgUploadUrl: CONSTANT.fileUpload + "api/gift/uploadGiftPicture",
-            text: '',
+            buttonText:"",
             maxlength1: 12,
             textarea: "",
             maxlength: 200,
@@ -37,18 +37,30 @@ export default {
             contentHasSave: false // 记录用户是否已经保存内容
         }
     },
+
     created() {
         this.initData();
-        // window.onbeforeunload = function () {
-        //     return "系统可能不会保存您所做的更改";
-        // }
         if(this.giftDetail.status == 1){
             this.hide=false;
         }
 
+        /*刷新和关闭浏览器的提示信息（）*/
+        window.onbeforeunload = function (e) {
+
+           return "系统可能不会保存您所做的更改。";
+        }
+
+    },
+    /*浏览器后退键的提示信息 （路由导航守卫）*/
+    beforeRouteLeave (to, from , next) {
+        const answer = window.confirm('您输入的内容尚未保存，确定离开此页面吗？')
+        if (answer) {
+            next()
+        } else {
+            next(false)
+        }
     },
     methods: {
-
         /**
          * 时间限制  大于当天
          */

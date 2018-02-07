@@ -182,6 +182,12 @@ export default {
             }, 'withCredentials');
         },
         handleNodeClick(data) {
+            // console.log("data----55555555555555---------------","-=-=-=-=-=--=-");
+
+            /*刷新关闭详情的时候做提示保存数据*/
+            window.onbeforeunload = function (e) {
+            }
+
             this.removeAllHightLine();
             let tickPoint =data.id.split('_');
             if(tickPoint.length>2){
