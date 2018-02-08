@@ -504,7 +504,6 @@ export default {
                 success: function(result) {
                     // console.log("------------",result)
                     if(result.code == 0 ) {
-                       // _This.caseDetail.customerLogo=result.data;
                         _This.caseDetail.customerLogo.url =result.data.url;
                         _This.caseDetail.customerLogo.name =result.data.name;
                     }
@@ -522,7 +521,6 @@ export default {
         fDeleteAfterItem(index){
             let _This=this;
             _This.caseDetail.contentList.splice(index,1);
-
         },
         /**
          * 多文件上传
