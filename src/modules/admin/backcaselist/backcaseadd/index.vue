@@ -186,7 +186,7 @@
                         cursor: pointer;
                         background-position: center center;
                         background-repeat: no-repeat;
-                        background-size: 100%;
+                        background-size: cover;
                     }
                  }
                 .after-box{
@@ -199,7 +199,7 @@
                         border: 1px dashed #bfcbd9;
                         background-position: center center;
                         background-repeat: no-repeat;
-                        background-size: 100%;
+                        background-size: cover;
                     }
                  }
 
@@ -262,7 +262,7 @@
                     border: 1px dashed #bfcbd9;
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-size: 100%;
+                    background-size: cover;
                     margin: 5px;
                 }
                 .add-img{
@@ -273,7 +273,7 @@
                     border: 1px dashed #bfcbd9;
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-size: 100%;
+                    background-size: cover;
                     .add-icon{
 
                     }
