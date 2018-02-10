@@ -122,5 +122,39 @@
             </div>
 
         </div>
+
+    <!-----------------裁剪图片 start------------------->
+    <div class="p-mask"  :style="{display:[isCroper?'':'none']}" style="">
+        <div class="croper-ct" style="">
+            <div class="end-close" @click="fCloseUploadPic"><img src="../../../common/img/i-cl-close.png"> </div>
+            <div style="text-align: center;">
+                <p class="f-16 p-title" style=""> 编辑诊所照片</p>
+            </div>
+
+            <div style="height: 400px;">
+                <vueCropper
+                        ref="cropData"
+                        :img="cropData.img"
+                        :autoCrop="cropData.autoCrop"
+                        :autoCropWidth="cropData.autoCropWidth"
+                        :autoCropHeight="cropData.autoCropHeight"
+                        :fixedBox="cropData.fixedBox"
+                        :canMoveBox="cropData.canMoveBox"
+                        :full="cropData.full"
+                ></vueCropper>
+            </div>
+            <div style="text-align: center;">
+                <div class="f-14 p-des">滑动滚轮可放大缩小图像</div>
+                <div class="f-14">鼠标拖动可移动图片位置</div>
+            </div>
+            <div class="" style="width: 80%;margin: 0 auto; padding: 20px 0;">
+                <el-button style="width: 100%;" type="primary" @click="fCroperImg">保存</el-button>
+            </div>
+        </div>
+
     </div>
+    <!-----------------裁剪图片 end------------------->
+
+    </div>
+
 </div>

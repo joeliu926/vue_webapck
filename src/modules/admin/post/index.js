@@ -4,14 +4,16 @@
 
 import tree from '../tree/index.vue';
 import CONSTANT from '../../../common/utils/constants.js';
+import VueCropper from 'vue-cropper';
 export default {
     components: {
-        tree
+        tree,
+        VueCropper
     },
     data () {
         let defaultl=require("../../../common/img/login_logo.png");
         return {
-        	ddddd:"http://140.143.185.73:8077/mc_files/10088/POSTER_PICTURE/f63d6aec-b2a2-4ecb-86e2-356f9e3a5fc5",
+        	ddddd:"",
             defaultImg: require("../../../common/img/add-img-icon.png"), //默认上传图片
             imgUploadUrl:CONSTANT.fileUpload+"api/posterInfo/uploadPosterPicture",//"attachment/upload",//上传图片地址
             addPost:false,//新增海报标志
@@ -32,6 +34,18 @@ export default {
             oClinicData:{},//诊所对象
             aPosterFormat:[],//版式列表
             sCurrentFormatId:0,//当前选中的版式id
+            cropData:{
+                img: '',
+                info: true,
+                autoCrop: true,
+                canMoveBox:false,
+                autoCropWidth: 212,
+                autoCropHeight: 350,
+                fixedBox: true,
+                full:true
+            },
+            currentChoiceType:0,//当前选择上传的图片类型，0是before， 1是after
+            isCroper:false //是否打开裁剪的窗口
         };
     },
     filters:{
@@ -433,7 +447,79 @@ export default {
           let _This=this;
             _This.pageNo=nu;
             _This.fGetPostClassify();
-        }
+        },
+        ///////////////////裁剪图片 start///////////////////////////////////////////
+        /**
+         * 裁剪图片
+         */
+        fCroperImg(){
+            let _This=this;
+            _This.$refs.cropData.getCropBlob((imgFile) => {
+                // do something
+                var fdata = new FormData();
+                fdata.append('imgFile', imgFile);
+                fdata.append('fieldFlag', 1);
+                let imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
+                _.ajax({
+                    url: imgUploadUrl,
+                    type: 'POST',
+                    data: fdata,
+                    urlType: 'full',
+                    contentType: false,
+                    processData: false,
+                    success: function(result) {
+                        let oClinicData=_This.oClinicData;
+                        _This.oClinicData.fileVo=_This.oClinicData.fileVo||[];
+                        if(result.code == 0 ) {
+                            _This.oClinicData.fileVo.push(result.data);
+                            _This.isCroper=false;
+                        }else{
+                            this.$message.error("系统错误，图片提交失败！");
+                        }
+                    },
+                    error: function(result) {
+                        this.$message.error("图片大小不能超过5M！");
+                        console.log("error-- result------>", result)
+                    }
+                });
+            });
+        },
+
+        /*诊所照片裁剪上传*/
+        CroperImgUpload(e){
+            console.log("e--------------",e);
+            let _This = this;
+            var imgFile = e.target.files[0];
+            if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(ee){
+                let cropData=_This.cropData;
+                _This.isCroper=true;
+                cropData.img=ee.target.result;
+                _This.cropData=cropData;
+                console.log("ee--------------",ee);
+            };
+            reader.readAsDataURL(imgFile);
+            return false;
+        },
+        /**
+         * 关闭上传照片窗口
+         */
+        fCloseUploadPic(){
+            this.isCroper=false;
+        },
+
+        ///////////////////裁剪图片 end///////////////////////////////////////////
 
     },
     watch: {}

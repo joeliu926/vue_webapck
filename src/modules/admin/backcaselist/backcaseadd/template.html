@@ -102,7 +102,7 @@
                 <div class="before-box fl">
                     <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
                         <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
-                        <input type="file" style="display: none;" ref="beforeImg" @change="beforeImgUpload">
+                        <input type="file" style="display: none;" ref="beforeImg" @change="CroperImgUpload">
                         <div class="doctor-img"
                              :style="{backgroundImage:['url('+(caseDetail.beforePicture.url||bydefault)+')']}"
                              @click="fChoosebfImg"></div>
@@ -112,7 +112,7 @@
                 <div class="after-box fl">
                     <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
                         <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
-                        <input type="file" style="display: none;" ref="afterImg" @change="afterImgUpload">
+                        <input type="file" style="display: none;" ref="afterImg" @change="CroperImgUpload">
                         <div class="doctor-img"
                              :style="{backgroundImage:['url('+(caseDetail.afterPicture.url||bydefault)+')']}"
                              @click="fChooseafImg"></div>
@@ -260,5 +260,39 @@
 
             </div>
         </div>
+
+        <div class="p-mask"  :style="{display:[isCroper?'':'none']}" style="">
+            <div class="croper-ct" style="">
+                <div class="end-close" @click="fCloseUploadPic"><img src="../../../../common/img/i-cl-close.png"> </div>
+                <div style="text-align: center;">
+                    <p v-if="currentChoiceType==0" class="f-16 p-title" style=""> 编辑术前照片</p>
+                    <p v-if="currentChoiceType==1" class="f-16 p-title" style=""> 编辑术后照片</p>
+                </div>
+
+                <div style="height: 400px;">
+                    <vueCropper
+                            ref="cropData"
+                            :img="cropData.img"
+                            :autoCrop="cropData.autoCrop"
+                            :autoCropWidth="cropData.autoCropWidth"
+                            :autoCropHeight="cropData.autoCropHeight"
+                            :fixedBox="cropData.fixedBox"
+                            :canMoveBox="cropData.canMoveBox"
+                            :full="cropData.full"
+                    ></vueCropper>
+                </div>
+                <div style="text-align: center;">
+                    <div class="f-14 p-des">滑动滚轮可放大缩小图像</div>
+                    <div class="f-14">鼠标拖动可移动图片位置</div>
+                </div>
+                <div class="" style="width: 80%;margin: 0 auto; padding: 20px 0;">
+                    <el-button style="width: 100%;" type="primary" @click="fCroperImg">保存</el-button>
+                </div>
+            </div>
+
+        </div>
+
+
+
     </div>
 </div>

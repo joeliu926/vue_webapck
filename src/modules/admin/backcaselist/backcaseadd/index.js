@@ -3,10 +3,13 @@
  */
 
 import tree from '../../tree/index.vue';
-import CONSTANT from '../../../../common/utils/constants.js'
+import CONSTANT from '../../../../common/utils/constants.js';
+import VueCropper from 'vue-cropper';
+
 export default {
     components: {
-        tree
+        tree,
+        VueCropper
     },
     data () {
         return {
@@ -81,7 +84,19 @@ export default {
                     }
                 ]
             },
-            savestate:true
+            savestate:true,
+            cropData:{
+                img: '',
+                info: true,
+                autoCrop: true,
+                canMoveBox:false,
+                autoCropWidth: 212,
+                autoCropHeight: 350,
+                fixedBox: true,
+                full:true
+            },
+            currentChoiceType:0,//当前选择上传的图片类型，0是before， 1是after
+            isCroper:false //是否打开裁剪的窗口
 
         };
     },
@@ -403,7 +418,6 @@ export default {
                 return false;
             }
 
-
             var fdata = new FormData();
             fdata.append('beforeimgFile', beforeimgFile);
             fdata.append('user', "test");
@@ -415,9 +429,8 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    // console.log("=============",result);
                     if(result.code == 0 ) {
-                        _This.caseDetail.beforePicture=result.data;
+                        _This.caseDetail.beforePicture=result.data;//术前照片赋值**************
                     }
                 },
                 error: function(result) {
@@ -467,9 +480,11 @@ export default {
         ,
         fChoosebfImg() {
             this.$refs.beforeImg.click();
+            this.currentChoiceType=0;
         },
         fChooseafImg() {
             this.$refs.afterImg.click();
+            this.currentChoiceType=1;
         },
         fChooseImg() {
             this.$refs.uploadImg.click();
@@ -582,6 +597,76 @@ export default {
             let _This=this;
             ee.cancelBubble = true;
             _This.caseDetail.contentList[index].pictures.splice(pindex,1);
+        },
+        /**
+         * 裁剪图片
+         */
+        fCroperImg(){
+            let _This=this;
+            _This.$refs.cropData.getCropBlob((imgFile) => {
+                // do something
+                var fdata = new FormData();
+                fdata.append('imgFile', imgFile);
+                _.ajax({
+                    url: _This.imgUploadUrl,
+                    type: 'POST',
+                    data: fdata,
+                    urlType: 'full',
+                    contentType: false,
+                    processData: false,
+                    success: function(result) {
+                        if(result.code!=0){
+                            this.$message.error("图片上传失败");
+                            return false;
+                        }
+                        let cType=_This.currentChoiceType;
+                        if(cType==0){
+                            _This.caseDetail.beforePicture=result.data;
+                        }else if(cType==1){
+                            _This.caseDetail.afterPicture=result.data;
+                        }
+                        _This.isCroper=false;
+
+                    },
+                    error: function(result) {
+                        this.$message.error("图片大小不能超过5M！");
+                        console.log("error-- result------>", result)
+                    }
+                });
+            });
+        },
+
+        /*术前术后照片裁剪上传*/
+        CroperImgUpload(e){
+            let _This = this;
+            var imgFile = e.target.files[0];
+            if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(e){
+                let cropData=_This.cropData;
+                _This.isCroper=true;
+                cropData.img=e.target.result;
+                _This.cropData=cropData;
+            }
+            reader.readAsDataURL(imgFile);
+            return false;
+        },
+        /**
+         * 关闭上传照片窗口
+         */
+        fCloseUploadPic(){
+            this.isCroper=false;
         }
+
     }
 }

@@ -11,7 +11,9 @@
         .fr {
             float: right;
         }
-
+        .hide{
+            display: none;
+        }
         .clearfix:before,
         .clearfix:after {
             content: "";
@@ -337,5 +339,37 @@
             float: left;*/
 
         }
+        /********************弹出蒙层***start********************/
+        .p-mask{
+            position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
+            .croper-ct{
+                width:420px;height: 620px;margin: 100px auto;background: #ffffff;padding: 20px 60px;
+                box-sizing: border-box;
+                border-radius: 10px;
+                position: relative;
+                .el-button:hover{
+                    background-color: #9083ED;
+                    color: #ffffff;
+                    border: 1px solid #9083ED;
+                }
+                .end-close{
+                    width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    right: -25px;
+                    top:-20px;
+                    cursor: pointer;
+                }
+                .p-title{
+                    font-size: 25px;
+                    margin-bottom: 25px;
+                }
+                .p-des{
+                    margin-top: 20px;
+                }
+            }
+        }
+
+        /********************弹出蒙层***end********************/
     }
 </style>
