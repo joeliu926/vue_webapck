@@ -14,7 +14,7 @@
             <div class="mask" v-if="addPost">
                 <div class="mask-ct">
                     <div class="end-close" @click="fCloseAddPost"><img src="../../../common/img/i-cl-close.png"> </div>
-                    <div class="select-ct">
+                    <div class="select-ct" style="padding: 50px 0 20px;">
                         <label class="" >海报分类 </label>
                         <el-select  v-model="selectClassify"  @change="fSelectClassify" placeholder="选择海报分类">
                             <el-option
@@ -25,12 +25,35 @@
                             </el-option>
                         </el-select>
                     </div>
-                    <div class="select-img-ct">
-                        <input type="file" style="display: none;" ref="uploadImg" @change="fAjaxFileUpload">
-                        <div class="post-img" :style="{backgroundImage:['url('+(uploadPostImg.url||defaultImg)+')']}" @click="fChooseImg"></div>
+                    <div class="select-img-ct" :style="{display:[!isCroper?'':'none']}">
+                        <input type="file" style="display: none;" ref="uploadImg" @change="CroperImgUpload">
+                        <div class="post-img post-img-wh" :style="{backgroundImage:['url('+(uploadPostImg.url||defaultImg)+')']}" @click="fChooseImg"></div>
+                    </div>
+
+                    <div class="croper-ct" :style="{display:[isCroper?'':'none']}">
+                        <div style="text-align: center;">
+                            <p class="f-16 p-title" style="margin-bottom: 25px;"> 编辑海报照片</p>
+                        </div>
+
+                        <div style="height: 400px; width: 80%;margin: 0 auto;">
+                            <vueCropper
+                                    ref="cropData"
+                                    :img="cropData.img"
+                                    :autoCrop="cropData.autoCrop"
+                                    :autoCropWidth="cropData.autoCropWidth"
+                                    :autoCropHeight="cropData.autoCropHeight"
+                                    :fixedBox="cropData.fixedBox"
+                                    :canMoveBox="cropData.canMoveBox"
+                                    :full="cropData.full"
+                            ></vueCropper>
+                        </div>
+                        <div style="text-align: center;padding-top:20px;">
+                            <div class="f-14 p-des">滑动滚轮可放大缩小图像</div>
+                            <div class="f-14">鼠标拖动可移动图片位置</div>
+                        </div>
                     </div>
                     <div class="submit-ct">
-                        <el-button @click="fSubAddPost" >保存</el-button>
+                        <el-button @click="fCroperImg" style="width: 80%;">保存</el-button>
                     </div>
                 </div>
             </div>
@@ -120,40 +143,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-    <!-----------------裁剪图片 start------------------->
-    <div class="p-mask"  :style="{display:[isCroper?'':'none']}" style="">
-        <div class="croper-ct" style="">
-            <div class="end-close" @click="fCloseUploadPic"><img src="../../../common/img/i-cl-close.png"> </div>
-            <div style="text-align: center;">
-                <p class="f-16 p-title" style=""> 编辑诊所照片</p>
-            </div>
-
-            <div style="height: 400px;">
-                <vueCropper
-                        ref="cropData"
-                        :img="cropData.img"
-                        :autoCrop="cropData.autoCrop"
-                        :autoCropWidth="cropData.autoCropWidth"
-                        :autoCropHeight="cropData.autoCropHeight"
-                        :fixedBox="cropData.fixedBox"
-                        :canMoveBox="cropData.canMoveBox"
-                        :full="cropData.full"
-                ></vueCropper>
-            </div>
-            <div style="text-align: center;">
-                <div class="f-14 p-des">滑动滚轮可放大缩小图像</div>
-                <div class="f-14">鼠标拖动可移动图片位置</div>
-            </div>
-            <div class="" style="width: 80%;margin: 0 auto; padding: 20px 0;">
-                <el-button style="width: 100%;" type="primary" @click="fCroperImg">保存</el-button>
-            </div>
-        </div>
-
-    </div>
-    <!-----------------裁剪图片 end------------------->
 
     </div>
 

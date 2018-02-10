@@ -13,6 +13,7 @@ export default {
     data () {
         let defaultl=require("../../../common/img/login_logo.png");
         return {
+
         	ddddd:"",
             defaultImg: require("../../../common/img/add-img-icon.png"), //默认上传图片
             imgUploadUrl:CONSTANT.fileUpload+"api/posterInfo/uploadPosterPicture",//"attachment/upload",//上传图片地址
@@ -39,7 +40,7 @@ export default {
                 info: true,
                 autoCrop: true,
                 canMoveBox:false,
-                autoCropWidth: 212,
+                autoCropWidth: 309,
                 autoCropHeight: 350,
                 fixedBox: true,
                 full:true
@@ -129,6 +130,7 @@ export default {
             let _This = this;
             _This.formatId=fid;
             _This.addPost=true;
+            _This.isCroper=false;
             _This.uploadPostImg={};
             if(_This.aPostClassify.length>0){
                 _This.selectClassify=_This.aPostClassify[0].id;
@@ -272,7 +274,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("result---update---",result);
+                    //console.log("result---update---",result);
                     if(result.code == 0 && result.data) {
                         if(!categoryId){
                             _This.aPostClassify.push(result.data);
@@ -458,36 +460,33 @@ export default {
                 // do something
                 var fdata = new FormData();
                 fdata.append('imgFile', imgFile);
-                fdata.append('fieldFlag', 1);
-                let imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
+               // fdata.append('fieldFlag', 1);
+                var fdata = new FormData();
+                fdata.append('imgFile', imgFile);
+                fdata.append('user', "test");
                 _.ajax({
-                    url: imgUploadUrl,
+                    url: _This.imgUploadUrl,
                     type: 'POST',
                     data: fdata,
                     urlType: 'full',
                     contentType: false,
                     processData: false,
                     success: function(result) {
-                        let oClinicData=_This.oClinicData;
-                        _This.oClinicData.fileVo=_This.oClinicData.fileVo||[];
-                        if(result.code == 0 ) {
-                            _This.oClinicData.fileVo.push(result.data);
-                            _This.isCroper=false;
-                        }else{
-                            this.$message.error("系统错误，图片提交失败！");
+                        if(result.code == 0 && result.data) {
+                            _This.uploadPostImg=result.data;
+                            _This.fSubAddPost();
                         }
                     },
                     error: function(result) {
-                        this.$message.error("图片大小不能超过5M！");
-                        console.log("error-- result------>", result)
+                        console.log("error-- result------>", result);
                     }
                 });
             });
         },
 
-        /*诊所照片裁剪上传*/
+        /*海报照片裁剪上传*/
         CroperImgUpload(e){
-            console.log("e--------------",e);
+            //console.log("e--------------",e);
             let _This = this;
             var imgFile = e.target.files[0];
             if(imgFile.size > 5*1024*1024) {
@@ -507,7 +506,6 @@ export default {
                 _This.isCroper=true;
                 cropData.img=ee.target.result;
                 _This.cropData=cropData;
-                console.log("ee--------------",ee);
             };
             reader.readAsDataURL(imgFile);
             return false;

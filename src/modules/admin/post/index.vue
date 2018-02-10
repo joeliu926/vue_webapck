@@ -222,11 +222,11 @@
 			z-index: 1000;
 			.mask-ct {
 				width: 500px;
-				height: 400px;
+				height: 700px;
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				margin-top: -200px;
+				margin-top: -400px;
 				margin-left: -250px;
 				background: #ffffff;
 				border-radius: 4px;
@@ -255,10 +255,17 @@
 						background-repeat: no-repeat;
 						background-size: 100%;
 					}
+                    .post-img-wh{
+                        margin-top: 100px;
+                        width: 300px;
+                        height: 300px;
+                    }
 				}
 				.submit-ct {
 					text-align: center;
-					padding: 24px;
+                    position:absolute;
+                    bottom: 30px;
+                    width: 100%;
 				}
 			}
 		}
@@ -266,7 +273,7 @@
         .p-mask{
             position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
             .croper-ct{
-                width:420px;height: 620px;margin: 100px auto;background: #ffffff;padding: 20px 60px;
+                width:350px;height: 620px;margin: 100px auto;background: #ffffff;padding: 20px 60px;
                 box-sizing: border-box;
                 border-radius: 10px;
                 position: relative;
