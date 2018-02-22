@@ -5,7 +5,7 @@ export default {
     data () {
         return {
             msg:0,
-           caselist:[],
+            caselist:[],
             judgelength:"您要的案例还在精心准备中！",
         };
     }
@@ -23,7 +23,7 @@ export default {
      },filters:{
         //judegdatalenth:function(input){
            // if( this.caselist.length<=0){
-            //    return "哎呀，人家还在精心给你准备案呢！";
+           //    return "哎呀，人家还在精心给你准备案呢！";
            // }
 
         //},

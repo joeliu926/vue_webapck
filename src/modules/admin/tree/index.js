@@ -131,7 +131,6 @@ export default {
         this.initAuth();
     },
     methods: {
-
         initAuth(){
             let _this = this;
             _.ajax({

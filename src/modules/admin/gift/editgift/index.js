@@ -72,7 +72,7 @@ export default {
             // 提交参数
             let _This = this;
             let id = _This.$route.params.id;
-            console.log(id, "888888888888888888");
+            // console.log(id, "888888888888888888");
             let pData = {
                 id: parseInt(_This.$route.params.id)
             };
@@ -81,7 +81,7 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("====++++++8888888888888888888++++++++====", result);
+                    // console.log("====++++++8888888888888888888++++++++====", result);
                     if (result.code == 0) {
                         _This.giftDetail = result.data;
 
@@ -160,8 +160,7 @@ export default {
             pData = JSON.stringify(pData);
             var pdata = null;
             pdata = {date: pData}
-            console.log(pdata, "6666666666666666666");
-            // return  false;
+            // console.log(pdata, "6666666666666666666");
             _This.savestate = false;
             _.ajax({
                 url: '/admin/gift/editgiftNew',
@@ -181,7 +180,7 @@ export default {
                         }, 1000)
 
                     } else {
-                        _This.$message.error("添加失败");
+                        _This.$message.error("添加失败,系统异常请稍后再试！");
                     }
                 }
             }, 'withCredentials');

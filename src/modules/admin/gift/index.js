@@ -54,6 +54,10 @@ export default {
                     if (result.code == 0) {
                         _This.count = result.data.count;
                         _This.giftList = result.data.list;
+                        /*测试没有加载到封面图片的时候  默认图片是否展示*/
+                        // _This.giftList.forEach(function (item) {
+                        //     item.giftCover.url='';
+                        // })
                         //数据排序
                         _This.giftList = _This.giftList.sort(function (x, y) {
                             return y.validity > x.validity;
@@ -99,7 +103,7 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("======giftlist======", result);
+                        // console.log("======giftlist======", result);
                         if (result.code == 0) {
                             _This.giftList = result.data.list;
                             _This.count = result.data.count;

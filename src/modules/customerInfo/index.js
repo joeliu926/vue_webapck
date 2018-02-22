@@ -69,7 +69,7 @@ export default {
 
     },
     methods: {
-        //查询日期
+        //查询数据
         fSearchData(){
             let _This = this;
             let uid= _This.$route.params.id;

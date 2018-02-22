@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="gift-edit-ct">
-                        <el-button @click="Savegift">保存</el-button>
-                        <el-button @click="Savegift">保存并新建</el-button>
+                        <el-button @click="Savegift(1)">保存</el-button>
+                        <el-button @click="Savegift(0)">保存并新建</el-button>
                         <el-button @click="backlist">取消</el-button>
                     </div>
                 </div>
@@ -81,7 +81,6 @@
                     <span class="s-title-l">礼品图录</span>
                     <span class="s-title-r">* 必填信息</span>
                 </div>
-
                 <div class="updataImg">
                     <div class="addimg clearfix">
                         <template v-for="picItem,pindex in giftDetail.giftPictures">
@@ -89,8 +88,7 @@
                                 <input type="file" style="display: none;" :ref="'s1'+pindex+'e'"
                                        @change="fMultImgUpload">
                                 <div class="dynicPic trueImg"
-                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
-                                     @click="fMultChooseafImg(1,pindex)">
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}">                                    <!--@click="fMultChooseafImg(1,pindex)"-->
                                     <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
                                          @click="fDeletePic($event,1,pindex)">
                                 </div>

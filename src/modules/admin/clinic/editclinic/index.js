@@ -5,9 +5,11 @@
 import tree from '../../tree/index.vue';
 import CONSTANT from '../../../../common/utils/constants.js';
 import VAREGEX from '../../../../common/utils/valregex.js';
+import VueCropper from 'vue-cropper';
 export default {
     components: {
-        tree
+        tree,
+        VueCropper
     },
     data() {
         return {
@@ -53,6 +55,21 @@ export default {
                 "qualification": "" //诊所等级
             },
             savestate:true,
+            cropData:{
+                img: '',
+                info: true,
+                outputSize:1,
+                fixed:true,
+                canMoveBox:false,
+                autoCrop: true,
+                original:true,
+                autoCropWidth: 212,  //212
+                autoCropHeight: 350,  //350
+                fixedBox: true,
+                full:true
+            },
+            currentChoiceType:0,//当前选择上传的图片类型，0是before， 1是after
+            isCroper:false //是否打开裁剪的窗口
 
         };
     },
@@ -350,6 +367,8 @@ export default {
          * @param ee
          */
         fMultImgUpload(ee){
+
+            console.log("---------ee-------------",ee);
             let _This=this;
             let index=_This.afterIndex;
             var fdata = new FormData();
@@ -357,9 +376,9 @@ export default {
             fdata.append('imgFile', imgFile);
             fdata.append('fieldFlag', 1);
           //  http://140.143.185.73:8083/api/clinic/upload
-            _This.imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
+            let imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
             _.ajax({
-                url: _This.imgUploadUrl,
+                url: imgUploadUrl,
                 type: 'POST',
                 data: fdata,
                 urlType: 'full',
@@ -399,6 +418,78 @@ export default {
             let oClinicData=_This.oClinicData;
             _This.oClinicData.fileVo.splice(pindex,1);
         },
+///////////////////裁剪图片 start///////////////////////////////////////////
+        /**
+         * 裁剪图片
+         */
+        fCroperImg(){
+            let _This=this;
+            _This.$refs.cropData.getCropBlob((imgFile) => {
+                // do something
+                var fdata = new FormData();
+                fdata.append('imgFile', imgFile);
+                fdata.append('fieldFlag', 1);
+                let imgUploadUrl=CONSTANT.fileUpload+"/api/clinic/upload";
+                _.ajax({
+                    url: imgUploadUrl,
+                    type: 'POST',
+                    data: fdata,
+                    urlType: 'full',
+                    contentType: false,
+                    processData: false,
+                    success: function(result) {
+                        let oClinicData=_This.oClinicData;
+                        _This.oClinicData.fileVo=_This.oClinicData.fileVo||[];
+                        if(result.code == 0 ) {
+                            _This.oClinicData.fileVo.push(result.data);
+                            _This.isCroper=false;
+                        }else{
+                            this.$message.error("系统错误，图片提交失败！");
+                        }
+                    },
+                    error: function(result) {
+                        this.$message.error("图片大小不能超过5M！");
+                        console.log("error-- result------>", result)
+                    }
+                });
+            });
+        },
+
+        /*诊所照片裁剪上传*/
+        CroperImgUpload(e){
+            let _This = this;
+            var imgFile = e.target.files[0];
+            if(imgFile.size > 5*1024*1024) {
+                _This.$message.error("图片大小不能超过5M");
+                return false;
+            }
+            let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+            let imgName=imgFile.name.substr(imgFile.name.lastIndexOf(".")).toLocaleLowerCase();
+            if(aLogoType.indexOf(imgName)<0){
+                _This.$message.error("上传图片格式错误");
+                return false;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(ee){
+                let cropData=_This.cropData;
+                _This.isCroper=true;
+                cropData.img=ee.target.result;
+                _This.cropData=cropData;
+            };
+            reader.readAsDataURL(imgFile);
+            return false;
+        },
+        /**
+         * 关闭上传照片窗口
+         */
+        fCloseUploadPic(){
+            this.isCroper=false;
+        },
+
+        ///////////////////裁剪图片 end///////////////////////////////////////////
+
+
         /**
          * 获取地址map
          */
@@ -463,7 +554,6 @@ export default {
                     callback(result.name);
                 });
             }
-
         }
     },
     watch: {

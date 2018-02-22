@@ -87,8 +87,8 @@
                                 <input type="file" style="display: none;" :ref="'s1'+pindex+'e'"
                                        @change="fMultImgUpload">
                                 <div class="dynicPic trueImg"
-                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
-                                     @click="fMultChooseafImg(1,pindex)">
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}">
+                                    <!--@click="fMultChooseafImg(1,pindex)"-->
                                         <img class="closeUpPic" v-if="giftDetail.status===0" src="../../../../common/img/tv/con-error.png"
                                          @click="fDeletePic($event,1,pindex)">
                                 </div>
