@@ -42,6 +42,14 @@
                             prop="caseName"
                             label="名称"
                             min-width="30%">
+                        <template slot-scope="scope" >
+                            <p style="padding:10px 0;" >
+                                <span class="c-name" style=""> {{scope.row.caseName}}</span>
+                                <img v-if="scope.row.beforePicture.url" class="b-a-img" style="" :src="scope.row.beforePicture.url">
+                                <img v-if="scope.row.afterPicture.url" class="b-a-img" style="" :src="scope.row.afterPicture.url">
+
+                            </p>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             prop="doctor.name"
@@ -58,7 +66,7 @@
                     </el-table-column>
                     <el-table-column
                             prop="operationDate"
-                            label="诊疗时间 "
+                            label="诊疗时间"
                             min-width="20%">
                         <template slot-scope="scope">
                             {{scope.row.operationDate|dateFilter}}

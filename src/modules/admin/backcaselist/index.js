@@ -78,6 +78,9 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /**
+         * 获取案例列表
+         */
         fSearchCaseList(){
             var _This = this;
             let   postData={

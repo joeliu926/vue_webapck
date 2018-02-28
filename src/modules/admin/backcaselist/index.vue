@@ -132,6 +132,12 @@
                     div.cell{
                         font-size:14px;
                     }
+                    .c-name{
+                        vertical-align:middle;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;
+                    }
+                    .b-a-img{
+                        width:30px;height:30px;vertical-align:middle; margin-right:0px;float: right;
+                    }
                 }
                 .rbox-pagination-align {
                     text-align: right;
