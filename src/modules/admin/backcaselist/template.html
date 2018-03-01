@@ -4,11 +4,29 @@
     </div><div class="admin-rbox " >
     <div class="out-box-border innerbox"  style="padding: 12px;">
            <el-row class="rbox-top" :gutter="24" type="flex" justify="space-between" >
-                <div>
-                    <p>全部案例</p>
-                    <span class="f-14">在此页面上,您可以创建,查看并管理案例</span>
+                <div style="width: 100%;">
+                    <div class="tab-ct tab-bottom" style="display: none;">
+                        <el-tabs v-model="tabType" @tab-click="fChangeTab">
+                            <el-tab-pane label="案例库" name="case"></el-tab-pane>
+                            <el-tab-pane label="素材审核" name="material"></el-tab-pane>
+                        </el-tabs>
+                    </div>
+                    <span v-if="tabType==tabCollotion[0]" class="f-14">在此页面上,您可以创建,查看并管理案例</span>
+                    <div v-if="tabType==tabCollotion[1]">
+                        <span  class="f-14">此页面上可以管理提交的相片和视频，进行审核</span>
+                        <div v-if="!isLookAndReview" class="tab-ct review-ct" style="">
+                            <template v-for="rItem in oReviewType">
+                                <el-button style=""  :class="[reviewType==rItem.ttype?'select-btn':'']" type="" @click="fReviewTab(rItem.ttype)">{{rItem.tname}}</el-button>
+                            </template>
+                        </div>
+                    </div>
+
                 </div>
             </el-row>
+
+
+        <div v-if="!isLookAndReview">
+        <div class="" v-if="tabType==tabCollotion[0]">
             <el-row class="rbox-content" :gutter="24" type="flex" justify="space-between" >
                 <div>记录（{{count}}）</div>
             </el-row>
@@ -34,7 +52,7 @@
                 </div>
             </div>
             <!-- 案例列表-->
-            <div class="table-content">
+            <div class="table-content" >
                 <el-table
                         :data="oCaseList"
                         style="width: 100%">
@@ -85,17 +103,140 @@
                       </template>
                     </el-table-column>
                 </el-table>
+                <!--分页组件-->
+                <div class="rbox-pagination-align">
+                    <el-pagination
+                            class="el-pagination"
+                            @current-change="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :page-size="pageSize"
+                            :total="count">
+                    </el-pagination>
+                </div>
             </div>
-            <!--分页组件-->
-            <div class="rbox-pagination-align">
-                <el-pagination
-                        class="el-pagination"
-                        @current-change="handleCurrentChange"
-                        layout="prev, pager, next"
-                        :page-size="pageSize"
-                        :total="count">
-                </el-pagination>
+        </div>
+
+        <div class="" v-if="tabType==tabCollotion[1]">
+            <div class="table-content" >
+                <el-table
+                        :data="oCaseList"
+                        style="width: 100%">
+                    <el-table-column @click="fDelData(props.row.id)"
+                                     prop="caseName"
+                                     label="上传时间"
+                                     min-width="30%">
+                        <template slot-scope="scope">
+                            {{scope.row.operationDate|dateFilter}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="doctor.name"
+                            label="上传者"
+                            min-width="10%">
+                    </el-table-column>
+                    <el-table-column
+                            prop="phoneNum"
+                            label="照片/视频数"
+                            min-width="20%">
+                        <template slot-scope="scope" >
+                            <span>6</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="operationDate"
+                            label="审核状态"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <span>通过</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="operationDate"
+                            label="归档案例"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <span class="c-name" style=""> {{scope.row.caseName}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop=""
+                            label="操作"
+                            style="padding:0px;"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <el-button style=""  type="" @click="fReviewCase(scope.row.id)" >查看并审核</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <!--分页组件-->
+                <div class="rbox-pagination-align">
+                    <el-pagination
+                            class="el-pagination"
+                            @current-change="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :page-size="pageSize"
+                            :total="count">
+                    </el-pagination>
+                </div>
             </div>
+        </div>
+        </div>
+
+        <div class="lk-review-ct" v-if="isLookAndReview">
+
+            <div class="segment-title f-14">素材列表</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <div class="addimg clearfix">
+                        <template v-for="picItem,pindex in oMaterial">
+                            <div class="fl">
+                                <div class="dynicPic trueImg"
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
+                                >
+                                </div>
+                                <div style="text-align: center;">
+                                    <template>
+                                        <el-radio v-model="picItem.isAccept"  item="gggg"  label="1">合格</el-radio>
+                                        <el-radio  v-model="picItem.isAccept" item="gggg" label="2">不合格</el-radio>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-title f-14">审核备注</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <div class="row-item" style="" >
+                        <el-input class="row-item-value" :rows="3" type="textarea"  value="" placeholder="审核备注"></el-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-title f-14">素材标签</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <template v-for="tItem in oTip">
+                        <span class="ltip">{{tItem}}</span>
+                    </template>
+                </div>
+            </div>
+
+            <div class="f-14 customer-info-ct">
+                <div class="u-margin user-img" style="background-image: url('http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/18ea6f0e-a4d1-4557-a947-5524d07fefd9');"></div>
+                <div class="u-margin">诸葛青云</div>
+                <div class="u-margin">13733333333</div>
+                <div class="u-margin">
+                    <el-button style=""  :class="" type="" @click="fSubmitReview">审核</el-button>
+                </div>
+            </div>
+
+
+        </div>
+
+
         </div>
     </div>
 </div>

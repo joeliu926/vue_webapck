@@ -10,6 +10,14 @@ export default {
     },
     data () {
         return {
+            defaultImg: require("../../../common/img/post-demo.png"), //默认上传图片
+            tabCollotion:["case","material"],//案例材料选项
+            tabType:"case",//切换案例和素材标识
+            oReviewType:[{ttype:0,tname:"全部"},{ttype:1,tname:"未审核"},{ttype:2,tname:"通过"},{ttype:3,tname:"驳回"}],//审核状态集合
+            reviewType:0,//审核状态0全部、1未审核、2通过、3驳回
+            isLookAndReview:false,//是否查看并审核 true查看审核，false 展示列表
+            oMaterial:[{},{},{},{}],//素材照片集合
+            oTip:["标签一","标签二","标签三","标签四","标签五","标签六","标签七"],//标签集合
             input:'',
             input1:'',
             oCaseList: [],
@@ -104,6 +112,10 @@ export default {
                 }
             }, 'withCredentials');
         },
+        /**
+         * 删除案例
+         * @param caseid
+         */
         fDelData(caseid){
             let _This=this;
             this.$confirm('确认删吗?', '提示', {
@@ -168,7 +180,53 @@ export default {
             this.fSearchCaseList();
         },
         handleIconClick(){
+        },
+        /**
+         * 切换案例库，素材审核
+         */
+        fChangeTab(ttype,fff){
+            let _This=this;
+            _This.isLookAndReview=false;
+           // _This.tabType=ttype;
+        },
+        /**
+         * 审核状态切换
+         */
+        fReviewTab(ttype){
+            let _This=this;
+            //console.log("-----------ttype-----",ttype);
+            _This.reviewType=ttype;
+        },
+        /**
+         * 案例审核
+         */
+        fReviewCase(item){
+            console.log("review-----",item);
+            let _This=this;
+            _This.isLookAndReview=true;
+        },
+        /**
+         * 提交审核
+         */
+        fSubmitReview(){
+            console.log("submit review-----");
+            let _This=this;
+            this.$confirm('确定图片和视频内容审核无误吗?', '提示', {
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then((result) => {
+              console.log("fffffff---------",result);
+
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消'
+                });
+            });
         }
+
+
     },
     watch: {
 
