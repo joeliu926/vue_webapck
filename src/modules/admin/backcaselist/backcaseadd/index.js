@@ -13,6 +13,7 @@ export default {
     },
     data () {
         return {
+            defaultImg: require("../../../../common/img/post-demo.png"), //图片demo
             bydefault:require("../../../../common/img/add-img-icon.png"),
             imgUploadUrl: CONSTANT.fileUpload+"api/caseHeader/uploadCasePicture",
             caseId:'',
@@ -96,7 +97,14 @@ export default {
                 full:true
             },
             currentChoiceType:0,//当前选择上传的图片类型，0是before， 1是after
-            isCroper:false //是否打开裁剪的窗口
+            isCroper:false, //是否打开裁剪的窗口
+
+            isCaseLib:false,//是否打开案例库
+            isPicCaseLib:true,//0照片案例、1视频案例
+            oMaterial:[{},{},{},{},{},{},{},{},{},{},{},{},{},{}],//素材照片集合
+            pageSize:1,//每页数量
+            totalCount:12,//总共页数
+            oSelectCollection:[1,4,6],//选中的案例条目
 
         };
     },
@@ -666,7 +674,59 @@ export default {
          */
         fCloseUploadPic(){
             this.isCroper=false;
-        }
+        },
+        /**
+         * 打开案例库
+         */
+        fOpenCaseLib(){
+            console.log("open case lib----------");
+            let _This=this;
+            _This.isCaseLib=true;
+        },
+        /**
+         * 关闭案例库
+         */
+        fCloseCaseLib(){
+            console.log("close case lib----------");
+            let _This=this;
+            _This.isCaseLib=false;
+        },
+        /**
+         * 确认选择照片
+         */
+        fEnsureSelectCase(){
+            console.log("ensure select lib----------");
+            let _This=this;
+            _This.isCaseLib=false;
+        },
+        /**
+         * 分页操作
+         * @param pnum
+         */
+        handleCurrentChange(pnum){
+            this.pageNo=pnum;
+        },
+        /**
+         * 根据客户手机号码或者名称搜索案例内容
+         */
+        fSearchCase(){
+            console.log("search data-----");
+        },
+        /**
+         * 多选
+         */
+        fMultySelect(item){
+            console.log("multy select data-----");
+            let _This=this;
+            let oSelectCollection=_This.oSelectCollection;
+            let iIndex=oSelectCollection.indexOf(item);
+            if(iIndex<0){
+                oSelectCollection.push(item);
+            }else{
+                oSelectCollection.splice(iIndex,1);
+            }
+            _This.oSelectCollection=oSelectCollection;
+        },
 
     }
 }

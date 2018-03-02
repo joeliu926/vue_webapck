@@ -219,6 +219,12 @@
                             <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"
                                  @click="fMultChooseafImg(index)">
                             </div>
+
+                            <div style="display: none;">
+                                <el-button type="primary" @click="fOpenCaseLib">打开案例库</el-button>
+                            </div>
+
+
                         </div>
                     </div>
                     <div class="addDescription">
@@ -291,6 +297,67 @@
             </div>
 
         </div>
+
+        <!------案例库弹出层 start--->
+        <div class="p-case-mask"  :style="{display:[isCaseLib?'':'none']}" style="">
+            <div class="croper-ct" style="">
+                <div class="end-close" @click="fCloseCaseLib"><img src="../../../../common/img/i-cl-close.png"> </div>
+
+
+                <div class="material-ct" style="">
+                    <div class="case-com-ct case-r-ct">
+                        <div class="c-title-ct" style="">
+                            <span v-if="isPicCaseLib" class="f-16 p-title" style=""> 照片案例库</span>
+                            <span v-if="!isPicCaseLib" class="f-16 p-title" style=""> 视频案例库</span>
+                            <div style="display: inline-block;float: right;padding-right: 24px;"> <el-button>上传</el-button></div>
+                        </div>
+
+                        <div class="c-title-ct" style="">
+                            <div style="">
+                                <el-input style="width: 240px;" placeholder="根据客户或手机号搜索"  icon="search"
+                                          :on-icon-click="fSearchCase" ></el-input>
+
+                            </div>
+                        </div>
+
+                            <template v-for="picItem,pindex in oMaterial">
+                                <div class="pic-ct" style=""  @click="fMultySelect(pindex)">
+                                    <div class="dynicPic trueImg"
+                                         :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
+                                    >
+                                    </div>
+
+                                    <div v-if="oSelectCollection.indexOf(pindex)>=0" class="pic-select"><img class="sel-pic" src="../../../../common/img/tv/con-ok.png"> </div>
+
+                                </div>
+                            </template>
+
+                        <!--分页组件-->
+                        <div class="bt-btn-ct" >
+                            <el-pagination
+                                    class="fl bt-btn-cm" style=""
+                                    @current-change="handleCurrentChange"
+                                    layout="prev, pager, next"
+                                    :page-size="pageSize"
+                                    :total="totalCount">
+                            </el-pagination>
+                            <div class="bt-btn-cm" style="">
+                                <el-button style=""  @click="fEnsureSelectCase">取消</el-button>
+                                <el-button style=""  @click="fEnsureSelectCase">确定</el-button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!------案例库弹出层 end--->
 
 
 
