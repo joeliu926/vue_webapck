@@ -369,7 +369,119 @@
                 }
             }
         }
-
         /********************弹出蒙层***end********************/
+
+        /********************案例库弹出层***start********************/
+        .p-case-mask{
+            position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
+            .croper-ct{
+                width:948px;margin: 50px auto;background: #ffffff;padding: 0;
+                box-sizing: border-box;
+                border-radius: 5px;
+                position: relative;
+                .el-button:hover{
+                    background-color: #9083ED;
+                    color: #ffffff;
+                    border: 1px solid #9083ED;
+                }
+                .end-close{
+                    width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    right: -25px;
+                    top:-20px;
+                    cursor: pointer;
+                }
+                .p-title{
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+                .material-ct{
+
+                    height: 800px;
+                    box-sizing: border-box;
+                    padding:0 0 0 24px;
+                    .case-com-ct{
+                        height: 100%;
+                        box-sizing: border-box;
+                        padding:0 12px 0 0;
+                        vertical-align: top;
+                        position: relative;
+                    }
+                    .case-r-ct{
+                           padding: 10px 0;
+                            box-sizing: border-box;
+                           .c-title-ct{
+                               margin: 10px 0;
+                           }
+                            .dynicPic{
+                                display: inline-block;
+                                position: relative;
+                                width:160px;
+                                height:200px;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                border: 1px dashed #bfcbd9;
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                                margin: 5px 22px;
+                                margin-left: 0;
+                            }
+                        .pic-ct{
+                            display: inline-block;
+                            position: relative;
+                            .pic-select{
+                                position: absolute;
+                                top:0;
+                                right: 10px;
+                                .sel-pic{
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                .bt-btn-ct{
+                    box-sizing: border-box;
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    text-align: right;
+                    width: 100%;
+                    .bt-btn-cm{
+                        display: inline-block;
+                        vertical-align: middle;
+                        padding-right: 24px;
+                    }
+                    .el-pagination{
+                        button{
+                            height: 36px;
+                            line-height: 36px;
+                            padding: 0 10px;
+                        }
+                        .number{
+                            height: 36px;
+                            line-height: 36px;
+                            padding: 0 15px;
+                            font-size: 16px;
+                        }
+                        .more{
+                            height: 36px;
+                            line-height: 36px;
+                            padding: 0 15px;
+                            font-size: 16px;
+                        }
+
+                    }
+                }
+
+            }
+        }
+        /********************案例库弹出层***end********************/
+
+
     }
 </style>
