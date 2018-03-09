@@ -107,7 +107,7 @@ export default {
             isPicCaseLib:true,//0照片案例、1视频案例
             aMaterial:[],//素材照片集合
             iMaterial:{},//素材单个文件
-            pageSize:2,//每页数量
+            pageSize:20,//每页数量
             totalCount:0,//总共页数
             aSelectNameCollection:[],//选中的名称
             aSelectCollection:[],//选中的案例条目
@@ -710,6 +710,7 @@ export default {
          */
         fCloseUploadPic(){
             this.isCroper=false;
+            this.currentChoiceType=-1;
         },
 
         //////////////////////////////////////////////////////////////////////////http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/d50a756d-8ad1-47fa-9ecb-ce541ca1f319
@@ -732,6 +733,7 @@ export default {
             console.log("close case lib----------");
             let _This=this;
             _This.isCaseLib=false;
+            _This.currentChoiceType=-1;
         },
         /**
          * 确认选择照片

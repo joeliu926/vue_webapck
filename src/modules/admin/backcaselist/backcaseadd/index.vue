@@ -382,9 +382,13 @@
         .p-case-mask{
             position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
             .croper-ct{
-                width:948px;margin: 50px auto;background: #ffffff;padding: 0;
+                height: 810px;
+                width:980px;
+                margin: 50px auto;
+                background: #ffffff;padding: 0;
                 box-sizing: border-box;
-                border-radius: 5px;
+                border-radius: 10px;
+
                 position: relative;
                 .el-button:hover{
                     background-color: #9083ED;
@@ -403,37 +407,59 @@
                     font-size: 18px;
                     margin-bottom: 10px;
                 }
-                .material-ct{
-
-                    height: 800px;
+                .top-btm-cm{
                     box-sizing: border-box;
-                    padding:0 0 0 24px;
+                    height: 60px;
+                    line-height: 60px;
+                    width: 100%;
+                    background: #f7f7f7;
+                    padding: 0 30px;
+                }
+                .top-title-ct{
+                    border-radius: 10px 10px 0 0;
+                  border-bottom:1px solid #e8e8e8;
+                }
+                .bottom-ct{
+                    border-radius:0 0 10px 10px;
+                    border-top:1px solid #e8e8e8;
+                    .bt-btn{
+                        text-align: right;
+                    }
+                }
+                .material-ct{
+                    height: 690px;
+                    width: 100%;
+                    box-sizing: border-box;
                     .case-com-ct{
                         height: 100%;
+                        width: 755px;
                         box-sizing: border-box;
-                        padding:0 12px 0 0;
+                        padding:0px 0 24px 24px;
                         vertical-align: top;
                         position: relative;
+                        border-right:1px solid #e8e8e8;
+                        display: inline-block;
                     }
                     .case-r-ct{
-                           padding: 10px 0;
-                            box-sizing: border-box;
                            .c-title-ct{
-                               margin: 10px 0;
+                               margin:24px 0;
                            }
+                         .fit-ct{
+                             display: inline-block;
+                             position: relative;
+                             width:120px;
+                             height:120px;
+                             border-radius: 6px;
+                             cursor: pointer;
+                             border: 1px dashed #bfcbd9;
+                             margin: 5px 22px;
+                             margin-left: 0;
+                             background-color: #f7f7f7;
+                         }
                             .dynicPic{
-                                display: inline-block;
-                                position: relative;
-                                width:160px;
-                                height:200px;
-                                border-radius: 6px;
-                                cursor: pointer;
-                                border: 1px dashed #bfcbd9;
                                 background-position: center center;
                                 background-repeat: no-repeat;
-                                background-size: 100%;
-                                margin: 5px 22px;
-                                margin-left: 0;
+                                background-size: contain;
                             }
                         .pic-ct{
                             display: inline-block;
@@ -448,47 +474,58 @@
                                 }
                             }
                             .video-ct{
-                                margin: 20px;
-                                 width: 250px;
+                                 width: 160px;
                                 overflow: hidden;
+                            }
+                        }
+                        .bt-btn-ct{
+                            box-sizing: border-box;
+                            position: absolute;
+                            bottom: 10px;
+                            left: 0;
+                            text-align: right;
+                            width: 100%;
+                            .bt-btn-cm{
+                                box-sizing: border-box;
+                                width: 100%;
+                                display: inline-block;
+                                vertical-align: middle;
+                                padding-right: 24px;
+                                text-align: right;
+                            }
+                            .el-pagination{
+                                button{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 10px;
+                                }
+                                .number{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 15px;
+                                    font-size: 16px;
+                                }
+                                .more{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 15px;
+                                    font-size: 16px;
+                                }
+
                             }
                         }
                     }
 
-                }
-                .bt-btn-ct{
-                    box-sizing: border-box;
-                    position: absolute;
-                    bottom: 10px;
-                    left: 0;
-                    text-align: right;
-                    width: 100%;
-                    .bt-btn-cm{
+                    .right-ct{
+                        padding: 30px 0;
                         display: inline-block;
-                        vertical-align: middle;
-                        padding-right: 24px;
+                        width: 205px;
+                        box-sizing: border-box;
                     }
-                    .el-pagination{
-                        button{
-                            height: 36px;
-                            line-height: 36px;
-                            padding: 0 10px;
-                        }
-                        .number{
-                            height: 36px;
-                            line-height: 36px;
-                            padding: 0 15px;
-                            font-size: 16px;
-                        }
-                        .more{
-                            height: 36px;
-                            line-height: 36px;
-                            padding: 0 15px;
-                            font-size: 16px;
-                        }
 
-                    }
+
                 }
+
 
             }
         }

@@ -261,7 +261,7 @@
                 </div>
             </template>
 
-            <div style="text-align: center;">
+            <div style="text-align: center;padding: 10px;">
                 <el-button type="primary" @click="fAddAfterCase(true)">添加图片案例</el-button>
                 <el-button type="primary" @click="fAddAfterCase(false)">添加视频案例</el-button>
             </div>
@@ -322,21 +322,15 @@
         <!------案例库弹出层 start--->
         <div class="p-case-mask"  :style="{display:[isCaseLib?'':'none']}" style="">
             <div class="croper-ct" style="">
-                <div class="end-close" @click="fCloseCaseLib"><img src="../../../../common/img/i-cl-close.png"> </div>
+                <div class="end-close hide" @click="fCloseCaseLib"><img src="../../../../common/img/i-cl-close.png"> </div>
 
+                <div class="top-btm-cm top-title-ct">
+                    <span v-if="isPicCaseLib" class="f-16 p-title" style=""> 照片案例库</span>
+                    <span v-if="!isPicCaseLib" class="f-16 p-title" style=""> 视频案例库</span>
+                </div>
 
                 <div class="material-ct" style="">
                     <div class="case-com-ct case-r-ct">
-                        <div class="c-title-ct" style="">
-                            <span v-if="isPicCaseLib" class="f-16 p-title" style=""> 照片案例库</span>
-                            <span v-if="!isPicCaseLib" class="f-16 p-title" style=""> 视频案例库</span>
-                            <div style="display: inline-block;float: right;padding-right: 24px;"> <el-button @click="fUploadImgToLib">上传</el-button></div>
-                            <div>
-                                <input type="file" style="display: none;" :ref="'imgvideo'" multiple="multiple" :accept="fileaccept"
-                                       @change="fImgVideoUpload($event)">
-                            </div>
-
-                        </div>
 
                         <div class="c-title-ct" style="">
                             <div style="">
@@ -349,12 +343,12 @@
                             <template v-for="picItem,pindex in aMaterial">
 
                                 <div class="pic-ct" style=""  @click="fMultySelect(picItem)">
-                                    <div class="dynicPic trueImg" v-if="picItem.type==1"
+                                    <div class="fit-ct dynicPic trueImg" v-if="picItem.type==1"
                                          :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
                                     >
                                     </div>
-                                    <div class="fl video-ct" v-if="picItem.type==2">
-                                            <video style="width:100%; height:100%; object-fit:fill"  :poster="picItem.thumbnailUrl||'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ec3f3df8-00cc-4d7d-aeaa-99b60d4e0474'"  controls>
+                                    <div class="fl fit-ct" v-if="picItem.type==2">
+                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ec3f3df8-00cc-4d7d-aeaa-99b60d4e0474'"  controls>
                                                 <source :src="picItem.url" type="video/ogg">
                                                 <source :src="picItem.url" type="video/mp4">
                                                 <source :src="picItem.url" type="video/webm">
@@ -367,7 +361,7 @@
                                 </div>
                             </template>
                         <!--分页组件-->
-                        <div class="bt-btn-ct"  >
+                        <div class="bt-btn-ct" >
                             <el-pagination v-if="totalCount>0"
                                     class="fl bt-btn-cm" style=""
                                     @current-change="handleCurrentChange"
@@ -375,14 +369,27 @@
                                     :page-size="pageSize"
                                     :total="totalCount">
                             </el-pagination>
-                            <div class="bt-btn-cm" style="">
-                                <el-button style=""  @click="fCloseCaseLib">取消</el-button>
-                                <el-button style=""  @click="fEnsureSelectCase">插入案例</el-button>
+                        </div>
+                    </div>
+                    <div class="right-ct" style="">
+                        <div class="c-title-ct" style="">
+                            <div style="text-align: center;">
+                                <el-button v-if="isPicCaseLib" @click="fUploadImgToLib">上传图片</el-button>
+                                <el-button v-if="!isPicCaseLib" @click="fUploadImgToLib">上传视频</el-button>
                             </div>
-
+                            <div>
+                                <input type="file" style="display: none;" :ref="'imgvideo'" multiple="multiple" :accept="fileaccept"
+                                       @change="fImgVideoUpload($event)">
+                            </div>
                         </div>
 
+                    </div>
+                </div>
 
+                <div class="top-btm-cm bottom-ct">
+                    <div class="bt-btn" style="">
+                        <el-button style=""  @click="fCloseCaseLib">取消</el-button>
+                        <el-button style=""  @click="fEnsureSelectCase">插入案例</el-button>
                     </div>
                 </div>
 
