@@ -235,7 +235,9 @@
                                 display: inline-block;
                                 margin: 0 8px 8px 0;
                                 background: #9287EB;
-                                padding: 3px 10px;
+                                padding: 0px 10px;
+                                height: 25px;
+                                line-height: 25px;
                                 border-radius: 4px;
                                 color: #ffffff;
                             }

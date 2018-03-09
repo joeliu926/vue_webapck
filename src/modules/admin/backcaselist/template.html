@@ -5,7 +5,7 @@
     <div class="out-box-border innerbox"  style="padding: 12px;">
            <el-row class="rbox-top" :gutter="24" type="flex" justify="space-between" >
                 <div style="width: 100%;">
-                    <div class="tab-ct tab-bottom" style="display: none;">
+                    <div class="tab-ct tab-bottom" style="">
                         <el-tabs v-model="tabType" @tab-click="fChangeTab">
                             <el-tab-pane label="案例库" name="case"></el-tab-pane>
                             <el-tab-pane label="素材审核" name="material"></el-tab-pane>
@@ -119,35 +119,35 @@
         <div class="" v-if="tabType==tabCollotion[1]">
             <div class="table-content" >
                 <el-table
-                        :data="oCaseList"
+                        :data="aCheckList"
                         style="width: 100%">
-                    <el-table-column @click="fDelData(props.row.id)"
-                                     prop="caseName"
+                    <el-table-column
+                                     prop="createTime"
                                      label="上传时间"
                                      min-width="30%">
                         <template slot-scope="scope">
-                            {{scope.row.operationDate|dateFilter}}
+                            {{scope.row.createTime|dateFilter}}
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="doctor.name"
+                            prop="creatorName"
                             label="上传者"
                             min-width="10%">
                     </el-table-column>
                     <el-table-column
-                            prop="phoneNum"
+                            prop="uploadNum"
                             label="照片/视频数"
                             min-width="20%">
                         <template slot-scope="scope" >
-                            <span>6</span>
+                            <span>{{scope.row.uploadNum}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="operationDate"
+                            prop="busStatus"
                             label="审核状态"
                             min-width="20%">
                         <template slot-scope="scope">
-                            <span>通过</span>
+                            <span>{{scope.row.busStatus|checkFilter}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column
@@ -155,7 +155,7 @@
                             label="归档案例"
                             min-width="20%">
                         <template slot-scope="scope">
-                            <span class="c-name" style=""> {{scope.row.caseName}}</span>
+                            <span class="c-name" style="">无</span>
                         </template>
                     </el-table-column>
                     <el-table-column
@@ -164,18 +164,19 @@
                             style="padding:0px;"
                             min-width="20%">
                         <template slot-scope="scope">
-                            <el-button style=""  type="" @click="fReviewCase(scope.row.id)" >查看并审核</el-button>
+                            <el-button style="" v-if="scope.row.busStatus==1" @click="fReviewCase(scope.row.id)" >查看并审核</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
                 <!--分页组件-->
-                <div class="rbox-pagination-align">
+                <div class="rbox-pagination-align" v-if="checkCount">
                     <el-pagination
                             class="el-pagination"
-                            @current-change="handleCurrentChange"
+                            @current-change="handleCheckChange"
                             layout="prev, pager, next"
-                            :page-size="pageSize"
-                            :total="count">
+                            :page-size="checkPageSize"
+                            :current-page="checkPageNo"
+                            :total="checkCount">
                     </el-pagination>
                 </div>
             </div>
@@ -188,7 +189,7 @@
             <div class="material-info-ct">
                 <div class="row-ct">
                     <div class="addimg clearfix">
-                        <template v-for="picItem,pindex in oMaterial">
+                        <template v-for="picItem,pindex in oCheckDetail.fileVo">
                             <div class="fl">
                                 <div class="dynicPic trueImg"
                                      :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
@@ -196,8 +197,10 @@
                                 </div>
                                 <div style="text-align: center;">
                                     <template>
-                                        <el-radio v-model="picItem.isAccept"  item="gggg"  label="1">合格</el-radio>
-                                        <el-radio  v-model="picItem.isAccept" item="gggg" label="2">不合格</el-radio>
+                                        <el-radio-group v-model="picItem.status">
+                                            <el-radio :label="1">合格</el-radio>
+                                            <el-radio :label="2">不合格</el-radio>
+                                        </el-radio-group>
                                     </template>
                                 </div>
                             </div>
@@ -210,7 +213,7 @@
             <div class="material-info-ct">
                 <div class="row-ct">
                     <div class="row-item" style="" >
-                        <el-input class="row-item-value" :rows="3" type="textarea"  value="" placeholder="审核备注"></el-input>
+                        <el-input class="row-item-value" :rows="3" type="textarea"  value="" v-model="oCheckDetail.remark" placeholder="审核备注"></el-input>
                     </div>
                 </div>
             </div>
@@ -218,18 +221,18 @@
             <div class="segment-title f-14">素材标签</div>
             <div class="material-info-ct">
                 <div class="row-ct">
-                    <template v-for="tItem in oTip">
+                    <template v-for="tItem in oCheckDetail.tagNames">
                         <span class="ltip">{{tItem}}</span>
                     </template>
                 </div>
             </div>
 
             <div class="f-14 customer-info-ct">
-                <div class="u-margin user-img" style="background-image: url('http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/18ea6f0e-a4d1-4557-a947-5524d07fefd9');"></div>
-                <div class="u-margin">诸葛青云</div>
-                <div class="u-margin">13733333333</div>
+                <div class="u-margin user-img" :style="{backgroundImage:['url('+(oCheckDetail.customerLogo)+')']}"></div>
+                <div class="u-margin">{{oCheckDetail.customerName||oCheckDetail.customerNickName}}</div>
+                <div class="u-margin">{{oCheckDetail.customerMobil||oCheckDetail.customerPhone}}</div>
                 <div class="u-margin">
-                    <el-button style=""  :class="" type="" @click="fSubmitReview">审核</el-button>
+                    <el-button style="width: 120px;"  :class="" type="" @click="fSubmitReview">审核</el-button>
                 </div>
             </div>
 

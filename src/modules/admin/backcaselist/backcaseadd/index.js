@@ -16,6 +16,8 @@ export default {
             defaultImg: require("../../../../common/img/post-demo.png"), //图片demo
             bydefault:require("../../../../common/img/add-img-icon.png"),
             imgUploadUrl: CONSTANT.fileUpload+"api/caseHeader/uploadCasePicture",
+            imgVideoMulty:CONSTANT.fileUpload+"attachment/upload/v3",//多个文件上传可以上传图片和视频
+            thumbnailUrl:CONSTANT.fileUpload+"attachment/thumbnail",//获取文件的缩略图请求
             caseId:'',
             afterIndex:-1, //标记多文件选择的条目
             afterPIndex:-1,//标记多文件选择的图片
@@ -29,7 +31,8 @@ export default {
                 "title": "",
                 "definitionDate": "",
                 "pictures": [],
-                "description": ""
+                "description": "",
+                "type":2
             },
             doctorlist: [{
                 value: '',
@@ -76,13 +79,14 @@ export default {
                     "url": ""
                 },
                 contentList: [
-                    {
+                  /*  {
                         "id": "",
                         "title": "",
                         "pictures": [],
                         "definitionDate": "",
-                        "description": ""
-                    }
+                        "description": "",
+                        "type":2
+                    }*/
                 ]
             },
             savestate:true,
@@ -101,10 +105,17 @@ export default {
 
             isCaseLib:false,//是否打开案例库
             isPicCaseLib:true,//0照片案例、1视频案例
-            oMaterial:[{},{},{},{},{},{},{},{},{},{},{},{},{},{}],//素材照片集合
-            pageSize:1,//每页数量
-            totalCount:12,//总共页数
-            oSelectCollection:[1,4,6],//选中的案例条目
+            aMaterial:[],//素材照片集合
+            iMaterial:{},//素材单个文件
+            pageSize:2,//每页数量
+            totalCount:0,//总共页数
+            aSelectNameCollection:[],//选中的名称
+            aSelectCollection:[],//选中的案例条目
+            currentIndex:-1,//当前上传图片视频位置索引
+            pageNo:1,//页码编号
+            customerName:"",//依据名称或者电话搜索
+            fileaccept:"image/jpg,image/jpeg,image/bmp,image/png",//限定文件接收类型
+
 
         };
     },
@@ -150,6 +161,7 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
+                    console.log("get case detail------",result.data);
                     if(result.code==0) {
                         _This.caseDetail = result.data||[];
 
@@ -274,7 +286,7 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
-
+              console.log("save case------",this.caseDetail);
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -337,8 +349,6 @@ export default {
                 this.loading = false;
                 var _This = this;
                 let   postData={
-                    // pageNo:_This.pageNo,
-                    // pageSize:_This.pageSize,
                     productName:query
                 }
                 _.ajax({
@@ -543,6 +553,9 @@ export default {
          */
         fDeleteAfterItem(index){
             let _This=this;
+            if(_This.caseDetail.contentList.length<=1){
+                return false;
+            }
             _This.caseDetail.contentList.splice(index,1);
         },
         /**
@@ -564,9 +577,12 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
+                    console.log("result.data------",result.data);
                     let plength=_This.caseDetail.contentList[index].pictures.length;
                     if(result.code == 0 ) {
                        // _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
+                        let itype=_This.isPicCaseLib?1:2;
+                        result.data.type=itype;
                         _This.caseDetail.contentList[index].pictures.push(result.data);
                     }
                 },
@@ -592,9 +608,15 @@ export default {
         /**
          * 添加多案例
          */
-        fAddAfterCase(){
+        fAddAfterCase(arg){
             let _This=this;
-            let temCase=JSON.stringify(_This.addAfterCaseItem);
+
+            console.log("-----_This.caseDetail------",_This.caseDetail);
+            _This.isPicCaseLib=!!arg;
+            let addAfterCaseItem=_This.addAfterCaseItem;
+            addAfterCaseItem.type=!!arg?1:2;
+            console.log("-------",_This.addAfterCaseItem);
+            let temCase=JSON.stringify(addAfterCaseItem);
             _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
         /**
@@ -675,13 +697,19 @@ export default {
         fCloseUploadPic(){
             this.isCroper=false;
         },
+
+        //////////////////////////////////////////////////////////////////////////
         /**
          * 打开案例库
          */
-        fOpenCaseLib(){
-            console.log("open case lib----------");
+        fOpenCaseLib(index,ctype){
+            console.log("open case lib----------",ctype);
             let _This=this;
             _This.isCaseLib=true;
+            _This.currentIndex=index;
+            _This.isPicCaseLib=ctype==1?true:false;
+            _This.fileaccept=_This.isPicCaseLib?"image/jpg,image/jpeg,image/bmp,image/png":"video/mp4,video/MP4,video/WEBM,video/webm";
+            _This.fGetMaterilList();
         },
         /**
          * 关闭案例库
@@ -697,7 +725,17 @@ export default {
         fEnsureSelectCase(){
             console.log("ensure select lib----------");
             let _This=this;
+            let index=_This.currentIndex;
+            let aSelectCollection=_This.aSelectCollection;
+            console.log("ensure aSelectCollection lib----------",aSelectCollection);
+            let aPic=_This.caseDetail.contentList[index].pictures;
+            let aResult=aPic.concat(aSelectCollection);
+
+            console.log("ensure aSelectCollection lib----------",aSelectCollection,aResult);
+            _This.caseDetail.contentList[index].pictures=aResult;
             _This.isCaseLib=false;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
         },
         /**
          * 分页操作
@@ -705,27 +743,209 @@ export default {
          */
         handleCurrentChange(pnum){
             this.pageNo=pnum;
+            this.fGetMaterilList();
         },
         /**
          * 根据客户手机号码或者名称搜索案例内容
          */
         fSearchCase(){
             console.log("search data-----");
+            this.pageNo=1;
+            this.fGetMaterilList();
         },
         /**
-         * 多选
+         * 图片库多选
          */
         fMultySelect(item){
-            console.log("multy select data-----");
+            console.log("multy select data-----",item);
             let _This=this;
-            let oSelectCollection=_This.oSelectCollection;
-            let iIndex=oSelectCollection.indexOf(item);
+            let aSelectNameCollection=_This.aSelectNameCollection;
+            let aSelectCollection=_This.aSelectCollection;
+            let iIndex=aSelectNameCollection.indexOf(item.fileName);
             if(iIndex<0){
-                oSelectCollection.push(item);
+                let itype=_This.isPicCaseLib?1:2;
+                item.type=itype;
+                item.name=item.fileName;
+                aSelectNameCollection.push(item.fileName);
+                aSelectCollection.push(item);
             }else{
-                oSelectCollection.splice(iIndex,1);
+                aSelectNameCollection.splice(iIndex,1);
+                aSelectCollection.splice(iIndex,1);
             }
-            _This.oSelectCollection=oSelectCollection;
+            _This.aSelectCollection=aSelectCollection;
+            _This.aSelectNameCollection=aSelectNameCollection;
+        },
+        /**
+         * 上传照片到照片库
+         */
+        fUploadImgToLib(){
+            console.log("upload img data-----");
+            let _This=this;
+            //_This.currentIndex=index;
+            console.log("this refs-----",this.$refs);
+            this.$refs["imgvideo"].click();
+        },
+        /**
+         * 多文件上传视频和图片
+         * @param ee
+         */
+        fImgVideoUpload(ee){
+            let _This=this;
+            let index=_This.afterIndex;
+            // let pindex=_This.afterPIndex;
+            var fdata = new FormData();
+            var imgFile = ee.target.files;
+
+            console.log("ee-----222---------",ee,imgFile);
+
+            for(let i=0;i<imgFile.length;i++){
+               let itemFile=imgFile[i];
+                if(_This.isPicCaseLib){
+                    let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+                    let imgName=itemFile.name.substr(itemFile.name.lastIndexOf(".")).toLocaleLowerCase();
+                    if(aLogoType.indexOf(imgName)<0){
+                        _This.$message.error("上传图片"+itemFile.name+"格式错误");
+                        return false;
+                    }
+                    if(itemFile.size > 5*1024*1024) {
+                        _This.$message.error("图片"+itemFile.name+"大小不能超过5M");
+                        return false;
+                    }
+
+                }else {
+                    let aLogoType=[".mp4"];
+                    let imgName=itemFile.name.substr(itemFile.name.lastIndexOf(".")).toLocaleLowerCase();
+                    if(aLogoType.indexOf(imgName)<0){
+                        _This.$message.error("上传视频"+itemFile.name+"格式错误");
+                        return false;
+                    }
+                    if(itemFile.size > 20*1024*1024) {
+                        _This.$message.error("视频"+itemFile.name+"大小不能超过20M");
+                        return false;
+                    }
+                }
+                fdata.append('imgFile'+i, imgFile[i]);
+            }
+
+            //return false;
+            _.ajax({
+                url: _This.imgVideoMulty,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log("upload image video-result-----",result);
+                    let itype=_This.isPicCaseLib?1:2;
+                    let aMaterial=_This.aMaterial;
+                    let aSelectCollection=_This.aSelectCollection;
+                    let aSelectNameCollection= _This.aSelectNameCollection;
+                    let oCol=result.data||[];
+                    let aList=[];
+                    if(result.code == 0 ) {
+                        oCol.forEach((item,index)=>{
+                            let oItem={};
+                            oItem.url=item.url;
+                            oItem.fileName=item.name;
+                            oItem.type=itype;
+                            aMaterial.unshift(oItem);
+                            aSelectNameCollection.push(oItem.fileName);
+                            aSelectCollection.push(oItem);
+                            aList.push(oItem);
+
+                        });
+                        _This.aMaterial=aMaterial;
+                        _This.aSelectCollection=aSelectCollection;
+                        _This.aSelectNameCollection=aSelectNameCollection;
+                        _This.fSaveVidoeOrImg(aList);
+                    }
+
+                    console.log("aMaterial-----",aMaterial);
+                },
+                error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
+                    console.log("error-- result------>", result)
+                }
+            });
+        },
+        /**
+         * 保存文件或者图片
+         */
+        fSaveVidoeOrImg(olist){
+            var _This = this;
+            let pdata={
+                fileVo:olist||[]
+            };
+            let postData={
+                pData:JSON.stringify(pdata)
+            };
+            console.log("post data----",pdata);
+            _.ajax({
+                url: '/admin/mediabase/create',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("=====mediabase----create=======",result);
+                    if(result.code==0){
+
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取视频或者图片列表
+         */
+        fGetMaterilList(){
+            var _This = this;
+            let postData={
+                pageNo:_This.pageNo,
+                pageSize:_This.pageSize,
+                customerName:_This.customerName,
+                type:_This.isPicCaseLib?1:2
+
+            };
+            console.log("post data----",postData);
+            _.ajax({
+                url: '/admin/mediabase/materialList',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                     console.log("=====mediabase/materialList=======",result);
+                    if(result.code==0){
+                       _This.aMaterial=result.data.list;
+                       _This.totalCount=result.data.count;
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取视频文件的缩略图
+         */
+        fGetThumbnail(){
+            var _This = this;
+            let postData={
+                videoname:"video_2018-03-07_be2e8571-b7e0-4367-a3f3-edc6ec4a1a29"
+
+            };
+            let thumbnailUrl=_This.thumbnailUrl;
+
+            console.log("post data----",postData,thumbnailUrl);
+            _.ajax({
+                url: "/admin/mediabase/thumbnail",
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("=====mediabase/thumbnailUrl=======",result);
+                    if(result.code==0){
+
+                    }
+                },error:function (result) {
+                    console.log("-----error-----------",result);
+                }
+            }, 'withCredentials');
         },
 
     }

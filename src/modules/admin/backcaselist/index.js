@@ -14,7 +14,7 @@ export default {
             tabCollotion:["case","material"],//案例材料选项
             tabType:"case",//切换案例和素材标识
             oReviewType:[{ttype:0,tname:"全部"},{ttype:1,tname:"未审核"},{ttype:2,tname:"通过"},{ttype:3,tname:"驳回"}],//审核状态集合
-            reviewType:0,//审核状态0全部、1未审核、2通过、3驳回
+            reviewType:1,//审核状态0全部、1未审核、2通过、3驳回
             isLookAndReview:false,//是否查看并审核 true查看审核，false 展示列表
             oMaterial:[{},{},{},{}],//素材照片集合
             oTip:["标签一","标签二","标签三","标签四","标签五","标签六","标签七"],//标签集合
@@ -23,14 +23,17 @@ export default {
             oCaseList: [],
             count: 0,
             total:0,
-            pageNo: 1,
-            pageSize:12,
+            pageNo: 1, //案例库编号
+            pageSize:12,//案例库每页数量
             state:'',
             value:'',
             productName:'',
             doctorId:"",
             doctorlist:[],
-            loginName:""
+            checkPageNo: 1, //审核库编号
+            checkPageSize:2,//审核库每页数量
+            aCheckList:[],//审核列表
+            oCheckDetail:{},//提交审核详情
         };
     },
     filters:{
@@ -49,11 +52,26 @@ export default {
                 return "";
             }
             return  _.date2String(new Date(input),"yyyy年MM月dd日");
+        },
+        checkFilter:function (input) {
+            let result="";
+            if(!input){
+                return result;
+            }
+            switch(input){
+                case 1:result="未审核";break;
+                case 2:result="已审核";break;
+                case 3:result="驳回";break;
+                default:break;
+
+            }
+            return  result;
         }
     },
     created() {
       this.fSearchCaseList();
       this.getdoctorlist();
+      this.fSearchCheckList();//获取审核列表
     },
     mounted(){
     },
@@ -96,7 +114,6 @@ export default {
                pageSize:_This.pageSize,
                productName:_This.productName,
                doctorId:_This.doctorId,
-               // loginName :_This.loginName
             }
             _.ajax({
                 url: '/admin/backcase/backcaselist',
@@ -195,15 +212,33 @@ export default {
         fReviewTab(ttype){
             let _This=this;
             //console.log("-----------ttype-----",ttype);
+
+            _This.checkPageNo=1;
             _This.reviewType=ttype;
+            _This.fSearchCheckList();
         },
         /**
-         * 案例审核
+         * 案例审核详情
          */
         fReviewCase(item){
             console.log("review-----",item);
             let _This=this;
             _This.isLookAndReview=true;
+            let postData={
+                id:item
+            }
+            _.ajax({
+                url: '/admin/mediabase/get',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("=====get detail=======",result);
+                    if(result.code==0){
+                        _This.oCheckDetail=result.data;
+                    }
+
+                }
+            }, 'withCredentials');
         },
         /**
          * 提交审核
@@ -211,19 +246,79 @@ export default {
         fSubmitReview(){
             console.log("submit review-----");
             let _This=this;
-            this.$confirm('确定图片和视频内容审核无误吗?', '提示', {
+            _This.$confirm('确定图片和视频内容审核无误吗?', '提示', {
                 confirmButtonText: '确认',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then((result) => {
-              console.log("fffffff---------",result);
+                if(!result){
+                    return false;
+                }
+              console.log("result---------",result);
+              let oCheckDetail=_This.oCheckDetail;
+                let putData={
+                    id:oCheckDetail.id,
+                    fileVo:oCheckDetail.fileVo,
+                    remark:oCheckDetail.remark,
+                };
+                console.log("putData---------",putData);
+               // return false;
+                let postData={
+                    pData:JSON.stringify(putData)
+                };
+                _.ajax({
+                    url: '/admin/mediabase/check',
+                    method: 'POST',
+                    data: postData,
+                    success: function (result) {
+                        console.log("=====mediabase/check=======",result);
+                        if(result.code==0){
+                            _This.isLookAndReview=false;
+                            _This.fSearchCheckList();
+                        }
+
+                    }
+                }, 'withCredentials');
+
 
             }).catch(() => {
-                this.$message({
+                _This.$message({
                     type: 'info',
                     message: '已取消'
                 });
             });
+        },
+        /**
+         * 获取审核列表
+         */
+        fSearchCheckList(){
+            var _This = this;
+            let postData={
+                pageNo:_This.checkPageNo,
+                pageSize:_This.checkPageSize,
+                busStatus:_This.reviewType||""
+            };
+            console.log(" fSearchCheckList---post data----",postData);
+            _.ajax({
+                url: '/admin/mediabase/pagelist',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                   // console.log("=====mediabase/pagelist=======",result);
+                    if(result.code==0){
+                       _This.aCheckList=result.data.list;
+                        _This.checkCount=result.data.count;
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 审核切换页数
+         */
+        handleCheckChange(pnum){
+            this.checkPageNo=pnum;
+            this.fSearchCheckList();
         }
 
 
