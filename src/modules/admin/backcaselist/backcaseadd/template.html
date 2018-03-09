@@ -102,6 +102,7 @@
                 <div class="before-box fl">
                     <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
                         <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                        <!-----------------旧版直接裁剪---@change="CroperImgUpload"--->
                         <input type="file" style="display: none;" ref="beforeImg" @change="CroperImgUpload">
                         <div class="doctor-img"
                              :style="{backgroundImage:['url('+(caseDetail.beforePicture.url||bydefault)+')']}"
@@ -366,8 +367,8 @@
                                 </div>
                             </template>
                         <!--分页组件-->
-                        <div class="bt-btn-ct" v-if="totalCount>0" >
-                            <el-pagination
+                        <div class="bt-btn-ct"  >
+                            <el-pagination v-if="totalCount>0"
                                     class="fl bt-btn-cm" style=""
                                     @current-change="handleCurrentChange"
                                     layout="prev, pager, next"
