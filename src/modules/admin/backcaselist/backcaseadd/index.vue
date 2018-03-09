@@ -12,7 +12,7 @@
             float: right;
         }
         .hide{
-            display: none;
+            display: none !important;
         }
         .clearfix:before,
         .clearfix:after {
@@ -247,13 +247,17 @@
             }
             /*求美者*/
             .addimg{
-                width:500px;
+                width:800px;
                 padding:10px 20px;
                 .imgfilebox{
                     margin-right:10px;
                     margin-bottom:10px;
                 }
                 .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
+                .video-ct{
+                    position: relative;
+                    margin: 20px;
+                }
                 .dynicPic{
                     display: inline-block;
                     position: relative;
@@ -439,6 +443,11 @@
                                     width: 20px;
                                     height: 20px;
                                 }
+                            }
+                            .video-ct{
+                                margin: 20px;
+                                 width: 250px;
+                                overflow: hidden;
                             }
                         }
                     }
