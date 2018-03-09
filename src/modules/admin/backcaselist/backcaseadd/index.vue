@@ -4,6 +4,9 @@
 </script>
 
 <style  lang="scss">
+    .el-loading-mask{
+      background-color:rgba(0,0,0,.2) !important;
+    }
     .admin-caseadd {
         .fl {
             float: left;
