@@ -4,7 +4,7 @@
 
 <style lang="scss">
     .el-loading-mask{
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.6) !important;
     }
 	.admin-clinic-sync-data {
 

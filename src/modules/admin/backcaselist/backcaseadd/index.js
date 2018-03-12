@@ -13,8 +13,12 @@ export default {
     },
     data () {
         return {
+            defaultImg: require("../../../../common/img/post-demo.png"), //图片demo
+            defaultvideo:require("../../../../common/img/default-video.png"),//video默认图片
             bydefault:require("../../../../common/img/add-img-icon.png"),
             imgUploadUrl: CONSTANT.fileUpload+"api/caseHeader/uploadCasePicture",
+            imgVideoMulty:CONSTANT.fileUpload+"attachment/upload/v3",//多个文件上传可以上传图片和视频
+            thumbnailUrl:CONSTANT.fileUpload+"attachment/thumbnail",//获取文件的缩略图请求
             caseId:'',
             afterIndex:-1, //标记多文件选择的条目
             afterPIndex:-1,//标记多文件选择的图片
@@ -28,7 +32,8 @@ export default {
                 "title": "",
                 "definitionDate": "",
                 "pictures": [],
-                "description": ""
+                "description": "",
+                "type":2
             },
             doctorlist: [{
                 value: '',
@@ -75,13 +80,14 @@ export default {
                     "url": ""
                 },
                 contentList: [
-                    {
+                  /*  {
                         "id": "",
                         "title": "",
                         "pictures": [],
                         "definitionDate": "",
-                        "description": ""
-                    }
+                        "description": "",
+                        "type":2
+                    }*/
                 ]
             },
             savestate:true,
@@ -95,8 +101,22 @@ export default {
                 fixedBox: true,
                 full:true
             },
-            currentChoiceType:0,//当前选择上传的图片类型，0是before， 1是after
-            isCroper:false //是否打开裁剪的窗口
+            currentChoiceType:-1,//当前选择上传的图片类型，0是before， 1是after
+            isCroper:false, //是否打开裁剪的窗口
+
+            isCaseLib:false,//是否打开案例库
+            isPicCaseLib:true,//0照片案例、1视频案例
+            aMaterial:[],//素材照片集合
+            iMaterial:{},//素材单个文件
+            pageSize:16,//每页数量
+            totalCount:0,//总共页数
+            aSelectNameCollection:[],//选中的名称
+            aSelectCollection:[],//选中的案例条目
+            currentIndex:-1,//当前上传图片视频位置索引
+            pageNo:1,//页码编号
+            customerName:"",//依据名称或者电话搜索
+            fileaccept:"image/jpg,image/jpeg,image/bmp,image/png",//限定文件接收类型
+
 
         };
     },
@@ -266,7 +286,6 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
-
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -329,8 +348,6 @@ export default {
                 this.loading = false;
                 var _This = this;
                 let   postData={
-                    // pageNo:_This.pageNo,
-                    // pageSize:_This.pageSize,
                     productName:query
                 }
                 _.ajax({
@@ -476,15 +493,28 @@ export default {
                     // console.log("error-- result------>", result)
                 }
             });
-        }
-        ,
-        fChoosebfImg() {
-            this.$refs.beforeImg.click();
-            this.currentChoiceType=0;
         },
+        /**
+         * 选择术前照片
+         */
+        fChoosebfImg() {
+           // this.$refs.beforeImg.click();
+            this.currentChoiceType=0;
+            this.isPicCaseLib=true; //图片库
+            this.isCaseLib=true;//打开选择
+            this.fileaccept="image/jpg,image/jpeg,image/bmp,image/png";
+            this.fGetMaterilList();//获取图片案例库列表
+        },
+        /**
+         * 选择术后照片
+         */
         fChooseafImg() {
-            this.$refs.afterImg.click();
+           // this.$refs.afterImg.click();
             this.currentChoiceType=1;
+            this.isPicCaseLib=true;//图片
+            this.isCaseLib=true;//打开选择
+            this.fileaccept="image/jpg,image/jpeg,image/bmp,image/png";
+            this.fGetMaterilList(); //获取图片案例库列表
         },
         fChooseImg() {
             this.$refs.uploadImg.click();
@@ -535,6 +565,9 @@ export default {
          */
         fDeleteAfterItem(index){
             let _This=this;
+            if(_This.caseDetail.contentList.length<=1){
+                return false;
+            }
             _This.caseDetail.contentList.splice(index,1);
         },
         /**
@@ -559,6 +592,8 @@ export default {
                     let plength=_This.caseDetail.contentList[index].pictures.length;
                     if(result.code == 0 ) {
                        // _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
+                        let itype=_This.isPicCaseLib?1:2;
+                        result.data.type=itype;
                         _This.caseDetail.contentList[index].pictures.push(result.data);
                     }
                 },
@@ -584,9 +619,13 @@ export default {
         /**
          * 添加多案例
          */
-        fAddAfterCase(){
+        fAddAfterCase(arg){
             let _This=this;
-            let temCase=JSON.stringify(_This.addAfterCaseItem);
+
+            _This.isPicCaseLib=!!arg;
+            let addAfterCaseItem=_This.addAfterCaseItem;
+            addAfterCaseItem.type=!!arg?1:2;
+            let temCase=JSON.stringify(addAfterCaseItem);
             _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
         /**
@@ -626,6 +665,7 @@ export default {
                             _This.caseDetail.afterPicture=result.data;
                         }
                         _This.isCroper=false;
+                        _This.currentChoiceType=-1;
 
                     },
                     error: function(result) {
@@ -665,8 +705,316 @@ export default {
          * 关闭上传照片窗口
          */
         fCloseUploadPic(){
-            this.isCroper=false;
-        }
+            let _This=this;
+            _This.isCroper=false;
+            _This.currentChoiceType=-1;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
+        },
+
+        //////////////////////////////////////////////////////////////////////////http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/d50a756d-8ad1-47fa-9ecb-ce541ca1f319
+        /**
+         * 打开案例库
+         */
+        fOpenCaseLib(index,ctype){
+            let _This=this;
+            _This.isCaseLib=true;
+            _This.currentIndex=index;
+            _This.isPicCaseLib=ctype==1?true:false;
+            _This.fileaccept=_This.isPicCaseLib?"image/jpg,image/jpeg,image/bmp,image/png":"video/mp4,video/MP4,video/WEBM,video/webm";
+            _This.fGetMaterilList();
+        },
+        /**
+         * 关闭案例库
+         */
+        fCloseCaseLib(){
+            let _This=this;
+            _This.isCaseLib=false;
+            _This.currentChoiceType=-1;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
+        },
+        /**
+         * 确认选择照片
+         */
+        fEnsureSelectCase(){
+            let _This=this;
+            let index=_This.currentIndex;
+            let aSelectCollection=_This.aSelectCollection;
+            if(aSelectCollection.length<=0){
+                _This.$message.error("请选择案例内容");
+                return false;
+            }
+
+            if(_This.currentChoiceType>=0){ //选择术前术后照片情况
+                let cropData=_This.cropData;
+                _This.isCroper=true;
+                cropData.img=aSelectCollection[0].url;
+                _This.cropData=cropData;
+                _This.isCaseLib=false;
+                _This.aSelectNameCollection=[];
+                _This.aSelectCollection=[];
+                return false;
+            }
+
+            console.log("aSelectCollection--------------",aSelectCollection);
+            let aPic=_This.caseDetail.contentList[index].pictures;
+            let aResult=aPic.concat(aSelectCollection);
+
+            _This.caseDetail.contentList[index].pictures=aResult;
+            _This.isCaseLib=false;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
+        },
+
+        getBase64Image(img) {
+
+
+            var image = new Image();
+            image.src =aSelectCollection[0].url;//"http://p4yff5s6k.bkt.clouddn.com/6FNOpE-HAT2Ab94XdCLgPzonurU=/FikAuqZ0f_4A8YKYyZPqhP8DwdZF";//
+            image.crossOrigin = "*";
+            image.onload = function(e){
+
+              //  let timage=_This.getBase64Image(image);
+               // console.log("image-----------",timage);
+            }
+            var canvas =this.$refs.icanvas;
+            var ctx = canvas.getContext("2d");
+
+            var icanvasaa=this.$refs.icanvasaa;
+            icanvasaa.src=img.src;
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+
+            var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+            var dataURL = canvas.toDataURL("image/"+ext);
+
+            // canvas转为blob并上传
+
+            return dataURL
+        },
+
+        /**
+         * 分页操作
+         * @param pnum
+         */
+        handleCurrentChange(pnum){
+            this.pageNo=pnum;
+            this.fGetMaterilList();
+        },
+        /**
+         * 根据客户手机号码或者名称搜索案例内容
+         */
+        fSearchCase(){
+            this.pageNo=1;
+            this.fGetMaterilList();
+        },
+        /**
+         * 图片库多选
+         */
+        fMultySelect(item){
+            console.log("-----------item-------",item);
+            let _This=this;
+            let aSelectNameCollection=_This.aSelectNameCollection;
+            let aSelectCollection=_This.aSelectCollection;
+            let iIndex=aSelectNameCollection.indexOf(item.fileName);
+            if(iIndex<0){
+                let itype=_This.isPicCaseLib?1:2;
+                item.type=itype;
+                item.name=item.fileName;
+                if(!_This.isPicCaseLib){
+                    aSelectNameCollection=[];
+                    aSelectCollection=[];
+                }
+                aSelectNameCollection.push(item.fileName);
+                aSelectCollection.push(item);
+
+            }else{
+                aSelectNameCollection.splice(iIndex,1);
+                aSelectCollection.splice(iIndex,1);
+            }
+            _This.aSelectCollection=aSelectCollection;
+            _This.aSelectNameCollection=aSelectNameCollection;
+        },
+        /**
+         * 上传照片到照片库
+         */
+        fUploadImgToLib(){
+            let _This=this;
+            //_This.currentIndex=index;
+            this.$refs["imgvideo"].click();
+        },
+        /**
+         * 多文件上传视频和图片
+         * @param ee
+         */
+        fImgVideoUpload(ee){
+            let _This=this;
+            let index=_This.afterIndex;
+            // let pindex=_This.afterPIndex;
+            var fdata = new FormData();
+            var imgFile = ee.target.files;
+            let loading = _This.$loading({
+                text: 'Loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
+            for(let i=0;i<imgFile.length;i++){
+               let itemFile=imgFile[i];
+                if(_This.isPicCaseLib){
+                    let aLogoType=[".jpg",".jpeg",".png",".bmp"];
+                    let imgName=itemFile.name.substr(itemFile.name.lastIndexOf(".")).toLocaleLowerCase();
+                    if(aLogoType.indexOf(imgName)<0){
+                        _This.$message.error("上传图片"+itemFile.name+"格式错误");
+                        loading.close();
+                        return false;
+                    }
+                    if(itemFile.size > 5*1024*1024) {
+                        _This.$message.error("图片"+itemFile.name+"大小不能超过5M");
+                        loading.close();
+                        return false;
+                    }
+
+                }else {
+                    let aLogoType=[".mp4"];
+                    let imgName=itemFile.name.substr(itemFile.name.lastIndexOf(".")).toLocaleLowerCase();
+                    if(aLogoType.indexOf(imgName)<0){
+                        _This.$message.error("上传视频"+itemFile.name+"格式错误");
+                        loading.close();
+                        return false;
+                    }
+                    if(itemFile.size > 20*1024*1024) {
+                        _This.$message.error("视频"+itemFile.name+"大小不能超过20M");
+                        loading.close();
+                        return false;
+                    }
+                }
+                fdata.append('imgFile'+i, imgFile[i]);
+            }
+
+            //return false;
+            _.ajax({
+                url: _This.imgVideoMulty,
+                type: 'POST',
+                data: fdata,
+                urlType: 'full',
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    let itype=_This.isPicCaseLib?1:2;
+                    let aMaterial=_This.aMaterial;
+                    let aSelectCollection=_This.aSelectCollection;
+                    let aSelectNameCollection= _This.aSelectNameCollection;
+                    let oCol=result.data||[];
+                    let aList=[];
+                    if(result.code == 0 ) {
+                        oCol.forEach((item,index)=>{
+                            let oItem={};
+                            oItem.url=item.url;
+                            oItem.fileName=item.name;
+                            oItem.name=item.name;
+                            oItem.type=itype;
+                           //////// aMaterial.unshift(oItem); //暂时不删除
+                            aSelectNameCollection.push(oItem.fileName);
+                            aSelectCollection.push(oItem);
+                            aList.push(oItem);
+
+                        });
+                       ////////// _This.aMaterial=aMaterial; //暂时不删除
+
+                        _This.aSelectCollection=aSelectCollection;
+                        _This.aSelectNameCollection=aSelectNameCollection;
+                        _This.fSaveVidoeOrImg(aList);
+                    }
+                    loading.close();
+                },
+                error: function(result) {
+                    this.$message.error("图片大小不能超过5M！");
+                    loading.close();
+                    console.log("error-- result------>", result)
+                }
+            });
+        },
+        /**
+         * 保存文件或者图片
+         */
+        fSaveVidoeOrImg(olist){
+            var _This = this;
+            let pdata={
+                fileVo:olist||[]
+            };
+            let postData={
+                pData:JSON.stringify(pdata)
+            };
+            //console.log("post data----",pdata);
+            _.ajax({
+                url: '/admin/mediabase/uploadlocal',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                   // console.log("=====mediabase----uploadlocal=======",result);
+                    if(result.code==0){
+                        _This.pageNo=1;//返回第一页
+                        _This.fGetMaterilList(); //重新获取项目照片库列表
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取视频或者图片列表
+         */
+        fGetMaterilList(){
+            var _This = this;
+            let postData={
+                pageNo:_This.pageNo,
+                pageSize:_This.pageSize,
+                customerName:_This.customerName,
+                type:_This.isPicCaseLib?1:2
+
+            };
+            //console.log("post data----",postData);
+            _.ajax({
+                url: '/admin/mediabase/materialList',
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                     console.log("=====mediabase/materialList=======",result);
+                    if(result.code==0){
+                       _This.aMaterial=result.data.list;
+                       _This.totalCount=result.data.count;
+                    }
+
+                }
+            }, 'withCredentials');
+        },
+        /**
+         * 获取视频文件的缩略图
+         */
+        fGetThumbnail(){
+            var _This = this;
+            let postData={
+                videoname:"video_2018-03-07_be2e8571-b7e0-4367-a3f3-edc6ec4a1a29"
+
+            };
+            let thumbnailUrl=_This.thumbnailUrl;
+
+            console.log("post data----",postData,thumbnailUrl);
+            _.ajax({
+                url: "/admin/mediabase/thumbnail",
+                method: 'POST',
+                data: postData,
+                success: function (result) {
+                    console.log("=====mediabase/thumbnailUrl=======",result);
+                    if(result.code==0){
+
+                    }
+                },error:function (result) {
+                    console.log("-----error-----------",result);
+                }
+            }, 'withCredentials');
+        },
 
     }
 }

@@ -4,6 +4,9 @@
 </script>
 
 <style  lang="scss">
+    .el-loading-mask{
+      background-color:rgba(0,0,0,.2) !important;
+    }
     .admin-caseadd {
         .fl {
             float: left;
@@ -12,7 +15,7 @@
             float: right;
         }
         .hide{
-            display: none;
+            display: none !important;
         }
         .clearfix:before,
         .clearfix:after {
@@ -247,13 +250,17 @@
             }
             /*求美者*/
             .addimg{
-                width:500px;
+                width:800px;
                 padding:10px 20px;
                 .imgfilebox{
                     margin-right:10px;
                     margin-bottom:10px;
                 }
-                .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
+                .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;cursor: pointer;}
+                .video-ct{
+                    position: relative;
+                    margin: 20px;
+                }
                 .dynicPic{
                     display: inline-block;
                     position: relative;
@@ -369,7 +376,161 @@
                 }
             }
         }
-
         /********************弹出蒙层***end********************/
+
+        /********************案例库弹出层***start********************/
+        .p-case-mask{
+            position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
+            .croper-ct{
+                height: 960px;
+                width:980px;
+                margin: 50px auto;
+                background: #ffffff;padding: 0;
+                box-sizing: border-box;
+                border-radius: 10px;
+
+                position: relative;
+                .el-button:hover{
+                    background-color: #9083ED;
+                    color: #ffffff;
+                    border: 1px solid #9083ED;
+                }
+                .end-close{
+                    width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    right: -25px;
+                    top:-20px;
+                    cursor: pointer;
+                }
+                .p-title{
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+                .top-btm-cm{
+                    box-sizing: border-box;
+                    height: 60px;
+                    line-height: 60px;
+                    width: 100%;
+                    background: #f7f7f7;
+                    padding: 0 30px;
+                }
+                .top-title-ct{
+                    border-radius: 10px 10px 0 0;
+                  border-bottom:1px solid #e8e8e8;
+                }
+                .bottom-ct{
+                    border-radius:0 0 10px 10px;
+                    border-top:1px solid #e8e8e8;
+                    .bt-btn{
+                        text-align: right;
+                    }
+                }
+                .material-ct{
+                    height: 840px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    .case-com-ct{
+                        height: 100%;
+                        width: 755px;
+                        box-sizing: border-box;
+                        padding:0px 0 24px 24px;
+                        vertical-align: top;
+                        position: relative;
+                        border-right:1px solid #e8e8e8;
+                        display: inline-block;
+                    }
+                    .case-r-ct{
+                           .c-title-ct{
+                               margin:24px 0;
+                           }
+                         .fit-ct{
+                             display: inline-block;
+                             position: relative;
+                             width:158px;
+                             height:158px;
+                             border-radius: 6px;
+                             cursor: pointer;
+                             border: 1px dashed #bfcbd9;
+                             margin: 5px 22px;
+                             margin-left: 0;
+                             background-color: #f7f7f7;
+                         }
+                            .dynicPic{
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                            }
+                        .pic-ct{
+                            display: inline-block;
+                            position: relative;
+                            .pic-select{
+                                position: absolute;
+                                top:0;
+                                right: 10px;
+                                .sel-pic{
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                            .video-ct{
+                                 width: 160px;
+                                overflow: hidden;
+                            }
+                        }
+                        .bt-btn-ct{
+                            box-sizing: border-box;
+                            position: absolute;
+                            bottom: 10px;
+                            left: 0;
+                            text-align: right;
+                            width: 100%;
+                            .bt-btn-cm{
+                                box-sizing: border-box;
+                                width: 100%;
+                                display: inline-block;
+                                vertical-align: middle;
+                                padding-right: 24px;
+                                text-align: right;
+                            }
+                            .el-pagination{
+                                button{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 10px;
+                                }
+                                .number{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 15px;
+                                    font-size: 16px;
+                                }
+                                .more{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    padding: 0 15px;
+                                    font-size: 16px;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .right-ct{
+                        padding: 30px 0;
+                        display: inline-block;
+                        width: 205px;
+                        box-sizing: border-box;
+                    }
+
+
+                }
+
+
+            }
+        }
+        /********************案例库弹出层***end********************/
+
+
     }
 </style>

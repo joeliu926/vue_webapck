@@ -102,6 +102,7 @@
                 <div class="before-box fl">
                     <div style="position:relative; width:178px; height:178px; margin-bottom:10px;">
                         <div class="add-icon" style="position: absolute; top:0; left:0;"></div>
+                        <!-----------------旧版直接裁剪---@change="CroperImgUpload"--->
                         <input type="file" style="display: none;" ref="beforeImg" @change="CroperImgUpload">
                         <div class="doctor-img"
                              :style="{backgroundImage:['url('+(caseDetail.beforePicture.url||bydefault)+')']}"
@@ -194,31 +195,53 @@
                                   @click="fDeleteAfterItem(index)">关闭</span>
                         </div>
                     </div>
-                    <div class="row-item ">
+                    <div class="row-item" v-if="afterItem.type==1||(afterItem.pictures[0]&&afterItem.pictures[0].type==1)">
                         <span class="row-item-title f-14"><i class="i-must">*</i> 补充求美照片</span>
                         <span style="font-size:14px;color:#999;">（尺寸：215×215px; 格式：jpg,jpeg,bmp,png; 大小：5MB以内）</span>
                     </div>
+                    <div class="row-item" v-if="(!afterItem.type&&!afterItem.pictures[0])||afterItem.type==2||(afterItem.pictures[0]&&afterItem.pictures[0].type==2)">
+                        <span class="row-item-title f-14"><i class="i-must">*</i> 补充求美视频</span>
+                        <span style="font-size:14px;color:#999;">（格式：mp4; 大小：20MB以内）</span>
+                    </div>
                     <div class="addimg clearfix">
                         <template v-for="picItem,pindex in afterItem.pictures">
-                            <div class="fl">
+                            <div class="fl" v-if="picItem.type==1">
                                 <input type="file" style="display: none;" :ref="'s'+index+pindex+'e'"
                                        @change="fMultImgUpload">
+                                <!-------------div----@click="fMultChooseafImg(index,pindex)"------------->
                                 <div class="dynicPic"
-                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}"
-                                     @click="fMultChooseafImg(index,pindex)">
-                                    <!--    <img v-if="pindex!=(afterItem.pictures.length-1)" class="closeUpPic" src="../../../../common/img/tv/con-error.png"  @click="fDeletePic($event,index,pindex)"
-                                             style="">-->
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:bydefault)+')']}">
                                     <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
                                          @click="fDeletePic($event,index,pindex)">
                                 </div>
+
+                            </div>
+                            <div class="fl video-ct" v-if="picItem.type==2">
+                                <div>
+                                    <video width="320" height="240" :poster="picItem.thumbnailUrl||defaultvideo" controls >
+                                        <source :src="picItem.url" type="video/ogg">
+                                        <source :src="picItem.url" type="video/mp4">
+                                        <source :src="picItem.url" type="video/webm">
+                                    </video>
+                                </div>
+                                <img class="closeUpPic" src="../../../../common/img/tv/con-error.png"
+                                     @click="fDeletePic($event,index,pindex)">
                             </div>
                         </template>
-                        <div class="fl">
+                        <div class="fl" v-show="afterItem.pictures.length<=0||afterItem.pictures[0].type==1">
+                            <!-------------旧版本本地上传 start---- 舍弃----------------->
                             <input type="file" style="display: none;" :ref="'s'+index+'e'"
                                    @change="fMultImgUpload($event,index)">
-                            <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"
+                            <div class="dynicPic hide" :style="{backgroundImage:['url('+bydefault+')']}"
                                  @click="fMultChooseafImg(index)">
                             </div>
+                            <!-------------旧版本本地上传 end----------舍弃----------->
+
+                            <!-------------案例库新本本地上传 start---- ----------------->
+                            <div class="dynicPic" :style="{backgroundImage:['url('+bydefault+')']}"
+                                 @click="fOpenCaseLib(index,((afterItem.pictures[0]?afterItem.pictures[0].type:afterItem.type)||2))">
+                            </div>
+                            <!-------------新案例库本本地上传 end--------------------->
                         </div>
                     </div>
                     <div class="addDescription">
@@ -238,8 +261,9 @@
                 </div>
             </template>
 
-            <div style="text-align: center;">
-                <el-button type="primary" @click="fAddAfterCase">添加</el-button>
+            <div style="text-align: center;padding: 10px;">
+                <el-button type="primary" @click="fAddAfterCase(true)">添加图片案例</el-button>
+                <el-button type="primary" @click="fAddAfterCase(false)">添加视频案例</el-button>
             </div>
 
             <el-button type="primary" style="margin-left:10px;display: none;" @click="addtextareas(textarea)">完成
@@ -260,6 +284,9 @@
 
             </div>
         </div>
+
+
+        <!--------------------------术前术后照片编辑-start---------------------------->
 
         <div class="p-mask"  :style="{display:[isCroper?'':'none']}" style="">
             <div class="croper-ct" style="">
@@ -291,6 +318,88 @@
             </div>
 
         </div>
+        <!--------------------------术前术后照片编辑-end---------------------------->
+        <!------案例库弹出层 start--->
+        <div class="p-case-mask"  :style="{display:[isCaseLib?'':'none']}" style="">
+            <div class="croper-ct" style="">
+                <div class="end-close hide" @click="fCloseCaseLib"><img src="../../../../common/img/i-cl-close.png"> </div>
+
+                <div class="top-btm-cm top-title-ct">
+                    <span v-if="isPicCaseLib" class="f-16 p-title" style=""> 照片案例库</span>
+                    <span v-if="!isPicCaseLib" class="f-16 p-title" style=""> 视频案例库</span>
+                </div>
+
+                <div class="material-ct" style="">
+                    <div class="case-com-ct case-r-ct">
+
+                        <div class="c-title-ct" style="">
+                            <div style="">
+                                <el-input style="width: 240px;" placeholder="根据客户或手机号搜索"  icon="search" v-model="customerName"
+                                          :on-icon-click="fSearchCase" ></el-input>
+
+                            </div>
+                        </div>
+
+                            <template v-for="picItem,pindex in aMaterial">
+
+                                <div class="pic-ct" style=""  @click="fMultySelect(picItem)">
+                                    <div class="fit-ct dynicPic trueImg" v-if="picItem.type==1"
+                                         :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
+                                    >
+                                    </div>
+                                    <div class="fl fit-ct" v-if="picItem.type==2">
+                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||defaultvideo"  controls>
+                                                <source :src="picItem.url" type="video/ogg">
+                                                <source :src="picItem.url" type="video/mp4">
+                                                <source :src="picItem.url" type="video/webm">
+                                            </video>
+
+                                    </div>
+
+                                    <div v-if="aSelectNameCollection.indexOf(picItem.fileName)>=0" class="pic-select"><img class="sel-pic" src="../../../../common/img/tv/con-ok.png"> </div>
+
+                                </div>
+                            </template>
+                        <!--分页组件-->
+                        <div class="bt-btn-ct" >
+                            <el-pagination v-if="totalCount>0"
+                                    class="fl bt-btn-cm" style=""
+                                    @current-change="handleCurrentChange"
+                                    layout="prev, pager, next"
+                                    :page-size="pageSize"
+                                           :current-page="pageNo"
+                                    :total="totalCount">
+                            </el-pagination>
+                        </div>
+                    </div>
+                    <div class="right-ct" style="">
+                        <div class="c-title-ct" style="">
+                            <div style="text-align: center;">
+                                <el-button v-if="isPicCaseLib" @click="fUploadImgToLib">上传图片</el-button>
+                                <el-button v-if="!isPicCaseLib" @click="fUploadImgToLib">上传视频</el-button>
+                            </div>
+                            <div>
+                                <input type="file" style="display: none;" :ref="'imgvideo'" multiple="multiple" :accept="fileaccept"
+                                       @change="fImgVideoUpload($event)">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="top-btm-cm bottom-ct">
+                    <div class="bt-btn" style="">
+                        <el-button style=""  @click="fCloseCaseLib">取消</el-button>
+                        <el-button style=""  @click="fEnsureSelectCase">插入案例</el-button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!------案例库弹出层 end--->
 
 
 

@@ -4,11 +4,29 @@
     </div><div class="admin-rbox " >
     <div class="out-box-border innerbox"  style="padding: 12px;">
            <el-row class="rbox-top" :gutter="24" type="flex" justify="space-between" >
-                <div>
-                    <p>全部案例</p>
-                    <span class="f-14">在此页面上,您可以创建,查看并管理案例</span>
+                <div style="width: 100%;">
+                    <div class="tab-ct tab-bottom" style="">
+                        <el-tabs v-model="tabType" @tab-click="fChangeTab">
+                            <el-tab-pane label="案例库" name="case"></el-tab-pane>
+                            <el-tab-pane label="素材审核" name="material"></el-tab-pane>
+                        </el-tabs>
+                    </div>
+                    <span v-if="tabType==tabCollotion[0]" class="f-14">在此页面上,您可以创建,查看并管理案例</span>
+                    <div v-if="tabType==tabCollotion[1]">
+                        <span  class="f-14">此页面上可以管理提交的相片和视频，进行审核</span>
+                        <div v-if="!isLookAndReview" class="tab-ct review-ct" style="">
+                            <template v-for="rItem in oReviewType">
+                                <el-button style=""  :class="[reviewType==rItem.ttype?'select-btn':'']" type="" @click="fReviewTab(rItem.ttype)">{{rItem.tname}}</el-button>
+                            </template>
+                        </div>
+                    </div>
+
                 </div>
             </el-row>
+
+
+        <div v-if="!isLookAndReview">
+        <div class="" v-if="tabType==tabCollotion[0]">
             <el-row class="rbox-content" :gutter="24" type="flex" justify="space-between" >
                 <div>记录（{{count}}）</div>
             </el-row>
@@ -34,7 +52,7 @@
                 </div>
             </div>
             <!-- 案例列表-->
-            <div class="table-content">
+            <div class="table-content" >
                 <el-table
                         :data="oCaseList"
                         style="width: 100%">
@@ -42,6 +60,14 @@
                             prop="caseName"
                             label="名称"
                             min-width="30%">
+                        <template slot-scope="scope" >
+                            <p style="padding:10px 0;" >
+                                <span class="c-name" style=""> {{scope.row.caseName}}</span>
+                                <img v-if="scope.row.beforePicture.url" class="b-a-img" style="" :src="scope.row.beforePicture.url">
+                                <img v-if="scope.row.afterPicture.url" class="b-a-img" style="" :src="scope.row.afterPicture.url">
+
+                            </p>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             prop="doctor.name"
@@ -58,7 +84,7 @@
                     </el-table-column>
                     <el-table-column
                             prop="operationDate"
-                            label="诊疗时间 "
+                            label="诊疗时间"
                             min-width="20%">
                         <template slot-scope="scope">
                             {{scope.row.operationDate|dateFilter}}
@@ -77,17 +103,143 @@
                       </template>
                     </el-table-column>
                 </el-table>
+                <!--分页组件-->
+                <div class="rbox-pagination-align">
+                    <el-pagination
+                            class="el-pagination"
+                            @current-change="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :page-size="pageSize"
+                            :total="count">
+                    </el-pagination>
+                </div>
             </div>
-            <!--分页组件-->
-            <div class="rbox-pagination-align">
-                <el-pagination
-                        class="el-pagination"
-                        @current-change="handleCurrentChange"
-                        layout="prev, pager, next"
-                        :page-size="pageSize"
-                        :total="count">
-                </el-pagination>
+        </div>
+
+        <div class="" v-if="tabType==tabCollotion[1]">
+            <div class="table-content" >
+                <el-table
+                        :data="aCheckList"
+                        style="width: 100%">
+                    <el-table-column
+                                     prop="createTime"
+                                     label="上传时间"
+                                     min-width="30%">
+                        <template slot-scope="scope">
+                            {{scope.row.createTime|dateFilter}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="creatorName"
+                            label="上传者"
+                            min-width="10%">
+                    </el-table-column>
+                    <el-table-column
+                            prop="uploadNum"
+                            label="照片/视频数"
+                            min-width="20%">
+                        <template slot-scope="scope" >
+                            <span>{{scope.row.uploadNum}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="busStatus"
+                            label="审核状态"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <span>{{scope.row.busStatus|checkFilter}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="operationDate"
+                            label="归档案例"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <span class="c-name" style="">无</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop=""
+                            label="操作"
+                            style="padding:0px;"
+                            min-width="20%">
+                        <template slot-scope="scope">
+                            <el-button style=""  @click="fReviewCase(scope.row.id)" >查看并审核</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <!--分页组件-->
+                <div class="rbox-pagination-align" v-if="checkCount">
+                    <el-pagination
+                            class="el-pagination"
+                            @current-change="handleCheckChange"
+                            layout="prev, pager, next"
+                            :page-size="checkPageSize"
+                            :current-page="checkPageNo"
+                            :total="checkCount">
+                    </el-pagination>
+                </div>
             </div>
+        </div>
+        </div>
+
+        <div class="lk-review-ct" v-if="isLookAndReview">
+
+            <div class="segment-title f-14">素材列表</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <div class="addimg clearfix">
+                        <template v-for="picItem,pindex in oCheckDetail.fileVo">
+                            <div class="fl">
+                                <div class="dynicPic trueImg"
+                                     :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
+                                >
+                                </div>
+                                <div style="text-align: center;">
+                                    <template>
+                                        <el-radio-group v-model="picItem.status">
+                                            <el-radio :label="1">合格</el-radio>
+                                            <el-radio :label="2">不合格</el-radio>
+                                        </el-radio-group>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-title f-14">审核备注</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <div class="row-item" style="" >
+                        <el-input class="row-item-value" :rows="3" type="textarea"  value="" v-model="oCheckDetail.remark" placeholder="审核备注"></el-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-title f-14">素材标签</div>
+            <div class="material-info-ct">
+                <div class="row-ct">
+                    <template v-for="tItem in oCheckDetail.tagNames">
+                        <span class="ltip">{{tItem}}</span>
+                    </template>
+                </div>
+            </div>
+
+            <div class="f-14 customer-info-ct">
+                <div class="u-margin user-img" :style="{backgroundImage:['url('+(oCheckDetail.customerLogo)+')']}"></div>
+                <div class="u-margin">{{oCheckDetail.customerName||oCheckDetail.customerNickName}}</div>
+                <div class="u-margin">{{oCheckDetail.customerMobil||oCheckDetail.customerPhone}}</div>
+                <div class="u-margin">
+                    <el-button style="width: 120px;"  :class="" type="" @click="fSubmitReview">审核</el-button>
+                </div>
+            </div>
+
+
+        </div>
+
+
         </div>
     </div>
 </div>
