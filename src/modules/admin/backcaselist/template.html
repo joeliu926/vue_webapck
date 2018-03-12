@@ -62,7 +62,7 @@
                             min-width="30%">
                         <template slot-scope="scope" >
                             <p style="padding:10px 0;" >
-                                <span class="c-name" style=""> {{scope.row.caseName}}</span>
+                                <span class="c-name" :title="scope.row.caseName" style="display: inline-block;line-height: 88px;width: 200px;"> {{scope.row.caseName}}</span>
                                 <img v-if="scope.row.beforePicture.url" class="b-a-img" style="" :src="scope.row.beforePicture.url">
                                 <img v-if="scope.row.afterPicture.url" class="b-a-img" style="" :src="scope.row.afterPicture.url">
 
@@ -191,9 +191,17 @@
                     <div class="addimg clearfix">
                         <template v-for="picItem,pindex in oCheckDetail.fileVo">
                             <div class="fl">
-                                <div class="dynicPic trueImg"
+                                <div class="dynicPic trueImg" v-if="picItem.type==1"
                                      :style="{backgroundImage:['url('+(picItem.url?picItem.url:defaultImg)+')']}"
                                 >
+                                </div>
+                                <div class="fl fit-ct" v-if="picItem.type==2">
+                                    <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||defaultvideo"  controls>
+                                        <source :src="picItem.url" type="video/ogg">
+                                        <source :src="picItem.url" type="video/mp4">
+                                        <source :src="picItem.url" type="video/webm">
+                                    </video>
+
                                 </div>
                                 <div style="text-align: center;">
                                     <template>
@@ -222,7 +230,7 @@
             <div class="material-info-ct">
                 <div class="row-ct">
                     <template v-for="tItem in oCheckDetail.tagNames">
-                        <span class="ltip">{{tItem}}</span>
+                        <span class="ltip"><img src="../../../common/img/icon-tip.png">  {{tItem}}</span>
                     </template>
                 </div>
             </div>
@@ -232,7 +240,7 @@
                 <div class="u-margin">{{oCheckDetail.customerName||oCheckDetail.customerNickName}}</div>
                 <div class="u-margin">{{oCheckDetail.customerMobil||oCheckDetail.customerPhone}}</div>
                 <div class="u-margin">
-                    <el-button style="width: 120px;"  :class="" type="" @click="fSubmitReview">审核</el-button>
+                    <el-button style="width: 120px;"  :class="" type="" :disabled="oCheckDetail.busStatus==2" @click="fSubmitReview">审核</el-button>
                 </div>
             </div>
 

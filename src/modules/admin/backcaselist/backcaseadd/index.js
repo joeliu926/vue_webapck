@@ -116,6 +116,7 @@ export default {
             pageNo:1,//页码编号
             customerName:"",//依据名称或者电话搜索
             fileaccept:"image/jpg,image/jpeg,image/bmp,image/png",//限定文件接收类型
+            randamData:"",//视频随机数
 
 
         };
@@ -565,7 +566,7 @@ export default {
          */
         fDeleteAfterItem(index){
             let _This=this;
-            if(_This.caseDetail.contentList.length<=1){
+            if(_This.caseDetail.contentList.length<=0){
                 return false;
             }
             _This.caseDetail.contentList.splice(index,1);
@@ -733,6 +734,7 @@ export default {
             _This.currentChoiceType=-1;
             _This.aSelectNameCollection=[];
             _This.aSelectCollection=[];
+            _This.aMaterial=[];
         },
         /**
          * 确认选择照片
@@ -757,7 +759,7 @@ export default {
                 return false;
             }
 
-            console.log("aSelectCollection--------------",aSelectCollection);
+            //console.log("aSelectCollection--------------",aSelectCollection);
             let aPic=_This.caseDetail.contentList[index].pictures;
             let aResult=aPic.concat(aSelectCollection);
 
@@ -815,7 +817,8 @@ export default {
          * 图片库多选
          */
         fMultySelect(item){
-            console.log("-----------item-------",item);
+
+            //console.log("-----------item-------",item,Math.random(10));
             let _This=this;
             let aSelectNameCollection=_This.aSelectNameCollection;
             let aSelectCollection=_This.aSelectCollection;
@@ -902,6 +905,7 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
+                    //console.log("upload video------------------",result);
                     let itype=_This.isPicCaseLib?1:2;
                     let aMaterial=_This.aMaterial;
                     let aSelectCollection=_This.aSelectCollection;
@@ -916,6 +920,10 @@ export default {
                             oItem.name=item.name;
                             oItem.type=itype;
                            //////// aMaterial.unshift(oItem); //暂时不删除
+                            if(!_This.isPicCaseLib){
+                                aSelectNameCollection=[];
+                                aSelectCollection=[];
+                            }
                             aSelectNameCollection.push(oItem.fileName);
                             aSelectCollection.push(oItem);
                             aList.push(oItem);
@@ -924,6 +932,7 @@ export default {
                        ////////// _This.aMaterial=aMaterial; //暂时不删除
 
                         _This.aSelectCollection=aSelectCollection;
+                        //console.log("upload video--select result----------------",aSelectCollection);
                         _This.aSelectNameCollection=aSelectNameCollection;
                         _This.fSaveVidoeOrImg(aList);
                     }
@@ -956,7 +965,7 @@ export default {
                    // console.log("=====mediabase----uploadlocal=======",result);
                     if(result.code==0){
                         _This.pageNo=1;//返回第一页
-                        _This.fGetMaterilList(); //重新获取项目照片库列表
+                        _This.fGetMaterilList("aa"); //重新获取项目照片库列表
                     }
 
                 }
@@ -965,7 +974,7 @@ export default {
         /**
          * 获取视频或者图片列表
          */
-        fGetMaterilList(){
+        fGetMaterilList(atype){
             var _This = this;
             let postData={
                 pageNo:_This.pageNo,
@@ -980,9 +989,14 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                     console.log("=====mediabase/materialList=======",result);
+
+                    _This.aMaterial=[];
+                    _This.randamData=Math.random(10);//视频随机数
                     if(result.code==0){
-                       _This.aMaterial=result.data.list;
+                        let aMaterial=result.data.list;
+                        setTimeout(function () {
+                            _This.aMaterial=aMaterial;
+                        },0);
                        _This.totalCount=result.data.count;
                     }
 

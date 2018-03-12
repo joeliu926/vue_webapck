@@ -246,6 +246,16 @@ export default {
                     return false;
                 }
               let oCheckDetail=_This.oCheckDetail;
+                let fileVo=oCheckDetail.fileVo||[];
+                let isChecked=true;
+                fileVo.forEach(item=>{
+                  if(item.status==0){
+                      isChecked=false;
+                  }
+                });
+               if(!isChecked){
+                   return false;
+               }
                 let putData={
                     id:oCheckDetail.id,
                     fileVo:oCheckDetail.fileVo,

@@ -97,6 +97,7 @@
                         .row-item-title {
                             display: inline-block;
                             width: 80px;
+                            color: #333333;
                         }
                         .row-item-value {
                             width: 200px;
@@ -382,8 +383,8 @@
         .p-case-mask{
             position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
             .croper-ct{
-                height: 940px;
-                width:980px;
+                height: 900px;
+                width:940px;
                 margin: 10px auto;
                 background: #ffffff;padding: 0;
                 box-sizing: border-box;
@@ -427,12 +428,12 @@
                     }
                 }
                 .material-ct{
-                    height: 840px;
+                    height: 800px;
                     width: 100%;
                     box-sizing: border-box;
                     .case-com-ct{
                         height: 100%;
-                        width: 755px;
+                        width: 725px;
                         box-sizing: border-box;
                         padding:0px 0 24px 24px;
                         vertical-align: top;
@@ -447,8 +448,8 @@
                          .fit-ct{
                              display: inline-block;
                              position: relative;
-                             width:158px;
-                             height:158px;
+                             width:150px;
+                             height:150px;
                              border-radius: 6px;
                              cursor: pointer;
                              border: 1px dashed #bfcbd9;
@@ -527,6 +528,31 @@
                 }
 
 
+            }
+        }
+        @media screen and (min-width:430px) and (max-width:1430px) {
+            .p-case-mask{
+                .croper-ct{
+                    height: 750px;
+                    width:760px;
+                    .material-ct{
+                        height: 650px;
+                        .case-com-ct{
+                            height: 100%;
+                            width: 590px;
+                        }
+                        .case-r-ct{
+                            .fit-ct{
+                                width:115px;
+                                height:115px;
+                            }
+                        }
+                        .right-ct{
+                            padding: 30px 0;
+                            width: 165px;
+                        }
+                    }
+                }
             }
         }
         /********************案例库弹出层***end********************/
