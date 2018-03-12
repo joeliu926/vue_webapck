@@ -382,7 +382,7 @@
         .p-case-mask{
             position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
             .croper-ct{
-                height: 810px;
+                height: 960px;
                 width:980px;
                 margin: 50px auto;
                 background: #ffffff;padding: 0;
@@ -427,7 +427,7 @@
                     }
                 }
                 .material-ct{
-                    height: 690px;
+                    height: 840px;
                     width: 100%;
                     box-sizing: border-box;
                     .case-com-ct{
@@ -447,8 +447,8 @@
                          .fit-ct{
                              display: inline-block;
                              position: relative;
-                             width:120px;
-                             height:120px;
+                             width:158px;
+                             height:158px;
                              border-radius: 6px;
                              cursor: pointer;
                              border: 1px dashed #bfcbd9;
