@@ -256,7 +256,7 @@
                     margin-right:10px;
                     margin-bottom:10px;
                 }
-                .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;}
+                .closeUpPic{position: absolute;width: 20px;height: 20px;right:-10px;top:-10px;z-index:10;cursor: pointer;}
                 .video-ct{
                     position: relative;
                     margin: 20px;
