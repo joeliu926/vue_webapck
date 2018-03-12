@@ -218,7 +218,7 @@
                             </div>
                             <div class="fl video-ct" v-if="picItem.type==2">
                                 <div>
-                                    <video width="320" height="240" :poster="picItem.thumbnailUrl||'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ec3f3df8-00cc-4d7d-aeaa-99b60d4e0474'" controls >
+                                    <video width="320" height="240" :poster="picItem.thumbnailUrl||defaultvideo" controls >
                                         <source :src="picItem.url" type="video/ogg">
                                         <source :src="picItem.url" type="video/mp4">
                                         <source :src="picItem.url" type="video/webm">
@@ -348,7 +348,7 @@
                                     >
                                     </div>
                                     <div class="fl fit-ct" v-if="picItem.type==2">
-                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||'http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/ec3f3df8-00cc-4d7d-aeaa-99b60d4e0474'"  controls>
+                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||defaultvideo"  controls>
                                                 <source :src="picItem.url" type="video/ogg">
                                                 <source :src="picItem.url" type="video/mp4">
                                                 <source :src="picItem.url" type="video/webm">

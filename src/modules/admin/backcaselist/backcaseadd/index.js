@@ -14,6 +14,7 @@ export default {
     data () {
         return {
             defaultImg: require("../../../../common/img/post-demo.png"), //图片demo
+            defaultvideo:require("../../../../common/img/default-video.png"),//video默认图片
             bydefault:require("../../../../common/img/add-img-icon.png"),
             imgUploadUrl: CONSTANT.fileUpload+"api/caseHeader/uploadCasePicture",
             imgVideoMulty:CONSTANT.fileUpload+"attachment/upload/v3",//多个文件上传可以上传图片和视频
@@ -756,7 +757,7 @@ export default {
                 return false;
             }
 
-
+            console.log("aSelectCollection--------------",aSelectCollection);
             let aPic=_This.caseDetail.contentList[index].pictures;
             let aResult=aPic.concat(aSelectCollection);
 
@@ -814,6 +815,7 @@ export default {
          * 图片库多选
          */
         fMultySelect(item){
+            console.log("-----------item-------",item);
             let _This=this;
             let aSelectNameCollection=_This.aSelectNameCollection;
             let aSelectCollection=_This.aSelectCollection;
@@ -978,7 +980,7 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                     //console.log("=====mediabase/materialList=======",result);
+                     console.log("=====mediabase/materialList=======",result);
                     if(result.code==0){
                        _This.aMaterial=result.data.list;
                        _This.totalCount=result.data.count;
