@@ -382,9 +382,9 @@
         .p-case-mask{
             position: fixed;top: 0;left:0;right:0;bottom:0;background: rgba(0,0,0,0.6);z-index: 11;
             .croper-ct{
-                height: 960px;
+                height: 940px;
                 width:980px;
-                margin: 50px auto;
+                margin: 10px auto;
                 background: #ffffff;padding: 0;
                 box-sizing: border-box;
                 border-radius: 10px;
@@ -409,8 +409,8 @@
                 }
                 .top-btm-cm{
                     box-sizing: border-box;
-                    height: 60px;
-                    line-height: 60px;
+                    height: 50px;
+                    line-height: 50px;
                     width: 100%;
                     background: #f7f7f7;
                     padding: 0 30px;
