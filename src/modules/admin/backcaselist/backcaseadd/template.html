@@ -26,7 +26,7 @@
             <div class="case-info-ct">
                 <div class="row-ct">
                     <div class="row-item">
-                        <span class="row-item-title f-14"><i class="i-must">*</i> 案例名称</span>
+                        <span class="row-item-title f-14" style="color: #333333;"><i class="i-must">*</i> 案例名称</span>
                         <el-input class="row-item-value" v-model="caseDetail.caseName"></el-input>
                     </div>
                 </div>
@@ -262,8 +262,8 @@
             </template>
 
             <div style="text-align: center;padding: 10px;">
-                <el-button type="primary" @click="fAddAfterCase(true)">添加图片案例</el-button>
-                <el-button type="primary" @click="fAddAfterCase(false)">添加视频案例</el-button>
+                <el-button type="primary" @click="fAddAfterCase(true)">添加图文内容</el-button>
+                <el-button type="primary" @click="fAddAfterCase(false)">添加视频内容</el-button>
             </div>
 
             <el-button type="primary" style="margin-left:10px;display: none;" @click="addtextareas(textarea)">完成
@@ -348,10 +348,10 @@
                                     >
                                     </div>
                                     <div class="fl fit-ct" v-if="picItem.type==2">
-                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||defaultvideo"  controls>
-                                                <source :src="picItem.url" type="video/ogg">
-                                                <source :src="picItem.url" type="video/mp4">
-                                                <source :src="picItem.url" type="video/webm">
+                                            <video style="width:100%; height:100%; object-fit:contain"  :poster="picItem.thumbnailUrl||defaultvideo" preload="none"  controls>
+                                                <source :src="picItem.url+'?'+randamData"  type="video/ogg">
+                                                <source :src="picItem.url+'?'+randamData"  type="video/mp4">
+                                                <source :src="picItem.url+'?'+randamData"  type="video/webm">
                                             </video>
 
                                     </div>

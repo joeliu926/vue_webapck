@@ -169,7 +169,7 @@
                         vertical-align:middle;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;
                     }
                     .b-a-img{
-                        width:30px;height:30px;vertical-align:middle; margin-right:0px;float: right;
+                        width:88px;height:88px;vertical-align:middle; margin-right:0px;float: right;
                     }
                 }
                 .rbox-pagination-align {
@@ -234,13 +234,25 @@
                                 position: relative;
                                 display: inline-block;
                                 margin: 0 8px 8px 0;
-                                background: #9287EB;
+
                                 padding: 0px 10px;
                                 height: 25px;
                                 line-height: 25px;
                                 border-radius: 4px;
-                                color: #ffffff;
+                                color: #666666;
                             }
+                        }
+                        .fit-ct{
+                            display: inline-block;
+                            position: relative;
+                            width:240px;
+                            height:300px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            border: 1px dashed #bfcbd9;
+                            margin: 5px 22px;
+                            margin-left: 0;
+                            background-color: #f7f7f7;
                         }
                     }
                     .customer-info-ct{
