@@ -107,7 +107,7 @@ export default {
             isPicCaseLib:true,//0照片案例、1视频案例
             aMaterial:[],//素材照片集合
             iMaterial:{},//素材单个文件
-            pageSize:20,//每页数量
+            pageSize:4,//每页数量
             totalCount:0,//总共页数
             aSelectNameCollection:[],//选中的名称
             aSelectCollection:[],//选中的案例条目
@@ -928,13 +928,15 @@ export default {
                             oItem.fileName=item.name;
                             oItem.name=item.name;
                             oItem.type=itype;
-                            aMaterial.unshift(oItem);
+                           //////// aMaterial.unshift(oItem); //暂时不删除
                             aSelectNameCollection.push(oItem.fileName);
                             aSelectCollection.push(oItem);
                             aList.push(oItem);
 
                         });
-                        _This.aMaterial=aMaterial;
+                       ////////// _This.aMaterial=aMaterial; //暂时不删除
+                        _This.pageNo=1;//返回第一页
+                        _This.fGetMaterilList(); //重新获取项目照片库列表
                         _This.aSelectCollection=aSelectCollection;
                         _This.aSelectNameCollection=aSelectNameCollection;
                         _This.fSaveVidoeOrImg(aList);

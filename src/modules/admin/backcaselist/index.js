@@ -31,7 +31,7 @@ export default {
             doctorId:"",
             doctorlist:[],
             checkPageNo: 1, //审核库编号
-            checkPageSize:2,//审核库每页数量
+            checkPageSize:12,//审核库每页数量
             aCheckList:[],//审核列表
             oCheckDetail:{},//提交审核详情
         };
