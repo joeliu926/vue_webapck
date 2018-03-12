@@ -144,7 +144,7 @@ export default {
             let _This = this;
             _This.oClinicData.productNames = _This.oSelectMajorItems;
            // _This.oClinicData.logo =_This.defaultImg;  //
-            //_This.oClinicData.address =_This.sAddress;
+            //cd_This.oClinicData.address =_This.sAddress;
             if(!/\S{1,}/.test(_This.oClinicData.name)){
                 _This.$message.error("诊所名不能为空");
                 return false;
