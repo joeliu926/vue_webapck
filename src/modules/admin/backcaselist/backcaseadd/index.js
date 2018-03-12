@@ -709,8 +709,11 @@ export default {
          * 关闭上传照片窗口
          */
         fCloseUploadPic(){
-            this.isCroper=false;
-            this.currentChoiceType=-1;
+            let _This=this;
+            _This.isCroper=false;
+            _This.currentChoiceType=-1;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
         },
 
         //////////////////////////////////////////////////////////////////////////http://140.143.185.73:8077/mc_files/10088/CASE_LIBRARY/d50a756d-8ad1-47fa-9ecb-ce541ca1f319
