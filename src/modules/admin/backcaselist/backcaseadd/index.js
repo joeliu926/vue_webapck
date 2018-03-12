@@ -161,7 +161,6 @@ export default {
                 method: 'POST',
                 data: pData,
                 success: function (result) {
-                    console.log("get case detail------",result.data);
                     if(result.code==0) {
                         _This.caseDetail = result.data||[];
 
@@ -286,7 +285,6 @@ export default {
                 let pData={
                     postData:JSON.stringify(this.caseDetail)
                 };
-              console.log("save case------",this.caseDetail);
                 _.ajax({
                     url: '/admin/backcase/caseupdate',
                     method: 'POST',
@@ -590,7 +588,6 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("result.data------",result.data);
                     let plength=_This.caseDetail.contentList[index].pictures.length;
                     if(result.code == 0 ) {
                        // _This.caseDetail.contentList[index].pictures.splice(plength-1,0,result.data);
@@ -624,11 +621,9 @@ export default {
         fAddAfterCase(arg){
             let _This=this;
 
-            console.log("-----_This.caseDetail------",_This.caseDetail);
             _This.isPicCaseLib=!!arg;
             let addAfterCaseItem=_This.addAfterCaseItem;
             addAfterCaseItem.type=!!arg?1:2;
-            console.log("-------",_This.addAfterCaseItem);
             let temCase=JSON.stringify(addAfterCaseItem);
             _This.caseDetail.contentList.push(JSON.parse(temCase));
         },
@@ -721,7 +716,6 @@ export default {
          * 打开案例库
          */
         fOpenCaseLib(index,ctype){
-            console.log("open case lib----------",ctype);
             let _This=this;
             _This.isCaseLib=true;
             _This.currentIndex=index;
@@ -733,16 +727,16 @@ export default {
          * 关闭案例库
          */
         fCloseCaseLib(){
-            console.log("close case lib----------");
             let _This=this;
             _This.isCaseLib=false;
             _This.currentChoiceType=-1;
+            _This.aSelectNameCollection=[];
+            _This.aSelectCollection=[];
         },
         /**
          * 确认选择照片
          */
         fEnsureSelectCase(){
-            console.log("ensure select lib----------",this.currentChoiceType);
             let _This=this;
             let index=_This.currentIndex;
             let aSelectCollection=_This.aSelectCollection;
@@ -763,11 +757,9 @@ export default {
             }
 
 
-            console.log("ensure aSelectCollection lib----------",aSelectCollection);
             let aPic=_This.caseDetail.contentList[index].pictures;
             let aResult=aPic.concat(aSelectCollection);
 
-            console.log("ensure aSelectCollection lib----------",aSelectCollection,aResult);
             _This.caseDetail.contentList[index].pictures=aResult;
             _This.isCaseLib=false;
             _This.aSelectNameCollection=[];
@@ -790,15 +782,12 @@ export default {
 
             var icanvasaa=this.$refs.icanvasaa;
             icanvasaa.src=img.src;
-            console.log("icanvasaa--------",icanvasaa);
-
             canvas.width = img.width;
             canvas.height = img.height;
 
             ctx.drawImage(img, 0, 0, img.width, img.height);
 
             var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-            console.log("canvas-------",canvas,ext);
             var dataURL = canvas.toDataURL("image/"+ext);
 
             // canvas转为blob并上传
@@ -818,7 +807,6 @@ export default {
          * 根据客户手机号码或者名称搜索案例内容
          */
         fSearchCase(){
-            console.log("search data-----");
             this.pageNo=1;
             this.fGetMaterilList();
         },
@@ -826,7 +814,6 @@ export default {
          * 图片库多选
          */
         fMultySelect(item){
-            console.log("multy select data-----",item);
             let _This=this;
             let aSelectNameCollection=_This.aSelectNameCollection;
             let aSelectCollection=_This.aSelectCollection;
@@ -835,13 +822,17 @@ export default {
                 let itype=_This.isPicCaseLib?1:2;
                 item.type=itype;
                 item.name=item.fileName;
+                if(!_This.isPicCaseLib){
+                    aSelectNameCollection=[];
+                    aSelectCollection=[];
+                }
                 aSelectNameCollection.push(item.fileName);
                 aSelectCollection.push(item);
+
             }else{
                 aSelectNameCollection.splice(iIndex,1);
                 aSelectCollection.splice(iIndex,1);
             }
-            console.log("multy select result data-----",aSelectCollection);
             _This.aSelectCollection=aSelectCollection;
             _This.aSelectNameCollection=aSelectNameCollection;
         },
@@ -849,10 +840,8 @@ export default {
          * 上传照片到照片库
          */
         fUploadImgToLib(){
-            console.log("upload img data-----");
             let _This=this;
             //_This.currentIndex=index;
-            console.log("this refs-----",this.$refs);
             this.$refs["imgvideo"].click();
         },
         /**
@@ -869,9 +858,6 @@ export default {
                 text: 'Loading',
                 background: 'rgba(0, 0, 0, 0.7)'
             });
-
-            console.log("ee-----222---------",ee,imgFile);
-
             for(let i=0;i<imgFile.length;i++){
                let itemFile=imgFile[i];
                 if(_This.isPicCaseLib){
@@ -914,7 +900,6 @@ export default {
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log("upload image video-result-----",result);
                     let itype=_This.isPicCaseLib?1:2;
                     let aMaterial=_This.aMaterial;
                     let aSelectCollection=_This.aSelectCollection;
@@ -935,14 +920,12 @@ export default {
 
                         });
                        ////////// _This.aMaterial=aMaterial; //暂时不删除
-                        _This.pageNo=1;//返回第一页
-                        _This.fGetMaterilList(); //重新获取项目照片库列表
+
                         _This.aSelectCollection=aSelectCollection;
                         _This.aSelectNameCollection=aSelectNameCollection;
                         _This.fSaveVidoeOrImg(aList);
                     }
                     loading.close();
-                    console.log("aMaterial-----",aMaterial);
                 },
                 error: function(result) {
                     this.$message.error("图片大小不能超过5M！");
@@ -962,15 +945,16 @@ export default {
             let postData={
                 pData:JSON.stringify(pdata)
             };
-            console.log("post data----",pdata);
+            //console.log("post data----",pdata);
             _.ajax({
                 url: '/admin/mediabase/uploadlocal',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("=====mediabase----uploadlocal=======",result);
+                   // console.log("=====mediabase----uploadlocal=======",result);
                     if(result.code==0){
-
+                        _This.pageNo=1;//返回第一页
+                        _This.fGetMaterilList(); //重新获取项目照片库列表
                     }
 
                 }
@@ -988,13 +972,13 @@ export default {
                 type:_This.isPicCaseLib?1:2
 
             };
-            console.log("post data----",postData);
+            //console.log("post data----",postData);
             _.ajax({
                 url: '/admin/mediabase/materialList',
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                     console.log("=====mediabase/materialList=======",result);
+                     //console.log("=====mediabase/materialList=======",result);
                     if(result.code==0){
                        _This.aMaterial=result.data.list;
                        _This.totalCount=result.data.count;

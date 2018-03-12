@@ -80,10 +80,9 @@ export default {
     methods: {
         /**/
         currentid(cmd){
-            console.log("dddddddd-----",cmd);
+            //console.log("dddddddd-----",cmd);
             this.doctorId=cmd;
             this.fSearchCaseList();
-           // console.log("this.doctorId-------", this.doctorId,item);
         },
         /*获取医生列表*/
         getdoctorlist(){
@@ -120,7 +119,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    //console.log("============",result);
                     if(result.code==0){
                         _This.oCaseList=result.data.list;
                         _This.count=result.data.count;
@@ -151,7 +149,6 @@ export default {
          */
 
         fCaseDelete(caseid){
-           // console.log("--------",caseid);
             if(!caseid){
                 return false;
             }
@@ -164,7 +161,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                   // console.log("====delete========",result);
                     if(result.code == 0) {
                         _This.$message({
                             message: '删除成功',
@@ -211,8 +207,6 @@ export default {
          */
         fReviewTab(ttype){
             let _This=this;
-            //console.log("-----------ttype-----",ttype);
-
             _This.checkPageNo=1;
             _This.reviewType=ttype;
             _This.fSearchCheckList();
@@ -221,7 +215,6 @@ export default {
          * 案例审核详情
          */
         fReviewCase(item){
-            console.log("review-----",item);
             let _This=this;
             _This.isLookAndReview=true;
             let postData={
@@ -232,7 +225,6 @@ export default {
                 method: 'POST',
                 data: postData,
                 success: function (result) {
-                    console.log("=====get detail=======",result);
                     if(result.code==0){
                         _This.oCheckDetail=result.data;
                     }
@@ -244,7 +236,6 @@ export default {
          * 提交审核
          */
         fSubmitReview(){
-            console.log("submit review-----");
             let _This=this;
             _This.$confirm('确定图片和视频内容审核无误吗?', '提示', {
                 confirmButtonText: '确认',
@@ -254,14 +245,12 @@ export default {
                 if(!result){
                     return false;
                 }
-              console.log("result---------",result);
               let oCheckDetail=_This.oCheckDetail;
                 let putData={
                     id:oCheckDetail.id,
                     fileVo:oCheckDetail.fileVo,
                     remark:oCheckDetail.remark,
                 };
-                console.log("putData---------",putData);
                // return false;
                 let postData={
                     pData:JSON.stringify(putData)
@@ -271,7 +260,6 @@ export default {
                     method: 'POST',
                     data: postData,
                     success: function (result) {
-                        console.log("=====mediabase/check=======",result);
                         if(result.code==0){
                             _This.isLookAndReview=false;
                             _This.fSearchCheckList();
@@ -298,7 +286,6 @@ export default {
                 pageSize:_This.checkPageSize,
                 busStatus:_This.reviewType||""
             };
-            console.log(" fSearchCheckList---post data----",postData);
             _.ajax({
                 url: '/admin/mediabase/pagelist',
                 method: 'POST',
