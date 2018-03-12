@@ -108,7 +108,7 @@ export default {
             isPicCaseLib:true,//0照片案例、1视频案例
             aMaterial:[],//素材照片集合
             iMaterial:{},//素材单个文件
-            pageSize:4,//每页数量
+            pageSize:16,//每页数量
             totalCount:0,//总共页数
             aSelectNameCollection:[],//选中的名称
             aSelectCollection:[],//选中的案例条目
