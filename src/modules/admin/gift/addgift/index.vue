@@ -54,10 +54,11 @@
             vertical-align: top;
             /*float: left;*/
             .segment-title {
-                /*border-bottom: 1px solid #eaeaea;*/
-                background: #eaeaea;
-                padding-left: 10px;
+                border-bottom: 1px solid #eaeaea;
+                padding: 10px 0 5px 0;
                 height: 20px;
+                font-size: 14px;
+                color: #333333;
                 .s-title-l {
                     float: left;
                 }
@@ -69,7 +70,7 @@
             .gift-record {
                 .record-text-ct {
                     padding: 24px 0;
-                    border-bottom: 4px solid #eaeaea;
+                    border-bottom: 1px solid #eaeaea;
                     .sel-title {
                         font-size: 14px;
                         color: #999999;

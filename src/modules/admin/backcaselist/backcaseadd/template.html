@@ -20,13 +20,13 @@
 
             <!-- 一般信息 -->
             <div class="segment-title f-14">
-                <span class="s-title-l">一般信息</span>
+                <span class="s-title-l all-com-title">一般信息</span>
                 <span class="s-title-r">*必填信息</span>
             </div>
             <div class="case-info-ct">
                 <div class="row-ct">
                     <div class="row-item">
-                        <span class="row-item-title f-14" style="color: #333333;"><i class="i-must">*</i> 案例名称</span>
+                        <span class="row-item-title f-14" style=""><i class="i-must">*</i> 案例名称</span>
                         <el-input class="row-item-value" v-model="caseDetail.caseName"></el-input>
                     </div>
                     <canvas style="display: none;" ref="icanvas"></canvas>
@@ -35,7 +35,7 @@
 
             <!-- 案例 -->
             <div class="segment-title f-14">
-                <span class="s-title-l">案例</span>
+                <span class="s-title-l all-com-title">案例</span>
                 <span class="s-title-r">*必填信息</span>
             </div>
             <div class="case-info-ct">
@@ -96,7 +96,7 @@
 
             <!--术前/术后照的设置-->
             <div class="segment-title f-14">
-                <span class="s-title-l">术前/术后照的设置</span>
+                <span class="s-title-l all-com-title">术前/术后照的设置</span>
                 <span class="s-title-r">*必填信息</span>
             </div>
             <div class="picture-box clearfix">
@@ -130,7 +130,7 @@
 
             <!-- 求美者信息 -->
             <div class="segment-title f-14">
-                <span class="s-title-l">求美者信息</span>
+                <span class="s-title-l all-com-title">求美者信息</span>
                 <span class="s-title-r">*必填信息</span>
             </div>
             <div class="case-info-ct">
@@ -173,7 +173,7 @@
 
             <!--求美日记-->
             <div class="segment-title f-14">
-                <span class="s-title-l">求美日记</span>
+                <span class="s-title-l all-com-title">求美日记</span>
                 <span class="s-title-r">*必填信息</span>
             </div>
             <template v-for="afterItem,index in caseDetail.contentList">
