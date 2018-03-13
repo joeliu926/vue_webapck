@@ -751,11 +751,27 @@ export default {
             if(_This.currentChoiceType>=0){ //选择术前术后照片情况
                 let cropData=_This.cropData;
                 _This.isCroper=true;
-                cropData.img=aSelectCollection[0].url;
-                _This.cropData=cropData;
+                //cropData.img=aSelectCollection[0].url;
+                //_This.cropData=cropData;
                 _This.isCaseLib=false;
                 _This.aSelectNameCollection=[];
                 _This.aSelectCollection=[];
+
+                let image = new Image();
+               let urlData=aSelectCollection[0].url;
+                image.src =urlData;
+                image.crossOrigin = "Anonymous";
+                image.onload = function(e){
+                    let dataUrl=_This.fImageToBase64(image);
+                    cropData.img=dataUrl;
+                    _This.cropData=cropData;
+                };
+                if ( image.complete || image.complete === undefined ) {
+                    image.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                    image.src = urlData;
+                }
+
+
                 return false;
             }
 
@@ -768,34 +784,44 @@ export default {
             _This.aSelectNameCollection=[];
             _This.aSelectCollection=[];
         },
-
         getBase64Image(img) {
-
-
             var image = new Image();
-            image.src =aSelectCollection[0].url;//"http://p4yff5s6k.bkt.clouddn.com/6FNOpE-HAT2Ab94XdCLgPzonurU=/FikAuqZ0f_4A8YKYyZPqhP8DwdZF";//
+            image.src ="http://source.nihaomc.com/mc_files/10088/CASE_LIBRARY/ff9367d1-1ab8-46ae-a2b0-0b805086efc1";//"http://p4yff5s6k.bkt.clouddn.com/6FNOpE-HAT2Ab94XdCLgPzonurU=/FikAuqZ0f_4A8YKYyZPqhP8DwdZF";//aSelectCollection[0].url;//
             image.crossOrigin = "*";
-            image.onload = function(e){
-
-              //  let timage=_This.getBase64Image(image);
-               // console.log("image-----------",timage);
-            }
             var canvas =this.$refs.icanvas;
             var ctx = canvas.getContext("2d");
+            image.onload = function(e){
 
-            var icanvasaa=this.$refs.icanvasaa;
-            icanvasaa.src=img.src;
-            canvas.width = img.width;
-            canvas.height = img.height;
+                canvas.width = image.width;
+                canvas.height = image.height;
 
-            ctx.drawImage(img, 0, 0, img.width, img.height);
+                ctx.drawImage(image, 0, 0, image.width, image.height);
 
-            var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-            var dataURL = canvas.toDataURL("image/"+ext);
-
+                var ext = image.src.substring(image.src.lastIndexOf(".")+1).toLowerCase();
+                var dataURL = canvas.toDataURL("image/jpg");
+               // console.log("dataURL---------------",dataURL)
+                let cropData=_This.cropData;
+                cropData.img=dataURL;
+                _This.cropData=cropData;
+            }
             // canvas转为blob并上传
-
-            return dataURL
+            return "";
+        },
+        /**
+         * image转base64data
+         * @param image
+         */
+        fImageToBase64(image){
+            var canvas =this.$refs.icanvas;
+            var ctx = canvas.getContext("2d");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0, image.width, image.height);
+            var ext = image.src.substring(image.src.lastIndexOf(".")+1).toLowerCase();
+            //var dataURL = canvas.toDataURL("image/"+ext);
+            var dataURL = canvas.toDataURL();
+           // console.log("dataURL----22222-----------",dataURL);
+            return dataURL;
         },
 
         /**
@@ -803,6 +829,7 @@ export default {
          * @param pnum
          */
         handleCurrentChange(pnum){
+            console.log("------------------");
             this.pageNo=pnum;
             this.fGetMaterilList();
         },
