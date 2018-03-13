@@ -169,7 +169,7 @@
                         vertical-align:middle;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;
                     }
                     .b-a-img{
-                        width:88px;height:88px;vertical-align:middle; margin-right:0px;float: right;
+                        width:88px;height:88px;vertical-align:middle; margin-right:0px;float: left;
                     }
                 }
                 .rbox-pagination-align {
