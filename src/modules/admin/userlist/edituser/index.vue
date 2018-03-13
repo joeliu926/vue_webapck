@@ -5,6 +5,7 @@
 
 <style lang="scss">
     .doctor-edit-content{
+
         .b-d{border: 1px solid red;}
         .i-must{
             color: #ff0000;
@@ -32,6 +33,7 @@
                 height: 20px;
                 .s-title-l{
                     float: left;
+                    color: #333333;
                 }
                 .s-title-r{
                     float: right;

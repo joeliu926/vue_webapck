@@ -5,6 +5,10 @@
 
 <style lang="scss">
     .detail-clinic {
+        .all-com-title{
+            color: #333333;
+            padding-bottom: 5px;
+        }
         .b-d{
             border: 1px solid red;
         }
@@ -24,6 +28,7 @@
             .segment-title{
                 border-bottom: 1px solid #eaeaea;
                 padding: 5px 0;
+                color: #333333;
             }
             .clinic-record{
                 .record-text-ct{

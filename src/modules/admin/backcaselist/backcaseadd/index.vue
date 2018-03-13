@@ -7,6 +7,11 @@
     .el-loading-mask{
       background-color:rgba(0,0,0,.2) !important;
     }
+    .all-com-title{
+        font-size: 14px;
+        color: #333333;
+        padding-bottom: 10px;
+    }
     .admin-caseadd {
         .fl {
             float: left;
@@ -97,7 +102,6 @@
                         .row-item-title {
                             display: inline-block;
                             width: 80px;
-                            color: #333333;
                         }
                         .row-item-value {
                             width: 200px;

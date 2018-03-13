@@ -185,6 +185,7 @@
                         border-bottom: 1px solid #eaeaea;
                         padding: 5px 0;
                         height: 20px;
+                        color: #333333;
                         .s-title-l {
                             float: left;
                         }
