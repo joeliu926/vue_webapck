@@ -36,7 +36,7 @@
                     .org-name{
                         font-size: 16px;
                         color:#333333;
-                        margin-top: 10px;
+                        margin-bottom: 10px;
                     }
                 }
                 .clinic-edit-ct{

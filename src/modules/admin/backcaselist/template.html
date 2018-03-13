@@ -62,10 +62,9 @@
                             min-width="30%">
                         <template slot-scope="scope" >
                             <p style="padding:10px 0;" >
-                                <span class="c-name" :title="scope.row.caseName" style="display: inline-block;line-height: 88px;width: 200px;"> {{scope.row.caseName}}</span>
                                 <img v-if="scope.row.beforePicture.url" class="b-a-img" style="" :src="scope.row.beforePicture.url">
-                                <img v-if="scope.row.afterPicture.url" class="b-a-img" style="" :src="scope.row.afterPicture.url">
-
+                                <img v-if="scope.row.afterPicture.url" class="b-a-img" style="margin-right: 10px;" :src="scope.row.afterPicture.url">
+                                <span class="c-name" :title="scope.row.caseName" style="display: inline-block;line-height: 88px;width: 200px;"> {{scope.row.caseName}}</span>
                             </p>
                         </template>
                     </el-table-column>
