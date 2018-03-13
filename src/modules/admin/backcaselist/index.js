@@ -237,6 +237,23 @@ export default {
          */
         fSubmitReview(){
             let _This=this;
+
+            let oCheckDetail=_This.oCheckDetail;
+            let fileVo=oCheckDetail.fileVo||[];
+            let isChecked=true;
+            fileVo.forEach(item=>{
+                if(item.status==0){
+                    isChecked=false;
+                }
+            });
+            if(!isChecked){
+                _This.$message({
+                    message: '请审核所有素材！',
+                    type: 'warning'
+                });
+                return false;
+            }
+
             _This.$confirm('确定图片和视频内容审核无误吗?', '提示', {
                 confirmButtonText: '确认',
                 cancelButtonText: '取消',
@@ -245,17 +262,6 @@ export default {
                 if(!result){
                     return false;
                 }
-              let oCheckDetail=_This.oCheckDetail;
-                let fileVo=oCheckDetail.fileVo||[];
-                let isChecked=true;
-                fileVo.forEach(item=>{
-                  if(item.status==0){
-                      isChecked=false;
-                  }
-                });
-               if(!isChecked){
-                   return false;
-               }
                 let putData={
                     id:oCheckDetail.id,
                     fileVo:oCheckDetail.fileVo,

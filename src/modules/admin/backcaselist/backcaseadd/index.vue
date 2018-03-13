@@ -537,23 +537,23 @@
         @media screen and (min-width:430px) and (max-width:1430px) {
             .p-case-mask{
                 .croper-ct{
-                    height: 750px;
-                    width:760px;
+                    height: 650px;
+                    width:640px;
                     .material-ct{
-                        height: 650px;
+                        height: 550px;
                         .case-com-ct{
                             height: 100%;
-                            width: 590px;
+                            width: 490px;
                         }
                         .case-r-ct{
                             .fit-ct{
-                                width:115px;
-                                height:115px;
+                                width:90px;
+                                height:90px;
                             }
                         }
                         .right-ct{
                             padding: 30px 0;
-                            width: 165px;
+                            width: 145px;
                         }
                     }
                 }
