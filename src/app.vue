@@ -17,5 +17,5 @@
     html{
         background:#f7f7f7 !important;
     }
-    .test{}
+    .test2{width:100%;}
 </style>
